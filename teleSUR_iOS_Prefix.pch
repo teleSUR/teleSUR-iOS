@@ -1,0 +1,8 @@
+//
+// Prefix header for all source files of the 'teleSUR-iOS' target in the 'teleSUR-iOS' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+    #import <UIKit/UIKit.h>
+#endif
