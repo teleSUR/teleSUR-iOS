@@ -92,6 +92,9 @@
 		630655EB13076FAB006381B8 /* SBJsonStreamParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 630655E013076FAB006381B8 /* SBJsonStreamParser.m */; };
 		630655EC13076FAB006381B8 /* SBJsonStreamParserState.m in Sources */ = {isa = PBXBuildFile; fileRef = 630655E213076FAB006381B8 /* SBJsonStreamParserState.m */; };
 		630655ED13076FAB006381B8 /* SBJsonStreamParserAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 630655E413076FAB006381B8 /* SBJsonStreamParserAdapter.m */; };
+		63065617130777EC006381B8 /* TSMultimediaData.m in Sources */ = {isa = PBXBuildFile; fileRef = 63065616130777EC006381B8 /* TSMultimediaData.m */; };
+		6306561C130779F7006381B8 /* teleSIR_iOS-Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6306561B130779F7006381B8 /* teleSIR_iOS-Config.plist */; };
+		63400A911309C9B6005D5E08 /* splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 63400A901309C9B6005D5E08 /* splash.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -259,6 +262,10 @@
 		630655E213076FAB006381B8 /* SBJsonStreamParserState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamParserState.m; sourceTree = "<group>"; };
 		630655E313076FAB006381B8 /* SBJsonStreamParserAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamParserAdapter.h; sourceTree = "<group>"; };
 		630655E413076FAB006381B8 /* SBJsonStreamParserAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamParserAdapter.m; sourceTree = "<group>"; };
+		63065615130777EC006381B8 /* TSMultimediaData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSMultimediaData.h; sourceTree = "<group>"; };
+		63065616130777EC006381B8 /* TSMultimediaData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSMultimediaData.m; sourceTree = "<group>"; };
+		6306561B130779F7006381B8 /* teleSIR_iOS-Config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "teleSIR_iOS-Config.plist"; sourceTree = "<group>"; };
+		63400A901309C9B6005D5E08 /* splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = splash.png; path = Images/splash.png; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* teleSUR_iOS-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "teleSUR_iOS-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -305,6 +312,9 @@
 				28EEC0491118E28000187D67 /* AppDelegate_Shared.h */,
 				28EEC04A1118E28000187D67 /* AppDelegate_Shared.m */,
 				8D1107310486CEB800E47090 /* teleSUR_iOS-Info.plist */,
+				6306561B130779F7006381B8 /* teleSIR_iOS-Config.plist */,
+				63065615130777EC006381B8 /* TSMultimediaData.h */,
+				63065616130777EC006381B8 /* TSMultimediaData.m */,
 			);
 			name = Shared;
 			sourceTree = "<group>";
@@ -318,6 +328,7 @@
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
+				63400A8F1309C992005D5E08 /* Images */,
 				630651AF13075AFD006381B8 /* Library */,
 			);
 			name = CustomTemplate;
@@ -766,6 +777,14 @@
 			path = "Library/JSON-Framework/Classes";
 			sourceTree = "<group>";
 		};
+		63400A8F1309C992005D5E08 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				63400A901309C9B6005D5E08 /* splash.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -822,6 +841,8 @@
 				2860E38B111B897F00E27156 /* MainWindow_iPhone.xib in Resources */,
 				63065554130766A3006381B8 /* SHKSharers.plist in Resources */,
 				63065571130766A3006381B8 /* FBConnect.bundle in Resources */,
+				6306561C130779F7006381B8 /* teleSIR_iOS-Config.plist in Resources */,
+				63400A911309C9B6005D5E08 /* splash.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -906,6 +927,7 @@
 				630655EB13076FAB006381B8 /* SBJsonStreamParser.m in Sources */,
 				630655EC13076FAB006381B8 /* SBJsonStreamParserState.m in Sources */,
 				630655ED13076FAB006381B8 /* SBJsonStreamParserAdapter.m in Sources */,
+				63065617130777EC006381B8 /* TSMultimediaData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
