@@ -24,22 +24,22 @@
 	// ejemplo llamada a signleton de datos, cuando termina la consulta envía
 	// mensaje a objeto según selectores en una especie de patrón delegate
 	TSMultimediaData *mmData = [TSMultimediaData sharedTSMultimediaData];
-    [mmData getDatosParaEntidad:@"clip"
-					conFiltros:[NSDictionary dictionary]
-					   enRango:NSMakeRange(4, 5)
+    [mmData getDatosParaEntidad:@"clip" // otros ejemplos: programa, pais, categoria
+					conFiltros:[NSDictionary dictionary] // otro ejemplo: conFiltros:[NSDictionary dictionaryWithObject:@"2010-01-01" forKey:@"hasta"]
+					   enRango:NSMakeRange(1, 10)  // otro ejemplo: NSMakeRange(1, 1) -sólo uno-
 				   conDelegate:self
-			   selectorSiExito:@selector(clipsRecibidosExito:)
-				selectorSiFalla:@selector(clipsRecibidosFalla:)];
+			   selectorSiExito:@selector(entidadesRecibidasExito:)
+				selectorSiFalla:@selector(entidadesRecibidasFalla:)];
     
     return YES;
 }
 
-- (void)clipsRecibidosExito:(id *)clipsArray {
-    NSLog(@"Consulta exitosa, se recibió diccionario: %@", clipsArray);
+- (void)clipsRecibidosExito:(NSArray *)array {
+    NSLog(@"Consulta exitosa, se recibió arreglo: %@", array);
 }
 
 - (void)clipsRecibidosFalla:(id)error {
-	
+	NSLog(@"Error: %@", error);
 }
 										   
 

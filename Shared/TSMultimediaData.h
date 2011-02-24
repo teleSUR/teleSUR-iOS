@@ -9,9 +9,7 @@
 #import <Foundation/Foundation.h>
 
 
-@interface TSMultimediaData : NSObject {
-	NSDictionary *config;
-	
+@interface TSMultimediaData : NSObject {	
 	// selectores y delegado 
 	id delegate;
     SEL siExito;
@@ -20,8 +18,6 @@
 	NSMutableData *resultadoAPIData; 	    
 	NSArray *resultadoAPIArray; 
 }
-
-@property (nonatomic, retain) NSDictionary *config;
 
 + (TSMultimediaData *)sharedTSMultimediaData;
 

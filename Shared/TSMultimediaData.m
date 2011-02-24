@@ -12,10 +12,8 @@
 
 @implementation TSMultimediaData
 
-@synthesize config;
-
 + (TSMultimediaData *)sharedTSMultimediaData {
-	
+	// singleton
 	static TSMultimediaData *sharedTSMultimediaData;
 	@synchronized(self) {
 		if (!sharedTSMultimediaData)
@@ -43,25 +41,22 @@
 	siFalla = fallaSelector;
 	delegate = [datosDelegate retain];
 	
-	  
-	// cargar configuración al iniciar singleton
-	//self.config = [NSDictionary dictionaryWithContentsOfFile:[[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"teleSUR_iOS-Config.plist"]];
-	
 	if ([entidad isEqualToString:@"clip"]) {  // agregar posibles filtros para clips
 		
 		if (tmpFiltro = [filtros objectForKey:@"categoria"])
-			[parametrosGet addObject:[NSString stringWithFormat:@"categoria=", tmpFiltro]];
+			[parametrosGet addObject:[NSString stringWithFormat:@"categoria=%@", tmpFiltro]];
 		
 		if (tmpFiltro = [filtros objectForKey:@"tipo"])
-			[parametrosGet addObject:[NSString stringWithFormat:@"tipo=", tmpFiltro]];
+			[parametrosGet addObject:[NSString stringWithFormat:@"tipo=%@", tmpFiltro]];
 		
 		if (tmpFiltro = [filtros objectForKey:@"desde"])
-			[parametrosGet addObject:[NSString stringWithFormat:@"desde=", tmpFiltro]];
+			[parametrosGet addObject:[NSString stringWithFormat:@"desde=%@", tmpFiltro]];
 		
 		if (tmpFiltro = [filtros objectForKey:@"hasta"])
-			[parametrosGet addObject:[NSString stringWithFormat:@"hasta=", tmpFiltro]];
+			[parametrosGet addObject:[NSString stringWithFormat:@"hasta=%@", tmpFiltro]];
 	
 	} else if ([entidad isEqualToString:@"categoria"]) {
+	} else if ([entidad isEqualToString:@"programa"]) {
 	} else if ([entidad isEqualToString:@"pais"]) {
 	} else if ([entidad isEqualToString:@"tipo_clip"]) {
 		
@@ -78,7 +73,7 @@
 	NSString *queryString = [parametrosGet componentsJoinedByString:@"&"];
 	
 	NSURL *multimediaAPIRequestURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@/api/%@?%@", urlBase, langCode, entidad, queryString]];
-	//NSLog(@"URL a consular: %@", multimediaAPIRequestURL);
+	NSLog(@"URL a consular: %@", multimediaAPIRequestURL);
 	
 	NSURLRequest *apiRequest=[NSURLRequest requestWithURL:multimediaAPIRequestURL
 											  cachePolicy:NSURLRequestUseProtocolCachePolicy
@@ -116,13 +111,15 @@
     NSLog(@"Error de conexión - %@ %@",
           [error localizedDescription],
           [[error userInfo] objectForKey:NSURLErrorFailingURLStringErrorKey]);
+	
+	[delegate performSelector:siFalla withObject:error];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
 	
 	// parsear JSON
 	NSError *errorJSON = NULL;
-	NSDictionary *resultadoArray = [NSDictionary dictionaryWithJSONData:resultadoAPIData error:&errorJSON];
+	NSArray *resultadoArray = [NSDictionary dictionaryWithJSONData:resultadoAPIData error:&errorJSON];
 	
 	if (errorJSON) {
 		[delegate performSelector:siFalla withObject:errorJSON];
@@ -138,10 +135,7 @@
 
 
 
-
-
 - (void)dealloc {
-    [self.config release];	
 }
 
 @end
