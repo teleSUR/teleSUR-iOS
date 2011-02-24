@@ -11,11 +11,26 @@
 
 @interface TSMultimediaData : NSObject {
 	NSDictionary *config;
+	
+	// selectores y delegado 
+	id delegate;
+    SEL siExito;
+	SEL siFalla;
+	// respuesta en JSON y resultado del parse
+	NSMutableData *resultadoAPIData; 	    
+	NSArray *resultadoAPIArray; 
 }
 
 @property (nonatomic, retain) NSDictionary *config;
 
-- (NSArray *) getClips: (NSDictionary *)filtros;
++ (TSMultimediaData *)sharedTSMultimediaData;
+
+- (NSArray *)getDatosParaEntidad:(NSString *)entidad
+		   conFiltros:(NSDictionary *)filtros
+			  enRango:(NSRange)rango
+		  conDelegate:(id)datosDelegate
+	  selectorSiExito:(SEL)exitoSelector
+	  selectorSiFalla:(SEL)fallaSelector;
 
 @end
 

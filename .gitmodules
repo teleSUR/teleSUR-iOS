@@ -1,3 +1,6 @@
 [submodule "Library/JSON-Framework"]
 	path = Library/JSON-Framework
 	url = https://github.com/stig/json-framework.git
+[submodule "Library/TouchJSON"]
+	path = Library/TouchJSON
+	url = https://github.com/TouchCode/TouchJSON.git
