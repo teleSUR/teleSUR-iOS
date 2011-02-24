@@ -21,11 +21,12 @@
     
     [self.window makeKeyAndVisible];
 
-	
+	// ejemplo llamada a signleton de datos, cuando termina la consulta envía
+	// mensaje a objeto según selectores en una especie de patrón delegate
 	TSMultimediaData *mmData = [TSMultimediaData sharedTSMultimediaData];
     [mmData getDatosParaEntidad:@"clip"
 					conFiltros:[NSDictionary dictionary]
-					   enRango:NSMakeRange(1, 20)
+					   enRango:NSMakeRange(4, 5)
 				   conDelegate:self
 			   selectorSiExito:@selector(clipsRecibidosExito:)
 				selectorSiFalla:@selector(clipsRecibidosFalla:)];

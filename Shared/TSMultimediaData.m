@@ -71,14 +71,14 @@
 	}
 	
 	// cualquier entidad puede ser paginada
-	[parametrosGet addObject:[NSString stringWithFormat:@"primero=", rango.location]];
-	[parametrosGet addObject:[NSString stringWithFormat:@"ulimo=", rango.length]];
+	[parametrosGet addObject:[NSString stringWithFormat:@"primero=%d", rango.location]];
+	[parametrosGet addObject:[NSString stringWithFormat:@"ultimo=%d", rango.length]];
 	
 	// construir quierystring, URL, consulta y conexión
 	NSString *queryString = [parametrosGet componentsJoinedByString:@"&"];
 	
 	NSURL *multimediaAPIRequestURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@/api/%@?%@", urlBase, langCode, entidad, queryString]];
-	NSLog(@"URL a consular: %@", multimediaAPIRequestURL);
+	//NSLog(@"URL a consular: %@", multimediaAPIRequestURL);
 	
 	NSURLRequest *apiRequest=[NSURLRequest requestWithURL:multimediaAPIRequestURL
 											  cachePolicy:NSURLRequestUseProtocolCachePolicy
