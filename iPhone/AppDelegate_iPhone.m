@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate_iPhone.h"
+#import "TSMultimediaData.h"
 
 @implementation AppDelegate_iPhone
 
@@ -19,9 +20,27 @@
     // Override point for customization after application launch.
     
     [self.window makeKeyAndVisible];
+
+	
+	TSMultimediaData *mmData = [TSMultimediaData sharedTSMultimediaData];
+    [mmData getDatosParaEntidad:@"clip"
+					conFiltros:[NSDictionary dictionary]
+					   enRango:NSMakeRange(1, 20)
+				   conDelegate:self
+			   selectorSiExito:@selector(clipsRecibidosExito:)
+				selectorSiFalla:@selector(clipsRecibidosFalla:)];
     
     return YES;
 }
+
+- (void)clipsRecibidosExito:(id *)clipsArray {
+    NSLog(@"Consulta exitosa, se recibió diccionario: %@", clipsArray);
+}
+
+- (void)clipsRecibidosFalla:(id)error {
+	
+}
+										   
 
 
 - (void)applicationWillResignActive:(UIApplication *)application {
