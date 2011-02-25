@@ -8,9 +8,11 @@
 
 #import "TSMultimediaData.h"
 #include "NSDictionary_JSONExtensions.h"
-
+#include "TSMultimediaDataDelegate.h"
 
 @implementation TSMultimediaData
+
+@synthesize delegate;
 
 + (TSMultimediaData *)sharedTSMultimediaData {
 	// singleton
@@ -25,21 +27,17 @@
 }
 
 
-- (NSArray *)getDatosParaEntidad:(NSString *)entidad
+- (void)getDatosParaEntidad:(NSString *)entidad
   conFiltros:(NSDictionary *)filtros
   enRango:(NSRange)rango
-  conDelegate:(id)datosDelegate
-  selectorSiExito:(SEL)exitoSelector
-  selectorSiFalla:(SEL)fallaSelector {
+  conDelegate:(id)datosDelegate {
+	
+	self.delegate = datosDelegate;
 	
 	NSString *urlBase = @"http://stg.multimedia.tlsur.net";
 	NSString *langCode = @"es";
 	NSMutableArray *parametrosGet = [NSMutableArray array];
 	NSString *tmpFiltro = nil;
-	
-	siExito = exitoSelector;
-	siFalla = fallaSelector;
-	delegate = [datosDelegate retain];
 	
 	if ([entidad isEqualToString:@"clip"]) {  // agregar posibles filtros para clips
 		
@@ -62,7 +60,10 @@
 		
 	} else {
 		NSLog(@"El nombre de la entidad no se reconoce: %@", entidad);
-		return nil;
+		if ([delegate respondsToSelector:@selector(entidadesRecibidasConFalla:)]) {
+			[delegate performSelector:@selector(entidadesRecibidasConFalla:) withObject:[NSError errorWithDomain:@"TSMultimediaData" code:100 userInfo:[NSDictionary dictionary]]];
+		}
+		return;
 	}
 	
 	// cualquier entidad puede ser paginada
@@ -73,7 +74,7 @@
 	NSString *queryString = [parametrosGet componentsJoinedByString:@"&"];
 	
 	NSURL *multimediaAPIRequestURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@/api/%@?%@", urlBase, langCode, entidad, queryString]];
-	NSLog(@"URL a consular: %@", multimediaAPIRequestURL);
+	//NSLog(@"URL a consular: %@", multimediaAPIRequestURL);
 	
 	NSURLRequest *apiRequest=[NSURLRequest requestWithURL:multimediaAPIRequestURL
 											  cachePolicy:NSURLRequestUseProtocolCachePolicy
@@ -112,7 +113,10 @@
           [error localizedDescription],
           [[error userInfo] objectForKey:NSURLErrorFailingURLStringErrorKey]);
 	
-	[delegate performSelector:siFalla withObject:error];
+	if ([delegate respondsToSelector:@selector(entidadesRecibidasConFalla:)]) {
+		[delegate performSelector:@selector(entidadesRecibidasConFalla:) withObject:error];
+	}
+	
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
@@ -122,9 +126,17 @@
 	NSArray *resultadoArray = [NSDictionary dictionaryWithJSONData:resultadoAPIData error:&errorJSON];
 	
 	if (errorJSON) {
-		[delegate performSelector:siFalla withObject:errorJSON];
+		
+		if ([delegate respondsToSelector:@selector(entidadesRecibidasConFalla:)]) {
+			[delegate performSelector:@selector(entidadesRecibidasConFalla:) withObject:errorJSON];
+		}
+		
 	} else {
-		[delegate performSelector:siExito withObject:resultadoArray];
+		
+		if ([delegate respondsToSelector:@selector(entidadesRecibidasConExito:)]) {
+			[delegate performSelector:@selector(entidadesRecibidasConExito:) withObject:resultadoArray];
+		}
+	
 	}
 	
     // liberar objeto de conexión y objeto de datos
@@ -136,6 +148,9 @@
 
 
 - (void)dealloc {
+	if (delegate) [delegate release];
+	[super dealloc];
+	
 }
 
 @end

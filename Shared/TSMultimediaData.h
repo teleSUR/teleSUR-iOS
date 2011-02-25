@@ -7,26 +7,24 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "TSMultimediaDataDelegate.h"
 
 @interface TSMultimediaData : NSObject {	
 	// selectores y delegado 
-	id delegate;
-    SEL siExito;
-	SEL siFalla;
+	id <NSObject, TSMultimediaDataDelegate>  delegate;
 	// respuesta en JSON y resultado del parse
 	NSMutableData *resultadoAPIData; 	    
-	NSArray *resultadoAPIArray; 
+	NSArray *resultadoAPIArray;
 }
+
+@property (nonatomic, assign) id <NSObject, TSMultimediaDataDelegate>  delegate;
 
 + (TSMultimediaData *)sharedTSMultimediaData;
 
-- (NSArray *)getDatosParaEntidad:(NSString *)entidad
+- (void)getDatosParaEntidad:(NSString *)entidad
 		   conFiltros:(NSDictionary *)filtros
 			  enRango:(NSRange)rango
-		  conDelegate:(id)datosDelegate
-	  selectorSiExito:(SEL)exitoSelector
-	  selectorSiFalla:(SEL)fallaSelector;
+		  conDelegate:(id)datosDelegate;
 
 @end
 

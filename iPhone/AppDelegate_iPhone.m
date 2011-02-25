@@ -11,6 +11,17 @@
 
 @implementation AppDelegate_iPhone
 
+#pragma mark -
+#pragma mark TSMultimediaDataDelegate
+
+- (void)entidadesRecibidasConExito:(NSArray *)array {
+    NSLog(@"Consulta exitosa, se recibió arreglo: %@", array);
+}
+
+- (void)entidadesRecibidasConFalla:(id)error {
+	NSLog(@"Error: %@", error);
+}
+
 
 #pragma mark -
 #pragma mark Application lifecycle
@@ -23,25 +34,14 @@
 
 	// ejemplo llamada a signleton de datos, cuando termina la consulta envía
 	// mensaje a objeto según selectores en una especie de patrón delegate
-	TSMultimediaData *mmData = [TSMultimediaData sharedTSMultimediaData];
-    [mmData getDatosParaEntidad:@"clip" // otros ejemplos: programa, pais, categoria
-					conFiltros:[NSDictionary dictionary] // otro ejemplo: conFiltros:[NSDictionary dictionaryWithObject:@"2010-01-01" forKey:@"hasta"]
-					   enRango:NSMakeRange(1, 10)  // otro ejemplo: NSMakeRange(1, 1) -sólo uno-
-				   conDelegate:self
-			   selectorSiExito:@selector(entidadesRecibidasExito:)
-				selectorSiFalla:@selector(entidadesRecibidasFalla:)];
+	TSMultimediaData *multimediaData = [TSMultimediaData sharedTSMultimediaData];
+    [multimediaData getDatosParaEntidad:@"clip" // otros ejemplos: programa, pais, categoria
+						 	 conFiltros:[NSDictionary dictionary] // otro ejemplo: conFiltros:[NSDictionary dictionaryWithObject:@"2010-01-01" forKey:@"hasta"]
+						  	    enRango:NSMakeRange(1, 10)  // otro ejemplo: NSMakeRange(1, 1) -sólo uno-
+						    conDelegate:self];
     
     return YES;
-}
-
-- (void)clipsRecibidosExito:(NSArray *)array {
-    NSLog(@"Consulta exitosa, se recibió arreglo: %@", array);
-}
-
-- (void)clipsRecibidosFalla:(id)error {
-	NSLog(@"Error: %@", error);
-}
-										   
+}								   
 
 
 - (void)applicationWillResignActive:(UIApplication *)application {
