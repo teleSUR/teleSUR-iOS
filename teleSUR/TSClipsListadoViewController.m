@@ -13,10 +13,11 @@
 #define MARGEN_MENU 20
 #define TAMANO_PAGINA 10
 
+
 @implementation TSClipsListadoViewController
 
 @synthesize entidadMenu, rango, diccionarioFiltros;
-@synthesize clipsTableViewController;
+//@synthesize clipsTableViewController;  ???
 @synthesize clipsTableView, menuScrollView;
 @synthesize clips, filtros;
 
