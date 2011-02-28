@@ -16,40 +16,9 @@
 @synthesize window=_window;
 
 
-#pragma mark -
-#pragma mark TSMultimediaDataDelegate
-
-- (void)entidadesRecibidasConExito:(NSArray *)array
-{
-    NSLog(@"Consulta exitosa, se recibió arreglo: %@", array);
-}
-
-- (void)entidadesRecibidasConFalla:(id)error
-{
-	NSLog(@"Error: %@", error);
-}
-
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-//    TSClipsListadoViewController *controlador = [[TSClipsListadoViewController alloc]init];
-    
-//    controlador.entidad_menu = @"categoria";
-//    controlador.rango = NULL;
-//    controlador.diccionarioFiltros = [NSDictionary dictionary];
-    
-//    [controlador release];
-    
-    
-    // Override point for customization after application launch.
-    
-    // ejemplo llamada a signleton de datos, cuando termina la consulta envía
-	// mensaje a objeto según selectores en una especie de patrón delegate
-	TSMultimediaData *multimediaData = [TSMultimediaData sharedTSMultimediaData];
-    [multimediaData getDatosParaEntidad:@"clip" // otros ejemplos: programa, pais, categoria
-						 	 conFiltros:[NSDictionary dictionary] // otro ejemplo: conFiltros:[NSDictionary dictionaryWithObject:@"2010-01-01" forKey:@"hasta"]
-						  	    enRango:NSMakeRange(1, 10)  // otro ejemplo: NSMakeRange(1, 1) -sólo uno-
-						    conDelegate:self];
+
     
     [self.window makeKeyAndVisible];
     return YES;

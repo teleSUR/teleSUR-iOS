@@ -28,7 +28,7 @@
 
 -(void) ocultarLoadingViewConAnimacion: (BOOL) animacion
 {
-	[[self.view.subviews objectAtIndex: [self.view.subviews count]] removeFromSuperview];
+	[[self.view.subviews objectAtIndex: ([self.view.subviews count]-1)] removeFromSuperview];
 }
 
 

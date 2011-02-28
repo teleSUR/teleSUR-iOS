@@ -18,6 +18,7 @@
 
 @synthesize clipsTableView, menuScrollView;
 
+@synthesize clips, filtros;
 
 #pragma mark -
 #pragma mark Init
@@ -45,9 +46,11 @@
 	[self personalizarNavigationBar];
 	[self mostrarLoadingViewConAnimacion:NO];
 	
+	// ejemplo llamada a signleton de datos, cuando termina la consulta envía
+	// mensaje a objeto según selectores en una especie de patrón delegate
 	TSMultimediaData *multimediaData = [TSMultimediaData sharedTSMultimediaData];
     [multimediaData getDatosParaEntidad:@"clip" // otros ejemplos: programa, pais, categoria
-						 	 conFiltros:nil // otro ejemplo: conFiltros:[NSDictionary dictionaryWithObject:@"2010-01-01" forKey:@"hasta"]
+						 	 conFiltros:[NSDictionary dictionaryWithObject:@"economia" forKey:@"categoria"] // otro ejemplo: conFiltros:[NSDictionary dictionaryWithObject:@"2010-01-01" forKey:@"hasta"]
 						  	    enRango:NSMakeRange(1, 10)  // otro ejemplo: NSMakeRange(1, 1) -sólo uno-
 						    conDelegate:self];
 	
@@ -101,7 +104,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return 0;
+    return [self.clips count];
 }
 
 
@@ -115,6 +118,7 @@
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
     
+	[cell.textLabel setText: [(NSDictionary *)[self.clips objectAtIndex: indexPath.row] valueForKey:@"titulo"]];
     // Configure the cell...
     
     return cell;
@@ -201,6 +205,11 @@
 
 - (void)entidadesRecibidasConExito:(NSArray *)array
 {
+	self.clips = array;
+	
+	[self.clipsTableView reloadData];
+	
+	[self ocultarLoadingViewConAnimacion:NO];
     NSLog(@"Consulta exitosa, se recibió arreglo: %@", array);
 }
 
