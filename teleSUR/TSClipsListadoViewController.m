@@ -3,12 +3,15 @@
 //  teleSUR
 //
 //  Created by Hector Zarate on 2/27/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Copyright 2011 teleSUR. All rights reserved.
 //
 
 #import "TSClipsListadoViewController.h"
 #import "UIViewController_Configuracion.h"
 #import "TSMultimediaData.h"
+
+#define MARGEN_MENU 10
+#define TAMANO_PAGINA 10
 
 @implementation TSClipsListadoViewController
 
@@ -23,14 +26,13 @@
 #pragma mark -
 #pragma mark Init
 
--(id) initWithEntidadMenu: (NSString *)entidad yFiltros: (NSDictionary *)diccionario
+-(id)initWithEntidadMenu: (NSString *)entidad yFiltros:(NSDictionary *)diccionario
 {
-	if ((self = [super init])) {
-		
+	if ((self = [super init]))
+    {
 		self.entidadMenu = entidad;
 		self.diccionarioFiltros = diccionario;
-		self.rango = NSMakeRange(0, 10);
-		
+		self.rango = NSMakeRange(1, TAMANO_PAGINA);
 	}
 	
 	return self;
@@ -38,33 +40,38 @@
 
 #pragma mark -
 
-- (void) construirBarraMenu 
+- (void)construirBarraMenu 
 {
+    // Inicializar offset horizontal
+    int offsetX = 0 + MARGEN_MENU;
     
-    // 20 es el margen.
-    int offsetX = 10;
-    
-//    NSLog(@"ftrs: %@", self.filtros);
-    
-    for (int i=0; i<[self.filtros count]; i++) {
+    // Recorrer filtros
+    for (int i=0; i<[self.filtros count]; i++)
+    {
+        // Crear nuevo botón para filtro
+        UIButton *boton = [UIButton buttonWithType:UIButtonTypeCustom];
+        boton.backgroundColor = [UIColor clearColor];
         
-        UILabel *etiqueta = [[UILabel alloc] init];
-        [etiqueta setText:[[self.filtros objectAtIndex:i] valueForKey:@"nombre"]];
-        [etiqueta setFont: [UIFont fontWithName:@"Helvetica-Bold" size:18.0]];
-        [etiqueta setBackgroundColor: [UIColor clearColor]];
-        [etiqueta setTextColor:[UIColor whiteColor]];
-        CGSize constraintSize = CGSizeMake(FLT_MAX, 40);
-		CGSize newSize = [etiqueta.text sizeWithFont: etiqueta.font];
-
-		etiqueta.frame = CGRectMake(offsetX , 10, newSize.width, newSize.height);
-        offsetX += etiqueta.frame.size.width + 10;
+        // Configurar label de botón
+        [boton setTitle:[[self.filtros objectAtIndex:i] valueForKey:@"nombre"] forState:UIControlStateNormal];
+        boton.titleLabel.text = [[self.filtros objectAtIndex:i] valueForKey:@"nombre"];
+        boton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18.0];
+        boton.titleLabel.backgroundColor = [UIColor clearColor];
+        boton.titleLabel.textColor = [UIColor whiteColor];
         
-        [self.menuScrollView addSubview:etiqueta];
-
+        // Ajustar tamaño de frame del botón con base en el volumen del texto
+		CGSize textoSize = [boton.titleLabel.text sizeWithFont: boton.titleLabel.font];
+		boton.frame = CGRectMake(offsetX, MARGEN_MENU, textoSize.width, textoSize.height);
+        
+        // Actualizar offset
+        offsetX += boton.frame.size.width + MARGEN_MENU;
+        
+        // Añadir botón a la jerarquía de vistas
+        [self.menuScrollView addSubview:boton];
     }
     
-    [self.menuScrollView setContentSize: CGSizeMake(offsetX, 40)];
-
+    // Deifnir área de scroll
+    [self.menuScrollView setContentSize: CGSizeMake(offsetX, self.menuScrollView.frame.size.height)];
 }
 
 
