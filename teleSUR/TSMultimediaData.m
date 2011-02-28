@@ -34,6 +34,8 @@
                     enRango:(NSRange)rango
                 conDelegate:(id)datosDelegate
 {
+    entidadActual = entidad;
+    
 	self.delegate = datosDelegate;
 	
 	NSString *urlBase = @"http://stg.multimedia.tlsur.net";
@@ -136,19 +138,20 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
+    
 	// parsear JSON
 	NSError *errorJSON = NULL;
 	NSArray *resultadoArray = [NSDictionary dictionaryWithJSONData:resultadoAPIData error:&errorJSON];
 	
 	if (!errorJSON)
     {
-		if ([delegate respondsToSelector:@selector(entidadesRecibidasConExito:)])
-			[delegate performSelector:@selector(entidadesRecibidasConExito:) withObject:resultadoArray];
+		if ([delegate respondsToSelector:@selector(TSMultimediaData:entidadesRecibidas:paraEntidad:)])
+			[delegate TSMultimediaData:self entidadesRecibidas:resultadoArray paraEntidad:entidadActual];
 	}
     else // falla
     {
-		if ([delegate respondsToSelector:@selector(entidadesRecibidasConFalla:)])
-			[delegate performSelector:@selector(entidadesRecibidasConFalla:) withObject:errorJSON];
+		if ([delegate respondsToSelector:@selector(TSMultimediaData:entidadesRecibidasConError:)])
+			[delegate TSMultimediaData:self entidadesRecibidasConError:errorJSON];
 	}
     
     // liberar objeto de conexión y objeto de datos
@@ -161,7 +164,8 @@
 
 - (void)dealloc
 {
-	if (delegate) [delegate release];
+	self.delegate= nil;
+    
 	[super dealloc];
 }
 

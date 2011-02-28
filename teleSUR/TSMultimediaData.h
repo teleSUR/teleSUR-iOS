@@ -15,6 +15,8 @@
 	// respuesta en JSON y resultado del parse
 	NSMutableData *resultadoAPIData; 	    
 	NSArray *resultadoAPIArray;
+    
+    NSString *entidadActual;
 }
 
 @property (nonatomic, assign) id <NSObject, TSMultimediaDataDelegate>  delegate;

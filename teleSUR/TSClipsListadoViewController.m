@@ -36,6 +36,38 @@
 	return self;
 }
 
+#pragma mark -
+
+- (void) construirBarraMenu 
+{
+    
+    // 20 es el margen.
+    int offsetX = 10;
+    
+//    NSLog(@"ftrs: %@", self.filtros);
+    
+    for (int i=0; i<[self.filtros count]; i++) {
+        
+        UILabel *etiqueta = [[UILabel alloc] init];
+        [etiqueta setText:[[self.filtros objectAtIndex:i] valueForKey:@"nombre"]];
+        [etiqueta setFont: [UIFont fontWithName:@"Helvetica-Bold" size:18.0]];
+        [etiqueta setBackgroundColor: [UIColor clearColor]];
+        [etiqueta setTextColor:[UIColor whiteColor]];
+        CGSize constraintSize = CGSizeMake(FLT_MAX, 40);
+		CGSize newSize = [etiqueta.text sizeWithFont: etiqueta.font];
+
+		etiqueta.frame = CGRectMake(offsetX , 10, newSize.width, newSize.height);
+        offsetX += etiqueta.frame.size.width + 10;
+        
+        [self.menuScrollView addSubview:etiqueta];
+
+    }
+    
+    [self.menuScrollView setContentSize: CGSizeMake(offsetX, 40)];
+
+}
+
+
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -46,16 +78,26 @@
 	[self personalizarNavigationBar];
 	[self mostrarLoadingViewConAnimacion:NO];
 	
+    // Obtener Clips
+    
 	// ejemplo llamada a signleton de datos, cuando termina la consulta envía
 	// mensaje a objeto según selectores en una especie de patrón delegate
-	TSMultimediaData *multimediaData = [TSMultimediaData sharedTSMultimediaData];
+    
+    
+	TSMultimediaData *multimediaData = [[TSMultimediaData alloc] init] ;
     [multimediaData getDatosParaEntidad:@"clip" // otros ejemplos: programa, pais, categoria
 						 	 conFiltros:[NSDictionary dictionaryWithObject:@"economia" forKey:@"categoria"] // otro ejemplo: conFiltros:[NSDictionary dictionaryWithObject:@"2010-01-01" forKey:@"hasta"]
 						  	    enRango:NSMakeRange(1, 10)  // otro ejemplo: NSMakeRange(1, 1) -sólo uno-
 						    conDelegate:self];
-	
-	
-	
+        
+    // Obtener categoria
+	TSMultimediaData *multimediaData2 = [[TSMultimediaData alloc] init] ;    
+    [multimediaData2 getDatosParaEntidad:@"programa" // otros ejemplos: programa, pais, categoria
+						 	 conFiltros:nil // otro ejemplo: conFiltros:[NSDictionary dictionaryWithObject:@"2010-01-01" forKey:@"hasta"]
+						  	    enRango:NSMakeRange(1, 10)  // otro ejemplo: NSMakeRange(1, 1) -sólo uno-
+						    conDelegate:self];
+
+
 	
     [super viewDidLoad];
 
@@ -203,19 +245,36 @@
 #pragma mark -
 #pragma mark TSMultimediaDataDelegate
 
-- (void)entidadesRecibidasConExito:(NSArray *)array
+- (void)TSMultimediaData:(TSMultimediaData *)data entidadesRecibidas:(NSArray *)array paraEntidad:(NSString *)entidad
 {
-	self.clips = array;
-	
-	[self.clipsTableView reloadData];
-	
-	[self ocultarLoadingViewConAnimacion:NO];
-    NSLog(@"Consulta exitosa, se recibió arreglo: %@", array);
+    //NSLog(@"Consulta exitosa, se recibió arreglo: %@", array);
+    if ([entidad isEqualToString:@"clip"]) {
+        
+        self.clips = array;
+        [self.clipsTableView reloadData];
+         
+        
+    } else {
+        
+        self.filtros = array;
+        [self construirBarraMenu];
+        
+        
+    }
+
+    
+    if (self.clips != nil && self.filtros != nil) [self ocultarLoadingViewConAnimacion:NO];
+    
+    [data release];
+       
 }
 
-- (void)entidadesRecibidasConFalla:(id)error
+
+
+- (void)TSMultimediaData:(TSMultimediaData *)data entidadesRecibidasConError:(id)error
 {
 	NSLog(@"Error: %@", error);
+    [data release];
 }
 
 @end

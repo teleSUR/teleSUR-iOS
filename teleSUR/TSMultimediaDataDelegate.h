@@ -6,9 +6,11 @@
 //  Copyright 2011 teleSUR. All rights reserved.
 //
 
+@class TSMultimediaData;
+
 @protocol TSMultimediaDataDelegate
 
-- (void) entidadesRecibidasConExito: (NSArray *) array;
-- (void) entidadesRecibidasConFalla: (id) error;
+- (void) TSMultimediaData:(TSMultimediaData *)data entidadesRecibidas: (NSArray *)array paraEntidad:(NSString *)entidad ;
+- (void) TSMultimediaData:(TSMultimediaData *)data entidadesRecibidasConError: (id) error;
 
 @end

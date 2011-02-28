@@ -26,8 +26,8 @@
 	NSRange rango;
 	NSDictionary *diccionarioFiltros;
 	
-	NSMutableArray *clips;
-	NSMutableArray *filtros;
+	NSArray *clips;
+	NSArray *filtros;
 	
 	@private char entidadSolicitada;
 
@@ -46,13 +46,13 @@
 @property (nonatomic, assign) NSRange rango;
 @property (nonatomic, retain) NSDictionary *diccionarioFiltros;
 
-@property (nonatomic, retain) NSMutableArray *clips;
-@property (nonatomic, retain) NSMutableArray *filtros;
+@property (nonatomic, retain) NSArray *clips;
+@property (nonatomic, retain) NSArray *filtros;
 
 
 
 -(id) initWithEntidadMenu: (NSString *)entidad yFiltros: (NSDictionary *)diccionario;
 
-
+- (void) construirBarraMenu;
 
 @end
