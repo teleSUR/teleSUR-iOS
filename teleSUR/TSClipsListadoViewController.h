@@ -23,8 +23,8 @@
 	
 	// Datos:
 	NSString *entidadMenu;
-	NSRange *rango;
-	NSMutableDictionary *diccionarioFiltros;
+	NSRange rango;
+	NSDictionary *diccionarioFiltros;
 	
 	@private NSMutableArray *clips;
 	@private NSMutableArray *filtros;
@@ -43,12 +43,12 @@
 
 // Datos:
 @property (nonatomic, retain) NSString *entidadMenu;
-@property (nonatomic, assign) NSRange *rango;
-@property (nonatomic, retain) NSMutableDictionary *diccionarioFiltros;
+@property (nonatomic, assign) NSRange rango;
+@property (nonatomic, retain) NSDictionary *diccionarioFiltros;
 
 
 
-
+-(id) initWithEntidadMenu: (NSString *)entidad yFiltros: (NSDictionary *)diccionario;
 
 
 

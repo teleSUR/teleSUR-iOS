@@ -8,6 +8,7 @@
 
 #import "TSClipsListadoViewController.h"
 #import "UIViewController_Configuracion.h"
+#import "TSMultimediaData.h"
 
 @implementation TSClipsListadoViewController
 
@@ -17,6 +18,24 @@
 
 @synthesize clipsTableView, menuScrollView;
 
+
+#pragma mark -
+#pragma mark Init
+
+-(id) initWithEntidadMenu: (NSString *)entidad yFiltros: (NSDictionary *)diccionario
+{
+	if ((self = [super init])) {
+		
+		self.entidadMenu = entidad;
+		self.diccionarioFiltros = diccionario;
+		self.rango = NSMakeRange(0, 10);
+		
+	}
+	
+	return self;
+}
+
+
 #pragma mark -
 #pragma mark View lifecycle
 
@@ -24,6 +43,17 @@
 - (void)viewDidLoad {
 	
 	[self personalizarNavigationBar];
+	[self mostrarLoadingViewConAnimacion:NO];
+	
+	TSMultimediaData *multimediaData = [TSMultimediaData sharedTSMultimediaData];
+    [multimediaData getDatosParaEntidad:@"clip" // otros ejemplos: programa, pais, categoria
+						 	 conFiltros:nil // otro ejemplo: conFiltros:[NSDictionary dictionaryWithObject:@"2010-01-01" forKey:@"hasta"]
+						  	    enRango:NSMakeRange(1, 10)  // otro ejemplo: NSMakeRange(1, 1) -sólo uno-
+						    conDelegate:self];
+	
+	
+	
+	
     [super viewDidLoad];
 
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
@@ -166,6 +196,18 @@
     [super dealloc];
 }
 
+#pragma mark -
+#pragma mark TSMultimediaDataDelegate
+
+- (void)entidadesRecibidasConExito:(NSArray *)array
+{
+    NSLog(@"Consulta exitosa, se recibió arreglo: %@", array);
+}
+
+- (void)entidadesRecibidasConFalla:(id)error
+{
+	NSLog(@"Error: %@", error);
+}
 
 @end
 

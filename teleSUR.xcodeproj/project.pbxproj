@@ -10,6 +10,7 @@
 		3A10016F131B2B0600717211 /* TSClipsListadoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A10016D131B2B0600717211 /* TSClipsListadoViewController.m */; };
 		3A100170131B2B0600717211 /* TSClipsListadoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A10016E131B2B0600717211 /* TSClipsListadoViewController.xib */; };
 		3A1001A9131B30D600717211 /* UIViewController_Configuracion.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A1001A8131B30D600717211 /* UIViewController_Configuracion.m */; };
+		3A1001F1131B354300717211 /* LoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A1001F0131B354300717211 /* LoadingView.xib */; };
 		63099E0713199D1800D15603 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63099E0613199D1800D15603 /* UIKit.framework */; };
 		63099E0913199D1800D15603 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63099E0813199D1800D15603 /* Foundation.framework */; };
 		63099E0B13199D1800D15603 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63099E0A13199D1800D15603 /* CoreGraphics.framework */; };
@@ -122,6 +123,7 @@
 		3A10016E131B2B0600717211 /* TSClipsListadoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TSClipsListadoViewController.xib; sourceTree = "<group>"; };
 		3A1001A7131B30D600717211 /* UIViewController_Configuracion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewController_Configuracion.h; sourceTree = "<group>"; };
 		3A1001A8131B30D600717211 /* UIViewController_Configuracion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewController_Configuracion.m; sourceTree = "<group>"; };
+		3A1001F0131B354300717211 /* LoadingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingView.xib; sourceTree = "<group>"; };
 		63099E0213199D1800D15603 /* teleSUR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = teleSUR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63099E0613199D1800D15603 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		63099E0813199D1800D15603 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -369,6 +371,7 @@
 			children = (
 				3A10016C131B2B0600717211 /* TSClipsListadoViewController.h */,
 				3A10016D131B2B0600717211 /* TSClipsListadoViewController.m */,
+				3A1001F0131B354300717211 /* LoadingView.xib */,
 				3A10016E131B2B0600717211 /* TSClipsListadoViewController.xib */,
 				63099E1513199D1800D15603 /* teleSURAppDelegate.h */,
 				63099E1613199D1800D15603 /* teleSURAppDelegate.m */,
@@ -963,6 +966,7 @@
 				63099F1013199F6700D15603 /* FBConnect.bundle in Resources */,
 				635A78A21319D3F600C3977D /* TSClipDetallesViewController.xib in Resources */,
 				3A100170131B2B0600717211 /* TSClipsListadoViewController.xib in Resources */,
+				3A1001F1131B354300717211 /* LoadingView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

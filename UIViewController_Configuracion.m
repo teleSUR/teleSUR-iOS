@@ -18,5 +18,18 @@
 
 }
 
+-(void) mostrarLoadingViewConAnimacion: (BOOL) animacion
+{
+	UIView *vistaLoading= [[[NSBundle mainBundle] loadNibNamed:@"LoadingView" owner:self options:nil] lastObject];					
+	
+	[self.view addSubview:vistaLoading];
+	
+}
+
+-(void) ocultarLoadingViewConAnimacion: (BOOL) animacion
+{
+	[[self.view.subviews objectAtIndex: [self.view.subviews count]] removeFromSuperview];
+}
+
 
 @end
