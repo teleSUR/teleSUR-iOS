@@ -11,6 +11,8 @@
 		3A100170131B2B0600717211 /* TSClipsListadoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A10016E131B2B0600717211 /* TSClipsListadoViewController.xib */; };
 		3A1001A9131B30D600717211 /* UIViewController_Configuracion.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A1001A8131B30D600717211 /* UIViewController_Configuracion.m */; };
 		3A1001F1131B354300717211 /* LoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A1001F0131B354300717211 /* LoadingView.xib */; };
+		3A2360B6131C4B7200A941E2 /* ClipEstandarTableCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A2360B5131C4B7200A941E2 /* ClipEstandarTableCellView.xib */; };
+		3A236148131C534300A941E2 /* ClipEstandarTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A236147131C534300A941E2 /* ClipEstandarTableCellView.m */; };
 		63099E0713199D1800D15603 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63099E0613199D1800D15603 /* UIKit.framework */; };
 		63099E0913199D1800D15603 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63099E0813199D1800D15603 /* Foundation.framework */; };
 		63099E0B13199D1800D15603 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63099E0A13199D1800D15603 /* CoreGraphics.framework */; };
@@ -125,6 +127,9 @@
 		3A1001A7131B30D600717211 /* UIViewController_Configuracion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIViewController_Configuracion.h; path = ../UIViewController_Configuracion.h; sourceTree = "<group>"; };
 		3A1001A8131B30D600717211 /* UIViewController_Configuracion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIViewController_Configuracion.m; path = ../UIViewController_Configuracion.m; sourceTree = "<group>"; };
 		3A1001F0131B354300717211 /* LoadingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingView.xib; sourceTree = "<group>"; };
+		3A2360B5131C4B7200A941E2 /* ClipEstandarTableCellView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ClipEstandarTableCellView.xib; sourceTree = "<group>"; };
+		3A236146131C534300A941E2 /* ClipEstandarTableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClipEstandarTableCellView.h; sourceTree = "<group>"; };
+		3A236147131C534300A941E2 /* ClipEstandarTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClipEstandarTableCellView.m; sourceTree = "<group>"; };
 		63099E0213199D1800D15603 /* teleSUR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = teleSUR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63099E0613199D1800D15603 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		63099E0813199D1800D15603 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -385,6 +390,9 @@
 				3A1001A8131B30D600717211 /* UIViewController_Configuracion.m */,
 				63099F581319A21500D15603 /* Multimedia Data */,
 				63099E0D13199D1800D15603 /* Supporting Files */,
+				3A236146131C534300A941E2 /* ClipEstandarTableCellView.h */,
+				3A236147131C534300A941E2 /* ClipEstandarTableCellView.m */,
+				3A2360B5131C4B7200A941E2 /* ClipEstandarTableCellView.xib */,
 			);
 			path = teleSUR;
 			sourceTree = "<group>";
@@ -963,6 +971,7 @@
 				3A100170131B2B0600717211 /* TSClipsListadoViewController.xib in Resources */,
 				3A1001F1131B354300717211 /* LoadingView.xib in Resources */,
 				63E01697131B883D001928E4 /* Default.png in Resources */,
+				3A2360B6131C4B7200A941E2 /* ClipEstandarTableCellView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1075,6 +1084,7 @@
 				635A78A11319D3F600C3977D /* TSClipDetallesViewController.m in Sources */,
 				3A10016F131B2B0600717211 /* TSClipsListadoViewController.m in Sources */,
 				3A1001A9131B30D600717211 /* UIViewController_Configuracion.m in Sources */,
+				3A236148131C534300A941E2 /* ClipEstandarTableCellView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
