@@ -11,6 +11,13 @@
 
 @interface TSClipDetallesViewController : UIViewController {
     
+    NSDictionary *clip;
+    
 }
+
+@property (nonatomic, retain) NSDictionary *clip;
+
+
+- (id)initWithClip:(NSDictionary *)diccionarioClip;
 
 @end

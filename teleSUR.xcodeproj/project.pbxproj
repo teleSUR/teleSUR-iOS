@@ -105,6 +105,7 @@
 		63099F5C1319A23000D15603 /* TSMultimediaData.m in Sources */ = {isa = PBXBuildFile; fileRef = 63099F5A1319A23000D15603 /* TSMultimediaData.m */; };
 		635A78A11319D3F600C3977D /* TSClipDetallesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 635A789F1319D3F600C3977D /* TSClipDetallesViewController.m */; };
 		635A78A21319D3F600C3977D /* TSClipDetallesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 635A78A01319D3F600C3977D /* TSClipDetallesViewController.xib */; };
+		63E01697131B883D001928E4 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 63E01696131B883D001928E4 /* Default.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -302,6 +303,7 @@
 		635A789E1319D3F600C3977D /* TSClipDetallesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSClipDetallesViewController.h; sourceTree = "<group>"; };
 		635A789F1319D3F600C3977D /* TSClipDetallesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSClipDetallesViewController.m; sourceTree = "<group>"; };
 		635A78A01319D3F600C3977D /* TSClipDetallesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TSClipDetallesViewController.xib; sourceTree = "<group>"; };
+		63E01696131B883D001928E4 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -334,6 +336,7 @@
 		63099DF713199D1800D15603 = {
 			isa = PBXGroup;
 			children = (
+				63E01696131B883D001928E4 /* Default.png */,
 				3A1001A7131B30D600717211 /* UIViewController_Configuracion.h */,
 				3A1001A8131B30D600717211 /* UIViewController_Configuracion.m */,
 				63099E0C13199D1800D15603 /* teleSUR */,
@@ -369,15 +372,17 @@
 		63099E0C13199D1800D15603 /* teleSUR */ = {
 			isa = PBXGroup;
 			children = (
-				3A10016C131B2B0600717211 /* TSClipsListadoViewController.h */,
-				3A10016D131B2B0600717211 /* TSClipsListadoViewController.m */,
-				3A1001F0131B354300717211 /* LoadingView.xib */,
-				3A10016E131B2B0600717211 /* TSClipsListadoViewController.xib */,
 				63099E1513199D1800D15603 /* teleSURAppDelegate.h */,
 				63099E1613199D1800D15603 /* teleSURAppDelegate.m */,
 				63099E1813199D1800D15603 /* iPhone */,
 				63099E1F13199D1800D15603 /* iPad */,
-				63099F5D1319A24300D15603 /* View Controllers */,
+				3A10016C131B2B0600717211 /* TSClipsListadoViewController.h */,
+				3A10016D131B2B0600717211 /* TSClipsListadoViewController.m */,
+				3A10016E131B2B0600717211 /* TSClipsListadoViewController.xib */,
+				635A789E1319D3F600C3977D /* TSClipDetallesViewController.h */,
+				635A789F1319D3F600C3977D /* TSClipDetallesViewController.m */,
+				635A78A01319D3F600C3977D /* TSClipDetallesViewController.xib */,
+				3A1001F0131B354300717211 /* LoadingView.xib */,
 				63099F581319A21500D15603 /* Multimedia Data */,
 				63099E0D13199D1800D15603 /* Supporting Files */,
 			);
@@ -865,16 +870,6 @@
 			name = "Multimedia Data";
 			sourceTree = "<group>";
 		};
-		63099F5D1319A24300D15603 /* View Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				635A789E1319D3F600C3977D /* TSClipDetallesViewController.h */,
-				635A789F1319D3F600C3977D /* TSClipDetallesViewController.m */,
-				635A78A01319D3F600C3977D /* TSClipDetallesViewController.xib */,
-			);
-			name = "View Controllers";
-			sourceTree = "<group>";
-		};
 		63099F5E1319A25E00D15603 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -967,6 +962,7 @@
 				635A78A21319D3F600C3977D /* TSClipDetallesViewController.xib in Resources */,
 				3A100170131B2B0600717211 /* TSClipsListadoViewController.xib in Resources */,
 				3A1001F1131B354300717211 /* LoadingView.xib in Resources */,
+				63E01697131B883D001928E4 /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

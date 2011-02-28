@@ -15,20 +15,18 @@
 {
 	[self setTitle:@"teleSUR"];
 	[self.navigationController.navigationBar setTintColor:[UIColor redColor]];
-
 }
 
--(void) mostrarLoadingViewConAnimacion: (BOOL) animacion
+-(void)mostrarLoadingViewConAnimacion: (BOOL)animacion
 {
-	UIView *vistaLoading= [[[NSBundle mainBundle] loadNibNamed:@"LoadingView" owner:self options:nil] lastObject];					
-	
+	UIView *vistaLoading = [[[NSBundle mainBundle] loadNibNamed:@"LoadingView" owner:self options:nil] lastObject];					
+    [vistaLoading setTag:100];
 	[self.view addSubview:vistaLoading];
-	
 }
 
--(void) ocultarLoadingViewConAnimacion: (BOOL) animacion
+-(void)ocultarLoadingViewConAnimacion: (BOOL)animacion
 {
-	[[self.view.subviews objectAtIndex: ([self.view.subviews count]-1)] removeFromSuperview];
+	[[self.view viewWithTag:100] removeFromSuperview];
 }
 
 

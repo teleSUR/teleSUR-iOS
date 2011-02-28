@@ -53,6 +53,7 @@
 
 -(id) initWithEntidadMenu: (NSString *)entidad yFiltros: (NSDictionary *)diccionario;
 
-- (void) construirBarraMenu;
+-(void) construirBarraMenu;
+-(void) cargarDatos;
 
 @end

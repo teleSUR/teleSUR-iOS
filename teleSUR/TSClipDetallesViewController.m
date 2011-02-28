@@ -3,7 +3,7 @@
 //  teleSUR
 //
 //  Created by David Regla on 2/26/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Copyright 2011 teleSUR. All rights reserved.
 //
 
 #import "TSClipDetallesViewController.h"
@@ -11,32 +11,27 @@
 
 @implementation TSClipDetallesViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+@synthesize clip;
+
+
+- (id)initWithClip:(NSDictionary *)diccionarioClip
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super init];
     if (self) {
-        // Custom initialization
+        self.clip = diccionarioClip;
     }
     return self;
 }
 
-- (void)dealloc
-{
-    [super dealloc];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
-}
-
-#pragma mark - View lifecycle
+#pragma mark -
+#pragma mark View life cycle
 
 - (void)viewDidLoad
 {
+    // Provisional
+    [[self.view viewWithTag:1] setText:[clip valueForKey:@"descripcion"]];
+    [[self.view viewWithTag:2] setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://stg.multimedia.tlsur.net/media/%@", [clip valueForKey:@"imagen"]]]]]];
+    
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
@@ -52,6 +47,22 @@
 {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+#pragma mark -
+
+- (void)dealloc
+{
+    self.clip = nil;
+    [super dealloc];
+}
+
+- (void)didReceiveMemoryWarning
+{
+    // Releases the view if it doesn't have a superview.
+    [super didReceiveMemoryWarning];
+    
+    // Release any cached data, images, etc that aren't in use.
 }
 
 @end

@@ -9,6 +9,7 @@
 #import "TSClipsListadoViewController.h"
 #import "UIViewController_Configuracion.h"
 #import "TSMultimediaData.h"
+#import "TSClipDetallesViewController.h"
 
 #define MARGEN_MENU 10
 #define TAMANO_PAGINA 10
@@ -16,11 +17,8 @@
 @implementation TSClipsListadoViewController
 
 @synthesize entidadMenu, rango, diccionarioFiltros;
-
 @synthesize clipsTableViewController;
-
 @synthesize clipsTableView, menuScrollView;
-
 @synthesize clips, filtros;
 
 #pragma mark -
@@ -40,8 +38,24 @@
 
 #pragma mark -
 
+- (void)actualizarDatos: (UIButton *)boton
+{
+    NSInteger indice = [[self.menuScrollView subviews] indexOfObject:boton];
+    NSString *slug = [[self.filtros objectAtIndex:indice] valueForKey:@"slug"];
+    
+    self.diccionarioFiltros = [NSDictionary dictionaryWithObject:slug forKey:@"categoria"];
+    
+    [self cargarDatos];
+}
+
 - (void)construirBarraMenu 
 {
+    // Retirar todos los botones del menú, si es que hay
+    for (UIButton *boton in self.menuScrollView.subviews)
+    {
+        [boton removeFromSuperview];
+    }
+    
     // Inicializar offset horizontal
     int offsetX = 0 + MARGEN_MENU;
     
@@ -52,10 +66,14 @@
         UIButton *boton = [UIButton buttonWithType:UIButtonTypeCustom];
         boton.backgroundColor = [UIColor clearColor];
         
+        // Asignar acción del botón
+        [boton addTarget:self action:@selector(actualizarDatos:) forControlEvents:(UIControlEventTouchUpInside)];
+        
+        
         // Configurar label de botón
         [boton setTitle:[[self.filtros objectAtIndex:i] valueForKey:@"nombre"] forState:UIControlStateNormal];
         boton.titleLabel.text = [[self.filtros objectAtIndex:i] valueForKey:@"nombre"];
-        boton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18.0];
+        boton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
         boton.titleLabel.backgroundColor = [UIColor clearColor];
         boton.titleLabel.textColor = [UIColor whiteColor];
         
@@ -74,42 +92,44 @@
     [self.menuScrollView setContentSize: CGSizeMake(offsetX, self.menuScrollView.frame.size.height)];
 }
 
+- (void)cargarDatos
+{
+    // Inicializar arreglos
+    self.clips = nil;
+    self.filtros = nil;
+    
+    // Mostrar vista de loading
+    [self mostrarLoadingViewConAnimacion:NO];
+    
+    // Obtener clips
+	TSMultimediaData *dataClips = [[TSMultimediaData alloc] init];
+    [dataClips getDatosParaEntidad:@"clip" // otros ejemplos: programa, pais, categoria
+                        conFiltros:self.diccionarioFiltros // otro ejemplo: conFiltros:[NSDictionary dictionaryWithObject:@"2010-01-01" forKey:@"hasta"]
+                           enRango:NSMakeRange(1, 10)  // otro ejemplo: NSMakeRange(1, 1) -sólo uno-
+                       conDelegate:self];
+
+    
+    // Obtener filtros
+	TSMultimediaData *dataFiltros = [[TSMultimediaData alloc] init];
+    [dataFiltros getDatosParaEntidad:@"categoria" // otros ejemplos: programa, pais, categoria
+                        conFiltros:nil // otro ejemplo: conFiltros:[NSDictionary dictionaryWithObject:@"2010-01-01" forKey:@"hasta"]
+                           enRango:NSMakeRange(1, 10)  // otro ejemplo: NSMakeRange(1, 1) -sólo uno-
+                       conDelegate:self];
+    
+}
+
 
 
 #pragma mark -
 #pragma mark View lifecycle
 
 
-- (void)viewDidLoad {
-	
+- (void)viewDidLoad
+{	
 	[self personalizarNavigationBar];
-	[self mostrarLoadingViewConAnimacion:NO];
-	
-    // Obtener Clips
-    
-	// ejemplo llamada a signleton de datos, cuando termina la consulta envía
-	// mensaje a objeto según selectores en una especie de patrón delegate
-    
-    
-	TSMultimediaData *multimediaData = [[TSMultimediaData alloc] init] ;
-    [multimediaData getDatosParaEntidad:@"clip" // otros ejemplos: programa, pais, categoria
-						 	 conFiltros:[NSDictionary dictionaryWithObject:@"economia" forKey:@"categoria"] // otro ejemplo: conFiltros:[NSDictionary dictionaryWithObject:@"2010-01-01" forKey:@"hasta"]
-						  	    enRango:NSMakeRange(1, 10)  // otro ejemplo: NSMakeRange(1, 1) -sólo uno-
-						    conDelegate:self];
-        
-    // Obtener categoria
-	TSMultimediaData *multimediaData2 = [[TSMultimediaData alloc] init] ;    
-    [multimediaData2 getDatosParaEntidad:@"programa" // otros ejemplos: programa, pais, categoria
-						 	 conFiltros:nil // otro ejemplo: conFiltros:[NSDictionary dictionaryWithObject:@"2010-01-01" forKey:@"hasta"]
-						  	    enRango:NSMakeRange(1, 10)  // otro ejemplo: NSMakeRange(1, 1) -sólo uno-
-						    conDelegate:self];
-
-
+    [self cargarDatos];
 	
     [super viewDidLoad];
-
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 
@@ -217,10 +237,17 @@
 #pragma mark -
 #pragma mark Table view delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    TSClipDetallesViewController *detalleView = [[TSClipDetallesViewController alloc] initWithClip:[self.clips objectAtIndex:indexPath.row]];
+    
+    [self.navigationController pushViewController:detalleView animated:YES];
+    
+    [detalleView release];
+    
     // Navigation logic may go here. Create and push another view controller.
     /*
-    <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
+    DetailViewController *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
     // ...
     // Pass the selected object to the new view controller.
     [self.navigationController pushViewController:detailViewController animated:YES];
@@ -259,16 +286,13 @@
         
         self.clips = array;
         [self.clipsTableView reloadData];
-         
         
     } else {
         
         self.filtros = array;
         [self construirBarraMenu];
         
-        
     }
-
     
     if (self.clips != nil && self.filtros != nil) [self ocultarLoadingViewConAnimacion:NO];
     

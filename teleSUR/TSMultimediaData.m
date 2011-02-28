@@ -84,7 +84,7 @@
 	//NSLog(@"URL a consular: %@", multimediaAPIRequestURL);
 	
 	NSURLRequest *apiRequest=[NSURLRequest requestWithURL:multimediaAPIRequestURL
-											  cachePolicy:NSURLRequestUseProtocolCachePolicy
+											  cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
 										  timeoutInterval:60.0];
 	
 	NSURLConnection *conexion = [[NSURLConnection alloc] initWithRequest:apiRequest delegate:self];
