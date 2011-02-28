@@ -7,10 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UIViewController_Configuracion.h"
 #import "TSMultimediaDataDelegate.h"
-
-#define kEntidadTipoListado 0
-#define kEntidadTipoMenu 1
 
 @interface TSClipsListadoViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, TSMultimediaDataDelegate> {
 	
@@ -28,9 +26,6 @@
 	
 	NSArray *clips;
 	NSArray *filtros;
-	
-	@private char entidadSolicitada;
-
 }
 
 
@@ -51,9 +46,8 @@
 
 
 
--(id) initWithEntidadMenu: (NSString *)entidad yFiltros: (NSDictionary *)diccionario;
-
--(void) construirBarraMenu;
--(void) cargarDatos;
+- (id)initWithEntidadMenu: (NSString *)entidad yFiltros:(NSDictionary *)diccionario;
+- (void)construirMenu;
+- (void)cargarDatos;
 
 @end

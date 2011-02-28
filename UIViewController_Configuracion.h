@@ -11,10 +11,8 @@
 
 @interface UIViewController (UIViewController_Configuracion)
 
--(void) personalizarNavigationBar;
-
--(void) mostrarLoadingViewConAnimacion: (BOOL) animacion;
-
--(void) ocultarLoadingViewConAnimacion: (BOOL) animacion;
+- (void)personalizarNavigationBar;
+- (void)mostrarLoadingViewConAnimacion: (BOOL)animacion;
+- (void)ocultarLoadingViewConAnimacion: (BOOL)animacion;
 
 @end

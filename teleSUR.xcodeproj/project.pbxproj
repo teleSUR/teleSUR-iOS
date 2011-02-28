@@ -122,8 +122,8 @@
 		3A10016C131B2B0600717211 /* TSClipsListadoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSClipsListadoViewController.h; sourceTree = "<group>"; };
 		3A10016D131B2B0600717211 /* TSClipsListadoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSClipsListadoViewController.m; sourceTree = "<group>"; };
 		3A10016E131B2B0600717211 /* TSClipsListadoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TSClipsListadoViewController.xib; sourceTree = "<group>"; };
-		3A1001A7131B30D600717211 /* UIViewController_Configuracion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewController_Configuracion.h; sourceTree = "<group>"; };
-		3A1001A8131B30D600717211 /* UIViewController_Configuracion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewController_Configuracion.m; sourceTree = "<group>"; };
+		3A1001A7131B30D600717211 /* UIViewController_Configuracion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIViewController_Configuracion.h; path = ../UIViewController_Configuracion.h; sourceTree = "<group>"; };
+		3A1001A8131B30D600717211 /* UIViewController_Configuracion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIViewController_Configuracion.m; path = ../UIViewController_Configuracion.m; sourceTree = "<group>"; };
 		3A1001F0131B354300717211 /* LoadingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingView.xib; sourceTree = "<group>"; };
 		63099E0213199D1800D15603 /* teleSUR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = teleSUR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63099E0613199D1800D15603 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -337,8 +337,6 @@
 			isa = PBXGroup;
 			children = (
 				63E01696131B883D001928E4 /* Default.png */,
-				3A1001A7131B30D600717211 /* UIViewController_Configuracion.h */,
-				3A1001A8131B30D600717211 /* UIViewController_Configuracion.m */,
 				63099E0C13199D1800D15603 /* teleSUR */,
 				63099E3113199D1800D15603 /* teleSURTests */,
 				63099E4C13199DF900D15603 /* Vendor */,
@@ -383,6 +381,8 @@
 				635A789F1319D3F600C3977D /* TSClipDetallesViewController.m */,
 				635A78A01319D3F600C3977D /* TSClipDetallesViewController.xib */,
 				3A1001F0131B354300717211 /* LoadingView.xib */,
+				3A1001A7131B30D600717211 /* UIViewController_Configuracion.h */,
+				3A1001A8131B30D600717211 /* UIViewController_Configuracion.m */,
 				63099F581319A21500D15603 /* Multimedia Data */,
 				63099E0D13199D1800D15603 /* Supporting Files */,
 			);

@@ -13,11 +13,12 @@
 
 @synthesize clip;
 
+#pragma mark -
+#pragma mark Init
 
 - (id)initWithClip:(NSDictionary *)diccionarioClip
 {
-    self = [super init];
-    if (self) {
+    if ((self = [super init])) {
         self.clip = diccionarioClip;
     }
     return self;
@@ -29,8 +30,8 @@
 - (void)viewDidLoad
 {
     // Provisional
-    [[self.view viewWithTag:1] setText:[clip valueForKey:@"descripcion"]];
-    [[self.view viewWithTag:2] setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://stg.multimedia.tlsur.net/media/%@", [clip valueForKey:@"imagen"]]]]]];
+    [(UILabel *)[self.view viewWithTag:1] setText:[clip valueForKey:@"descripcion"]];
+    [(UIImageView *)[self.view viewWithTag:2] setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://stg.multimedia.tlsur.net/media/%@", [clip valueForKey:@"imagen"]]]]]];
     
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -48,8 +49,6 @@
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
-
-#pragma mark -
 
 - (void)dealloc
 {

@@ -8,25 +8,32 @@
 
 #import "UIViewController_Configuracion.h"
 
+#define LOADING_VIEW_TAG 100
+
 
 @implementation UIViewController (UIViewController_Configuracion)
 
--(void)personalizarNavigationBar
+- (void)personalizarNavigationBar
 {
+    // Perosnalizar navigation bar
 	[self setTitle:@"teleSUR"];
 	[self.navigationController.navigationBar setTintColor:[UIColor redColor]];
 }
 
--(void)mostrarLoadingViewConAnimacion: (BOOL)animacion
+- (void)mostrarLoadingViewConAnimacion: (BOOL)animacion
 {
+    // Cargar NIB con vista para loading, asignarle un tag para hacer referenciar después
 	UIView *vistaLoading = [[[NSBundle mainBundle] loadNibNamed:@"LoadingView" owner:self options:nil] lastObject];					
-    [vistaLoading setTag:100];
+    [vistaLoading setTag:LOADING_VIEW_TAG];
+    
+    // Agregar como subvista
 	[self.view addSubview:vistaLoading];
 }
 
--(void)ocultarLoadingViewConAnimacion: (BOOL)animacion
+- (void)ocultarLoadingViewConAnimacion: (BOOL)animacion
 {
-	[[self.view viewWithTag:100] removeFromSuperview];
+    // Retirar vista de loading 
+	[[self.view viewWithTag:LOADING_VIEW_TAG] removeFromSuperview];
 }
 
 

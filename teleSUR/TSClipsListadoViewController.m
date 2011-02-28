@@ -7,11 +7,10 @@
 //
 
 #import "TSClipsListadoViewController.h"
-#import "UIViewController_Configuracion.h"
 #import "TSMultimediaData.h"
 #import "TSClipDetallesViewController.h"
 
-#define MARGEN_MENU 10
+#define MARGEN_MENU 20
 #define TAMANO_PAGINA 10
 
 @implementation TSClipsListadoViewController
@@ -24,7 +23,7 @@
 #pragma mark -
 #pragma mark Init
 
--(id)initWithEntidadMenu: (NSString *)entidad yFiltros:(NSDictionary *)diccionario
+- (id)initWithEntidadMenu: (NSString *)entidad yFiltros:(NSDictionary *)diccionario;
 {
 	if ((self = [super init]))
     {
@@ -40,21 +39,21 @@
 
 - (void)actualizarDatos: (UIButton *)boton
 {
+    // Obtener slug del filtro seleccionado
     NSInteger indice = [[self.menuScrollView subviews] indexOfObject:boton];
     NSString *slug = [[self.filtros objectAtIndex:indice] valueForKey:@"slug"];
     
+    // Configurar nuevo diccionario de filtros
     self.diccionarioFiltros = [NSDictionary dictionaryWithObject:slug forKey:@"categoria"];
     
+    // Cargar datos
     [self cargarDatos];
 }
 
-- (void)construirBarraMenu 
+- (void)construirMenu 
 {
     // Retirar todos los botones del menú, si es que hay
-    for (UIButton *boton in self.menuScrollView.subviews)
-    {
-        [boton removeFromSuperview];
-    }
+    for (UIButton *boton in self.menuScrollView.subviews) [boton removeFromSuperview];
     
     // Inicializar offset horizontal
     int offsetX = 0 + MARGEN_MENU;
@@ -69,7 +68,6 @@
         // Asignar acción del botón
         [boton addTarget:self action:@selector(actualizarDatos:) forControlEvents:(UIControlEventTouchUpInside)];
         
-        
         // Configurar label de botón
         [boton setTitle:[[self.filtros objectAtIndex:i] valueForKey:@"nombre"] forState:UIControlStateNormal];
         boton.titleLabel.text = [[self.filtros objectAtIndex:i] valueForKey:@"nombre"];
@@ -79,7 +77,7 @@
         
         // Ajustar tamaño de frame del botón con base en el volumen del texto
 		CGSize textoSize = [boton.titleLabel.text sizeWithFont: boton.titleLabel.font];
-		boton.frame = CGRectMake(offsetX, MARGEN_MENU, textoSize.width, textoSize.height);
+		boton.frame = CGRectMake(offsetX, boton.frame.origin.y, textoSize.width, self.menuScrollView.frame.size.height);
         
         // Actualizar offset
         offsetX += boton.frame.size.width + MARGEN_MENU;
@@ -122,7 +120,6 @@
 
 #pragma mark -
 #pragma mark View lifecycle
-
 
 - (void)viewDidLoad
 {	
@@ -267,8 +264,8 @@
 }
 
 - (void)viewDidUnload {
-    // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
-    // For example: self.myOutlet = nil;
+    self.clips = nil;
+    self.filtros = nil;
 }
 
 
@@ -281,30 +278,38 @@
 
 - (void)TSMultimediaData:(TSMultimediaData *)data entidadesRecibidas:(NSArray *)array paraEntidad:(NSString *)entidad
 {
-    //NSLog(@"Consulta exitosa, se recibió arreglo: %@", array);
-    if ([entidad isEqualToString:@"clip"]) {
-        
+    if ([entidad isEqualToString:@"clip"])
+    {
+        // En caso de haber recibido entidades de tipo clip, asignar arreglo clips
         self.clips = array;
+        
+        // Recargar tabla con nuevos datos
         [self.clipsTableView reloadData];
-        
-    } else {
-        
+    }
+    else
+    {
+        // En caso de haber recibido cualquier otro tipo de entidad, es para filtros
         self.filtros = array;
-        [self construirBarraMenu];
         
+        // Reconstruir menú con nuevos fitros
+        [self construirMenu];
     }
     
+    // Ocultar vista de loading sólo cuando ya se han cargado los datos tanto para clips como para filtros
     if (self.clips != nil && self.filtros != nil) [self ocultarLoadingViewConAnimacion:NO];
     
+    // Liberar objeto de datos
     [data release];
-       
 }
 
 
 
 - (void)TSMultimediaData:(TSMultimediaData *)data entidadesRecibidasConError:(id)error
 {
+    // TODO: Informar al usuario sobre error
 	NSLog(@"Error: %@", error);
+    
+    // Liberar objeto de datos
     [data release];
 }
 
