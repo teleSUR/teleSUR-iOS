@@ -88,7 +88,8 @@
 	NSURLConnection *conexion = [[NSURLConnection alloc] initWithRequest:apiRequest delegate:self];
 	
 	if (conexion) {
-		resultadoAPIData = [[NSMutableData data] retain];
+        resultadoAPIData = [[NSMutableData alloc] init];
+        
 	} else {
         NSLog(@"Error de conexión");
 		if ([delegate respondsToSelector:@selector(entidadesRecibidasConFalla:)])
@@ -121,6 +122,7 @@
 	// liberar objeto de conexión y objeto de datos
     [connection release];
     [resultadoAPIData release];
+    resultadoAPIData = nil;
 	
     // informar al delegate
     NSLog(@"Error de conexión - %@ %@",
@@ -152,6 +154,7 @@
     // liberar objeto de conexión y objeto de datos
     [connection release];
     [resultadoAPIData release];
+    resultadoAPIData = nil;
 	
 }
 
