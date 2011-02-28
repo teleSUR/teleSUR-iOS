@@ -8,7 +8,7 @@
 
 #import "UIViewController_Configuracion.h"
 
-#define LOADING_VIEW_TAG 100
+#define kLOADING_VIEW_TAG 100
 
 
 @implementation UIViewController (UIViewController_Configuracion)
@@ -24,7 +24,7 @@
 {
     // Cargar NIB con vista para loading, asignarle un tag para hacer referenciar después
 	UIView *vistaLoading = [[[NSBundle mainBundle] loadNibNamed:@"LoadingView" owner:self options:nil] lastObject];					
-    [vistaLoading setTag:LOADING_VIEW_TAG];
+    [vistaLoading setTag:kLOADING_VIEW_TAG];
     
     // Agregar como subvista
 	[self.view addSubview:vistaLoading];
@@ -33,7 +33,7 @@
 - (void)ocultarLoadingViewConAnimacion: (BOOL)animacion
 {
     // Retirar vista de loading 
-	[[self.view viewWithTag:LOADING_VIEW_TAG] removeFromSuperview];
+	[[self.view viewWithTag:kLOADING_VIEW_TAG] removeFromSuperview];
 }
 
 

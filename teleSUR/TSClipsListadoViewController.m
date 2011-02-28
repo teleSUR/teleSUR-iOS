@@ -10,8 +10,11 @@
 #import "TSMultimediaData.h"
 #import "TSClipDetallesViewController.h"
 
-#define MARGEN_MENU 20
-#define TAMANO_PAGINA 10
+#import "ClipEstandarTableCellView.h"
+
+
+#define kMARGEN_MENU 20
+#define kTAMANO_PAGINA 10
 
 
 @implementation TSClipsListadoViewController
@@ -30,7 +33,7 @@
     {
 		self.entidadMenu = entidad;
 		self.diccionarioFiltros = diccionario;
-		self.rango = NSMakeRange(1, TAMANO_PAGINA);
+		self.rango = NSMakeRange(1, kTAMANO_PAGINA);
 	}
 	
 	return self;
@@ -57,7 +60,7 @@
     for (UIButton *boton in self.menuScrollView.subviews) [boton removeFromSuperview];
     
     // Inicializar offset horizontal
-    int offsetX = 0 + MARGEN_MENU;
+    int offsetX = 0 + kMARGEN_MENU;
     
     // Recorrer filtros
     for (int i=0; i<[self.filtros count]; i++)
@@ -81,7 +84,7 @@
 		boton.frame = CGRectMake(offsetX, boton.frame.origin.y, textoSize.width, self.menuScrollView.frame.size.height);
         
         // Actualizar offset
-        offsetX += boton.frame.size.width + MARGEN_MENU;
+        offsetX += boton.frame.size.width + kMARGEN_MENU;
         
         // Añadir botón a la jerarquía de vistas
         [self.menuScrollView addSubview:boton];
@@ -128,6 +131,7 @@
     [self cargarDatos];
 	
     [super viewDidLoad];
+
 }
 
 
@@ -178,17 +182,18 @@
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    static NSString *CellIdentifier = @"Cell";
+    static NSString *CellIdentifier = @"CeldaEstandar";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    ClipEstandarTableCellView *cell = (ClipEstandarTableCellView *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-    }
-    
-	[cell.textLabel setText: [(NSDictionary *)[self.clips objectAtIndex: indexPath.row] valueForKey:@"titulo"]];
-    // Configure the cell...
-    
-    return cell;
+		
+		cell = (ClipEstandarTableCellView *)[[[NSBundle mainBundle] loadNibNamed:@"ClipEstandarTableCellView" owner:self options:nil] lastObject];
+		
+	}
+	[cell.titulo setText: [[self.clips objectAtIndex:indexPath.row] valueForKey:@"titulo"]];
+	[cell.duracion setText: [[self.clips objectAtIndex:indexPath.row] valueForKey:@"duracion"]];	
+	
+	return cell;
 }
 
 
@@ -234,6 +239,16 @@
 
 #pragma mark -
 #pragma mark Table view delegate
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+
+		
+	UITableViewCell *celda = (ClipEstandarTableCellView *)[[[NSBundle mainBundle] loadNibNamed:@"ClipEstandarTableCellView" owner:self options:nil] lastObject];
+	
+	return celda.frame.size.height;
+
+}
+
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
