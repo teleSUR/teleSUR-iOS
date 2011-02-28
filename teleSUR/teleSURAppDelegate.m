@@ -9,6 +9,8 @@
 #import "teleSURAppDelegate.h"
 #import "TSMultimediaData.h"
 
+@class "TSClipsListadoViewController";
+
 @implementation teleSURAppDelegate
 
 
@@ -31,6 +33,15 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    TSClipsListadoViewController *controlador = [[TSClipsListadoViewController alloc]init];
+    
+    controlador.entidad_menu = @"categoria";
+    controlador.rango = NULL;
+    controlador.diccionarioFiltros = [NSDictionary dictionary];
+    
+    [controlador release];
+    
+    
     // Override point for customization after application launch.
     
     // ejemplo llamada a signleton de datos, cuando termina la consulta envía
