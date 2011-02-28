@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A10016F131B2B0600717211 /* TSClipsListadoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A10016D131B2B0600717211 /* TSClipsListadoViewController.m */; };
+		3A100170131B2B0600717211 /* TSClipsListadoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A10016E131B2B0600717211 /* TSClipsListadoViewController.xib */; };
+		3A1001A9131B30D600717211 /* UIViewController_Configuracion.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A1001A8131B30D600717211 /* UIViewController_Configuracion.m */; };
 		63099E0713199D1800D15603 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63099E0613199D1800D15603 /* UIKit.framework */; };
 		63099E0913199D1800D15603 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63099E0813199D1800D15603 /* Foundation.framework */; };
 		63099E0B13199D1800D15603 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63099E0A13199D1800D15603 /* CoreGraphics.framework */; };
@@ -114,6 +117,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3A10016C131B2B0600717211 /* TSClipsListadoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSClipsListadoViewController.h; sourceTree = "<group>"; };
+		3A10016D131B2B0600717211 /* TSClipsListadoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSClipsListadoViewController.m; sourceTree = "<group>"; };
+		3A10016E131B2B0600717211 /* TSClipsListadoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TSClipsListadoViewController.xib; sourceTree = "<group>"; };
+		3A1001A7131B30D600717211 /* UIViewController_Configuracion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewController_Configuracion.h; sourceTree = "<group>"; };
+		3A1001A8131B30D600717211 /* UIViewController_Configuracion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewController_Configuracion.m; sourceTree = "<group>"; };
 		63099E0213199D1800D15603 /* teleSUR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = teleSUR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63099E0613199D1800D15603 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		63099E0813199D1800D15603 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -289,7 +297,6 @@
 		63099F591319A23000D15603 /* TSMultimediaData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSMultimediaData.h; sourceTree = "<group>"; };
 		63099F5A1319A23000D15603 /* TSMultimediaData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSMultimediaData.m; sourceTree = "<group>"; };
 		63099F5B1319A23000D15603 /* TSMultimediaDataDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSMultimediaDataDelegate.h; sourceTree = "<group>"; };
-		63099F601319AA6100D15603 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = "/Users/david/Code/teleSUR-iOS/Vendor/ShareKit/Classes/ShareKit/Localization/pt.lproj/Localizable.strings"; sourceTree = "<absolute>"; };
 		635A789E1319D3F600C3977D /* TSClipDetallesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSClipDetallesViewController.h; sourceTree = "<group>"; };
 		635A789F1319D3F600C3977D /* TSClipDetallesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSClipDetallesViewController.m; sourceTree = "<group>"; };
 		635A78A01319D3F600C3977D /* TSClipDetallesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TSClipDetallesViewController.xib; sourceTree = "<group>"; };
@@ -325,6 +332,8 @@
 		63099DF713199D1800D15603 = {
 			isa = PBXGroup;
 			children = (
+				3A1001A7131B30D600717211 /* UIViewController_Configuracion.h */,
+				3A1001A8131B30D600717211 /* UIViewController_Configuracion.m */,
 				63099E0C13199D1800D15603 /* teleSUR */,
 				63099E3113199D1800D15603 /* teleSURTests */,
 				63099E4C13199DF900D15603 /* Vendor */,
@@ -358,6 +367,9 @@
 		63099E0C13199D1800D15603 /* teleSUR */ = {
 			isa = PBXGroup;
 			children = (
+				3A10016C131B2B0600717211 /* TSClipsListadoViewController.h */,
+				3A10016D131B2B0600717211 /* TSClipsListadoViewController.m */,
+				3A10016E131B2B0600717211 /* TSClipsListadoViewController.xib */,
 				63099E1513199D1800D15603 /* teleSURAppDelegate.h */,
 				63099E1613199D1800D15603 /* teleSURAppDelegate.m */,
 				63099E1813199D1800D15603 /* iPhone */,
@@ -950,6 +962,7 @@
 				63099F0913199F6700D15603 /* Localizable.strings in Resources */,
 				63099F1013199F6700D15603 /* FBConnect.bundle in Resources */,
 				635A78A21319D3F600C3977D /* TSClipDetallesViewController.xib in Resources */,
+				3A100170131B2B0600717211 /* TSClipsListadoViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1060,6 +1073,8 @@
 				63099F4B13199F9800D15603 /* CJSONSerializer.m in Sources */,
 				63099F5C1319A23000D15603 /* TSMultimediaData.m in Sources */,
 				635A78A11319D3F600C3977D /* TSClipDetallesViewController.m in Sources */,
+				3A10016F131B2B0600717211 /* TSClipsListadoViewController.m in Sources */,
+				3A1001A9131B30D600717211 /* UIViewController_Configuracion.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1119,7 +1134,6 @@
 			children = (
 				63099E9413199F6700D15603 /* en */,
 				63099E9513199F6700D15603 /* es */,
-				63099F601319AA6100D15603 /* pt */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
