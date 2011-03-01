@@ -11,7 +11,7 @@
 #import "TSClipDetallesViewController.h"
 
 #import "ClipEstandarTableCellView.h"
-
+#import "NSDictionary_Utilidad.h"
 
 #define kMARGEN_MENU 20
 #define kTAMANO_PAGINA 10
@@ -191,6 +191,8 @@
 	}
 	[cell.titulo setText: [[self.clips objectAtIndex:indexPath.row] valueForKey:@"titulo"]];
 	[cell.duracion setText: [[self.clips objectAtIndex:indexPath.row] valueForKey:@"duracion"]];	
+	[cell.firma setText:[[self.clips objectAtIndex:indexPath.row] obtenerFirmaParaEsteClip]];
+	
 	
 	return cell;
 }
