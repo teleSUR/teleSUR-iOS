@@ -16,10 +16,11 @@
 #define kMARGEN_MENU 20
 #define kTAMANO_PAGINA 10
 
+
 @implementation TSClipsListadoViewController
 
 @synthesize entidadMenu, rango, diccionarioFiltros;
-@synthesize clipsTableViewController;
+//@synthesize clipsTableViewController;  ???
 @synthesize clipsTableView, menuScrollView;
 @synthesize clips, filtros;
 
@@ -184,11 +185,12 @@
     static NSString *CellIdentifier = @"CeldaEstandar";
     
     ClipEstandarTableCellView *cell = (ClipEstandarTableCellView *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-		
+    if (cell == nil)
+    {
 		cell = (ClipEstandarTableCellView *)[[[NSBundle mainBundle] loadNibNamed:@"ClipEstandarTableCellView" owner:self options:nil] lastObject];
-		
 	}
+    
+    [cell.thumbnailView setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://stg.multimedia.tlsur.net/media/%@", [[self.clips objectAtIndex:indexPath.row] valueForKey:@"imagen"]]]]]];
 	[cell.titulo setText: [[self.clips objectAtIndex:indexPath.row] valueForKey:@"titulo"]];
 	[cell.duracion setText: [[self.clips objectAtIndex:indexPath.row] valueForKey:@"duracion"]];	
 	[cell.firma setText:[[self.clips objectAtIndex:indexPath.row] obtenerFirmaParaEsteClip]];

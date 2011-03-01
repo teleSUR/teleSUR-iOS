@@ -13,7 +13,7 @@
 @interface TSClipsListadoViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, TSMultimediaDataDelegate> {
 	
 	// Controladores:
-	UITableViewController *clipsTableViewController;
+	//UITableViewController *clipsTableViewController; ??
 	
 	// Sub-Vistas:
 	UITableView *clipsTableView;
@@ -30,7 +30,7 @@
 
 
 // Controladores:
-@property (nonatomic, retain) UITableViewController *clipsTableViewController;
+//@property (nonatomic, retain) UITableViewController *clipsTableViewController; ??
 
 // Sub-Vistas:
 @property (nonatomic, retain) IBOutlet UITableView *clipsTableView;
@@ -45,9 +45,9 @@
 @property (nonatomic, retain) NSArray *filtros;
 
 
-
 - (id)initWithEntidadMenu: (NSString *)entidad yFiltros:(NSDictionary *)diccionario;
 - (void)construirMenu;
 - (void)cargarDatos;
+- (void)actualizarDatos: (UIButton *)boton;
 
 @end

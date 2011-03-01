@@ -9,11 +9,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "teleSUR/TSClipsListadoViewController.m"
-         timestampString = "320604467.593848"
+         timestampString = "320638129.046784"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "283"
-         endingLineNumber = "283"
+         startingLineNumber = "285"
+         endingLineNumber = "285"
          landmarkName = "-entidadesRecibidasConExito:paraEntidad:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -23,11 +23,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "teleSUR/TSClipsListadoViewController.m"
-         timestampString = "320604467.593848"
+         timestampString = "320638129.046784"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "302"
-         endingLineNumber = "302"
+         startingLineNumber = "304"
+         endingLineNumber = "304"
          landmarkName = "-TSMultimediaData:entidadesRecibidas:paraEntidad:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -37,11 +37,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "teleSUR/TSClipsListadoViewController.m"
-         timestampString = "320604467.593848"
+         timestampString = "320638129.046784"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "294"
-         endingLineNumber = "294"
+         startingLineNumber = "296"
+         endingLineNumber = "296"
          landmarkName = "-TSMultimediaData:entidadesRecibidas:paraEntidad:"
          landmarkType = "5">
       </FileBreakpoint>

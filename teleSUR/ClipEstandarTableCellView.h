@@ -13,6 +13,8 @@
 
 	UILabel *titulo;
 	UILabel *duracion;
+    
+    UIImageView *thumbnailView;
 	
 	UILabel *firma;
 }
@@ -21,5 +23,6 @@
 @property (nonatomic, retain) IBOutlet UILabel *titulo;
 @property (nonatomic, retain) IBOutlet UILabel *duracion;
 @property (nonatomic, retain) IBOutlet UILabel *firma;
+@property (nonatomic, retain) IBOutlet UIImageView *thumbnailView;
 
 @end
