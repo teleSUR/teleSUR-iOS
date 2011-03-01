@@ -1,23 +1,23 @@
 //
-//  TSClipsListadoViewController.m
+//  TSClipListadoViewController.m
 //  teleSUR
 //
 //  Created by Hector Zarate on 2/27/11.
 //  Copyright 2011 teleSUR. All rights reserved.
 //
 
-#import "TSClipsListadoViewController.h"
+#import "TSClipListadoViewController.h"
 #import "TSMultimediaData.h"
 #import "TSClipDetallesViewController.h"
 
 #import "ClipEstandarTableCellView.h"
 #import "NSDictionary_Utilidad.h"
 
-#define kMARGEN_MENU 20
+#define kMARGEN_MENU 15
 #define kTAMANO_PAGINA 6
 
 
-@implementation TSClipsListadoViewController
+@implementation TSClipListadoViewController
 
 @synthesize entidadMenu, rango, diccionarioFiltros;
 //@synthesize clipsTableViewController;  ???
@@ -90,7 +90,7 @@
         [self.menuScrollView addSubview:boton];
     }
     
-    // Deifnir Ã¡rea de scroll
+    // Deifnir ‡rea de scroll
     [self.menuScrollView setContentSize: CGSizeMake(offsetX, self.menuScrollView.frame.size.height)];
 }
 
@@ -249,11 +249,9 @@
 #pragma mark -
 #pragma mark Table view delegate
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-
-		
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{		
 	UITableViewCell *celda = (ClipEstandarTableCellView *)[[[NSBundle mainBundle] loadNibNamed:@"ClipEstandarTableCellView" owner:self options:nil] lastObject];
-	
 	return celda.frame.size.height;
 
 }
@@ -281,20 +279,23 @@
 #pragma mark -
 #pragma mark Memory management
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
     
     // Relinquish ownership any cached data, images, etc. that aren't in use.
 }
 
-- (void)viewDidUnload {
+- (void)viewDidUnload
+{
     self.clips = nil;
     self.filtros = nil;
 }
 
 
-- (void)dealloc {
+- (void)dealloc
+{
     [super dealloc];
 }
 
@@ -309,8 +310,11 @@
         self.clips = array;
         
 		// Cargar arreglo temporal de imagenes:
-		for (int i = 0; i < [self.clips count]; i++) {
-			
+        
+		[imagenesTemp removeAllObjects];
+        for (int i = 0; i < [self.clips count]; i++)
+        {
+            // PROOF: 
 			[imagenesTemp addObject:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://stg.multimedia.tlsur.net/media/%@", [[self.clips objectAtIndex:i] valueForKey:@"imagen"]]]]]];
 			
 		}

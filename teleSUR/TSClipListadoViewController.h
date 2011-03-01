@@ -1,5 +1,5 @@
 //
-//  TSClipsListadoViewController.h
+//  TSClipListadoViewController.h
 //  teleSUR
 //
 //  Created by Hector Zarate on 2/27/11.
@@ -10,7 +10,7 @@
 #import "UIViewController_Configuracion.h"
 #import "TSMultimediaDataDelegate.h"
 
-@interface TSClipsListadoViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, TSMultimediaDataDelegate> {
+@interface TSClipListadoViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, TSMultimediaDataDelegate> {
 	
 	// Controladores:
 	//UITableViewController *clipsTableViewController; ??

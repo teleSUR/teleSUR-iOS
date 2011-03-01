@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3A10016F131B2B0600717211 /* TSClipsListadoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A10016D131B2B0600717211 /* TSClipsListadoViewController.m */; };
-		3A100170131B2B0600717211 /* TSClipsListadoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A10016E131B2B0600717211 /* TSClipsListadoViewController.xib */; };
+		3A10016F131B2B0600717211 /* TSClipListadoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A10016D131B2B0600717211 /* TSClipListadoViewController.m */; };
+		3A100170131B2B0600717211 /* TSClipListadoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A10016E131B2B0600717211 /* TSClipListadoViewController.xib */; };
 		3A1001A9131B30D600717211 /* UIViewController_Configuracion.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A1001A8131B30D600717211 /* UIViewController_Configuracion.m */; };
 		3A1001F1131B354300717211 /* LoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A1001F0131B354300717211 /* LoadingView.xib */; };
 		3A2360B6131C4B7200A941E2 /* ClipEstandarTableCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A2360B5131C4B7200A941E2 /* ClipEstandarTableCellView.xib */; };
@@ -122,9 +122,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		3A10016C131B2B0600717211 /* TSClipsListadoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSClipsListadoViewController.h; sourceTree = "<group>"; };
-		3A10016D131B2B0600717211 /* TSClipsListadoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSClipsListadoViewController.m; sourceTree = "<group>"; };
-		3A10016E131B2B0600717211 /* TSClipsListadoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TSClipsListadoViewController.xib; sourceTree = "<group>"; };
+		3A10016C131B2B0600717211 /* TSClipListadoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSClipListadoViewController.h; sourceTree = "<group>"; };
+		3A10016D131B2B0600717211 /* TSClipListadoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSClipListadoViewController.m; sourceTree = "<group>"; };
+		3A10016E131B2B0600717211 /* TSClipListadoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TSClipListadoViewController.xib; sourceTree = "<group>"; };
 		3A1001A7131B30D600717211 /* UIViewController_Configuracion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIViewController_Configuracion.h; path = ../UIViewController_Configuracion.h; sourceTree = "<group>"; };
 		3A1001A8131B30D600717211 /* UIViewController_Configuracion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIViewController_Configuracion.m; path = ../UIViewController_Configuracion.m; sourceTree = "<group>"; };
 		3A1001F0131B354300717211 /* LoadingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingView.xib; sourceTree = "<group>"; };
@@ -341,7 +341,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3A236263131C8BDB00A941E2 /* Categorias */ = {
+		3A236263131C8BDB00A941E2 /* Categorías */ = {
 			isa = PBXGroup;
 			children = (
 				3A236260131C8BD700A941E2 /* NSDictionary_Utilidad.h */,
@@ -349,7 +349,7 @@
 				3A1001A7131B30D600717211 /* UIViewController_Configuracion.h */,
 				3A1001A8131B30D600717211 /* UIViewController_Configuracion.m */,
 			);
-			name = Categorias;
+			name = "Categorías";
 			sourceTree = "<group>";
 		};
 		63099DF713199D1800D15603 = {
@@ -389,23 +389,14 @@
 		63099E0C13199D1800D15603 /* teleSUR */ = {
 			isa = PBXGroup;
 			children = (
-				3A236263131C8BDB00A941E2 /* Categorias */,
 				63099E1513199D1800D15603 /* teleSURAppDelegate.h */,
 				63099E1613199D1800D15603 /* teleSURAppDelegate.m */,
 				63099E1813199D1800D15603 /* iPhone */,
 				63099E1F13199D1800D15603 /* iPad */,
-				3A10016C131B2B0600717211 /* TSClipsListadoViewController.h */,
-				3A10016D131B2B0600717211 /* TSClipsListadoViewController.m */,
-				3A10016E131B2B0600717211 /* TSClipsListadoViewController.xib */,
-				635A789E1319D3F600C3977D /* TSClipDetallesViewController.h */,
-				635A789F1319D3F600C3977D /* TSClipDetallesViewController.m */,
-				635A78A01319D3F600C3977D /* TSClipDetallesViewController.xib */,
-				3A1001F0131B354300717211 /* LoadingView.xib */,
-				63099F581319A21500D15603 /* Multimedia Data */,
+				63E016A5131D840E001928E4 /* Vistas */,
+				3A236263131C8BDB00A941E2 /* Categorías */,
+				63099F581319A21500D15603 /* Datos */,
 				63099E0D13199D1800D15603 /* Supporting Files */,
-				3A236146131C534300A941E2 /* ClipEstandarTableCellView.h */,
-				3A236147131C534300A941E2 /* ClipEstandarTableCellView.m */,
-				3A2360B5131C4B7200A941E2 /* ClipEstandarTableCellView.xib */,
 			);
 			path = teleSUR;
 			sourceTree = "<group>";
@@ -427,7 +418,7 @@
 				63099E1913199D1800D15603 /* teleSURAppDelegate_iPhone.h */,
 				63099E1A13199D1800D15603 /* teleSURAppDelegate_iPhone.m */,
 				63099E1C13199D1800D15603 /* MainWindow_iPhone.xib */,
-				63099F5F1319A27500D15603 /* View Controllers */,
+				63099F5F1319A27500D15603 /* Vistas */,
 			);
 			name = iPhone;
 			sourceTree = "<group>";
@@ -438,7 +429,7 @@
 				63099E2013199D1800D15603 /* teleSURAppDelegate_iPad.h */,
 				63099E2113199D1800D15603 /* teleSURAppDelegate_iPad.m */,
 				63099E2313199D1800D15603 /* MainWindow_iPad.xib */,
-				63099F5E1319A25E00D15603 /* View Controllers */,
+				63099F5E1319A25E00D15603 /* VIstas */,
 			);
 			name = iPad;
 			sourceTree = "<group>";
@@ -881,28 +872,61 @@
 			path = JSON;
 			sourceTree = "<group>";
 		};
-		63099F581319A21500D15603 /* Multimedia Data */ = {
+		63099F581319A21500D15603 /* Datos */ = {
 			isa = PBXGroup;
 			children = (
 				63099F591319A23000D15603 /* TSMultimediaData.h */,
 				63099F5A1319A23000D15603 /* TSMultimediaData.m */,
 				63099F5B1319A23000D15603 /* TSMultimediaDataDelegate.h */,
 			);
-			name = "Multimedia Data";
+			name = Datos;
 			sourceTree = "<group>";
 		};
-		63099F5E1319A25E00D15603 /* View Controllers */ = {
+		63099F5E1319A25E00D15603 /* VIstas */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			name = "View Controllers";
+			name = VIstas;
 			sourceTree = "<group>";
 		};
-		63099F5F1319A27500D15603 /* View Controllers */ = {
+		63099F5F1319A27500D15603 /* Vistas */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			name = "View Controllers";
+			name = Vistas;
+			sourceTree = "<group>";
+		};
+		63E016A5131D840E001928E4 /* Vistas */ = {
+			isa = PBXGroup;
+			children = (
+				63E016A7131D846E001928E4 /* Listado */,
+				63E016A8131D8481001928E4 /* Detalles */,
+				3A1001F0131B354300717211 /* LoadingView.xib */,
+			);
+			name = Vistas;
+			sourceTree = "<group>";
+		};
+		63E016A7131D846E001928E4 /* Listado */ = {
+			isa = PBXGroup;
+			children = (
+				3A10016C131B2B0600717211 /* TSClipListadoViewController.h */,
+				3A10016D131B2B0600717211 /* TSClipListadoViewController.m */,
+				3A10016E131B2B0600717211 /* TSClipListadoViewController.xib */,
+				3A236146131C534300A941E2 /* ClipEstandarTableCellView.h */,
+				3A236147131C534300A941E2 /* ClipEstandarTableCellView.m */,
+				3A2360B5131C4B7200A941E2 /* ClipEstandarTableCellView.xib */,
+			);
+			name = Listado;
+			sourceTree = "<group>";
+		};
+		63E016A8131D8481001928E4 /* Detalles */ = {
+			isa = PBXGroup;
+			children = (
+				635A789E1319D3F600C3977D /* TSClipDetallesViewController.h */,
+				635A789F1319D3F600C3977D /* TSClipDetallesViewController.m */,
+				635A78A01319D3F600C3977D /* TSClipDetallesViewController.xib */,
+			);
+			name = Detalles;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -981,7 +1005,7 @@
 				63099F0913199F6700D15603 /* Localizable.strings in Resources */,
 				63099F1013199F6700D15603 /* FBConnect.bundle in Resources */,
 				635A78A21319D3F600C3977D /* TSClipDetallesViewController.xib in Resources */,
-				3A100170131B2B0600717211 /* TSClipsListadoViewController.xib in Resources */,
+				3A100170131B2B0600717211 /* TSClipListadoViewController.xib in Resources */,
 				3A1001F1131B354300717211 /* LoadingView.xib in Resources */,
 				63E01697131B883D001928E4 /* Default.png in Resources */,
 				3A2360B6131C4B7200A941E2 /* ClipEstandarTableCellView.xib in Resources */,
@@ -1095,7 +1119,7 @@
 				63099F4B13199F9800D15603 /* CJSONSerializer.m in Sources */,
 				63099F5C1319A23000D15603 /* TSMultimediaData.m in Sources */,
 				635A78A11319D3F600C3977D /* TSClipDetallesViewController.m in Sources */,
-				3A10016F131B2B0600717211 /* TSClipsListadoViewController.m in Sources */,
+				3A10016F131B2B0600717211 /* TSClipListadoViewController.m in Sources */,
 				3A1001A9131B30D600717211 /* UIViewController_Configuracion.m in Sources */,
 				3A236148131C534300A941E2 /* ClipEstandarTableCellView.m in Sources */,
 				3A236262131C8BD700A941E2 /* NSDictionary_Utilidad.m in Sources */,

@@ -176,7 +176,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    TSClipsListadoViewController *listadoView = [[TSClipsListadoViewController alloc] initWithEntidadMenu:nil yFiltros:[NSDictionary dictionaryWithObject:[[self.clip valueForKey:@"pais"] valueForKey:@"nombre"] forKey:@"pais"]];
+    TSClipListadoViewController *listadoView = [[TSClipListadoViewController alloc] initWithEntidadMenu:nil yFiltros:[NSDictionary dictionaryWithObject:[[self.clip valueForKey:@"pais"] valueForKey:@"nombre"] forKey:@"pais"]];
     
     [self.navigationController pushViewController:listadoView animated:YES];
     
