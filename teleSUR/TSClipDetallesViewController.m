@@ -99,6 +99,7 @@
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
+    
    	[cell.textLabel setText:[self.clip valueForKey:@"titulo"]];
     // Configure the cell...
     

@@ -11,7 +11,7 @@
 
 @implementation ClipEstandarTableCellView
 
-@synthesize titulo, duracion, firma;
+@synthesize titulo, duracion, firma, thumbnailView;
 
 /*
 // Implement loadView to create a view hierarchy programmatically, without using a nib.
