@@ -117,6 +117,11 @@
                         conFiltros:nil // otro ejemplo: conFiltros:[NSDictionary dictionaryWithObject:@"2010-01-01" forKey:@"hasta"]
                            enRango:NSMakeRange(1, 10)  // otro ejemplo: NSMakeRange(1, 1) -sólo uno-
                        conDelegate:self];
+	
+	
+	
+	
+	
     
 }
 
@@ -127,6 +132,7 @@
 
 - (void)viewDidLoad
 {	
+	imagenesTemp = [[NSMutableArray alloc] initWithCapacity:10];
 	[self personalizarNavigationBar];
     [self cargarDatos];
 	
@@ -189,8 +195,8 @@
     {
 		cell = (ClipEstandarTableCellView *)[[[NSBundle mainBundle] loadNibNamed:@"ClipEstandarTableCellView" owner:self options:nil] lastObject];
 	}
-    
-    [cell.thumbnailView setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://stg.multimedia.tlsur.net/media/%@", [[self.clips objectAtIndex:indexPath.row] valueForKey:@"imagen"]]]]]];
+     
+    [cell.thumbnailView setImage: [imagenesTemp objectAtIndex:indexPath.row]];
 	[cell.titulo setText: [[self.clips objectAtIndex:indexPath.row] valueForKey:@"titulo"]];
 	[cell.duracion setText: [[self.clips objectAtIndex:indexPath.row] valueForKey:@"duracion"]];	
 	[cell.firma setText:[[self.clips objectAtIndex:indexPath.row] obtenerFirmaParaEsteClip]];
@@ -302,6 +308,14 @@
         // En caso de haber recibido entidades de tipo clip, asignar arreglo clips
         self.clips = array;
         
+		// Cargar arreglo temporal de imagenes:
+		for (int i = 0; i < [self.clips count]; i++) {
+			
+			[imagenesTemp addObject:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://stg.multimedia.tlsur.net/media/%@", [[self.clips objectAtIndex:i] valueForKey:@"imagen"]]]]]];
+			
+		}
+		
+		
         // Recargar tabla con nuevos datos
         [self.clipsTableView reloadData];
     }

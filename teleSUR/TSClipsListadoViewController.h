@@ -26,6 +26,9 @@
 	
 	NSArray *clips;
 	NSArray *filtros;
+	
+	NSMutableArray *imagenesTemp;
+	
 }
 
 
