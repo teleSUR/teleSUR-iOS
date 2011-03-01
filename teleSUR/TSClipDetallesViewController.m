@@ -7,7 +7,7 @@
 //
 
 #import "TSClipDetallesViewController.h"
-#import "TSCLipsListadoViewController.h"
+#import "TSCLipListadoViewController.h"
 
 @implementation TSClipDetallesViewController
 

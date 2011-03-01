@@ -10,11 +10,8 @@
 #import "UIViewController_Configuracion.h"
 #import "TSMultimediaDataDelegate.h"
 
-@interface TSClipListadoViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, TSMultimediaDataDelegate> {
-	
-	// Controladores:
-	//UITableViewController *clipsTableViewController; ??
-	
+@interface TSClipListadoViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, TSMultimediaDataDelegate>
+{
 	// Sub-Vistas:
 	UITableView *clipsTableView;
 	UIScrollView *menuScrollView;
@@ -26,14 +23,11 @@
 	
 	NSArray *clips;
 	NSArray *filtros;
-	
-	NSMutableArray *imagenesTemp;
+    
+    NSMutableArray *imageViews;
 	
 }
 
-
-// Controladores:
-//@property (nonatomic, retain) UITableViewController *clipsTableViewController; ??
 
 // Sub-Vistas:
 @property (nonatomic, retain) IBOutlet UITableView *clipsTableView;
@@ -47,8 +41,10 @@
 @property (nonatomic, retain) NSArray *clips;
 @property (nonatomic, retain) NSArray *filtros;
 
+@property (nonatomic, retain) NSMutableArray *imageViews;
 
-- (id)initWithEntidadMenu: (NSString *)entidad yFiltros:(NSDictionary *)diccionario;
+
+- (id)initWithEntidadMenu:(NSString *)entidad yFiltros:(NSDictionary *)diccionario;
 - (void)construirMenu;
 - (void)cargarDatos;
 - (void)actualizarDatos: (UIButton *)boton;

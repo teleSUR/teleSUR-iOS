@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AsynchronousImageView.h"
 
 
 @interface ClipEstandarTableCellView : UITableViewCell {
@@ -14,7 +15,7 @@
 	UILabel *titulo;
 	UILabel *duracion;
     
-    UIImageView *thumbnailView;
+    AsynchronousImageView *thumbnailView;
 	
 	UILabel *firma;
 }
@@ -23,6 +24,6 @@
 @property (nonatomic, retain) IBOutlet UILabel *titulo;
 @property (nonatomic, retain) IBOutlet UILabel *duracion;
 @property (nonatomic, retain) IBOutlet UILabel *firma;
-@property (nonatomic, retain) IBOutlet UIImageView *thumbnailView;
+@property (nonatomic, retain) IBOutlet AsynchronousImageView *thumbnailView;
 
 @end

@@ -9,9 +9,10 @@
 #import "TSClipListadoViewController.h"
 #import "TSMultimediaData.h"
 #import "TSClipDetallesViewController.h"
+#import "AsynchronousImageView.h"
 
 #import "ClipEstandarTableCellView.h"
-#import "NSDictionary_Utilidad.h"
+#import "NSDictionary_Datos.h"
 
 #define kMARGEN_MENU 15
 #define kTAMANO_PAGINA 6
@@ -20,14 +21,14 @@
 @implementation TSClipListadoViewController
 
 @synthesize entidadMenu, rango, diccionarioFiltros;
-//@synthesize clipsTableViewController;  ???
 @synthesize clipsTableView, menuScrollView;
 @synthesize clips, filtros;
+@synthesize imageViews;
 
 #pragma mark -
 #pragma mark Init
 
-- (id)initWithEntidadMenu: (NSString *)entidad yFiltros:(NSDictionary *)diccionario;
+- (id)initWithEntidadMenu:(NSString *)entidad yFiltros:(NSDictionary *)diccionario;
 {
 	if ((self = [super init]))
     {
@@ -41,7 +42,7 @@
 
 #pragma mark -
 
-- (void)actualizarDatos: (UIButton *)boton
+- (void)actualizarDatos:(UIButton *)boton
 {
     // Obtener slug del filtro seleccionado
     NSInteger indice = [[self.menuScrollView subviews] indexOfObject:boton];
@@ -117,11 +118,6 @@
                         conFiltros:nil // otro ejemplo: conFiltros:[NSDictionary dictionaryWithObject:@"2010-01-01" forKey:@"hasta"]
                            enRango:NSMakeRange(1, 10)  // otro ejemplo: NSMakeRange(1, 1) -s√≥lo uno-
                        conDelegate:self];
-	
-	
-	
-	
-	
     
 }
 
@@ -132,9 +128,9 @@
 
 - (void)viewDidLoad
 {	
-	imagenesTemp = [[NSMutableArray alloc] initWithCapacity:10];
 	[self personalizarNavigationBar];
     [self cargarDatos];
+    self.imageViews = [NSMutableArray array];
 	
     [super viewDidLoad];
 
@@ -173,21 +169,23 @@
 #pragma mark -
 #pragma mark Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
     // Return the number of sections.
     return 1;
 }
 
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
     // Return the number of rows in the section.
     return [self.clips count];
 }
 
 
 // Customize the appearance of table view cells.
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{    
     static NSString *CellIdentifier = @"CeldaEstandar";
     
     ClipEstandarTableCellView *cell = (ClipEstandarTableCellView *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -195,12 +193,18 @@
     {
 		cell = (ClipEstandarTableCellView *)[[[NSBundle mainBundle] loadNibNamed:@"ClipEstandarTableCellView" owner:self options:nil] lastObject];
 	}
-     
-    [cell.thumbnailView setImage: [imagenesTemp objectAtIndex:indexPath.row]];
+    
+    // Copiar propiedades de thumbnailView (definidas en NIB) y sustitirlo por AsyncImageView correspondiente
+    CGRect frame = cell.thumbnailView.frame;
+    [cell.thumbnailView removeFromSuperview];
+    cell.thumbnailView = [self.imageViews objectAtIndex:indexPath.row];
+    cell.thumbnailView.frame = frame;
+    [cell addSubview:cell.thumbnailView];
+    
+    // Establecer texto de etiquetas
 	[cell.titulo setText: [[self.clips objectAtIndex:indexPath.row] valueForKey:@"titulo"]];
 	[cell.duracion setText: [[self.clips objectAtIndex:indexPath.row] valueForKey:@"duracion"]];	
 	[cell.firma setText:[[self.clips objectAtIndex:indexPath.row] obtenerFirmaParaEsteClip]];
-	
 	
 	return cell;
 }
@@ -208,7 +212,8 @@
 
 /*
 // Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
     // Return NO if you do not want the specified item to be editable.
     return YES;
 }
@@ -217,7 +222,8 @@
 
 /*
 // Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
     
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source.
@@ -232,14 +238,17 @@
 
 /*
 // Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
+{
+ 
 }
 */
 
 
 /*
 // Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+{
     // Return NO if you do not want the item to be re-orderable.
     return YES;
 }
@@ -291,6 +300,7 @@
 {
     self.clips = nil;
     self.filtros = nil;
+    self.imageViews = nil;
 }
 
 
@@ -306,19 +316,20 @@
 {
     if ([entidad isEqualToString:@"clip"])
     {
+        // Agregar vistas para las imágenes al arreglo imageViews
+        AsynchronousImageView *iv;
+        [imageViews removeAllObjects];
+        for (int i=0; i<[array count]; i++)
+        {
+            iv = [[AsynchronousImageView alloc] init];
+            [iv loadImageFromURLString:[NSString stringWithFormat:@"http://stg.multimedia.tlsur.net/media/%@", [[array objectAtIndex:i] valueForKey:@"imagen"]]];
+            [self.imageViews addObject:iv];
+            [iv release];
+        }
+        
+        
         // En caso de haber recibido entidades de tipo clip, asignar arreglo clips
         self.clips = array;
-        
-		// Cargar arreglo temporal de imagenes:
-        
-		[imagenesTemp removeAllObjects];
-        for (int i = 0; i < [self.clips count]; i++)
-        {
-            // PROOF: 
-			[imagenesTemp addObject:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://stg.multimedia.tlsur.net/media/%@", [[self.clips objectAtIndex:i] valueForKey:@"imagen"]]]]]];
-			
-		}
-		
 		
         // Recargar tabla con nuevos datos
         [self.clipsTableView reloadData];
