@@ -79,13 +79,14 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    switch (section) {
+    switch (section)
+    {
         case 0:
-            return 1;
-            break;
-            
+            return 3;
+        case 1:
+            return 2;
         default:
-            return 1;
+            return 0;
     }
 }
 
@@ -100,7 +101,30 @@
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
     
-   	[cell.textLabel setText:[self.clip valueForKey:@"titulo"]];
+    switch (indexPath.section)
+    {
+        case 0:
+            switch (indexPath.row) {
+                case 0: // imagen
+                    break;
+                case 1: // titulo
+                    [cell.textLabel setText:[self.clip valueForKey:@"titulo"]];
+                    break;
+                case 2: // descripcion
+                    [cell.textLabel setText:[self.clip valueForKey:@"descripcion"]];
+                    break;
+            }
+            break;
+        case 1:
+            switch (indexPath.row) {
+                case 0: // pais
+                    [cell.textLabel setText:[[self.clip valueForKey:@"pais"] valueForKey:@"nombre"]];
+                    break;
+            }
+            break;
+    }
+    
+   	
     // Configure the cell...
     
     return cell;
@@ -152,7 +176,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    TSClipsListadoViewController *listadoView = [[TSClipsListadoViewController alloc] initWithEntidadMenu:nil yFiltros:nil];
+    TSClipsListadoViewController *listadoView = [[TSClipsListadoViewController alloc] initWithEntidadMenu:nil yFiltros:[NSDictionary dictionaryWithObject:[[self.clip valueForKey:@"pais"] valueForKey:@"nombre"] forKey:@"pais"]];
     
     [self.navigationController pushViewController:listadoView animated:YES];
     

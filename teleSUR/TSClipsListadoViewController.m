@@ -14,7 +14,7 @@
 #import "NSDictionary_Utilidad.h"
 
 #define kMARGEN_MENU 20
-#define kTAMANO_PAGINA 10
+#define kTAMANO_PAGINA 6
 
 
 @implementation TSClipsListadoViewController
