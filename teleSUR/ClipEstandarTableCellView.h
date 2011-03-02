@@ -18,6 +18,7 @@
     AsynchronousImageView *thumbnailView;
 	
 	UILabel *firma;
+    
 }
 
 

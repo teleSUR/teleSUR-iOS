@@ -26,12 +26,16 @@
     NSString *fechaCompleta = [self obtenerTiempoDesdeParaEsteClip];
     
 	// Concatenar datos: ciudad (si la hay), país y fecha completa
+
 	if (![ciudad isKindOfClass:[NSNull class] ] && [ciudad length] > 0) [firma appendFormat:@"%@, ", ciudad];
-    [firma appendFormat:@"%@ | ", pais];
+    
+    if (![pais isKindOfClass:[NSNull class]]) [firma appendFormat:@"%@ | ", pais];
+
     [firma appendFormat:@"%@", fechaCompleta];
     
 	return firma;
 }
+
 
 // Devuelve NSDate con la fecha de este clip,
 // que se espera tenga el formato: yyyy-MM-dd HH:mm:ss
@@ -47,6 +51,7 @@
 	return date;
 }
 
+
 // Devuelve cadena con fecha localizada completa de este clip: Ej: Miércoles 4 de agosto de 2010
 - (NSString *)obtenerFechaCompletaParaEsteClip
 {
@@ -59,6 +64,7 @@
     
     return fechaCompleta;
 }
+
 
 // TODO: Implementar
 // Devuelve cadena localizada con tiempo transcurrido desde la fecha de este clip:

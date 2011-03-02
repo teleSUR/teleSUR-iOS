@@ -2,17 +2,19 @@
 //  TSClipListadoViewController.m
 //  teleSUR
 //
-//  Created by Hector Zarate on 2/27/11.
+//  Created by Hector Zarate / David Regla on 2/27/11.
 //  Copyright 2011 teleSUR. All rights reserved.
 //
 
+
 #import "TSClipListadoViewController.h"
 #import "TSMultimediaData.h"
-#import "TSClipDetallesViewController.h"
-#import "AsynchronousImageView.h"
-
-#import "ClipEstandarTableCellView.h"
+#import "UIViewController_Configuracion.h"
 #import "NSDictionary_Datos.h"
+#import "TSClipDetallesViewController.h"
+#import "ClipEstandarTableCellView.h"
+#import <MediaPlayer/MediaPlayer.h>
+
 
 #define kMARGEN_MENU 15
 #define kTAMANO_PAGINA 6
@@ -23,8 +25,9 @@
 @synthesize entidadMenu, rango, diccionarioFiltros;
 @synthesize clipsTableView, menuScrollView;
 @synthesize clips, filtros;
-@synthesize imageViews;
 @synthesize indiceDeBotonSeleccionado;
+@synthesize arregloClipsAsyncImageViews;
+
 
 
 #pragma mark -
@@ -43,9 +46,10 @@
 	return self;
 }
 
+
 #pragma mark -
 
-- (void)actualizarDatos:(UIButton *)boton
+- (void)filtroSeleccionadoConBoton:(UIButton *)boton
 {
 	 
     // Obtener slug del filtro seleccionado
@@ -65,11 +69,13 @@
     else slug = [[self.filtros objectAtIndex:indice] valueForKey:@"slug"];
     
     // Configurar nuevo diccionario de filtros
+    // TODO: Todav抋 hardcoded
     self.diccionarioFiltros = [NSDictionary dictionaryWithObject:slug forKey:@"categoria"];
     
-    // Cargar datos
+    // Re-cargar datos
     [self cargarDatos];
 }
+
 
 - (void)construirMenu 
 {
@@ -89,9 +95,14 @@
         boton.backgroundColor = [UIColor clearColor];
         
         // Asignar acci贸n del bot贸n
-        [boton addTarget:self action:@selector(actualizarDatos:) forControlEvents:(UIControlEventTouchUpInside)];
+        [boton addTarget:self action:@selector(filtroSeleccionadoConBoton:) forControlEvents:(UIControlEventTouchUpInside)];
 
 		boton.tag = kTagBotonesMenu;
+
+        // Configurar label de bot贸n
+        [boton setTitle:[[self.filtros objectAtIndex:i] valueForKey:@"nombre"] forState:UIControlStateNormal];
+        boton.titleLabel.text = [[self.filtros objectAtIndex:i] valueForKey:@"nombre"];
+
         boton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
         boton.titleLabel.backgroundColor = [UIColor clearColor];        
 		
@@ -128,6 +139,7 @@
     [self.menuScrollView setContentSize: CGSizeMake(offsetX, self.menuScrollView.frame.size.height)];
 }
 
+
 - (void)cargarDatos
 {
     // Inicializar arreglos
@@ -155,9 +167,16 @@
                         conFiltros:nil // otro ejemplo: conFiltros:[NSDictionary dictionaryWithObject:@"2010-01-01" forKey:@"hasta"]
                            enRango:NSMakeRange(1, 10)  // otro ejemplo: NSMakeRange(1, 1) -s贸lo uno-
                        conDelegate:self];
-    
 }
 
+
+- (void)playerFinalizado:(NSNotification *)notification
+{
+    // Crear y presentar vista de detalles para el video que acaba de finalizar (抧dice guardado en tag de view)
+    TSClipDetallesViewController *detalleView = [[TSClipDetallesViewController alloc] initWithClip:[self.clips objectAtIndex:[[[notification object] view] tag]]];
+    [self.navigationController pushViewController:detalleView animated:NO];
+    [detalleView release];
+}
 
 
 #pragma mark -
@@ -165,44 +184,26 @@
 
 - (void)viewDidLoad
 {	
+
 	
 	self.indiceDeBotonSeleccionado = -1;	
+
+    // Inicializar arreglo de im噂enes
+    self.arregloClipsAsyncImageViews = [NSMutableArray array];
+    
+
 	[self personalizarNavigationBar];
     [self cargarDatos];
-    self.imageViews = [NSMutableArray array];
 	
     [super viewDidLoad];
-
 }
 
 
-/*
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-}
-*/
-/*
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-}
-*/
-/*
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-}
-*/
-/*
-- (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
-}
-*/
-/*
 // Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations.
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
-*/
 
 
 #pragma mark -
@@ -210,33 +211,28 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    // Return the number of sections.
     return 1;
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Return the number of rows in the section.
     return [self.clips count];
 }
 
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{    
+{
+    // Reutilizar o bien crear nueva celda
     static NSString *CellIdentifier = @"CeldaEstandar";
-    
     ClipEstandarTableCellView *cell = (ClipEstandarTableCellView *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil)
-    {
-		cell = (ClipEstandarTableCellView *)[[[NSBundle mainBundle] loadNibNamed:@"ClipEstandarTableCellView" owner:self options:nil] lastObject];
-	}
-    
+    if (cell == nil) cell = (ClipEstandarTableCellView *)[[[NSBundle mainBundle] loadNibNamed:@"ClipEstandarTableCellView" owner:self options:nil] lastObject];
+        
     // Copiar propiedades de thumbnailView (definidas en NIB) y sustitirlo por AsyncImageView correspondiente
     CGRect frame = cell.thumbnailView.frame;
     [cell.thumbnailView removeFromSuperview];
-    cell.thumbnailView = [self.imageViews objectAtIndex:indexPath.row];
+    cell.thumbnailView = [self.arregloClipsAsyncImageViews objectAtIndex:indexPath.row];
     cell.thumbnailView.frame = frame;
     [cell addSubview:cell.thumbnailView];
     
@@ -249,78 +245,58 @@
 }
 
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source.
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
-    }   
-}
-*/
-
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
- 
-}
-*/
-
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-
 #pragma mark -
 #pragma mark Table view delegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {		
-	UITableViewCell *celda = (ClipEstandarTableCellView *)[[[NSBundle mainBundle] loadNibNamed:@"ClipEstandarTableCellView" owner:self options:nil] lastObject];
-	return celda.frame.size.height;
-
+    // Leer y devolver si hay altura guardada
+    if (celdaEstandarHeight)
+        return celdaEstandarHeight;
+    
+    // Leer en NIB altura de celda y asignarlo a variable auxiliar para s條o cargar NIB una s條a vez
+    UITableViewCell *celda = (ClipEstandarTableCellView *)[[[NSBundle mainBundle] loadNibNamed:@"ClipEstandarTableCellView" owner:self options:nil] lastObject];
+    celdaEstandarHeight = celda.frame.size.height;
+    
+	return celdaEstandarHeight;
 }
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    // Obtener NSURL del video
+    NSString *stringURL = [NSString stringWithFormat:@"http://stg.multimedia.tlsur.net/media/%@", [[self.clips objectAtIndex:indexPath.row]  valueForKey:@"archivo"]];
+    NSURL *urlVideo = [NSURL URLWithString: stringURL];
+    
+    // Crear y configurar player
+    MPMoviePlayerViewController *movieController = [[MPMoviePlayerViewController alloc] initWithContentURL:urlVideo];
+    [movieController.view setBackgroundColor: [UIColor blackColor]];
+    
+    // Establecer tag para guardar referencia al 抧dice en self.clip
+    [[movieController.moviePlayer view] setTag:indexPath.row];
+    
+    // Presentar player y reproducir video
+    [self presentMoviePlayerViewControllerAnimated:movieController];
+    [movieController.moviePlayer play];  
+    
+    // Agregar observer al finalizar reproducci梟
+    [[NSNotificationCenter defaultCenter] 
+     addObserver:self
+     selector:@selector(playerFinalizado:)                                                 
+     name:MPMoviePlayerPlaybackDidFinishNotification
+     object:movieController.moviePlayer];
+    
+    // Des-seleccionar fila en tabla
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+}
+
+
+-(void) tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
+{
+    // Crear y presentar vista de detalles
     TSClipDetallesViewController *detalleView = [[TSClipDetallesViewController alloc] initWithClip:[self.clips objectAtIndex:indexPath.row]];
-    
     [self.navigationController pushViewController:detalleView animated:YES];
-    
     [detalleView release];
-    
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-    DetailViewController *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-    // ...
-    // Pass the selected object to the new view controller.
-    [self.navigationController pushViewController:detailViewController animated:YES];
-    [detailViewController release];
-    */
 }
 
 
@@ -339,7 +315,7 @@
 {
     self.clips = nil;
     self.filtros = nil;
-    self.imageViews = nil;
+    self.arregloClipsAsyncImageViews = nil;
 }
 
 
@@ -355,22 +331,20 @@
 {
     if ([entidad isEqualToString:@"clip"])
     {
-        // Agregar vistas para las im噂enes al arreglo imageViews
-        AsynchronousImageView *iv;
-        [imageViews removeAllObjects];
-        for (int i=0; i<[array count]; i++)
+        // En caso de haber recibido entidades de tipo clip, asignar arreglo de clips
+        self.clips = array;
+        
+        // Para cada clip obtenido agregar un AsynchronousImageView al arregloClipsAsyncImageViews
+        [self.arregloClipsAsyncImageViews removeAllObjects];
+        for (int i=0; i<[self.clips count]; i++)
         {
-            iv = [[AsynchronousImageView alloc] init];
-            [iv loadImageFromURLString:[NSString stringWithFormat:@"http://stg.multimedia.tlsur.net/media/%@", [[array objectAtIndex:i] valueForKey:@"imagen"]]];
-            [self.imageViews addObject:iv];
-            [iv release];
+            AsynchronousImageView *aiv = [[AsynchronousImageView alloc] init];
+            [aiv loadImageFromURLString:[NSString stringWithFormat:@"%@", [[array objectAtIndex:i] valueForKey:@"thumbnail_mediano"]]];
+            [self.arregloClipsAsyncImageViews addObject:aiv];
+            [aiv release];
         }
         
-        
-        // En caso de haber recibido entidades de tipo clip, asignar arreglo clips
-        self.clips = array;
-		
-        // Recargar tabla con nuevos datos
+        // Recargar tabla
         [self.clipsTableView reloadData];
     }
     else
@@ -389,8 +363,7 @@
     [data release];
 }
 
-
-
+    
 - (void)TSMultimediaData:(TSMultimediaData *)data entidadesRecibidasConError:(id)error
 {
     // TODO: Informar al usuario sobre error
@@ -401,4 +374,3 @@
 }
 
 @end
-

@@ -109,6 +109,7 @@
 		63099F5C1319A23000D15603 /* TSMultimediaData.m in Sources */ = {isa = PBXBuildFile; fileRef = 63099F5A1319A23000D15603 /* TSMultimediaData.m */; };
 		635A78A11319D3F600C3977D /* TSClipDetallesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 635A789F1319D3F600C3977D /* TSClipDetallesViewController.m */; };
 		635A78A21319D3F600C3977D /* TSClipDetallesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 635A78A01319D3F600C3977D /* TSClipDetallesViewController.xib */; };
+		635C6D65131DDA850017CD5F /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 635C6D64131DDA850017CD5F /* MediaPlayer.framework */; };
 		63C7AEFA131DAF9000BD7F64 /* AsynchronousImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C7AEF9131DAF9000BD7F64 /* AsynchronousImageView.m */; };
 		63E01697131B883D001928E4 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 63E01696131B883D001928E4 /* Default.png */; };
 /* End PBXBuildFile section */
@@ -315,6 +316,7 @@
 		635A789E1319D3F600C3977D /* TSClipDetallesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSClipDetallesViewController.h; sourceTree = "<group>"; };
 		635A789F1319D3F600C3977D /* TSClipDetallesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSClipDetallesViewController.m; sourceTree = "<group>"; };
 		635A78A01319D3F600C3977D /* TSClipDetallesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TSClipDetallesViewController.xib; sourceTree = "<group>"; };
+		635C6D64131DDA850017CD5F /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		63C7AEF8131DAF8F00BD7F64 /* AsynchronousImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsynchronousImageView.h; sourceTree = "<group>"; };
 		63C7AEF9131DAF9000BD7F64 /* AsynchronousImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsynchronousImageView.m; sourceTree = "<group>"; };
 		63E01696131B883D001928E4 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
@@ -325,6 +327,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				635C6D65131DDA850017CD5F /* MediaPlayer.framework in Frameworks */,
 				63099F5113199FCA00D15603 /* Security.framework in Frameworks */,
 				63099F4F13199FC500D15603 /* SystemConfiguration.framework in Frameworks */,
 				63099F4D13199FC000D15603 /* MessageUI.framework in Frameworks */,
@@ -350,8 +353,6 @@
 		3A236263131C8BDB00A941E2 /* Extensiones */ = {
 			isa = PBXGroup;
 			children = (
-				3A236260131C8BD700A941E2 /* NSDictionary_Datos.h */,
-				3A236261131C8BD700A941E2 /* NSDictionary_Datos.m */,
 				3A1001A7131B30D600717211 /* UIViewController_Configuracion.h */,
 				3A1001A8131B30D600717211 /* UIViewController_Configuracion.m */,
 				63C7AEF8131DAF8F00BD7F64 /* AsynchronousImageView.h */,
@@ -365,6 +366,7 @@
 		63099DF713199D1800D15603 = {
 			isa = PBXGroup;
 			children = (
+				635C6D64131DDA850017CD5F /* MediaPlayer.framework */,
 				63E01696131B883D001928E4 /* Default.png */,
 				63099E0C13199D1800D15603 /* teleSUR */,
 				63099E3113199D1800D15603 /* teleSURTests */,
@@ -888,6 +890,8 @@
 				63099F591319A23000D15603 /* TSMultimediaData.h */,
 				63099F5A1319A23000D15603 /* TSMultimediaData.m */,
 				63099F5B1319A23000D15603 /* TSMultimediaDataDelegate.h */,
+				3A236260131C8BD700A941E2 /* NSDictionary_Datos.h */,
+				3A236261131C8BD700A941E2 /* NSDictionary_Datos.m */,
 			);
 			name = Datos;
 			sourceTree = "<group>";
