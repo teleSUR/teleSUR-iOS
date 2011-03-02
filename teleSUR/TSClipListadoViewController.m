@@ -94,27 +94,19 @@
         UIButton *boton = [UIButton buttonWithType:UIButtonTypeCustom];
         boton.backgroundColor = [UIColor clearColor];
         
-        // Asignar acci贸n del bot贸n
+        // Asignar acci贸n del bot梟n
         [boton addTarget:self action:@selector(filtroSeleccionadoConBoton:) forControlEvents:(UIControlEventTouchUpInside)];
 
 		boton.tag = kTagBotonesMenu;
 
-        // Configurar label de bot贸n
-        [boton setTitle:[[self.filtros objectAtIndex:i] valueForKey:@"nombre"] forState:UIControlStateNormal];
-        boton.titleLabel.text = [[self.filtros objectAtIndex:i] valueForKey:@"nombre"];
-
+        // Configurar label de bot梟
         boton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
-        boton.titleLabel.backgroundColor = [UIColor clearColor];        
-		
-        // Configurar label de bot贸n
-		if (i==-1) {
-			[boton setTitle:@"Todos" forState:UIControlStateNormal]; 
-
-		}
-		else { 
-			[boton setTitle:[[self.filtros objectAtIndex:i] valueForKey:@"nombre"] forState:UIControlStateNormal];
-
-		}
+        boton.titleLabel.backgroundColor = [UIColor clearColor];
+        
+        // Texto del bot梟
+        NSString *nombre = (i > 0) ? [[self.filtros objectAtIndex:i] valueForKey:@"nombre"] : @"Todos";
+        [boton setTitle:nombre forState:UIControlStateNormal];
+        boton.titleLabel.text = nombre;
 		
 		// Configurar 2 colores para denotar un boton seleccionado
 		[boton setTitleColor:[UIColor orangeColor] forState:UIControlStateSelected];

@@ -12,7 +12,7 @@ dsa_priv.pem
 *.mode2v3
 *.perspective
 *.perspectivev3
-*.pbxuser
+UserInterfaceState.xcuserstate
 
 
 # Generated files
