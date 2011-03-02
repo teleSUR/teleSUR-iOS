@@ -25,6 +25,9 @@
 #pragma mark -
 #pragma mark NSURLConnection
 
+-(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
+}
+
 - (void)connection:(NSURLConnection *)theConnection 
 	didReceiveData:(NSData *)incrementalData 
 {
@@ -37,8 +40,12 @@
 - (void)connectionDidFinishLoading:(NSURLConnection *)theConnection 
 {
     self.image = [UIImage imageWithData:data];
-    [data release], data = nil;
-	[connection release], connection = nil;
+	
+    [data release], 
+	data = nil;
+	
+	[connection release], 
+	connection = nil;
 }
 
 - (void)dealloc

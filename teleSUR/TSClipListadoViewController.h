@@ -26,6 +26,8 @@
     
     NSMutableArray *imageViews;
 	
+	int indiceDeBotonSeleccionado;
+	
 }
 
 
@@ -43,6 +45,8 @@
 
 @property (nonatomic, retain) NSMutableArray *imageViews;
 
+
+@property (nonatomic, assign) int indiceDeBotonSeleccionado;
 
 - (id)initWithEntidadMenu:(NSString *)entidad yFiltros:(NSDictionary *)diccionario;
 - (void)construirMenu;

@@ -14,6 +14,7 @@
 		3A2360B6131C4B7200A941E2 /* ClipEstandarTableCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A2360B5131C4B7200A941E2 /* ClipEstandarTableCellView.xib */; };
 		3A236148131C534300A941E2 /* ClipEstandarTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A236147131C534300A941E2 /* ClipEstandarTableCellView.m */; };
 		3A236262131C8BD700A941E2 /* NSDictionary_Datos.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A236261131C8BD700A941E2 /* NSDictionary_Datos.m */; };
+		3AD81911131EF7B40006C5A0 /* NSDate_Utilidad.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD81910131EF7B40006C5A0 /* NSDate_Utilidad.m */; };
 		63099E0713199D1800D15603 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63099E0613199D1800D15603 /* UIKit.framework */; };
 		63099E0913199D1800D15603 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63099E0813199D1800D15603 /* Foundation.framework */; };
 		63099E0B13199D1800D15603 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63099E0A13199D1800D15603 /* CoreGraphics.framework */; };
@@ -134,6 +135,8 @@
 		3A236147131C534300A941E2 /* ClipEstandarTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClipEstandarTableCellView.m; sourceTree = "<group>"; };
 		3A236260131C8BD700A941E2 /* NSDictionary_Datos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDictionary_Datos.h; sourceTree = "<group>"; };
 		3A236261131C8BD700A941E2 /* NSDictionary_Datos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDictionary_Datos.m; sourceTree = "<group>"; };
+		3AD8190F131EF7B40006C5A0 /* NSDate_Utilidad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDate_Utilidad.h; sourceTree = "<group>"; };
+		3AD81910131EF7B40006C5A0 /* NSDate_Utilidad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDate_Utilidad.m; sourceTree = "<group>"; };
 		63099E0213199D1800D15603 /* teleSUR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = teleSUR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63099E0613199D1800D15603 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		63099E0813199D1800D15603 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -353,6 +356,8 @@
 				3A1001A8131B30D600717211 /* UIViewController_Configuracion.m */,
 				63C7AEF8131DAF8F00BD7F64 /* AsynchronousImageView.h */,
 				63C7AEF9131DAF9000BD7F64 /* AsynchronousImageView.m */,
+				3AD8190F131EF7B40006C5A0 /* NSDate_Utilidad.h */,
+				3AD81910131EF7B40006C5A0 /* NSDate_Utilidad.m */,
 			);
 			name = Extensiones;
 			sourceTree = "<group>";
@@ -1129,6 +1134,7 @@
 				3A236148131C534300A941E2 /* ClipEstandarTableCellView.m in Sources */,
 				3A236262131C8BD700A941E2 /* NSDictionary_Datos.m in Sources */,
 				63C7AEFA131DAF9000BD7F64 /* AsynchronousImageView.m in Sources */,
+				3AD81911131EF7B40006C5A0 /* NSDate_Utilidad.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

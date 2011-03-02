@@ -110,7 +110,7 @@
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
 	// Preparar objeto de datos
-    [resultadoAPIData setLength:0];
+//    [resultadoAPIData setLength:0];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data

@@ -16,7 +16,7 @@
 
 #define kMARGEN_MENU 15
 #define kTAMANO_PAGINA 6
-
+#define kTagBotonesMenu 1024
 
 @implementation TSClipListadoViewController
 
@@ -24,6 +24,8 @@
 @synthesize clipsTableView, menuScrollView;
 @synthesize clips, filtros;
 @synthesize imageViews;
+@synthesize indiceDeBotonSeleccionado;
+
 
 #pragma mark -
 #pragma mark Init
@@ -35,6 +37,7 @@
 		self.entidadMenu = entidad;
 		self.diccionarioFiltros = diccionario;
 		self.rango = NSMakeRange(1, kTAMANO_PAGINA);
+		self.indiceDeBotonSeleccionado = -1;
 	}
 	
 	return self;
@@ -44,9 +47,22 @@
 
 - (void)actualizarDatos:(UIButton *)boton
 {
+	 
     // Obtener slug del filtro seleccionado
-    NSInteger indice = [[self.menuScrollView subviews] indexOfObject:boton];
-    NSString *slug = [[self.filtros objectAtIndex:indice] valueForKey:@"slug"];
+    NSInteger indice = [[self.menuScrollView subviews] indexOfObject:boton] - 1;
+	
+	// Actualizamos el boton que debe "seleccionarse"
+	 
+	self.indiceDeBotonSeleccionado = indice;
+	
+	// Mantener el boton seleccionado
+	[boton setSelected:YES];
+	
+	NSString *slug;
+	
+	if (indice==-1) slug = @"";
+		
+    else slug = [[self.filtros objectAtIndex:indice] valueForKey:@"slug"];
     
     // Configurar nuevo diccionario de filtros
     self.diccionarioFiltros = [NSDictionary dictionaryWithObject:slug forKey:@"categoria"];
@@ -62,9 +78,11 @@
     
     // Inicializar offset horizontal
     int offsetX = 0 + kMARGEN_MENU;
-    
+
+	// OJO: Revisar BUG esta expresi梟:
+	//	for (int i = -1; i < [self.filtros count]; i++)
     // Recorrer filtros
-    for (int i=0; i<[self.filtros count]; i++)
+    for (float i = -1; i < [self.filtros count]; i++)
     {
         // Crear nuevo bot贸n para filtro
         UIButton *boton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -72,13 +90,28 @@
         
         // Asignar acci贸n del bot贸n
         [boton addTarget:self action:@selector(actualizarDatos:) forControlEvents:(UIControlEventTouchUpInside)];
-        
-        // Configurar label de bot贸n
-        [boton setTitle:[[self.filtros objectAtIndex:i] valueForKey:@"nombre"] forState:UIControlStateNormal];
-        boton.titleLabel.text = [[self.filtros objectAtIndex:i] valueForKey:@"nombre"];
+
+		boton.tag = kTagBotonesMenu;
         boton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
-        boton.titleLabel.backgroundColor = [UIColor clearColor];
-        boton.titleLabel.textColor = [UIColor whiteColor];
+        boton.titleLabel.backgroundColor = [UIColor clearColor];        
+		
+        // Configurar label de bot贸n
+		if (i==-1) {
+			[boton setTitle:@"Todos" forState:UIControlStateNormal]; 
+
+		}
+		else { 
+			[boton setTitle:[[self.filtros objectAtIndex:i] valueForKey:@"nombre"] forState:UIControlStateNormal];
+
+		}
+		
+		// Configurar 2 colores para denotar un boton seleccionado
+		[boton setTitleColor:[UIColor orangeColor] forState:UIControlStateSelected];
+		[boton setTitleColor:[UIColor orangeColor] forState:UIControlStateHighlighted];		
+		[boton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];		// boton en estado normal
+		
+		if (i == self.indiceDeBotonSeleccionado) [boton setSelected:YES];
+		else [boton setSelected:NO];
         
         // Ajustar tama帽o de frame del bot贸n con base en el volumen del texto
 		CGSize textoSize = [boton.titleLabel.text sizeWithFont: boton.titleLabel.font];
@@ -103,7 +136,11 @@
     
     // Mostrar vista de loading
     [self mostrarLoadingViewConAnimacion:NO];
-    
+
+	// Regresar el scroll de la tabla a la parte superior
+	[self.clipsTableView setContentOffset:CGPointMake(0, 0) animated:NO];
+	
+	
     // Obtener clips
 	TSMultimediaData *dataClips = [[TSMultimediaData alloc] init];
     [dataClips getDatosParaEntidad:@"clip" // otros ejemplos: programa, pais, categoria
@@ -128,6 +165,8 @@
 
 - (void)viewDidLoad
 {	
+	
+	self.indiceDeBotonSeleccionado = -1;	
 	[self personalizarNavigationBar];
     [self cargarDatos];
     self.imageViews = [NSMutableArray array];

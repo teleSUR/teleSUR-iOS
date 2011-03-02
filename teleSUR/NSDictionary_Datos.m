@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "NSDictionary_Datos.h"
-
+#import "NSDate_Utilidad.h"
 #define kTIEMPO_DESDE_DIAS 7
 
 
@@ -23,10 +23,10 @@
     // Obtener datos
 	NSString *ciudad = [self valueForKey:@"ciudad"];
     NSString *pais = [[self valueForKey:@"pais"] valueForKey:@"nombre"];
-    NSString *fechaCompleta = [self obtenerFechaCompletaParaEsteClip];
+    NSString *fechaCompleta = [self obtenerTiempoDesdeParaEsteClip];
     
 	// Concatenar datos: ciudad (si la hay), país y fecha completa
-	if ([ciudad length] > 0) [firma appendFormat:@"%@, ", ciudad];
+	if (![ciudad isKindOfClass:[NSNull class] ] && [ciudad length] > 0) [firma appendFormat:@"%@, ", ciudad];
     [firma appendFormat:@"%@ | ", pais];
     [firma appendFormat:@"%@", fechaCompleta];
     
@@ -68,13 +68,9 @@
 //     Hace 2 horas y 20 minutos, Hace 40 minutos, Justo ahora
 - (NSString *)obtenerTiempoDesdeParaEsteClip
 {
-    //  NSDateFormatter *formater = [[NSDateFormatter alloc] init];
-    //	[formater setDateStyle:NSDateFormatterMediumStyle];
-    //	NSString *fechaCompleta = [formater stringFromDate:[self obtenerNSDateParaEsteClip]];
-    //	[formater release];
-    //    
-    //    return fechaCompleta;
-    return [NSString string];
+		
+	return [[self obtenerNSDateParaEsteClip] enTimerContraAhora];
+	
 }
 
 
