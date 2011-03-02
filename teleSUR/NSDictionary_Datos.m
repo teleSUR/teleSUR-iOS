@@ -26,8 +26,12 @@
     NSString *fechaCompleta = [self obtenerFechaCompletaParaEsteClip];
     
 	// Concatenar datos: ciudad (si la hay), país y fecha completa
-	if ([ciudad length] > 0) [firma appendFormat:@"%@, ", ciudad];
-    [firma appendFormat:@"%@ | ", pais];
+	if (![ciudad isEqual:[NSNull null]])
+        [firma appendFormat:@"%@, ", ciudad];
+    
+    if (![pais isEqual:[NSNull null]])
+        [firma appendFormat:@"%@ | ", pais];
+    
     [firma appendFormat:@"%@", fechaCompleta];
     
 	return firma;
