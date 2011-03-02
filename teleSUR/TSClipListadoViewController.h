@@ -9,9 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "TSMultimediaDataDelegate.h"
 
-@interface TSClipListadoViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, TSMultimediaDataDelegate>
-{
-	// Sub-Vistas:
+@interface TSClipListadoViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, TSMultimediaDataDelegate> {
+	
+    // Sub-Vistas:
 	UITableView *clipsTableView;
 	UIScrollView *menuScrollView;
 	
@@ -22,9 +22,8 @@
 	
 	NSArray *clips;
 	NSArray *filtros;
+    NSMutableArray *arregloClipsAsyncImageViews;
     
-    NSMutableArray *imageViews;
-	
 }
 
 
@@ -39,13 +38,12 @@
 
 @property (nonatomic, retain) NSArray *clips;
 @property (nonatomic, retain) NSArray *filtros;
-
-@property (nonatomic, retain) NSMutableArray *imageViews;
+@property (nonatomic, retain) NSMutableArray *arregloClipsAsyncImageViews;
 
 - (id)initWithEntidadMenu:(NSString *)entidad yFiltros:(NSDictionary *)diccionario;
 - (void)construirMenu;
 - (void)cargarDatos;
-- (void)actualizarDatos: (UIButton *)boton;
-- (void)finalizarPlayer:(NSNotification *)notification;
+- (void)filtroSeleccionadoConBoton: (UIButton *)boton;
+- (void)playerFinalizado:(NSNotification *)notification;
 
 @end

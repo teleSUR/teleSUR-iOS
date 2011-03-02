@@ -22,9 +22,11 @@
 
 - (id)initWithClip:(NSDictionary *)diccionarioClip
 {
-    if ((self = [super init])) {
+    if ((self = [super init]))
+    {
         self.clip = diccionarioClip;
     }
+    
     return self;
 }
 
@@ -37,7 +39,6 @@
     [(UILabel *)[self.view viewWithTag:1] setText:[clip valueForKey:@"descripcion"]];
     [(UIImageView *)[self.view viewWithTag:2] setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@", [clip valueForKey:@"thumbnail_grande"]]]]]];
     
-    
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
@@ -45,7 +46,7 @@
 
 -(void)viewDidAppear:(BOOL)animated 
 {
-
+    
 }
 
 - (void)viewDidUnload

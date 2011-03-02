@@ -12,30 +12,14 @@
 
 @implementation TSMultimediaData
 
-@synthesize delegate;
-
-// Singleton
-+ (TSMultimediaData *)sharedTSMultimediaData
-{
-	static TSMultimediaData *sharedTSMultimediaData;
-    
-	@synchronized(self)
-    {
-		if (!sharedTSMultimediaData)
-			sharedTSMultimediaData = [[TSMultimediaData alloc] init];
-		
-		return sharedTSMultimediaData;
-	}
-}
-
+@synthesize delegate, entidadString;
 
 - (void)getDatosParaEntidad:(NSString *)entidad
                  conFiltros:(NSDictionary *)filtros
                     enRango:(NSRange)rango
                 conDelegate:(id)datosDelegate
 {
-    entidadActual = entidad;
-    
+    self.entidadString = entidad;
 	self.delegate = datosDelegate;
 	
 	NSString *urlBase = @"http://stg.multimedia.tlsur.net";
@@ -43,19 +27,19 @@
 	NSMutableArray *parametrosGET = [NSMutableArray array];
 	NSString *currentFiltro = nil;
 	
-    // agregar posibles filtros para clips
+    // Agregar posibles filtros para clips
 	if ([entidad isEqualToString:@"clip"])
     {
-		if (currentFiltro = [filtros objectForKey:@"categoria"])
+		if ((currentFiltro = [filtros objectForKey:@"categoria"]))
 			[parametrosGET addObject:[NSString stringWithFormat:@"categoria=%@", currentFiltro]];
 		
-		if (currentFiltro = [filtros objectForKey:@"tipo"])
+		if ((currentFiltro = [filtros objectForKey:@"tipo"]))
 			[parametrosGET addObject:[NSString stringWithFormat:@"tipo=%@", currentFiltro]];
 		
-		if (currentFiltro = [filtros objectForKey:@"desde"])
+		if ((currentFiltro = [filtros objectForKey:@"desde"]))
 			[parametrosGET addObject:[NSString stringWithFormat:@"desde=%@", currentFiltro]];
 		
-		if (currentFiltro = [filtros objectForKey:@"hasta"])
+		if ((currentFiltro = [filtros objectForKey:@"hasta"]))
 			[parametrosGET addObject:[NSString stringWithFormat:@"hasta=%@", currentFiltro]];
 	
 	} else if ([entidad isEqualToString:@"categoria"]) {
@@ -89,10 +73,12 @@
 	
 	NSURLConnection *conexion = [[NSURLConnection alloc] initWithRequest:apiRequest delegate:self];
 	
-	if (conexion) {
-        resultadoAPIData = [[NSMutableData alloc] init];
-        
-	} else {
+	if (conexion)
+    {
+        JSONData = [[NSMutableData alloc] init];
+	}
+    else
+    {
         NSLog(@"Error de conexión");
 		if ([delegate respondsToSelector:@selector(entidadesRecibidasConFalla:)])
         {
@@ -110,43 +96,44 @@
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
 	// Preparar objeto de datos
-    [resultadoAPIData setLength:0];
+    [JSONData setLength:0];
 }
+
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
     // Poblar objeto de datos con datos recibidos
-    [resultadoAPIData appendData:data];
+    [JSONData appendData:data];
 }
+
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
-	// liberar objeto de conexión y objeto de datos
+	// Liberar objeto de conexión y objeto de datos
     [connection release];
-    [resultadoAPIData release];
-    resultadoAPIData = nil;
+    [JSONData release];
+    JSONData = nil;
 	
-    // informar al delegate
+    // Informar al delegate
     NSLog(@"Error de conexión - %@ %@",
           [error localizedDescription],
           [[error userInfo] objectForKey:NSURLErrorFailingURLStringErrorKey]);
 	
 	if ([delegate respondsToSelector:@selector(entidadesRecibidasConFalla:)])
 		[delegate performSelector:@selector(entidadesRecibidasConFalla:) withObject:error];
-	
 }
+
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    
-	// parsear JSON
+	// Parsear JSON
 	NSError *errorJSON = NULL;
-	NSArray *resultadoArray = [NSDictionary dictionaryWithJSONData:resultadoAPIData error:&errorJSON];
+	NSArray *resultadoArray = [NSDictionary dictionaryWithJSONData:JSONData error:&errorJSON];
 	
 	if (!errorJSON)
     {
 		if ([delegate respondsToSelector:@selector(TSMultimediaData:entidadesRecibidas:paraEntidad:)])
-			[delegate TSMultimediaData:self entidadesRecibidas:resultadoArray paraEntidad:entidadActual];
+			[delegate TSMultimediaData:self entidadesRecibidas:resultadoArray paraEntidad:self.entidadString];
 	}
     else // falla
     {
@@ -156,11 +143,13 @@
     
     // liberar objeto de conexión y objeto de datos
     [connection release];
-    [resultadoAPIData release];
-    resultadoAPIData = nil;
+    [JSONData release];
+    JSONData = nil;
 	
 }
 
+
+#pragma Mark -
 
 - (void)dealloc
 {

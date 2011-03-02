@@ -25,7 +25,7 @@
 @synthesize entidadMenu, rango, diccionarioFiltros;
 @synthesize clipsTableView, menuScrollView;
 @synthesize clips, filtros;
-@synthesize imageViews;
+@synthesize arregloClipsAsyncImageViews;
 
 
 #pragma mark -
@@ -46,16 +46,17 @@
 
 #pragma mark -
 
-- (void)actualizarDatos:(UIButton *)boton
+- (void)filtroSeleccionadoConBoton:(UIButton *)boton
 {
     // Obtener slug del filtro seleccionado
     NSInteger indice = [[self.menuScrollView subviews] indexOfObject:boton];
     NSString *slug = [[self.filtros objectAtIndex:indice] valueForKey:@"slug"];
     
     // Configurar nuevo diccionario de filtros
+    // TODO: Todavía hardcoded
     self.diccionarioFiltros = [NSDictionary dictionaryWithObject:slug forKey:@"categoria"];
     
-    // Cargar datos
+    // Re-cargar datos
     [self cargarDatos];
 }
 
@@ -76,7 +77,7 @@
         boton.backgroundColor = [UIColor clearColor];
         
         // Asignar acci√≥n del bot√≥n
-        [boton addTarget:self action:@selector(actualizarDatos:) forControlEvents:(UIControlEventTouchUpInside)];
+        [boton addTarget:self action:@selector(filtroSeleccionadoConBoton:) forControlEvents:(UIControlEventTouchUpInside)];
         
         // Configurar label de bot√≥n
         [boton setTitle:[[self.filtros objectAtIndex:i] valueForKey:@"nombre"] forState:UIControlStateNormal];
@@ -127,7 +128,7 @@
 }
 
 
-- (void)finalizarPlayer:(NSNotification *)notification
+- (void)playerFinalizado:(NSNotification *)notification
 {
     // Crear y presentar vista de detalles para el video que acaba de finalizar (índice guardado en tag de view)
     TSClipDetallesViewController *detalleView = [[TSClipDetallesViewController alloc] initWithClip:[self.clips objectAtIndex:[[[notification object] view] tag]]];
@@ -141,7 +142,8 @@
 
 - (void)viewDidLoad
 {	
-    self.imageViews = [NSMutableArray array];
+    // Inicializar arreglo de imágenes
+    self.arregloClipsAsyncImageViews = [NSMutableArray array];
     
 	[self personalizarNavigationBar];
     [self cargarDatos];
@@ -162,14 +164,12 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    // Return the number of sections.
     return 1;
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Return the number of rows in the section.
     return [self.clips count];
 }
 
@@ -185,7 +185,7 @@
     // Copiar propiedades de thumbnailView (definidas en NIB) y sustitirlo por AsyncImageView correspondiente
     CGRect frame = cell.thumbnailView.frame;
     [cell.thumbnailView removeFromSuperview];
-    cell.thumbnailView = [self.imageViews objectAtIndex:indexPath.row];
+    cell.thumbnailView = [self.arregloClipsAsyncImageViews objectAtIndex:indexPath.row];
     cell.thumbnailView.frame = frame;
     [cell addSubview:cell.thumbnailView];
     
@@ -230,7 +230,7 @@
     // Agregar observer al finalizar reproducción
     [[NSNotificationCenter defaultCenter] 
      addObserver:self
-     selector:@selector(finalizarPlayer:)                                                 
+     selector:@selector(playerFinalizado:)                                                 
      name:MPMoviePlayerPlaybackDidFinishNotification
      object:movieController.moviePlayer];
     
@@ -263,7 +263,7 @@
 {
     self.clips = nil;
     self.filtros = nil;
-    self.imageViews = nil;
+    self.arregloClipsAsyncImageViews = nil;
 }
 
 
@@ -279,21 +279,20 @@
 {
     if ([entidad isEqualToString:@"clip"])
     {
-        // Agregar vistas para las imágenes al arreglo imageViews
-        AsynchronousImageView *iv;
-        [imageViews removeAllObjects];
-        for (int i=0; i<[array count]; i++)
+        // En caso de haber recibido entidades de tipo clip, asignar arreglo de clips
+        self.clips = array;
+        
+        // Para cada clip obtenido agregar un AsynchronousImageView al arregloClipsAsyncImageViews
+        [self.arregloClipsAsyncImageViews removeAllObjects];
+        for (int i=0; i<[self.clips count]; i++)
         {
-            iv = [[AsynchronousImageView alloc] init];
-            [iv loadImageFromURLString:[NSString stringWithFormat:@"%@", [[array objectAtIndex:i] valueForKey:@"thumbnail_mediano"]]];
-            [self.imageViews addObject:iv];
-            [iv release];
+            AsynchronousImageView *aiv = [[AsynchronousImageView alloc] init];
+            [aiv loadImageFromURLString:[NSString stringWithFormat:@"%@", [[array objectAtIndex:i] valueForKey:@"thumbnail_mediano"]]];
+            [self.arregloClipsAsyncImageViews addObject:aiv];
+            [aiv release];
         }
         
-        // En caso de haber recibido entidades de tipo clip, asignar arreglo clips
-        self.clips = array;
-		
-        // Recargar tabla con nuevos datos
+        // Recargar tabla
         [self.clipsTableView reloadData];
     }
     else
@@ -312,7 +311,7 @@
     [data release];
 }
 
-
+    
 - (void)TSMultimediaData:(TSMultimediaData *)data entidadesRecibidasConError:(id)error
 {
     // TODO: Informar al usuario sobre error
@@ -323,4 +322,3 @@
 }
 
 @end
-

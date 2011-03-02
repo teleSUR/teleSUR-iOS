@@ -33,6 +33,7 @@
 	return firma;
 }
 
+
 // Devuelve NSDate con la fecha de este clip,
 // que se espera tenga el formato: yyyy-MM-dd HH:mm:ss
 - (NSDate *)obtenerNSDateParaEsteClip
@@ -47,6 +48,7 @@
 	return date;
 }
 
+
 // Devuelve cadena con fecha localizada completa de este clip: Ej: Miércoles 4 de agosto de 2010
 - (NSString *)obtenerFechaCompletaParaEsteClip
 {
@@ -59,6 +61,7 @@
     
     return fechaCompleta;
 }
+
 
 // TODO: Implementar
 // Devuelve cadena localizada con tiempo transcurrido desde la fecha de este clip:
