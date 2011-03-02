@@ -24,6 +24,10 @@
 	NSArray *filtros;
     NSMutableArray *arregloClipsAsyncImageViews;
     
+    // Auxiliares
+    CGFloat celdaEstandarHeight;
+    CGFloat celdaPrincipalHeight;
+    
 }
 
 

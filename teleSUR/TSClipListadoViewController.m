@@ -203,10 +203,15 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {		
-    // Leer y devolver altura de NIB de celda
-	UITableViewCell *celda = (ClipEstandarTableCellView *)[[[NSBundle mainBundle] loadNibNamed:@"ClipEstandarTableCellView" owner:self options:nil] lastObject];
+    // Leer y devolver si hay altura guardada
+    if (celdaEstandarHeight)
+        return celdaEstandarHeight;
     
-	return celda.frame.size.height;
+    // Leer en NIB altura de celda y asignarlo a variable auxiliar para s—lo cargar NIB una s—la vez
+    UITableViewCell *celda = (ClipEstandarTableCellView *)[[[NSBundle mainBundle] loadNibNamed:@"ClipEstandarTableCellView" owner:self options:nil] lastObject];
+    celdaEstandarHeight = celda.frame.size.height;
+    
+	return celdaEstandarHeight;
 }
 
 
