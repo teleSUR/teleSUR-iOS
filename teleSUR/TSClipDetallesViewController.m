@@ -9,6 +9,8 @@
 #import "TSClipDetallesViewController.h"
 #import "TSCLipListadoViewController.h"
 
+#import <MediaPlayer/MediaPlayer.h>
+
 @implementation TSClipDetallesViewController
 
 @synthesize detallesTableView;
@@ -33,10 +35,17 @@
 {
     // Provisional
     [(UILabel *)[self.view viewWithTag:1] setText:[clip valueForKey:@"descripcion"]];
-    [(UIImageView *)[self.view viewWithTag:2] setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://stg.multimedia.tlsur.net/media/%@", [clip valueForKey:@"imagen"]]]]]];
+    [(UIImageView *)[self.view viewWithTag:2] setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@", [clip valueForKey:@"thumbnail_grande"]]]]]];
+    
     
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+}
+
+
+-(void)viewDidAppear:(BOOL)animated 
+{
+
 }
 
 - (void)viewDidUnload
@@ -47,10 +56,11 @@
     self.clip = nil;
 }
 
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    return !(interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown);
 }
 
 - (void)dealloc

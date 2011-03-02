@@ -19,7 +19,6 @@
     
     // Datos
     NSDictionary *clip;
-    
 }
 
 // Controladores

@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "UIViewController_Configuracion.h"
 #import "TSMultimediaDataDelegate.h"
 
 @interface TSClipListadoViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, TSMultimediaDataDelegate>
@@ -43,10 +42,10 @@
 
 @property (nonatomic, retain) NSMutableArray *imageViews;
 
-
 - (id)initWithEntidadMenu:(NSString *)entidad yFiltros:(NSDictionary *)diccionario;
 - (void)construirMenu;
 - (void)cargarDatos;
 - (void)actualizarDatos: (UIButton *)boton;
+- (void)finalizarPlayer:(NSNotification *)notification;
 
 @end
