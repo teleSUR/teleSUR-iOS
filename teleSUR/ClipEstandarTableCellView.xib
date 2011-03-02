@@ -57,7 +57,7 @@
 									<object class="IBUILabel" id="1003706245">
 										<reference key="NSNextResponder" ref="296281804"/>
 										<int key="NSvFlags">308</int>
-										<string key="NSFrame">{{138.498, 1}, {174.502, 55}}</string>
+										<string key="NSFrame">{{138.498, 3}, {174.502, 50}}</string>
 										<reference key="NSSuperview" ref="296281804"/>
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="688951068"/>
@@ -69,8 +69,8 @@
 										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 										<string key="IBUIText">Bolivia ha logrado avances en defensa del medio ambiente</string>
 										<object class="NSFont" key="IBUIFont">
-											<string key="NSName">Helvetica</string>
-											<double key="NSSize">15</double>
+											<string key="NSName">Helvetica-Bold</string>
+											<double key="NSSize">13</double>
 											<int key="NSfFlags">16</int>
 										</object>
 										<object class="NSColor" key="IBUITextColor" id="799478808">
@@ -101,7 +101,7 @@
 									<object class="IBUILabel" id="688951068">
 										<reference key="NSNextResponder" ref="296281804"/>
 										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{138, 59}, {137, 13}}</string>
+										<string key="NSFrame">{{138, 59}, {53.7999, 13}}</string>
 										<reference key="NSSuperview" ref="296281804"/>
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="704771043"/>
@@ -359,7 +359,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">13</int>
+			<int key="maxID">14</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -388,7 +388,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>UILabel</string>
 							<string>UILabel</string>
-							<string>UIImageView</string>
+							<string>AsynchronousImageView</string>
 							<string>UILabel</string>
 						</object>
 					</object>
@@ -413,7 +413,7 @@
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">thumbnailView</string>
-								<string key="candidateClassName">UIImageView</string>
+								<string key="candidateClassName">AsynchronousImageView</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">titulo</string>

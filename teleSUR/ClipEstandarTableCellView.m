@@ -36,6 +36,10 @@
 
 
 - (void)dealloc {
+    self.thumbnailView = nil;
+    self.titulo = nil;
+    self.duracion = nil;
+    self.firma = nil;
     [super dealloc];
 }
 

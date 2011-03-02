@@ -39,7 +39,6 @@
     self.image = [UIImage imageWithData:data];
     [data release], data = nil;
 	[connection release], connection = nil;
-    NSLog(@"aaa");
 }
 
 - (void)dealloc

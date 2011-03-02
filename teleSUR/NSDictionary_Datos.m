@@ -28,7 +28,7 @@
 	// Concatenar datos: ciudad (si la hay), país y fecha completa
 	if ([ciudad length] > 0) [firma appendFormat:@"%@, ", ciudad];
     [firma appendFormat:@"%@ | ", pais];
-    [firma appendString:fechaCompleta];
+    [firma appendFormat:@"%@", fechaCompleta];
     
 	return firma;
 }
