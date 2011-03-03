@@ -22,28 +22,38 @@
 
 @implementation TSClipListadoViewController
 
-@synthesize entidadMenu, rango, diccionarioFiltros;
+@synthesize entidadMenu, rango, diccionarioConfiguracionFiltros;
 @synthesize clipsTableView, menuScrollView;
 @synthesize clips, filtros;
-@synthesize indiceDeBotonSeleccionado;
 @synthesize arregloClipsAsyncImageViews;
-
+@synthesize indiceDeBotonSeleccionado;
 
 
 #pragma mark -
 #pragma mark Init
 
-- (id)initWithEntidadMenu:(NSString *)entidad yFiltros:(NSDictionary *)diccionario;
+- (id)initWithEntidad:(NSString *)entidad yFiltros:(NSDictionary *)diccionario;
 {
 	if ((self = [super init]))
     {
-		self.entidadMenu = entidad;
-		self.diccionarioFiltros = diccionario;
-		self.rango = NSMakeRange(1, kTAMANO_PAGINA);
-		self.indiceDeBotonSeleccionado = -1;
+		[self configurarConEntidad:nil yFiltros:nil];
 	}
 	
 	return self;
+}
+
+- (void)awakeFromNib
+{
+    [self configurarConEntidad:nil yFiltros:nil];
+}
+
+- (void)configurarConEntidad:(NSString *)entidad yFiltros:(NSDictionary *)diccionario;
+{
+    self.entidadMenu = (entidad != nil) ? entidad : @"categoria";
+    self.diccionarioConfiguracionFiltros = diccionario ? diccionario : [NSDictionary dictionary];
+    self.rango = NSMakeRange(1, kTAMANO_PAGINA);
+    self.indiceDeBotonSeleccionado = 0;
+    self.arregloClipsAsyncImageViews = [NSMutableArray array];
 }
 
 
@@ -51,31 +61,22 @@
 
 - (void)filtroSeleccionadoConBoton:(UIButton *)boton
 {
-	 
-    // Obtener slug del filtro seleccionado
-    NSInteger indice = [[self.menuScrollView subviews] indexOfObject:boton] - 1;
-	
+    // Mantener el boton seleccionado
+	[boton setSelected:YES];
+    
+    // Obtener índice y slug del filtro seleccionado
+    NSInteger indice = [[self.menuScrollView subviews] indexOfObject:boton];
+    NSString *slug = [[self.filtros objectAtIndex:indice] valueForKey:@"slug"];
+    	
 	// Actualizamos el boton que debe "seleccionarse"
-	 
 	self.indiceDeBotonSeleccionado = indice;
 	
-	// Mantener el boton seleccionado
-	[boton setSelected:YES];
-	
-	NSString *slug;
-	
-	if (indice==-1) slug = @"";
-		
-    else slug = [[self.filtros objectAtIndex:indice] valueForKey:@"slug"];
-    
-    // Configurar nuevo diccionario de filtros
-    // TODO: Todavía hardcoded
-    self.diccionarioFiltros = [NSDictionary dictionaryWithObject:slug forKey:@"categoria"];
+    // Configurar nuevo diccionario de filtros, si se usó botón "todos", establecer diccionario vacío
+    self.diccionarioConfiguracionFiltros = (indice > 0) ? [NSDictionary dictionaryWithObject:slug forKey:self.entidadMenu] : [NSDictionary dictionary];
     
     // Re-cargar datos
     [self cargarDatos];
-}
-
+}   
 
 - (void)construirMenu 
 {
@@ -88,7 +89,7 @@
 	// OJO: Revisar BUG esta expresión:
 	//	for (int i = -1; i < [self.filtros count]; i++)
     // Recorrer filtros
-    for (float i = -1; i < [self.filtros count]; i++)
+    for (float i=0; i < [self.filtros count]; i++)
     {
         // Crear nuevo bot√≥n para filtro
         UIButton *boton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -104,7 +105,7 @@
         boton.titleLabel.backgroundColor = [UIColor clearColor];
         
         // Texto del botón
-        NSString *nombre = (i > 0) ? [[self.filtros objectAtIndex:i] valueForKey:@"nombre"] : @"Todos";
+        NSString *nombre = [[self.filtros objectAtIndex:i] valueForKey:@"nombre"];
         [boton setTitle:nombre forState:UIControlStateNormal];
         boton.titleLabel.text = nombre;
 		
@@ -113,10 +114,10 @@
 		[boton setTitleColor:[UIColor orangeColor] forState:UIControlStateHighlighted];		
 		[boton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];		// boton en estado normal
 		
-		if (i == self.indiceDeBotonSeleccionado) [boton setSelected:YES];
-		else [boton setSelected:NO];
+        // Marcar sólo botón seleciconado
+        [boton setSelected:(self.indiceDeBotonSeleccionado == i)];
         
-        // Ajustar tama√±o de frame del bot√≥n con base en el volumen del texto
+        // Ajustar tamaño de frame del botón con base en el volumen del texto
 		CGSize textoSize = [boton.titleLabel.text sizeWithFont: boton.titleLabel.font];
 		boton.frame = CGRectMake(offsetX, boton.frame.origin.y, textoSize.width, self.menuScrollView.frame.size.height);
         
@@ -146,18 +147,19 @@
 	
 	
     // Obtener clips
+    static NSString *entidadClips = @"clip";
 	TSMultimediaData *dataClips = [[TSMultimediaData alloc] init];
-    [dataClips getDatosParaEntidad:@"clip" // otros ejemplos: programa, pais, categoria
-                        conFiltros:self.diccionarioFiltros // otro ejemplo: conFiltros:[NSDictionary dictionaryWithObject:@"2010-01-01" forKey:@"hasta"]
-                           enRango:NSMakeRange(1, 10)  // otro ejemplo: NSMakeRange(1, 1) -s√≥lo uno-
+    [dataClips getDatosParaEntidad:entidadClips // otros ejemplos: programa, pais, categoria
+                        conFiltros:self.diccionarioConfiguracionFiltros // otro ejemplo: conFiltros:[NSDictionary dictionaryWithObject:@"2010-01-01" forKey:@"hasta"]
+                           enRango:self.rango  // otro ejemplo: NSMakeRange(1, 1) -s√≥lo uno-
                        conDelegate:self];
 
     
     // Obtener filtros
 	TSMultimediaData *dataFiltros = [[TSMultimediaData alloc] init];
-    [dataFiltros getDatosParaEntidad:@"categoria" // otros ejemplos: programa, pais, categoria
+    [dataFiltros getDatosParaEntidad:self.entidadMenu // otros ejemplos: programa, pais, categoria
                         conFiltros:nil // otro ejemplo: conFiltros:[NSDictionary dictionaryWithObject:@"2010-01-01" forKey:@"hasta"]
-                           enRango:NSMakeRange(1, 10)  // otro ejemplo: NSMakeRange(1, 1) -s√≥lo uno-
+                           enRango:NSMakeRange(0, 0)  // otro ejemplo: NSMakeRange(1, 1) -s√≥lo uno-
                        conDelegate:self];
 }
 
@@ -175,15 +177,7 @@
 #pragma mark View lifecycle
 
 - (void)viewDidLoad
-{	
-
-	
-	self.indiceDeBotonSeleccionado = -1;	
-
-    // Inicializar arreglo de imágenes
-    self.arregloClipsAsyncImageViews = [NSMutableArray array];
-    
-
+{
 	[self personalizarNavigationBar];
     [self cargarDatos];
 	
@@ -342,10 +336,25 @@
     else
     {
         // En caso de haber recibido cualquier otro tipo de entidad, es para filtros
-        self.filtros = array;
+        
+        // Crear diccionario para primer filtro "todos"
+        NSMutableDictionary *filtroTodos = [NSMutableDictionary dictionary];
+        [filtroTodos setValue:@"todos" forKey:@"slug"];
+        [filtroTodos setValue:@"Todos" forKey:@"nombre"];
+        [filtroTodos setValue:@"Mostrar todos" forKey:@"descripcion"];
+        
+        // Insertar filtro como primer elemento del arreglo recibido
+        NSMutableArray *tmpArray = [NSMutableArray arrayWithArray:array];
+        [tmpArray insertObject:filtroTodos atIndex:0];
+        
+        // Actualizar arreglo interno
+        self.filtros = tmpArray;
+        NSLog(@"%@", tmpArray);
         
         // Reconstruir men√∫ con nuevos fitros
         [self construirMenu];
+        
+        
     }
     
     // Ocultar vista de loading s√≥lo cuando ya se han cargado los datos tanto para clips como para filtros

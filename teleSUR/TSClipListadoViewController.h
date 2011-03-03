@@ -15,11 +15,12 @@
 	UITableView *clipsTableView;
 	UIScrollView *menuScrollView;
 	
-	// Datos:
+	// Datos de entrada para configurar peticiones al API
 	NSString *entidadMenu;
 	NSRange rango;
-	NSDictionary *diccionarioFiltros;
+	NSDictionary *diccionarioConfiguracionFiltros;
 	
+    // Resultados de consultas a API
 	NSArray *clips;
 	NSArray *filtros;
     NSMutableArray *arregloClipsAsyncImageViews;
@@ -27,11 +28,8 @@
     // Auxiliares
     CGFloat celdaEstandarHeight;
     CGFloat celdaPrincipalHeight;
+    int indiceDeBotonSeleccionado;
     
-    NSMutableArray *imageViews;
-	
-	int indiceDeBotonSeleccionado;
-	
 }
 
 
@@ -39,20 +37,28 @@
 @property (nonatomic, retain) IBOutlet UITableView *clipsTableView;
 @property (nonatomic, retain) IBOutlet UIScrollView *menuScrollView;
 
-// Datos:
+// Datos de entrada para configurar peticiones al API
 @property (nonatomic, retain) NSString *entidadMenu;
+@property (nonatomic, retain) NSDictionary *diccionarioConfiguracionFiltros;
 @property (nonatomic, assign) NSRange rango;
-@property (nonatomic, retain) NSDictionary *diccionarioFiltros;
 
+// Resultados de consultas a API
 @property (nonatomic, retain) NSArray *clips;
 @property (nonatomic, retain) NSArray *filtros;
 @property (nonatomic, retain) NSMutableArray *arregloClipsAsyncImageViews;
 
+// Auxiliares
 @property (nonatomic, assign) int indiceDeBotonSeleccionado;
 
-- (id)initWithEntidadMenu:(NSString *)entidad yFiltros:(NSDictionary *)diccionario;
-- (void)construirMenu;
+// Init
+- (id)initWithEntidad:(NSString *)entidad yFiltros:(NSDictionary *)diccionario;
+- (void)configurarConEntidad:(NSString *)entidad yFiltros:(NSDictionary *)diccionario;
+
+// Operaciones
 - (void)cargarDatos;
+- (void)construirMenu;
+
+// Eventos
 - (void)filtroSeleccionadoConBoton: (UIButton *)boton;
 - (void)playerFinalizado:(NSNotification *)notification;
 

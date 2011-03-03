@@ -58,8 +58,11 @@
 	}
 	
 	// cualquier entidad puede ser paginada
-	[parametrosGET addObject:[NSString stringWithFormat:@"primero=%d", rango.location]];
-	[parametrosGET addObject:[NSString stringWithFormat:@"ultimo=%d", rango.length]];
+    if (rango.length)
+    {
+        [parametrosGET addObject:[NSString stringWithFormat:@"primero=%d", rango.location]];
+        [parametrosGET addObject:[NSString stringWithFormat:@"ultimo=%d", rango.length]];
+    }
 	
 	// construir quierystring, URL, consulta y conexión
 	NSString *queryString = [parametrosGET componentsJoinedByString:@"&"];
