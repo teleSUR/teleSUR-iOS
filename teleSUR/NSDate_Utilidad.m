@@ -80,7 +80,7 @@
 	
 	tiempoQueFalta = [NSString stringWithFormat:@"%@ %@ %@", dias, horas, mins ];
 	
-	NSLog(@"Faltan: %@", tiempoQueFalta);
+	//NSLog(@"Faltan: %@", tiempoQueFalta);
 	
 	[date1 release];
 	[date2 release];

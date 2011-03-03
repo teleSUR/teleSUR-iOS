@@ -132,10 +132,10 @@
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
 	// Parsear JSON
-	NSError *errorJSON = NULL;
-	NSArray *resultadoArray = [NSDictionary dictionaryWithJSONData:JSONData error:&errorJSON];
+	NSError *JSONError = NULL;
+	NSArray *resultadoArray = [NSDictionary dictionaryWithJSONData:JSONData error:&JSONError];
 	
-	if (!errorJSON)
+	if (!JSONError)
     {
 		if ([delegate respondsToSelector:@selector(TSMultimediaData:entidadesRecibidas:paraEntidad:)])
 			[delegate TSMultimediaData:self entidadesRecibidas:resultadoArray paraEntidad:self.entidadString];
@@ -143,7 +143,7 @@
     else // falla
     {
 		if ([delegate respondsToSelector:@selector(TSMultimediaData:entidadesRecibidasConError:)])
-			[delegate TSMultimediaData:self entidadesRecibidasConError:errorJSON];
+			[delegate TSMultimediaData:self entidadesRecibidasConError:JSONError];
 	}
     
     // liberar objeto de conexión y objeto de datos

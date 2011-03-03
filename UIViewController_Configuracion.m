@@ -16,8 +16,8 @@
 - (void)personalizarNavigationBar
 {
     // Perosnalizar navigation bar
-	[self setTitle:@"teleSUR"];
-	[self.navigationController.navigationBar setTintColor:[UIColor redColor]];
+	[self setTitle:@"Noticias"]; 
+	[self.navigationController.navigationBar setTintColor:[UIColor orangeColor]];
 }
 
 - (void)mostrarLoadingViewConAnimacion: (BOOL)animacion

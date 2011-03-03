@@ -16,9 +16,8 @@
 #import <MediaPlayer/MediaPlayer.h>
 
 
-#define kMARGEN_MENU 15
-#define kTAMANO_PAGINA 6
-#define kTagBotonesMenu 1024
+#define kMARGEN_MENU 12
+#define kTAMANO_PAGINA 10
 
 @implementation TSClipListadoViewController
 
@@ -26,7 +25,7 @@
 @synthesize clipsTableView, menuScrollView;
 @synthesize clips, filtros;
 @synthesize arregloClipsAsyncImageViews;
-@synthesize indiceDeBotonSeleccionado;
+@synthesize indiceDeClipSeleccionado, indiceDeFiltroSeleccionado;
 
 
 #pragma mark -
@@ -52,7 +51,7 @@
     self.entidadMenu = (entidad != nil) ? entidad : @"categoria";
     self.diccionarioConfiguracionFiltros = diccionario ? diccionario : [NSDictionary dictionary];
     self.rango = NSMakeRange(1, kTAMANO_PAGINA);
-    self.indiceDeBotonSeleccionado = 0;
+    self.indiceDeFiltroSeleccionado = 0;
     self.arregloClipsAsyncImageViews = [NSMutableArray array];
 }
 
@@ -69,7 +68,7 @@
     NSString *slug = [[self.filtros objectAtIndex:indice] valueForKey:@"slug"];
     	
 	// Actualizamos el boton que debe "seleccionarse"
-	self.indiceDeBotonSeleccionado = indice;
+	self.indiceDeFiltroSeleccionado = indice;
 	
     // Configurar nuevo diccionario de filtros, si se us— bot—n "todos", establecer diccionario vac’o
     self.diccionarioConfiguracionFiltros = (indice > 0) ? [NSDictionary dictionaryWithObject:slug forKey:self.entidadMenu] : [NSDictionary dictionary];
@@ -86,8 +85,6 @@
     // Inicializar offset horizontal
     int offsetX = 0 + kMARGEN_MENU;
 
-	// OJO: Revisar BUG esta expresi—n:
-	//	for (int i = -1; i < [self.filtros count]; i++)
     // Recorrer filtros
     for (float i=0; i < [self.filtros count]; i++)
     {
@@ -97,25 +94,23 @@
         
         // Asignar acciÃ³n del bot—nn
         [boton addTarget:self action:@selector(filtroSeleccionadoConBoton:) forControlEvents:(UIControlEventTouchUpInside)];
-
-		boton.tag = kTagBotonesMenu;
-
+        
         // Configurar label de bot—n
-        boton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
+        boton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:15.0];
         boton.titleLabel.backgroundColor = [UIColor clearColor];
+        
+        // Configurar colores para denotar un boton seleccionado
+		[boton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [boton setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+		[boton setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
         
         // Texto del bot—n
         NSString *nombre = [[self.filtros objectAtIndex:i] valueForKey:@"nombre"];
         [boton setTitle:nombre forState:UIControlStateNormal];
         boton.titleLabel.text = nombre;
 		
-		// Configurar 2 colores para denotar un boton seleccionado
-		[boton setTitleColor:[UIColor orangeColor] forState:UIControlStateSelected];
-		[boton setTitleColor:[UIColor orangeColor] forState:UIControlStateHighlighted];		
-		[boton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];		// boton en estado normal
-		
         // Marcar s—lo bot—n seleciconado
-        [boton setSelected:(self.indiceDeBotonSeleccionado == i)];
+        [boton setSelected:(self.indiceDeFiltroSeleccionado == i)];
         
         // Ajustar tama–o de frame del bot—n con base en el volumen del texto
 		CGSize textoSize = [boton.titleLabel.text sizeWithFont: boton.titleLabel.font];
@@ -167,7 +162,7 @@
 - (void)playerFinalizado:(NSNotification *)notification
 {
     // Crear y presentar vista de detalles para el video que acaba de finalizar (’ndice guardado en tag de view)
-    TSClipDetallesViewController *detalleView = [[TSClipDetallesViewController alloc] initWithClip:[self.clips objectAtIndex:[[[notification object] view] tag]]];
+    TSClipDetallesViewController *detalleView = [[TSClipDetallesViewController alloc] initWithClip:[self.clips objectAtIndex:indiceDeClipSeleccionado]];
     [self.navigationController pushViewController:detalleView animated:NO];
     [detalleView release];
 }
@@ -225,7 +220,7 @@
     // Establecer texto de etiquetas
 	[cell.titulo setText: [[self.clips objectAtIndex:indexPath.row] valueForKey:@"titulo"]];
 	[cell.duracion setText: [[self.clips objectAtIndex:indexPath.row] valueForKey:@"duracion"]];	
-	[cell.firma setText:[[self.clips objectAtIndex:indexPath.row] obtenerFirmaParaEsteClip]];
+	[cell.firma setText:[[self.clips objectAtIndex:indexPath.row] obtenerTiempoDesdeParaEsteClip]];
 	
 	return cell;
 }
@@ -250,16 +245,16 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    // Guardar referencia a ’ndice, notificaci—n del player lo necesita
+    self.indiceDeClipSeleccionado = indexPath.row;
+    
     // Obtener NSURL del video
-    NSString *stringURL = [NSString stringWithFormat:@"http://stg.multimedia.tlsur.net/media/%@", [[self.clips objectAtIndex:indexPath.row]  valueForKey:@"archivo"]];
+    NSString *stringURL = [NSString stringWithFormat:@"http://stg.multimedia.tlsur.net/media/%@", [[self.clips objectAtIndex:indexPath.row] valueForKey:@"archivo"]];
     NSURL *urlVideo = [NSURL URLWithString: stringURL];
     
     // Crear y configurar player
     MPMoviePlayerViewController *movieController = [[MPMoviePlayerViewController alloc] initWithContentURL:urlVideo];
     [movieController.view setBackgroundColor: [UIColor blackColor]];
-    
-    // Establecer tag para guardar referencia al ’ndice en self.clip
-    [[movieController.moviePlayer view] setTag:indexPath.row];
     
     // Presentar player y reproducir video
     [self presentMoviePlayerViewControllerAnimated:movieController];
@@ -349,15 +344,14 @@
         
         // Actualizar arreglo interno
         self.filtros = tmpArray;
-        NSLog(@"%@", tmpArray);
         
-        // Reconstruir menÃº con nuevos fitros
+        // Reconstruir menœ con nuevos fitros
         [self construirMenu];
         
         
     }
     
-    // Ocultar vista de loading sÃ³lo cuando ya se han cargado los datos tanto para clips como para filtros
+    // Ocultar vista de loading s—lo cuando ya se han cargado los datos tanto para clips como para filtros
     if (self.clips != nil && self.filtros != nil) [self ocultarLoadingViewConAnimacion:NO];
     
     // Liberar objeto de datos

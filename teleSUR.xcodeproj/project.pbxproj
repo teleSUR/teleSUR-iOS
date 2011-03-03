@@ -107,6 +107,9 @@
 		63099F4F13199FC500D15603 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63099F4E13199FC500D15603 /* SystemConfiguration.framework */; };
 		63099F5113199FCA00D15603 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63099F5013199FCA00D15603 /* Security.framework */; };
 		63099F5C1319A23000D15603 /* TSMultimediaData.m in Sources */ = {isa = PBXBuildFile; fileRef = 63099F5A1319A23000D15603 /* TSMultimediaData.m */; };
+		632FE555131F582B007B7167 /* IconoLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 632FE554131F582B007B7167 /* IconoLogo.png */; };
+		632FE558131F5E6D007B7167 /* SinImagen.png in Resources */ = {isa = PBXBuildFile; fileRef = 632FE557131F5E6D007B7167 /* SinImagen.png */; };
+		634D9EF2131F4B1F005B46FE /* Icono.png in Resources */ = {isa = PBXBuildFile; fileRef = 634D9EF1131F4B1F005B46FE /* Icono.png */; };
 		635A78A11319D3F600C3977D /* TSClipDetallesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 635A789F1319D3F600C3977D /* TSClipDetallesViewController.m */; };
 		635A78A21319D3F600C3977D /* TSClipDetallesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 635A78A01319D3F600C3977D /* TSClipDetallesViewController.xib */; };
 		635C6D65131DDA850017CD5F /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 635C6D64131DDA850017CD5F /* MediaPlayer.framework */; };
@@ -150,7 +153,6 @@
 		63099E1613199D1800D15603 /* teleSURAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = teleSURAppDelegate.m; sourceTree = "<group>"; };
 		63099E1913199D1800D15603 /* teleSURAppDelegate_iPhone.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = teleSURAppDelegate_iPhone.h; path = iPhone/teleSURAppDelegate_iPhone.h; sourceTree = "<group>"; };
 		63099E1A13199D1800D15603 /* teleSURAppDelegate_iPhone.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = teleSURAppDelegate_iPhone.m; path = iPhone/teleSURAppDelegate_iPhone.m; sourceTree = "<group>"; };
-		63099E1D13199D1800D15603 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = iPhone/en.lproj/MainWindow_iPhone.xib; sourceTree = "<group>"; };
 		63099E2013199D1800D15603 /* teleSURAppDelegate_iPad.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = teleSURAppDelegate_iPad.h; path = iPad/teleSURAppDelegate_iPad.h; sourceTree = "<group>"; };
 		63099E2113199D1800D15603 /* teleSURAppDelegate_iPad.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = teleSURAppDelegate_iPad.m; path = iPad/teleSURAppDelegate_iPad.m; sourceTree = "<group>"; };
 		63099E2413199D1800D15603 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = iPad/en.lproj/MainWindow_iPad.xib; sourceTree = "<group>"; };
@@ -313,6 +315,10 @@
 		63099F591319A23000D15603 /* TSMultimediaData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSMultimediaData.h; sourceTree = "<group>"; };
 		63099F5A1319A23000D15603 /* TSMultimediaData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSMultimediaData.m; sourceTree = "<group>"; };
 		63099F5B1319A23000D15603 /* TSMultimediaDataDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSMultimediaDataDelegate.h; sourceTree = "<group>"; };
+		632FE554131F582B007B7167 /* IconoLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IconoLogo.png; sourceTree = "<group>"; };
+		632FE557131F5E6D007B7167 /* SinImagen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SinImagen.png; sourceTree = "<group>"; };
+		634D9EED131F497C005B46FE /* es */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = es; path = es.lproj/MainWindow_iPhone.xib; sourceTree = "<group>"; };
+		634D9EF1131F4B1F005B46FE /* Icono.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icono.png; sourceTree = "<group>"; };
 		635A789E1319D3F600C3977D /* TSClipDetallesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSClipDetallesViewController.h; sourceTree = "<group>"; };
 		635A789F1319D3F600C3977D /* TSClipDetallesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSClipDetallesViewController.m; sourceTree = "<group>"; };
 		635A78A01319D3F600C3977D /* TSClipDetallesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TSClipDetallesViewController.xib; sourceTree = "<group>"; };
@@ -366,7 +372,7 @@
 		63099DF713199D1800D15603 = {
 			isa = PBXGroup;
 			children = (
-				635C6D64131DDA850017CD5F /* MediaPlayer.framework */,
+				634D9EF1131F4B1F005B46FE /* Icono.png */,
 				63E01696131B883D001928E4 /* Default.png */,
 				63099E0C13199D1800D15603 /* teleSUR */,
 				63099E3113199D1800D15603 /* teleSURTests */,
@@ -388,6 +394,7 @@
 		63099E0513199D1800D15603 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				635C6D64131DDA850017CD5F /* MediaPlayer.framework */,
 				63099F5013199FCA00D15603 /* Security.framework */,
 				63099F4E13199FC500D15603 /* SystemConfiguration.framework */,
 				63099F4C13199FC000D15603 /* MessageUI.framework */,
@@ -401,6 +408,7 @@
 		63099E0C13199D1800D15603 /* teleSUR */ = {
 			isa = PBXGroup;
 			children = (
+				634D9EEE131F4AFC005B46FE /* Images */,
 				63099E1513199D1800D15603 /* teleSURAppDelegate.h */,
 				63099E1613199D1800D15603 /* teleSURAppDelegate.m */,
 				63099E1813199D1800D15603 /* iPhone */,
@@ -910,6 +918,15 @@
 			name = Vistas;
 			sourceTree = "<group>";
 		};
+		634D9EEE131F4AFC005B46FE /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				632FE557131F5E6D007B7167 /* SinImagen.png */,
+				632FE554131F582B007B7167 /* IconoLogo.png */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
 		63E016A5131D840E001928E4 /* Vistas */ = {
 			isa = PBXGroup;
 			children = (
@@ -1023,6 +1040,9 @@
 				3A1001F1131B354300717211 /* LoadingView.xib in Resources */,
 				63E01697131B883D001928E4 /* Default.png in Resources */,
 				3A2360B6131C4B7200A941E2 /* ClipEstandarTableCellView.xib in Resources */,
+				634D9EF2131F4B1F005B46FE /* Icono.png in Resources */,
+				632FE555131F582B007B7167 /* IconoLogo.png in Resources */,
+				632FE558131F5E6D007B7167 /* SinImagen.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1172,7 +1192,7 @@
 		63099E1C13199D1800D15603 /* MainWindow_iPhone.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				63099E1D13199D1800D15603 /* en */,
+				634D9EED131F497C005B46FE /* es */,
 			);
 			name = MainWindow_iPhone.xib;
 			sourceTree = "<group>";
@@ -1216,7 +1236,7 @@
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1231,7 +1251,7 @@
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1248,6 +1268,7 @@
 				GCC_PREFIX_HEADER = "teleSUR/teleSUR-Prefix.pch";
 				INFOPLIST_FILE = "teleSUR/teleSUR-Info.plist";
 				INSTALL_PATH = "$(LOCAL_APPS_DIR)";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1262,6 +1283,7 @@
 				GCC_PREFIX_HEADER = "teleSUR/teleSUR-Prefix.pch";
 				INFOPLIST_FILE = "teleSUR/teleSUR-Info.plist";
 				INSTALL_PATH = "$(LOCAL_APPS_DIR)";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;

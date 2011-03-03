@@ -28,7 +28,9 @@
     // Auxiliares
     CGFloat celdaEstandarHeight;
     CGFloat celdaPrincipalHeight;
-    int indiceDeBotonSeleccionado;
+    
+    int indiceDeFiltroSeleccionado;
+    int indiceDeClipSeleccionado;
     
 }
 
@@ -48,7 +50,8 @@
 @property (nonatomic, retain) NSMutableArray *arregloClipsAsyncImageViews;
 
 // Auxiliares
-@property (nonatomic, assign) int indiceDeBotonSeleccionado;
+@property (nonatomic, assign) int indiceDeFiltroSeleccionado;
+@property (nonatomic, assign) int indiceDeClipSeleccionado;
 
 // Init
 - (id)initWithEntidad:(NSString *)entidad yFiltros:(NSDictionary *)diccionario;
