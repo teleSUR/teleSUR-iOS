@@ -117,6 +117,7 @@
 		6341A7E413205B92008FFD9D /* pop.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6341A7E113205B90008FFD9D /* pop.wav */; };
 		6341A7E513205B92008FFD9D /* psst1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6341A7E213205B91008FFD9D /* psst1.wav */; };
 		6341A7E613205B92008FFD9D /* psst2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6341A7E313205B91008FFD9D /* psst2.wav */; };
+		6341A7E8132073AB008FFD9D /* blueArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 6341A7E7132073AB008FFD9D /* blueArrow.png */; };
 		634D9EF2131F4B1F005B46FE /* Icono.png in Resources */ = {isa = PBXBuildFile; fileRef = 634D9EF1131F4B1F005B46FE /* Icono.png */; };
 		635A78A11319D3F600C3977D /* TSClipDetallesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 635A789F1319D3F600C3977D /* TSClipDetallesViewController.m */; };
 		635A78A21319D3F600C3977D /* TSClipDetallesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 635A78A01319D3F600C3977D /* TSClipDetallesViewController.xib */; };
@@ -336,6 +337,7 @@
 		6341A7E113205B90008FFD9D /* pop.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = pop.wav; sourceTree = "<group>"; };
 		6341A7E213205B91008FFD9D /* psst1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = psst1.wav; sourceTree = "<group>"; };
 		6341A7E313205B91008FFD9D /* psst2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = psst2.wav; sourceTree = "<group>"; };
+		6341A7E7132073AB008FFD9D /* blueArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueArrow.png; sourceTree = "<group>"; };
 		634D9EED131F497C005B46FE /* es */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = es; path = es.lproj/MainWindow_iPhone.xib; sourceTree = "<group>"; };
 		634D9EF1131F4B1F005B46FE /* Icono.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icono.png; sourceTree = "<group>"; };
 		635A789E1319D3F600C3977D /* TSClipDetallesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSClipDetallesViewController.h; sourceTree = "<group>"; };
@@ -947,6 +949,7 @@
 		634D9EEE131F4AFC005B46FE /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				6341A7E7132073AB008FFD9D /* blueArrow.png */,
 				632FE557131F5E6D007B7167 /* SinImagen.png */,
 				632FE554131F582B007B7167 /* IconoLogo.png */,
 			);
@@ -1078,6 +1081,7 @@
 				6341A7E413205B92008FFD9D /* pop.wav in Resources */,
 				6341A7E513205B92008FFD9D /* psst1.wav in Resources */,
 				6341A7E613205B92008FFD9D /* psst2.wav in Resources */,
+				6341A7E8132073AB008FFD9D /* blueArrow.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

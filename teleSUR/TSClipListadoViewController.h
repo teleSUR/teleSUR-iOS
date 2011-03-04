@@ -8,11 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "TSMultimediaDataDelegate.h"
+#import "PullToRefreshTableViewController.h"
 
 @interface TSClipListadoViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, TSMultimediaDataDelegate> {
 	
     //Controladores
-    UITableViewController *tableViewController;
+    PullToRefreshTableViewController *tableViewController;
     
     // Sub-Vistas:
 	UITableView *clipsTableView;
@@ -39,7 +40,7 @@
 
 
 // Controladores:
-@property (nonatomic, retain) IBOutlet UITableViewController *tableViewController;
+@property (nonatomic, retain) IBOutlet PullToRefreshTableViewController *tableViewController;
 
 // Sub-Vistas:
 @property (nonatomic, retain) IBOutlet UITableView *clipsTableView;

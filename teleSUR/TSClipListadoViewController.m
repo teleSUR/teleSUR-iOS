@@ -293,22 +293,14 @@
     [detalleView release];
 }
 
+#pragma mark -
+#pragma mark MŽtodos redirigidos a PullToReloadTableViewController
 
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
-{
-	[self.tableViewController scrollViewWillBeginDragging:scrollView];
-} 
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView { [self.tableViewController scrollViewWillBeginDragging:scrollView]; }
 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView { [self.tableViewController scrollViewDidScroll:scrollView]; }
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-	[self.tableViewController scrollViewDidScroll:scrollView];
-}
-
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
-{
-	[self.tableViewController scrollViewDidEndDragging:scrollView willDecelerate:decelerate];
-}
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate { [self.tableViewController scrollViewDidEndDragging:scrollView willDecelerate:decelerate]; }
 
 - (void)reloadTableViewDataSource
 {
