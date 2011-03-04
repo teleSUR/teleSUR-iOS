@@ -13,14 +13,17 @@
 #import "NSDictionary_Datos.h"
 #import "TSClipDetallesViewController.h"
 #import "ClipEstandarTableCellView.h"
+#import "PullToRefreshTableViewController.h"
 #import <MediaPlayer/MediaPlayer.h>
 
 
 #define kMARGEN_MENU 12
 #define kTAMANO_PAGINA 10
 
+
 @implementation TSClipListadoViewController
 
+@synthesize tableViewController;
 @synthesize entidadMenu, rango, diccionarioConfiguracionFiltros;
 @synthesize clipsTableView, menuScrollView;
 @synthesize clips, filtros;
@@ -35,7 +38,7 @@
 {
 	if ((self = [super init]))
     {
-		[self configurarConEntidad:nil yFiltros:nil];
+		[self configurarConEntidad:entidad yFiltros:diccionario];
 	}
 	
 	return self;
@@ -173,10 +176,20 @@
 
 - (void)viewDidLoad
 {
+    [self.view addSubview:tableViewController.view];
+    
+    //PullToRefreshTableViewController *tbc = [[PullToRefreshTableViewController alloc] init];
+    //self.tableViewController = tbc;
+    //[tbc release];
+    
+    
 	[self personalizarNavigationBar];
     [self cargarDatos];
+    
+    
 	
     [super viewDidLoad];
+    
 }
 
 
@@ -281,6 +294,32 @@
 }
 
 
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+	[self.tableViewController scrollViewWillBeginDragging:scrollView];
+} 
+
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+	[self.tableViewController scrollViewDidScroll:scrollView];
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+	[self.tableViewController scrollViewDidEndDragging:scrollView willDecelerate:decelerate];
+}
+
+- (void)reloadTableViewDataSource
+{
+    [self cargarDatos];
+}
+
+
+
+
+
+
 #pragma mark -
 #pragma mark Memory management
 
@@ -327,6 +366,7 @@
         
         // Recargar tabla
         [self.clipsTableView reloadData];
+        //[super dataSourceDidFinishLoadingNewData];
     }
     else
     {
@@ -352,13 +392,17 @@
     }
     
     // Ocultar vista de loading s—lo cuando ya se han cargado los datos tanto para clips como para filtros
-    if (self.clips != nil && self.filtros != nil) [self ocultarLoadingViewConAnimacion:NO];
+    if (self.clips != nil && self.filtros != nil)
+    {
+      [self ocultarLoadingViewConAnimacion:NO];
+      [self.tableViewController dataSourceDidFinishLoadingNewData];  
+    }
     
     // Liberar objeto de datos
     [data release];
 }
 
-    
+
 - (void)TSMultimediaData:(TSMultimediaData *)data entidadesRecibidasConError:(id)error
 {
     // TODO: Informar al usuario sobre error
@@ -367,5 +411,17 @@
     // Liberar objeto de datos
     [data release];
 }
+
+
+#pragma mark -
+#pragma mark TSMultimediaDataDelegate
+    
+- (void)synchingDone:(NSNotification *)notification
+{
+    NSLog(@"bbbb");
+	//refreshHeaderView.lastUpdatedDate = myApp.lastReviewRefresh;
+}
+
+
 
 @end

@@ -109,6 +109,14 @@
 		63099F5C1319A23000D15603 /* TSMultimediaData.m in Sources */ = {isa = PBXBuildFile; fileRef = 63099F5A1319A23000D15603 /* TSMultimediaData.m */; };
 		632FE555131F582B007B7167 /* IconoLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 632FE554131F582B007B7167 /* IconoLogo.png */; };
 		632FE558131F5E6D007B7167 /* SinImagen.png in Resources */ = {isa = PBXBuildFile; fileRef = 632FE557131F5E6D007B7167 /* SinImagen.png */; };
+		6341A7D5132056A2008FFD9D /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6341A7D4132056A2008FFD9D /* EGORefreshTableHeaderView.m */; };
+		6341A7D9132056FE008FFD9D /* PullToRefreshTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6341A7D8132056FD008FFD9D /* PullToRefreshTableViewController.m */; };
+		6341A7DC132057DF008FFD9D /* SoundEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = 6341A7DB132057DE008FFD9D /* SoundEffect.m */; };
+		6341A7DE13205992008FFD9D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6341A7DD13205992008FFD9D /* QuartzCore.framework */; };
+		6341A7E013205A01008FFD9D /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6341A7DF13205A01008FFD9D /* AudioToolbox.framework */; };
+		6341A7E413205B92008FFD9D /* pop.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6341A7E113205B90008FFD9D /* pop.wav */; };
+		6341A7E513205B92008FFD9D /* psst1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6341A7E213205B91008FFD9D /* psst1.wav */; };
+		6341A7E613205B92008FFD9D /* psst2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6341A7E313205B91008FFD9D /* psst2.wav */; };
 		634D9EF2131F4B1F005B46FE /* Icono.png in Resources */ = {isa = PBXBuildFile; fileRef = 634D9EF1131F4B1F005B46FE /* Icono.png */; };
 		635A78A11319D3F600C3977D /* TSClipDetallesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 635A789F1319D3F600C3977D /* TSClipDetallesViewController.m */; };
 		635A78A21319D3F600C3977D /* TSClipDetallesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 635A78A01319D3F600C3977D /* TSClipDetallesViewController.xib */; };
@@ -317,6 +325,17 @@
 		63099F5B1319A23000D15603 /* TSMultimediaDataDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSMultimediaDataDelegate.h; sourceTree = "<group>"; };
 		632FE554131F582B007B7167 /* IconoLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IconoLogo.png; sourceTree = "<group>"; };
 		632FE557131F5E6D007B7167 /* SinImagen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SinImagen.png; sourceTree = "<group>"; };
+		6341A7D3132056A2008FFD9D /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
+		6341A7D4132056A2008FFD9D /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
+		6341A7D7132056FD008FFD9D /* PullToRefreshTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PullToRefreshTableViewController.h; sourceTree = "<group>"; };
+		6341A7D8132056FD008FFD9D /* PullToRefreshTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PullToRefreshTableViewController.m; sourceTree = "<group>"; };
+		6341A7DA132057DE008FFD9D /* SoundEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundEffect.h; sourceTree = "<group>"; };
+		6341A7DB132057DE008FFD9D /* SoundEffect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundEffect.m; sourceTree = "<group>"; };
+		6341A7DD13205992008FFD9D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		6341A7DF13205A01008FFD9D /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		6341A7E113205B90008FFD9D /* pop.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = pop.wav; sourceTree = "<group>"; };
+		6341A7E213205B91008FFD9D /* psst1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = psst1.wav; sourceTree = "<group>"; };
+		6341A7E313205B91008FFD9D /* psst2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = psst2.wav; sourceTree = "<group>"; };
 		634D9EED131F497C005B46FE /* es */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = es; path = es.lproj/MainWindow_iPhone.xib; sourceTree = "<group>"; };
 		634D9EF1131F4B1F005B46FE /* Icono.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icono.png; sourceTree = "<group>"; };
 		635A789E1319D3F600C3977D /* TSClipDetallesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSClipDetallesViewController.h; sourceTree = "<group>"; };
@@ -333,6 +352,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6341A7E013205A01008FFD9D /* AudioToolbox.framework in Frameworks */,
+				6341A7DE13205992008FFD9D /* QuartzCore.framework in Frameworks */,
 				635C6D65131DDA850017CD5F /* MediaPlayer.framework in Frameworks */,
 				63099F5113199FCA00D15603 /* Security.framework in Frameworks */,
 				63099F4F13199FC500D15603 /* SystemConfiguration.framework in Frameworks */,
@@ -394,6 +415,8 @@
 		63099E0513199D1800D15603 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6341A7DF13205A01008FFD9D /* AudioToolbox.framework */,
+				6341A7DD13205992008FFD9D /* QuartzCore.framework */,
 				635C6D64131DDA850017CD5F /* MediaPlayer.framework */,
 				63099F5013199FCA00D15603 /* Security.framework */,
 				63099F4E13199FC500D15603 /* SystemConfiguration.framework */,
@@ -408,6 +431,9 @@
 		63099E0C13199D1800D15603 /* teleSUR */ = {
 			isa = PBXGroup;
 			children = (
+				6341A7E113205B90008FFD9D /* pop.wav */,
+				6341A7E213205B91008FFD9D /* psst1.wav */,
+				6341A7E313205B91008FFD9D /* psst2.wav */,
 				634D9EEE131F4AFC005B46FE /* Images */,
 				63099E1513199D1800D15603 /* teleSURAppDelegate.h */,
 				63099E1613199D1800D15603 /* teleSURAppDelegate.m */,
@@ -946,6 +972,12 @@
 				3A236146131C534300A941E2 /* ClipEstandarTableCellView.h */,
 				3A236147131C534300A941E2 /* ClipEstandarTableCellView.m */,
 				3A2360B5131C4B7200A941E2 /* ClipEstandarTableCellView.xib */,
+				6341A7D3132056A2008FFD9D /* EGORefreshTableHeaderView.h */,
+				6341A7D4132056A2008FFD9D /* EGORefreshTableHeaderView.m */,
+				6341A7D7132056FD008FFD9D /* PullToRefreshTableViewController.h */,
+				6341A7D8132056FD008FFD9D /* PullToRefreshTableViewController.m */,
+				6341A7DA132057DE008FFD9D /* SoundEffect.h */,
+				6341A7DB132057DE008FFD9D /* SoundEffect.m */,
 			);
 			name = Listado;
 			sourceTree = "<group>";
@@ -1043,6 +1075,9 @@
 				634D9EF2131F4B1F005B46FE /* Icono.png in Resources */,
 				632FE555131F582B007B7167 /* IconoLogo.png in Resources */,
 				632FE558131F5E6D007B7167 /* SinImagen.png in Resources */,
+				6341A7E413205B92008FFD9D /* pop.wav in Resources */,
+				6341A7E513205B92008FFD9D /* psst1.wav in Resources */,
+				6341A7E613205B92008FFD9D /* psst2.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1159,6 +1194,9 @@
 				3A236262131C8BD700A941E2 /* NSDictionary_Datos.m in Sources */,
 				63C7AEFA131DAF9000BD7F64 /* AsynchronousImageView.m in Sources */,
 				3AD81911131EF7B40006C5A0 /* NSDate_Utilidad.m in Sources */,
+				6341A7D5132056A2008FFD9D /* EGORefreshTableHeaderView.m in Sources */,
+				6341A7D9132056FE008FFD9D /* PullToRefreshTableViewController.m in Sources */,
+				6341A7DC132057DF008FFD9D /* SoundEffect.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

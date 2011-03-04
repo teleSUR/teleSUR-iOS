@@ -11,6 +11,9 @@
 
 @interface TSClipListadoViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, TSMultimediaDataDelegate> {
 	
+    //Controladores
+    UITableViewController *tableViewController;
+    
     // Sub-Vistas:
 	UITableView *clipsTableView;
 	UIScrollView *menuScrollView;
@@ -34,6 +37,9 @@
     
 }
 
+
+// Controladores:
+@property (nonatomic, retain) IBOutlet UITableViewController *tableViewController;
 
 // Sub-Vistas:
 @property (nonatomic, retain) IBOutlet UITableView *clipsTableView;
