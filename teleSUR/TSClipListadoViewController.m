@@ -95,8 +95,9 @@
         UIButton *boton = [UIButton buttonWithType:UIButtonTypeCustom];
         boton.backgroundColor = [UIColor clearColor];
         
-        // Asignar acci√≥n del botónn
-        [boton addTarget:self action:@selector(filtroSeleccionadoConBoton:) forControlEvents:(UIControlEventTouchUpInside)];
+        // Asignar acción del botón
+        if (self.indiceDeFiltroSeleccionado != i)
+            [boton addTarget:self action:@selector(filtroSeleccionadoConBoton:) forControlEvents:(UIControlEventTouchUpInside)];
         
         // Configurar label de botón
         boton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:15.0];
@@ -294,6 +295,14 @@
 }
 
 #pragma mark -
+#pragma mark PullToReloadTableViewController
+
+- (void)reloadTableViewDataSource
+{
+    [self cargarDatos];
+}
+
+#pragma mark -
 #pragma mark Métodos redirigidos a PullToReloadTableViewController
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView { [self.tableViewController scrollViewWillBeginDragging:scrollView]; }
@@ -301,15 +310,6 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView { [self.tableViewController scrollViewDidScroll:scrollView]; }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate { [self.tableViewController scrollViewDidEndDragging:scrollView willDecelerate:decelerate]; }
-
-- (void)reloadTableViewDataSource
-{
-    [self cargarDatos];
-}
-
-
-
-
 
 
 #pragma mark -
