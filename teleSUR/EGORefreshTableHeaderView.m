@@ -13,8 +13,8 @@
 #define kPullToReloadStatus		1
 #define kLoadingStatus			2
 
-#define TEXT_COLOR [UIColor colorWithRed:0.341 green:0.737 blue:0.537 alpha:1.0]
-#define BORDER_COLOR [UIColor colorWithRed:0.341 green:0.737 blue:0.537 alpha:1.0]
+#define TEXT_COLOR [UIColor darkGrayColor]
+#define BORDER_COLOR [UIColor redColor]
 
 @implementation EGORefreshTableHeaderView
 
@@ -23,16 +23,13 @@
 - (id)initWithFrame:(CGRect)frame {
     if ((self = [super initWithFrame:frame]))
 	{
-		self.backgroundColor = [UIColor colorWithRed:226.0/255.0
-                                               green:231.0/255.0 blue:237.0/255.0 alpha:1.0];
+        // Color de fondo
+		self.backgroundColor = [UIColor groupTableViewBackgroundColor];
         
-		lastUpdatedLabel = [[UILabel alloc] initWithFrame:
-                            CGRectMake(0.0f, frame.size.height - 30.0f,
-                                       320.0f, 20.0f)];
+		lastUpdatedLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, frame.size.height - 30.0f, 320.0f, 20.0f)];
 		lastUpdatedLabel.font = [UIFont systemFontOfSize:12.0f];
 		lastUpdatedLabel.textColor = TEXT_COLOR;
-		lastUpdatedLabel.shadowColor =
-        [UIColor colorWithWhite:0.9f alpha:1.0f];
+		lastUpdatedLabel.shadowColor = [UIColor colorWithWhite:0.9f alpha:1.0f];
 		lastUpdatedLabel.shadowOffset = CGSizeMake(0.0f, 1.0f);
 		lastUpdatedLabel.backgroundColor = self.backgroundColor;
 		lastUpdatedLabel.opaque = YES;
@@ -40,8 +37,8 @@
 		[self addSubview:lastUpdatedLabel];
 		[lastUpdatedLabel release];
         
-		statusLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0f,
-                                                                frame.size.height - 48.0f, 320.0f, 20.0f)];
+		statusLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, frame.size.height - 48.0f, 320.0f, 20.0f)];
+        
 		statusLabel.font = [UIFont boldSystemFontOfSize:13.0f];
 		statusLabel.textColor = TEXT_COLOR;
 		statusLabel.shadowColor = [UIColor colorWithWhite:0.9f alpha:1.0f];

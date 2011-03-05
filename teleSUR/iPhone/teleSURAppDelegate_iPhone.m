@@ -10,6 +10,9 @@
 
 @implementation teleSURAppDelegate_iPhone
 
+#pragma mark -
+#pragma mark View lifecycle
+
 - (void)dealloc
 {
 	[super dealloc];

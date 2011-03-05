@@ -7,6 +7,7 @@
 //
 
 #import "UIViewController_Configuracion.h"
+#import <UIKit/UIkit.h>
 
 #define kLOADING_VIEW_TAG 100
 
@@ -16,7 +17,6 @@
 - (void)personalizarNavigationBar
 {
     // Perosnalizar navigation bar
-	[self setTitle:@"Noticias"]; 
 	[self.navigationController.navigationBar setTintColor:[UIColor orangeColor]];
 }
 
@@ -26,14 +26,42 @@
 	UIView *vistaLoading = [[[NSBundle mainBundle] loadNibNamed:@"LoadingView" owner:self options:nil] lastObject];					
     [vistaLoading setTag:kLOADING_VIEW_TAG];
     
+    [vistaLoading setAlpha:0];
+    [self.view addSubview:vistaLoading];
+    
     // Agregar como subvista
-	[self.view addSubview:vistaLoading];
+    if (animacion)
+    {
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationBeginsFromCurrentState:YES];
+        [UIView setAnimationDuration:0.4];
+        [vistaLoading setAlpha:1.0];
+        [UIView commitAnimations];
+    }
+    else
+    {
+        [vistaLoading setAlpha:1.0];
+    }
 }
 
 - (void)ocultarLoadingViewConAnimacion: (BOOL)animacion
 {
     // Retirar vista de loading 
-	[[self.view viewWithTag:kLOADING_VIEW_TAG] removeFromSuperview];
+    if (animacion)
+    {
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationBeginsFromCurrentState:YES];
+        [UIView setAnimationDuration:0.4];
+        [[self.view viewWithTag:kLOADING_VIEW_TAG] setAlpha:0];
+        [[self.view viewWithTag:kLOADING_VIEW_TAG] removeFromSuperview];
+        [UIView commitAnimations];
+    }
+    else
+    {
+        [[self.view viewWithTag:kLOADING_VIEW_TAG] removeFromSuperview];
+    }
+    
+	
 }
 
 

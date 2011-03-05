@@ -22,7 +22,7 @@
 	// Datos de entrada para configurar peticiones al API
 	NSString *entidadMenu;
 	NSRange rango;
-	NSDictionary *diccionarioConfiguracionFiltros;
+	NSMutableDictionary *diccionarioConfiguracionFiltros;
 	
     // Resultados de consultas a API
 	NSArray *clips;
@@ -48,7 +48,7 @@
 
 // Datos de entrada para configurar peticiones al API
 @property (nonatomic, retain) NSString *entidadMenu;
-@property (nonatomic, retain) NSDictionary *diccionarioConfiguracionFiltros;
+@property (nonatomic, retain) NSMutableDictionary *diccionarioConfiguracionFiltros;
 @property (nonatomic, assign) NSRange rango;
 
 // Resultados de consultas a API

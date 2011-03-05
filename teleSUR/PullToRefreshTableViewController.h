@@ -24,5 +24,6 @@
 
 - (void)dataSourceDidFinishLoadingNewData;
 - (void)showReloadAnimationAnimated:(BOOL)animated;
+- (void)setLastUpdate:(NSDate *)date;
 
 @end

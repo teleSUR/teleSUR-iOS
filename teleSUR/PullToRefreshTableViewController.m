@@ -76,6 +76,10 @@
 	[popSound play];
 }
 
+- (void)setLastUpdate:(NSDate *)date {
+    [refreshHeaderView setLastUpdatedDate:date];
+}
+
 
 #pragma mark Scrolling Overrides
 

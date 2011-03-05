@@ -44,41 +44,22 @@
 	return self;
 }
 
-- (void)awakeFromNib
-{
-    [self configurarConEntidad:nil yFiltros:nil];
-}
 
 - (void)configurarConEntidad:(NSString *)entidad yFiltros:(NSDictionary *)diccionario;
 {
+    // Datos
     self.entidadMenu = (entidad != nil) ? entidad : @"categoria";
-    self.diccionarioConfiguracionFiltros = diccionario ? diccionario : [NSDictionary dictionary];
+    self.diccionarioConfiguracionFiltros = diccionario ? diccionario : [NSMutableDictionary dictionary];
     self.rango = NSMakeRange(1, kTAMANO_PAGINA);
+    
+    //Auxialiares
     self.indiceDeFiltroSeleccionado = 0;
     self.arregloClipsAsyncImageViews = [NSMutableArray array];
 }
 
 
 #pragma mark -
-
-- (void)filtroSeleccionadoConBoton:(UIButton *)boton
-{
-    // Mantener el boton seleccionado
-	[boton setSelected:YES];
-    
-    // Obtener ’ndice y slug del filtro seleccionado
-    NSInteger indice = [[self.menuScrollView subviews] indexOfObject:boton];
-    NSString *slug = [[self.filtros objectAtIndex:indice] valueForKey:@"slug"];
-    	
-	// Actualizamos el boton que debe "seleccionarse"
-	self.indiceDeFiltroSeleccionado = indice;
-	
-    // Configurar nuevo diccionario de filtros, si se us— bot—n "todos", establecer diccionario vac’o
-    self.diccionarioConfiguracionFiltros = (indice > 0) ? [NSDictionary dictionaryWithObject:slug forKey:self.entidadMenu] : [NSDictionary dictionary];
-    
-    // Re-cargar datos
-    [self cargarDatos];
-}   
+#pragma mark Internos
 
 - (void)construirMenu 
 {
@@ -87,7 +68,7 @@
     
     // Inicializar offset horizontal
     int offsetX = 0 + kMARGEN_MENU;
-
+    
     // Recorrer filtros
     for (float i=0; i < [self.filtros count]; i++)
     {
@@ -138,9 +119,6 @@
     self.clips = nil;
     self.filtros = nil;
     
-    // Mostrar vista de loading
-    [self mostrarLoadingViewConAnimacion:NO];
-
 	// Regresar el scroll de la tabla a la parte superior
 	[self.clipsTableView setContentOffset:CGPointMake(0, 0) animated:NO];
 	
@@ -152,16 +130,43 @@
                         conFiltros:self.diccionarioConfiguracionFiltros // otro ejemplo: conFiltros:[NSDictionary dictionaryWithObject:@"2010-01-01" forKey:@"hasta"]
                            enRango:self.rango  // otro ejemplo: NSMakeRange(1, 1) -sÃ³lo uno-
                        conDelegate:self];
-
+    
     
     // Obtener filtros
 	TSMultimediaData *dataFiltros = [[TSMultimediaData alloc] init];
     [dataFiltros getDatosParaEntidad:self.entidadMenu // otros ejemplos: programa, pais, categoria
-                        conFiltros:nil // otro ejemplo: conFiltros:[NSDictionary dictionaryWithObject:@"2010-01-01" forKey:@"hasta"]
-                           enRango:NSMakeRange(0, 0)  // otro ejemplo: NSMakeRange(1, 1) -sÃ³lo uno-
-                       conDelegate:self];
+                          conFiltros:nil // otro ejemplo: conFiltros:[NSDictionary dictionaryWithObject:@"2010-01-01" forKey:@"hasta"]
+                             enRango:NSMakeRange(0, 0)  // otro ejemplo: NSMakeRange(1, 1) -sÃ³lo uno-
+                         conDelegate:self];
 }
 
+
+#pragma mark -
+#pragma mark Acicones
+
+- (void)filtroSeleccionadoConBoton:(UIButton *)boton
+{
+    // Mantener el boton seleccionado
+	[boton setSelected:YES];
+    
+    // Obtener ’ndice y slug del filtro seleccionado
+    NSInteger indice = [[self.menuScrollView subviews] indexOfObject:boton];
+    NSString *slug = [[self.filtros objectAtIndex:indice] valueForKey:@"slug"];
+    	
+	// Actualizamos el boton que debe "seleccionarse"
+	self.indiceDeFiltroSeleccionado = indice;
+	
+    // Configurar nuevo diccionario de filtros, si se us— bot—n "todos", establecer diccionario vac’o
+    //self.diccionarioConfiguracionFiltros = (indice > 0) ? [NSDictionary dictionaryWithObject:slug forKey:self.entidadMenu] : [NSDictionary dictionary];
+    
+    //[self.diccionarioConfiguracionFiltros removeObjectForKey:self.entidadMenu];
+    [self.diccionarioConfiguracionFiltros setValue:((indice > 0) ? slug : nil) forKey:self.entidadMenu];
+    
+    // Re-cargar datos
+    // Mostrar vista de loading
+    [self mostrarLoadingViewConAnimacion:YES];
+    [self cargarDatos];
+}   
 
 - (void)playerFinalizado:(NSNotification *)notification
 {
@@ -177,17 +182,37 @@
 
 - (void)viewDidLoad
 {
-    [self.view addSubview:tableViewController.view];
-    
-    //PullToRefreshTableViewController *tbc = [[PullToRefreshTableViewController alloc] init];
-    //self.tableViewController = tbc;
-    //[tbc release];
-    
-    
 	[self personalizarNavigationBar];
+    
+    
+    // Detemrinar datos de entrada: filtros a aplicar, y filtros a mostrar
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary]; 
+    NSString *filtro;
+    NSString *tab = [[self navigationItem] title];
+    
+    if ([tab isEqualToString:@"Noticias"])
+    {
+        filtro = @"categoria";
+        [dict setValue:@"noticia" forKey:@"tipo"];
+    }
+    else if ([tab isEqualToString:@"Entrevistas"])
+    {
+        filtro = @"categoria";
+        [dict setValue:@"entrevista" forKey:@"tipo"];
+    }
+    else if ([tab isEqualToString:@"Programas"])
+    {
+        filtro = @"programa";
+        [dict setValue:@"programa" forKey:@"tipo"];
+    }
+        
+    // Configurar variables internas
+    [self configurarConEntidad:filtro yFiltros:dict];
+    
+    
+    // Mostrar vista de loading y cargar datos
+    [self mostrarLoadingViewConAnimacion:YES];
     [self cargarDatos];
-    
-    
 	
     [super viewDidLoad];
     
@@ -263,7 +288,7 @@
     self.indiceDeClipSeleccionado = indexPath.row;
     
     // Obtener NSURL del video
-    NSString *stringURL = [NSString stringWithFormat:@"http://stg.multimedia.tlsur.net/media/%@", [[self.clips objectAtIndex:indexPath.row] valueForKey:@"archivo"]];
+    NSString *stringURL = [NSString stringWithFormat:@"%@", [[self.clips objectAtIndex:indexPath.row] valueForKey:@"archivo_url"]];
     NSURL *urlVideo = [NSURL URLWithString: stringURL];
     
     // Crear y configurar player
@@ -386,9 +411,12 @@
     // Ocultar vista de loading s—lo cuando ya se han cargado los datos tanto para clips como para filtros
     if (self.clips != nil && self.filtros != nil)
     {
-      [self ocultarLoadingViewConAnimacion:NO];
-      [self.tableViewController dataSourceDidFinishLoadingNewData];  
+        [self.tableViewController setLastUpdate:[NSDate date]];
+        [self.tableViewController dataSourceDidFinishLoadingNewData];
+        
+        [self ocultarLoadingViewConAnimacion:YES];
     }
+    
     
     // Liberar objeto de datos
     [data release];

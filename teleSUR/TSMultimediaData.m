@@ -22,8 +22,8 @@
     self.entidadString = entidad;
 	self.delegate = datosDelegate;
 	
-	NSString *urlBase = @"http://stg.multimedia.tlsur.net";
-	NSString *langCode = @"es";
+	NSString *urlBase = @"http://multimedia.telesurtv.net";
+	NSString *langCode = @""; // default otros:  @"pt/", @"en/" (OJO: slash al final)
 	NSMutableArray *parametrosGET = [NSMutableArray array];
 	NSString *currentFiltro = nil;
 	
@@ -32,6 +32,9 @@
     {
 		if ((currentFiltro = [filtros objectForKey:@"categoria"]))
 			[parametrosGET addObject:[NSString stringWithFormat:@"categoria=%@", currentFiltro]];
+        
+        if ((currentFiltro = [filtros objectForKey:@"programa"]))
+			[parametrosGET addObject:[NSString stringWithFormat:@"programa=%@", currentFiltro]];
 		
 		if ((currentFiltro = [filtros objectForKey:@"tipo"]))
 			[parametrosGET addObject:[NSString stringWithFormat:@"tipo=%@", currentFiltro]];
@@ -67,8 +70,8 @@
 	// construir quierystring, URL, consulta y conexión
 	NSString *queryString = [parametrosGET componentsJoinedByString:@"&"];
 	
-	NSURL *multimediaAPIRequestURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@/api/%@?%@", urlBase, langCode, entidad, queryString]];
-	//NSLog(@"URL a consular: %@", multimediaAPIRequestURL);
+	NSURL *multimediaAPIRequestURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@api/%@?%@", urlBase, langCode, entidad, queryString]];
+	NSLog(@"URL a consular: %@", multimediaAPIRequestURL);
 	
 	NSURLRequest *apiRequest=[NSURLRequest requestWithURL:multimediaAPIRequestURL
 											  cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
