@@ -19,7 +19,8 @@
 - (void)personalizarNavigationBar
 {
     // Perosnalizar navigation bar
-	[self.navigationController.navigationBar setTintColor:[UIColor orangeColor]];
+	[self.navigationController.navigationBar setTintColor: [UIColor colorWithRed:0.6 green:0.04 blue:0.039 alpha:1.0] ];
+
 }
 
 - (void)mostrarLoadingViewConAnimacion: (BOOL)animacion

@@ -86,7 +86,7 @@
         boton.titleLabel.backgroundColor = [UIColor clearColor];
         
         // Configurar colores para denotar un boton seleccionado
-		[boton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+		[boton setTitleColor:[UIColor colorWithWhite:0.6 alpha:1.0] forState:UIControlStateNormal];
         [boton setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
 		[boton setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
         
@@ -264,7 +264,8 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.clips count] + 1;
+    if ([self.clips count] == 0) return 0;
+    else return [self.clips count] + 1;
 }
 
 
@@ -278,7 +279,15 @@
         // Reutilizar o bien crear nueva celda
         static NSString *CellIdentifierEstandar = @"CeldaEstandar";
         ClipEstandarTableCellView *cell = (ClipEstandarTableCellView *)[tableView dequeueReusableCellWithIdentifier:CellIdentifierEstandar];
-        if (cell == nil) cell = (ClipEstandarTableCellView *)[[[NSBundle mainBundle] loadNibNamed:@"ClipEstandarTableCellView" owner:self options:nil] lastObject];
+        if (cell == nil) {
+            if (indexPath.row==0) {
+                cell = (ClipEstandarTableCellView *)[[[NSBundle mainBundle] loadNibNamed:@"ClipGrandeTableCellView" owner:self options:nil] lastObject];   
+            } else {
+                cell = (ClipEstandarTableCellView *)[[[NSBundle mainBundle] loadNibNamed:@"ClipEstandarTableCellView" owner:self options:nil] lastObject];   
+            }
+                
+         
+        }
             
         // Copiar propiedades de thumbnailView (definidas en NIB) y sustitirlo por AsyncImageView correspondiente
         CGRect frame = cell.thumbnailView.frame;
@@ -310,11 +319,23 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {		
     // Leer y devolver si hay altura guardada
-    if (celdaEstandarHeight)
-        return celdaEstandarHeight;
+//    if (celdaEstandarHeight)
+//        return celdaEstandarHeight;
     
     // Leer en NIB altura de celda y asignarlo a variable auxiliar para s—lo cargar NIB una s—la vez
-    UITableViewCell *celda = (ClipEstandarTableCellView *)[[[NSBundle mainBundle] loadNibNamed:@"ClipEstandarTableCellView" owner:self options:nil] lastObject];
+    
+    // Seleccionar que NIB cargar
+    
+    NSString *nombreNIB;
+    
+    if (indexPath.row == 0) nombreNIB = @"ClipGrandeTableCellView";
+    
+    else nombreNIB = @"ClipEstandarTableCellView";
+    
+    UITableViewCell *celda= (ClipEstandarTableCellView *)[[[NSBundle mainBundle] loadNibNamed:nombreNIB owner:self options:nil] lastObject];
+
+    
+
     celdaEstandarHeight = celda.frame.size.height;
     
 	return celdaEstandarHeight;

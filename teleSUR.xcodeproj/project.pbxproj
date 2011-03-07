@@ -126,6 +126,7 @@
 		63E01697131B883D001928E4 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 63E01696131B883D001928E4 /* Default.png */; };
 		63EDAB5013232F8200496B83 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63EDAB4F13232F8200496B83 /* CFNetwork.framework */; };
 		63EDAB521323316500496B83 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 63EDAB511323316500496B83 /* libsqlite3.0.dylib */; };
+		C4F400321325281D00239C39 /* ClipGrandeTableCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4F400311325281D00239C39 /* ClipGrandeTableCellView.xib */; };
 		C4FEABE51324BF57003B6509 /* libGoogleAnalytics_NoThumb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C4FEABE41324BF57003B6509 /* libGoogleAnalytics_NoThumb.a */; };
 		C4FEABFF1324C25E003B6509 /* VerMasClipsTableCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4FEABFE1324C25E003B6509 /* VerMasClipsTableCellView.xib */; };
 /* End PBXBuildFile section */
@@ -354,6 +355,7 @@
 		63EDAB4C13232F4D00496B83 /* GANTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GANTracker.h; path = "Google Analyics SDK/Library/GANTracker.h"; sourceTree = "<group>"; };
 		63EDAB4F13232F8200496B83 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		63EDAB511323316500496B83 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		C4F400311325281D00239C39 /* ClipGrandeTableCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClipGrandeTableCellView.xib; sourceTree = "<group>"; };
 		C4FEABE41324BF57003B6509 /* libGoogleAnalytics_NoThumb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGoogleAnalytics_NoThumb.a; path = "../../../../Downloads/Google Analytics SDK/Library/libGoogleAnalytics_NoThumb.a"; sourceTree = "<group>"; };
 		C4FEABFE1324C25E003B6509 /* VerMasClipsTableCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VerMasClipsTableCellView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -990,6 +992,7 @@
 				3A236146131C534300A941E2 /* ClipEstandarTableCellView.h */,
 				3A236147131C534300A941E2 /* ClipEstandarTableCellView.m */,
 				3A2360B5131C4B7200A941E2 /* ClipEstandarTableCellView.xib */,
+				C4F400311325281D00239C39 /* ClipGrandeTableCellView.xib */,
 				6341A7D3132056A2008FFD9D /* EGORefreshTableHeaderView.h */,
 				6341A7D4132056A2008FFD9D /* EGORefreshTableHeaderView.m */,
 				6341A7D7132056FD008FFD9D /* PullToRefreshTableViewController.h */,
@@ -1108,6 +1111,7 @@
 				6341A7E613205B92008FFD9D /* psst2.wav in Resources */,
 				6341A7E8132073AB008FFD9D /* blueArrow.png in Resources */,
 				C4FEABFF1324C25E003B6509 /* VerMasClipsTableCellView.xib in Resources */,
+				C4F400321325281D00239C39 /* ClipGrandeTableCellView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
