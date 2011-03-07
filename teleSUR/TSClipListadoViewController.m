@@ -264,30 +264,43 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.clips count];
+    return [self.clips count] + 1;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Reutilizar o bien crear nueva celda
-    static NSString *CellIdentifier = @"CeldaEstandar";
-    ClipEstandarTableCellView *cell = (ClipEstandarTableCellView *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) cell = (ClipEstandarTableCellView *)[[[NSBundle mainBundle] loadNibNamed:@"ClipEstandarTableCellView" owner:self options:nil] lastObject];
-        
-    // Copiar propiedades de thumbnailView (definidas en NIB) y sustitirlo por AsyncImageView correspondiente
-    CGRect frame = cell.thumbnailView.frame;
-    [cell.thumbnailView removeFromSuperview];
-    cell.thumbnailView = [self.arregloClipsAsyncImageViews objectAtIndex:indexPath.row];
-    cell.thumbnailView.frame = frame;
-    [cell addSubview:cell.thumbnailView];
     
-    // Establecer texto de etiquetas
-	[cell.titulo setText: [[self.clips objectAtIndex:indexPath.row] valueForKey:@"titulo"]];
-	[cell.duracion setText: [[self.clips objectAtIndex:indexPath.row] valueForKey:@"duracion"]];	
-	[cell.firma setText:[[self.clips objectAtIndex:indexPath.row] obtenerTiempoDesdeParaEsteClip]];
-	
-	return cell;
+    
+    
+    if (indexPath.row < [self.clips count]) {
+        
+        // Reutilizar o bien crear nueva celda
+        static NSString *CellIdentifierEstandar = @"CeldaEstandar";
+        ClipEstandarTableCellView *cell = (ClipEstandarTableCellView *)[tableView dequeueReusableCellWithIdentifier:CellIdentifierEstandar];
+        if (cell == nil) cell = (ClipEstandarTableCellView *)[[[NSBundle mainBundle] loadNibNamed:@"ClipEstandarTableCellView" owner:self options:nil] lastObject];
+            
+        // Copiar propiedades de thumbnailView (definidas en NIB) y sustitirlo por AsyncImageView correspondiente
+        CGRect frame = cell.thumbnailView.frame;
+        [cell.thumbnailView removeFromSuperview];
+        cell.thumbnailView = [self.arregloClipsAsyncImageViews objectAtIndex:indexPath.row];
+        cell.thumbnailView.frame = frame;
+        [cell addSubview:cell.thumbnailView];
+        
+        // Establecer texto de etiquetas
+        [cell.titulo setText: [[self.clips objectAtIndex:indexPath.row] valueForKey:@"titulo"]];
+        [cell.duracion setText: [[self.clips objectAtIndex:indexPath.row] valueForKey:@"duracion"]];	
+        [cell.firma setText:[[self.clips objectAtIndex:indexPath.row] obtenerTiempoDesdeParaEsteClip]];
+        return cell;        
+    } else {
+        static NSString *CellIdentifierVerMas = @"CeldaVerMas";
+        UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifierVerMas];
+        if (cell == nil) cell = (UITableViewCell *)[[[NSBundle mainBundle] loadNibNamed:@"VerMasClipsTableCellView" owner:self options:nil] lastObject];
+        return cell;
+        
+    
+    }
+
 }
 
 
@@ -313,24 +326,38 @@
     // Guardar referencia a ’ndice, notificaci—n del player lo necesita
     self.indiceDeClipSeleccionado = indexPath.row;
     
-    // Obtener NSURL del video
-    NSString *stringURL = [NSString stringWithFormat:@"%@", [[self.clips objectAtIndex:indexPath.row] valueForKey:@"archivo_url"]];
-    NSURL *urlVideo = [NSURL URLWithString: stringURL];
+    if (self.indiceDeClipSeleccionado < [self.clips count]) {   // Se trata de un video
+        
+            // Obtener NSURL del video
+            ;
+            NSString *stringURL = [NSString stringWithFormat:@"%@", [[self.clips objectAtIndex:indexPath.row] valueForKey:@"archivo_url"]];
+            NSURL *urlVideo = [NSURL URLWithString: stringURL];
+            
+            // Crear y configurar player
+            MPMoviePlayerViewController *movieController = [[MPMoviePlayerViewController alloc] initWithContentURL:urlVideo];
+            [movieController.view setBackgroundColor: [UIColor blackColor]];
+            
+            // Presentar player y reproducir video
+            [self presentMoviePlayerViewControllerAnimated:movieController];
+            [movieController.moviePlayer play];  
+            
+            // Agregar observer al finalizar reproducci—n
+            [[NSNotificationCenter defaultCenter] 
+             addObserver:self
+             selector:@selector(playerFinalizado:)                                                 
+             name:MPMoviePlayerPlaybackDidFinishNotification
+             object:movieController.moviePlayer];
+            
+    } else {    // Se trata de la celda "M‡s Video"
     
-    // Crear y configurar player
-    MPMoviePlayerViewController *movieController = [[MPMoviePlayerViewController alloc] initWithContentURL:urlVideo];
-    [movieController.view setBackgroundColor: [UIColor blackColor]];
+        self.rango = NSMakeRange(0, self.rango.length+kTAMANO_PAGINA);
+        // Aqui no se que metodo es el correcto para recargar. Lo vemos ma–ana.
+//        [self configurarConEntidad:self.entidadMenu yFiltros:self.diccionarioConfiguracionFiltros];
+        
+    }
     
-    // Presentar player y reproducir video
-    [self presentMoviePlayerViewControllerAnimated:movieController];
-    [movieController.moviePlayer play];  
-    
-    // Agregar observer al finalizar reproducci—n
-    [[NSNotificationCenter defaultCenter] 
-     addObserver:self
-     selector:@selector(playerFinalizado:)                                                 
-     name:MPMoviePlayerPlaybackDidFinishNotification
-     object:movieController.moviePlayer];
+
+
     
     // Des-seleccionar fila en tabla
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
