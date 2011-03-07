@@ -1,30 +1,30 @@
 "Email" = "Email";
-"Username" = "Username";
-"Password" = "Password";
-"Follow %@" = "Follow %@";
-"Continue" = "Continue";
-"Share" = "Share";
-"More..." = "More...";
-"Cancel" = "Cancel";
+"Username" = "Nombre de usuario";
+"Password" = "Contraseña";
+"Follow %@" = "Seguir a %@";
+"Continue" = "Continuar";
+"Share" = "Compartir";
+"More..." = "Más...";
+"Cancel" = "Cancelar";
 "Slug" = "Slug";
-"Private" = "Private";
-"Public" = "Public";
+"Private" = "Privado";
+"Public" = "Público";
 "Caption" = "Caption";
-"Title" = "Title";
+"Title" = "Título";
 "Tags" = "Tags";
-"Close" = "Close";
-"Notes" = "Notes";
-"Note" = "Note";
-"Share" = "Share";
-"Shared" = "Shared";
-"Edit" = "Edit";
-"Actions" = "Actions";
-"Services" = "Services";
-"Send to %@" = "Send to %@";
-"Copy" = "Copy";
-"Copied!" = "Copied!";
-"Saving to %@" = "Saving to %@";
-"Saved!" = "Saved!";
+"Close" = "Cerrar";
+"Notes" = "Notas";
+"Note" = "Nota";
+"Share" = "Compartir";
+"Shared" = "Compartido";
+"Edit" = "Editar";
+"Actions" = "Acciones";
+"Services" = "Servicios";
+"Send to %@" = "Enviar a %@";
+"Copy" = "Copiar";
+"Copied!" = "Copiado!";
+"Saving to %@" = "Guardando a %@";
+"Saved!" = "Guardado!";
 "Offline" = "Offline";
 "Error" = "Error";
 "Login" = "Login";
@@ -36,20 +36,20 @@
 "Shorten URL Error" = "Shorten URL Error";
 "We could not shorten the URL." = "We could not shorten the URL.";
 
-"Create a free account at %@" = "Create a free account at %@";
-"Create an account at %@" = "Create an account at %@";
+"Create a free account at %@" = "Crea una cuenta gratuita en %@";
+"Create an account at %@" = "Crea una cuenta en %@";
 
-"Send to Twitter" = "Send to Twitter";
+"Send to Twitter" = "Enviar a Twitter";
 
-"Message is too long" = "Message is too long";
-"Twitter posts can only be 140 characters in length." = "Twitter posts can only be 140 characters in length.";
-"Message is empty" = "Message is empty";
-"You must enter a message in order to post." = "You must enter a message in order to post.";
+"Message is too long" = "Mensaje demasiado largo";
+"Twitter posts can only be 140 characters in length." = "Twitter sólo amdite mensajes de hasta 140 caracteres.";
+"Message is empty" = "Mensaje vacío";
+"You must enter a message in order to post." = "Debes introducir un mensaje antes de continuar.";
 
-"Enter your message:" = "Enter your message:";
+"Enter your message:" = "Introduce tu mensaje:";
 
-"Invalid email or password." = "Invalid email or password.";
-"The service encountered an error. Please try again later." = "The service encountered an error. Please try again later.";
+"Invalid email or password." = "Correo electrónico o contraseña inválidos.";
+"The service encountered an error. Please try again later." = "Se encontró un error en el servicio, intenta más tarde.";
 "There was a sending your post to Tumblr." = "There was a sending your post to Tumblr.";
 
 "There was an error saving to Pinboard" = "There was an error saving to Pinboard";
@@ -65,13 +65,13 @@
 
 "There was a problem saving to Delicious." = "There was a problem saving to Delicious.";
 
-"Open in Safari" = "Open in Safari";
-"Attached: %@" = "Attached: %@";
+"Open in Safari" = "Abrir en Safari";
+"Attached: %@" = "Adjuntado: %@";
 
 "You must be online to login to %@" = "You must be online to login to %@";
 
-"Auto Share" = "Auto Share";
-"Enable auto share to skip this step in the future." = "Enable auto share to skip this step in the future.";
+"Auto Share" = "Auto Compartir";
+"Enable auto share to skip this step in the future." = "Activa auto compartir para evitarse este paso en el futuro";
 
 "You must be online in order to share with %@" = "You must be online in order to share with %@";
 "There was an error while sharing" = "There was an error while sharing";
@@ -81,11 +81,11 @@
 "Request Error" = "Request Error";
 "There was an error while sharing" = "There was an error while sharing";
 
-"Authorize Error" = "Authorize Error";
-"There was an error while authorizing" = "There was an error while authorizing";
+"Authorize Error" = "Error de Autorización";
+"There was an error while authorizing" = "Se encontró un error al autorizar";
 
-"Authenticating..." = "Authenticating...";
-"There was a problem requesting access from %@" = "There was a problem requesting access from %@";
+"Authenticating..." = "Autentificando...";
+"There was a problem requesting access from %@" = "Se encontró un problema solicitando acceso para %@";
 
-"Access Error" = "Access Error";
-"There was an error while sharing" = "There was an error while sharing";
+"Access Error" = "Error de Acceso";
+"There was an error while sharing" = "Se encontró un error al compartir";
