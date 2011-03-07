@@ -3,12 +3,12 @@
 	<data>
 		<int key="IBDocument.SystemTarget">1056</int>
 		<string key="IBDocument.SystemVersion">10J567</string>
-		<string key="IBDocument.InterfaceBuilderVersion">1294</string>
+		<string key="IBDocument.InterfaceBuilderVersion">1305</string>
 		<string key="IBDocument.AppKitVersion">1038.35</string>
 		<string key="IBDocument.HIToolboxVersion">462.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">294</string>
+			<string key="NS.object.0">300</string>
 		</object>
 		<object class="NSArray" key="IBDocument.IntegratedClassDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -59,7 +59,7 @@
 						<string key="NSFrameSize">{320, 44}</string>
 						<reference key="NSSuperview" ref="260159671"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
+						<reference key="NSNextKeyView" ref="919063015"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MSAwIDAAA</bytes>
@@ -73,7 +73,7 @@
 					<object class="IBUITableView" id="919063015">
 						<reference key="NSNextResponder" ref="260159671"/>
 						<int key="NSvFlags">274</int>
-						<string key="NSFrame">{{0, 42}, {320, 324}}</string>
+						<string key="NSFrame">{{0, 43.7778}, {320, 323.222}}</string>
 						<reference key="NSSuperview" ref="260159671"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
@@ -292,7 +292,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>UITableView</string>
 							<string>UIScrollView</string>
-							<string>UITableViewController</string>
+							<string>PullToRefreshTableViewController</string>
 						</object>
 					</object>
 					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
@@ -315,7 +315,7 @@
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">tableViewController</string>
-								<string key="candidateClassName">UITableViewController</string>
+								<string key="candidateClassName">PullToRefreshTableViewController</string>
 							</object>
 						</object>
 					</object>
@@ -338,6 +338,6 @@
 		</object>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
-		<string key="IBCocoaTouchPluginVersion">294</string>
+		<string key="IBCocoaTouchPluginVersion">300</string>
 	</data>
 </archive>

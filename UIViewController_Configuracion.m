@@ -10,6 +10,8 @@
 #import <UIKit/UIkit.h>
 
 #define kLOADING_VIEW_TAG 100
+#define kLOADING_TRANSPARENCIA 0.70
+#define kLOADING_TIEMPO_ANIMACION 0.4
 
 
 @implementation UIViewController (UIViewController_Configuracion)
@@ -23,24 +25,25 @@
 - (void)mostrarLoadingViewConAnimacion: (BOOL)animacion
 {
     // Cargar NIB con vista para loading, asignarle un tag para hacer referenciar después
-	UIView *vistaLoading = [[[NSBundle mainBundle] loadNibNamed:@"LoadingView" owner:self options:nil] lastObject];					
-    [vistaLoading setTag:kLOADING_VIEW_TAG];
+    UIView *vistaLoading = [[[NSBundle mainBundle] loadNibNamed:@"LoadingView" owner:self options:nil] lastObject];					
     
-    [vistaLoading setAlpha:0];
-    [self.view addSubview:vistaLoading];
+    vistaLoading.tag = kLOADING_VIEW_TAG;
+    vistaLoading.alpha = 0;
+    [self.view setUserInteractionEnabled:NO];
     
     // Agregar como subvista
-    if (animacion)
+    [self.view addSubview:vistaLoading];
+    if (!animacion)
     {
         [UIView beginAnimations:nil context:NULL];
         [UIView setAnimationBeginsFromCurrentState:YES];
-        [UIView setAnimationDuration:0.4];
-        [vistaLoading setAlpha:1.0];
+        [UIView setAnimationDuration:kLOADING_TIEMPO_ANIMACION];
+        vistaLoading.alpha = kLOADING_TRANSPARENCIA;
         [UIView commitAnimations];
     }
     else
     {
-        [vistaLoading setAlpha:1.0];
+        vistaLoading.alpha = kLOADING_TRANSPARENCIA;
     }
 }
 
@@ -51,7 +54,7 @@
     {
         [UIView beginAnimations:nil context:NULL];
         [UIView setAnimationBeginsFromCurrentState:YES];
-        [UIView setAnimationDuration:0.4];
+        [UIView setAnimationDuration:kLOADING_TIEMPO_ANIMACION];
         [[self.view viewWithTag:kLOADING_VIEW_TAG] setAlpha:0];
         [[self.view viewWithTag:kLOADING_VIEW_TAG] removeFromSuperview];
         [UIView commitAnimations];
@@ -60,6 +63,8 @@
     {
         [[self.view viewWithTag:kLOADING_VIEW_TAG] removeFromSuperview];
     }
+    
+    [self.view setUserInteractionEnabled:YES];
     
 	
 }

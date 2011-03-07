@@ -67,9 +67,11 @@
 // Operaciones
 - (void)cargarDatos;
 - (void)construirMenu;
+- (void)reloadTableViewDataSource; // Para pull-to-refresh
 
 // Eventos
 - (void)filtroSeleccionadoConBoton: (UIButton *)boton;
 - (void)playerFinalizado:(NSNotification *)notification;
+
 
 @end

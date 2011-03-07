@@ -11,7 +11,7 @@
 
 @implementation NSDate (NSDate_Utilidad);
 
-- (NSString *) enTimerContraAhora
+- (NSString *)enTimerContraAhora
 {
 	NSDate *fechaFutura = [NSDate new];
 	

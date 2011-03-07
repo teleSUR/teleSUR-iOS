@@ -8,6 +8,7 @@
 
 #import "teleSURAppDelegate.h"
 #import "TSMultimediaData.h"
+#import "GANTracker.h"
 
 
 @implementation teleSURAppDelegate
@@ -18,6 +19,30 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [[GANTracker sharedTracker] startTrackerWithAccountID:@"UA-11834651-1"
+                                           dispatchPeriod:60
+                                                 delegate:nil];
+    
+    NSError *error;
+    if (![[GANTracker sharedTracker] setCustomVariableAtIndex:1
+                                                         name:@"iPhone"
+                                                        value:@"iv1"
+                                                    withError:&error])
+    {
+        // Error
+        NSLog(@"Error: %@", error);
+    }
+    
+    if (![[GANTracker sharedTracker] trackEvent:@"iPhone"
+                                         action:@"app iniciada"
+                                          label:@"v1.0"
+                                          value:-1
+                                      withError:&error])
+    {
+        // Error
+        NSLog(@"Error: %@", error);
+    }
+    
     [self.window makeKeyAndVisible];
     return YES;
 }
@@ -63,6 +88,7 @@
 
 - (void)dealloc
 {
+    [[GANTracker sharedTracker] stopTracker];
     [_window release];
     [super dealloc];
 }

@@ -118,7 +118,8 @@
 		if([self.tableView.dataSource respondsToSelector:@selector(reloadTableViewDataSource)]){
 			[self showReloadAnimationAnimated:YES];
 			[psst2Sound play];
-			[self.tableView.dataSource reloadTableViewDataSource];
+            if ([self.tableView.dataSource respondsToSelector:@selector(reloadTableViewDataSource)])
+                [self.tableView.dataSource performSelector:@selector(reloadTableViewDataSource)];
 		}
 	} 
 	checkForRefresh = NO;

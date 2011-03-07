@@ -15,6 +15,7 @@
 #import "ClipEstandarTableCellView.h"
 #import "PullToRefreshTableViewController.h"
 #import <MediaPlayer/MediaPlayer.h>
+#import "GANTracker.h"
 
 
 #define kMARGEN_MENU 12
@@ -146,8 +147,22 @@
 
 - (void)filtroSeleccionadoConBoton:(UIButton *)boton
 {
-    // Mantener el boton seleccionado
+    // Apagar todos los botones y prender el botón en cuestión
+    for (UIButton *btn in [self.menuScrollView subviews]) [btn setSelected:NO];
 	[boton setSelected:YES];
+
+    // Calcular nuevo offset para que el botón esté centrado
+    CGFloat offset = + boton.frame.origin.x
+                     + boton.frame.size.width/2.0
+                     - self.menuScrollView.frame.size.width/2.0;
+    
+    // Si el offset es negativo o más grande que la barra completa, no centrar el botón
+    CGFloat maxOffset = self.menuScrollView.contentSize.width - self.menuScrollView.frame.size.width;
+    if (offset < 0) offset = 0;
+    else if (offset > maxOffset) offset = maxOffset;
+    
+    // Aplicar nuevo offset
+    [[self menuScrollView] setContentOffset:CGPointMake(offset, 0) animated:YES];
     
     // Obtener índice y slug del filtro seleccionado
     NSInteger indice = [[self.menuScrollView subviews] indexOfObject:boton];
@@ -156,15 +171,12 @@
 	// Actualizamos el boton que debe "seleccionarse"
 	self.indiceDeFiltroSeleccionado = indice;
 	
-    // Configurar nuevo diccionario de filtros, si se usó botón "todos", establecer diccionario vacío
-    //self.diccionarioConfiguracionFiltros = (indice > 0) ? [NSDictionary dictionaryWithObject:slug forKey:self.entidadMenu] : [NSDictionary dictionary];
-    
-    //[self.diccionarioConfiguracionFiltros removeObjectForKey:self.entidadMenu];
+    // Configurar nuevo diccionario de filtros, no filtrar si se usó botón "todos"
     [self.diccionarioConfiguracionFiltros setValue:((indice > 0) ? slug : nil) forKey:self.entidadMenu];
     
     // Re-cargar datos
     // Mostrar vista de loading
-    [self mostrarLoadingViewConAnimacion:YES];
+    [self.tableViewController mostrarLoadingViewConAnimacion:YES];
     [self cargarDatos];
 }   
 
@@ -174,6 +186,21 @@
     TSClipDetallesViewController *detalleView = [[TSClipDetallesViewController alloc] initWithClip:[self.clips objectAtIndex:indiceDeClipSeleccionado]];
     [self.navigationController pushViewController:detalleView animated:NO];
     [detalleView release];
+    
+    // ENviar notificación a Google Analytics
+    NSError *error;
+    if (![[GANTracker sharedTracker] trackEvent:@"iPhone"
+                                         action:@"Video reproducido"
+                                          label:[[self.clips objectAtIndex:indiceDeClipSeleccionado] valueForKey:@"archivo"]
+                                          value:-1
+                                      withError:&error])
+    {
+        NSLog(@"Error");
+    }
+    
+    //
+    // Un posible momento para insertar publicidad
+    //
 }
 
 
@@ -211,7 +238,7 @@
     
     
     // Mostrar vista de loading y cargar datos
-    [self mostrarLoadingViewConAnimacion:YES];
+    [self.tableViewController mostrarLoadingViewConAnimacion:YES];
     [self cargarDatos];
 	
     [super viewDidLoad];
@@ -241,7 +268,6 @@
 }
 
 
-// Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Reutilizar o bien crear nueva celda
@@ -310,7 +336,6 @@
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
-
 -(void) tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
     // Crear y presentar vista de detalles
@@ -344,7 +369,6 @@
 {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
-    
     // Relinquish ownership any cached data, images, etc. that aren't in use.
 }
 
@@ -364,6 +388,7 @@
 #pragma mark -
 #pragma mark TSMultimediaDataDelegate
 
+// Maneja los datos recibidos
 - (void)TSMultimediaData:(TSMultimediaData *)data entidadesRecibidas:(NSArray *)array paraEntidad:(NSString *)entidad
 {
     if ([entidad isEqualToString:@"clip"])
@@ -383,24 +408,23 @@
         
         // Recargar tabla
         [self.clipsTableView reloadData];
-        //[super dataSourceDidFinishLoadingNewData];
     }
     else
     {
         // En caso de haber recibido cualquier otro tipo de entidad, es para filtros
         
-        // Crear diccionario para primer filtro "todos"
+        // Crear diccionario para representar "todos", un primer filtro fake
         NSMutableDictionary *filtroTodos = [NSMutableDictionary dictionary];
-        [filtroTodos setValue:@"todos" forKey:@"slug"];
         [filtroTodos setValue:@"Todos" forKey:@"nombre"];
+        [filtroTodos setValue:@"todos" forKey:@"slug"];
         [filtroTodos setValue:@"Mostrar todos" forKey:@"descripcion"];
         
         // Insertar filtro como primer elemento del arreglo recibido
-        NSMutableArray *tmpArray = [NSMutableArray arrayWithArray:array];
-        [tmpArray insertObject:filtroTodos atIndex:0];
+        NSMutableArray *arregloAumentado = [NSMutableArray arrayWithArray:array];
+        [arregloAumentado insertObject:filtroTodos atIndex:0];
         
         // Actualizar arreglo interno
-        self.filtros = tmpArray;
+        self.filtros = arregloAumentado;
         
         // Reconstruir menú con nuevos fitros
         [self construirMenu];
@@ -408,15 +432,16 @@
         
     }
     
-    // Ocultar vista de loading sólo cuando ya se han cargado los datos tanto para clips como para filtros
+    // Cuando ya se han cargado los datos tanto para clips como para filtros:
     if (self.clips != nil && self.filtros != nil)
     {
+        // Actualizar datos para la vista de pull-to-refresh
         [self.tableViewController setLastUpdate:[NSDate date]];
         [self.tableViewController dataSourceDidFinishLoadingNewData];
         
-        [self ocultarLoadingViewConAnimacion:YES];
+        // Ocultar vista de loading
+        [self.tableViewController ocultarLoadingViewConAnimacion:YES];
     }
-    
     
     // Liberar objeto de datos
     [data release];
@@ -428,20 +453,12 @@
     // TODO: Informar al usuario sobre error
 	NSLog(@"Error: %@", error);
     
+    // Quitar vista de loading
+    [self ocultarLoadingViewConAnimacion:YES];
+    
     // Liberar objeto de datos
     [data release];
 }
-
-
-#pragma mark -
-#pragma mark TSMultimediaDataDelegate
-    
-- (void)synchingDone:(NSNotification *)notification
-{
-    NSLog(@"bbbb");
-	//refreshHeaderView.lastUpdatedDate = myApp.lastReviewRefresh;
-}
-
 
 
 @end

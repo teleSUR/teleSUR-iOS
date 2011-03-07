@@ -8,6 +8,7 @@
 
 #import "TSClipDetallesViewController.h"
 #import "TSCLipListadoViewController.h"
+#import "SHK.h"
 
 #import <MediaPlayer/MediaPlayer.h>
 
@@ -16,6 +17,8 @@
 @synthesize detallesTableView;
 @synthesize detallesTableViewController;
 @synthesize clip;
+
+@class teleSURAppDelegate;
 
 #pragma mark -
 #pragma mark Init
@@ -200,6 +203,25 @@
      [self.navigationController pushViewController:detailViewController animated:YES];
      [detailViewController release];
      */
+}
+
+#pragma mark -
+#pragma mark Acciones
+
+- (IBAction)botonRedesSocialesPresionado:(id)boton
+{
+    // Crear item para compartir en redes sociales
+	NSURL *url = [NSURL URLWithString:@"http://multimedia.telesurtv.net/"];
+	SHKItem *item = [SHKItem URL:url title:@"Awesome!"];
+    
+	// Crear Action Sheet
+	SHKActionSheet *actionSheet = [SHKActionSheet actionSheetForItem:item];
+    
+    // Mostrar Action Sheet
+    // TODO: OJO, puede cambiar en iPad, damos por hecho que window de appdelegate tiene un rootViewController
+    //       de clase UITabBarController. qué otra forma habrá de referenciar al TabBar? o de insertar el action sheet?
+    teleSURAppDelegate *appDelegate= (teleSURAppDelegate *)[[UIApplication sharedApplication] delegate];
+    [actionSheet showFromTabBar:[(UITabBarController *)[[appDelegate window] rootViewController] tabBar]];
 }
 
 

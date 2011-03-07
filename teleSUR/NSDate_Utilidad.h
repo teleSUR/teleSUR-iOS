@@ -11,4 +11,6 @@
 
 @interface NSDate (NSDate_Utilidad)
 
+- (NSString *)enTimerContraAhora;
+
 @end

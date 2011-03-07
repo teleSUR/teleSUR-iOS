@@ -14,7 +14,7 @@
 #define kLoadingStatus			2
 
 #define TEXT_COLOR [UIColor darkGrayColor]
-#define BORDER_COLOR [UIColor redColor]
+#define BORDER_COLOR [UIColor grayColor]
 
 @implementation EGORefreshTableHeaderView
 
@@ -112,13 +112,13 @@
 		[formatter setDateStyle:NSDateFormatterShortStyle];
 		[formatter setTimeStyle:NSDateFormatterShortStyle];
 		lastUpdatedLabel.text = [NSString stringWithFormat:
-                                 @"Última actualización: %@", [formatter stringFromDate:lastUpdatedDate]];
+                                 @"Actualizado en: %@", [formatter stringFromDate:lastUpdatedDate]];
 		[formatter release];
 	}
 	else
 	{
 		lastUpdatedDate = nil;
-		lastUpdatedLabel.text = @"Última actualización: nunca";
+		lastUpdatedLabel.text = @"ÚActualizado en: nunca";
 	}
 }
 

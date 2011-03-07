@@ -124,6 +124,9 @@
 		635C6D65131DDA850017CD5F /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 635C6D64131DDA850017CD5F /* MediaPlayer.framework */; };
 		63C7AEFA131DAF9000BD7F64 /* AsynchronousImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C7AEF9131DAF9000BD7F64 /* AsynchronousImageView.m */; };
 		63E01697131B883D001928E4 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 63E01696131B883D001928E4 /* Default.png */; };
+		63EDAB4E13232F4D00496B83 /* libGoogleAnalytics_NoThumb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 63EDAB4D13232F4D00496B83 /* libGoogleAnalytics_NoThumb.a */; };
+		63EDAB5013232F8200496B83 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63EDAB4F13232F8200496B83 /* CFNetwork.framework */; };
+		63EDAB521323316500496B83 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 63EDAB511323316500496B83 /* libsqlite3.0.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -347,6 +350,10 @@
 		63C7AEF8131DAF8F00BD7F64 /* AsynchronousImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsynchronousImageView.h; sourceTree = "<group>"; };
 		63C7AEF9131DAF9000BD7F64 /* AsynchronousImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsynchronousImageView.m; sourceTree = "<group>"; };
 		63E01696131B883D001928E4 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		63EDAB4C13232F4D00496B83 /* GANTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GANTracker.h; path = "Google Analyics SDK/Library/GANTracker.h"; sourceTree = "<group>"; };
+		63EDAB4D13232F4D00496B83 /* libGoogleAnalytics_NoThumb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGoogleAnalytics_NoThumb.a; path = "Google Analyics SDK/Library/libGoogleAnalytics_NoThumb.a"; sourceTree = "<group>"; };
+		63EDAB4F13232F8200496B83 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		63EDAB511323316500496B83 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -354,6 +361,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63EDAB521323316500496B83 /* libsqlite3.0.dylib in Frameworks */,
+				63EDAB5013232F8200496B83 /* CFNetwork.framework in Frameworks */,
 				6341A7E013205A01008FFD9D /* AudioToolbox.framework in Frameworks */,
 				6341A7DE13205992008FFD9D /* QuartzCore.framework in Frameworks */,
 				635C6D65131DDA850017CD5F /* MediaPlayer.framework in Frameworks */,
@@ -363,6 +372,7 @@
 				63099E0713199D1800D15603 /* UIKit.framework in Frameworks */,
 				63099E0913199D1800D15603 /* Foundation.framework in Frameworks */,
 				63099E0B13199D1800D15603 /* CoreGraphics.framework in Frameworks */,
+				63EDAB4E13232F4D00496B83 /* libGoogleAnalytics_NoThumb.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -395,6 +405,7 @@
 		63099DF713199D1800D15603 = {
 			isa = PBXGroup;
 			children = (
+				63EDAB511323316500496B83 /* libsqlite3.0.dylib */,
 				634D9EF1131F4B1F005B46FE /* Icono.png */,
 				63E01696131B883D001928E4 /* Default.png */,
 				63099E0C13199D1800D15603 /* teleSUR */,
@@ -417,6 +428,7 @@
 		63099E0513199D1800D15603 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				63EDAB4F13232F8200496B83 /* CFNetwork.framework */,
 				6341A7DF13205A01008FFD9D /* AudioToolbox.framework */,
 				6341A7DD13205992008FFD9D /* QuartzCore.framework */,
 				635C6D64131DDA850017CD5F /* MediaPlayer.framework */,
@@ -505,6 +517,7 @@
 		63099E4C13199DF900D15603 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				63EDAB4A13232F0E00496B83 /* Google Analytics */,
 				63099F2C13199F9800D15603 /* TouchJSON */,
 				63099E4E13199F6700D15603 /* ShareKit */,
 			);
@@ -995,6 +1008,15 @@
 			name = Detalles;
 			sourceTree = "<group>";
 		};
+		63EDAB4A13232F0E00496B83 /* Google Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				63EDAB4C13232F4D00496B83 /* GANTracker.h */,
+				63EDAB4D13232F4D00496B83 /* libGoogleAnalytics_NoThumb.a */,
+			);
+			name = "Google Analytics";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1311,6 +1333,10 @@
 				INFOPLIST_FILE = "teleSUR/teleSUR-Info.plist";
 				INSTALL_PATH = "$(LOCAL_APPS_DIR)";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Vendor/Google Analyics SDK/Library\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1326,6 +1352,10 @@
 				INFOPLIST_FILE = "teleSUR/teleSUR-Info.plist";
 				INSTALL_PATH = "$(LOCAL_APPS_DIR)";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Vendor/Google Analyics SDK/Library\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
