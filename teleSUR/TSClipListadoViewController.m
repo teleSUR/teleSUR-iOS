@@ -29,7 +29,7 @@
 @synthesize clipsTableView, menuScrollView;
 @synthesize clips, filtros;
 @synthesize arregloClipsAsyncImageViews;
-@synthesize indiceDeClipSeleccionado, indiceDeFiltroSeleccionado;
+@synthesize indiceDeClipSeleccionado, indiceDeFiltroSeleccionado, enConsulta;
 
 
 #pragma mark -
@@ -58,6 +58,7 @@
     
     //Auxialiares
     self.indiceDeFiltroSeleccionado = 0;
+    self.enConsulta = 0;
     
     // Clips
     //self.clips = [NSMutableArray array];
@@ -118,12 +119,11 @@
     [self.menuScrollView setContentSize: CGSizeMake(offsetX, self.menuScrollView.frame.size.height)];
 }
 
-
+// Obtiene clips asincrónicamente, con base en propiedades del objeto
 - (void)cargarClips
 {
-    // Inicializar arreglos
-
-    // Obtener clips
+    self.enConsulta = YES;
+    
     static NSString *entidadClips = @"clip";
 	TSMultimediaData *dataClips = [[TSMultimediaData alloc] init];
     [dataClips getDatosParaEntidad:entidadClips // otros ejemplos: programa, pais, categoria
@@ -132,8 +132,10 @@
                        conDelegate:self];
 }
 
+// Obtiene filtros asincrónicamente, con base en propiedades del objeto
 - (void)cargarFiltros
 {
+    self.enConsulta = YES;
     // Obtener filtros
 	TSMultimediaData *dataFiltros = [[TSMultimediaData alloc] init];
     [dataFiltros getDatosParaEntidad:self.entidadMenu // otros ejemplos: programa, pais, categoria
@@ -288,44 +290,37 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row != [self.clips count]) {
-        
-        // Reutilizar o bien crear nueva celda
-        static NSString *CellIdentifierEstandar = @"CeldaEstandar";
-        ClipEstandarTableCellView *cell = (ClipEstandarTableCellView *)[tableView dequeueReusableCellWithIdentifier:CellIdentifierEstandar];
-        if (cell == nil) {
-            if (indexPath.row==0) {
-                cell = (ClipEstandarTableCellView *)[[[NSBundle mainBundle] loadNibNamed:@"ClipGrandeTableCellView" owner:self options:nil] lastObject];   
-            } else {
-                cell = (ClipEstandarTableCellView *)[[[NSBundle mainBundle] loadNibNamed:@"ClipEstandarTableCellView" owner:self options:nil] lastObject];   
-            }
-                
-         
-        }
-            
-        // Copiar propiedades de thumbnailView (definidas en NIB) y sustitirlo por AsyncImageView correspondiente
-        
-        CGRect frame = cell.thumbnailView.frame;
-        [cell.thumbnailView removeFromSuperview];
-        cell.thumbnailView = [self.arregloClipsAsyncImageViews objectAtIndex:indexPath.row];
-        cell.thumbnailView.frame = frame;
-        [cell insertSubview:cell.thumbnailView atIndex:1];
-     
-        // Establecer texto de etiquetas
-        [cell.titulo setText: [[self.clips objectAtIndex:indexPath.row] valueForKey:@"titulo"]];
-        [cell.duracion setText: [[self.clips objectAtIndex:indexPath.row] valueForKey:@"duracion"]];	
-        [cell.firma setText:[[self.clips objectAtIndex:indexPath.row] obtenerTiempoDesdeParaEsteClip]];
-        return cell;        
-        
-        
-    }
-    else // Celda Ver Más
-    {
-        static NSString *CellIdentifierVerMas = @"CeldaVerMas";
-        UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifierVerMas];
-        if (cell == nil) cell = (UITableViewCell *)[[[NSBundle mainBundle] loadNibNamed:@"VerMasClipsTableCellView" owner:self options:nil] lastObject];
+    // Si estamos en la última fila, entonces devolver celda para "Ver más"
+    if (indexPath.row == [self.clips count])
+        return (UITableViewCell *)[[[NSBundle mainBundle] loadNibNamed:@"VerMasClipsTableCellView" owner:self options:nil] lastObject];
+    
+    // Reutilizar o bien crear nueva celda, tipo Grande o Estándar
+    NSString *nombreNIB = (indexPath.row == 0) ? @"ClipGrandeTableCellView" : @"ClipEstandarTableCellView";    
+    ClipEstandarTableCellView *cell = (ClipEstandarTableCellView *)[tableView dequeueReusableCellWithIdentifier:nombreNIB];
+    if (cell == nil)
+        cell = (ClipEstandarTableCellView *)[[[NSBundle mainBundle] loadNibNamed:nombreNIB owner:self options:nil] lastObject];
+    
+    // Si estamos en medio una cosnulta, devolver la celda tal cual está en el NIB,
+    // por ejemplo, si la tabla sigue con inercia después de empezar a cargar datos
+    if (self.enConsulta)
         return cell;
-    }
+    
+    
+    // Configurar celda
+    
+    // Copiar propiedades de thumbnailView (definidas en NIB) y sustitirlo por AsyncImageView correspondiente
+    CGRect frame = cell.thumbnailView.frame;
+    [cell.thumbnailView removeFromSuperview];
+    cell.thumbnailView = [self.arregloClipsAsyncImageViews objectAtIndex:indexPath.row];
+    cell.thumbnailView.frame = frame;
+    [cell insertSubview:cell.thumbnailView atIndex:1];
+ 
+    // Establecer texto de etiquetas
+    [cell.titulo setText: [[self.clips objectAtIndex:indexPath.row] valueForKey:@"titulo"]];
+    [cell.duracion setText: [[self.clips objectAtIndex:indexPath.row] valueForKey:@"duracion"]];	
+    [cell.firma setText:[[self.clips objectAtIndex:indexPath.row] obtenerTiempoDesdeParaEsteClip]];
+    
+    return cell;        
 }
 
 
@@ -334,29 +329,35 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {		
-    // Leer y devolver si hay altura guardada
-//    if (celdaEstandarHeight)
-//        return celdaEstandarHeight;
-    
-    // Leer en NIB altura de celda y asignarlo a variable auxiliar para sólo cargar NIB una sóla vez
-    
-    // Seleccionar que NIB cargar
-    
     NSString *nombreNIB;
+    CGFloat *cacheVar;
     
-    if (indexPath.row == 0) nombreNIB = @"ClipGrandeTableCellView";
+    // Determinar nombre de NIB y variable auxiliar de cache
+    if (indexPath.row == [self.clips count])
+    {
+        cacheVar = &celdaVerMasHeight;
+        nombreNIB = @"VerMasClipsTableCellView";
+    }
+    else if (indexPath.row == 0)
+    {
+        cacheVar = &celdaGrandeHeight;
+        nombreNIB = @"ClipGrandeTableCellView";
+    }
+    else
+    {
+        cacheVar = &celdaEstandarHeight;
+        nombreNIB = @"ClipEstandarTableCellView";
+    }
     
-    else if (indexPath.row == [self.clips count]) nombreNIB = @"VerMasClipsTableCellView";
+    // Si existe, devolver altura en cache
+    if (*cacheVar)
+        return *cacheVar;
     
-    else nombreNIB = @"ClipEstandarTableCellView";
-    
+    // Si la altura no ha sido guardada en variable de instancia, obtenerla de NIB
     UITableViewCell *celda= (ClipEstandarTableCellView *)[[[NSBundle mainBundle] loadNibNamed:nombreNIB owner:self options:nil] lastObject];
-
+    *cacheVar = celda.frame.size.height;
     
-
-    celdaEstandarHeight = celda.frame.size.height;
-    
-	return celdaEstandarHeight;
+    return *cacheVar;
 }
 
 
@@ -385,18 +386,15 @@
          selector:@selector(playerFinalizado:)                                                 
          name:MPMoviePlayerPlaybackDidFinishNotification
          object:movieController.moviePlayer];
-            
-    } else {    // Se trata de la celda "Ver Más"
-    
-        // Actualizar rango
-        self.rangoUltimo = NSMakeRange(self.rangoUltimo.location + self.rangoUltimo.length, kTAMANO_PAGINA);
         
-        [self cargarClips];
-        
+        [self.clipsTableView deselectRowAtIndexPath:indexPath animated:NO];
     }
-    
-    // Des-seleccionar fila en tabla
-    
+    else // Se trata de la celda "Ver Más"
+    {
+        // Actualizar rango y cargar datos
+        self.rangoUltimo = NSMakeRange(self.rangoUltimo.location + self.rangoUltimo.length, kTAMANO_PAGINA);
+        [self cargarClips];
+    }
 }
 
 -(void) tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
@@ -468,10 +466,8 @@
         {
             AsynchronousImageView *aiv = [[AsynchronousImageView alloc] init];
             [aiv loadImageFromURLString:[NSString stringWithFormat:@"%@", [[self.clips objectAtIndex:i] valueForKey:@"thumbnail_mediano"]]];
-//          [self.arregloClipsAsyncImageViews insertObject:aiv atIndex:i];
-            [self.arregloClipsAsyncImageViews addObject:aiv];
-            
-            //NSLog(@"aa %@", [self.arregloClipsAsyncImageViews count]);
+            [self.arregloClipsAsyncImageViews insertObject:aiv atIndex:i];
+            //[self.arregloClipsAsyncImageViews addObject:aiv];
             [aiv release];
         }
         
@@ -513,9 +509,9 @@
         
         // Reconstruir menú con nuevos fitros
         [self construirMenu];
-        
-        
     }
+    
+    self.enConsulta = NO;
     
     // Liberar objeto de datos
     [data release];

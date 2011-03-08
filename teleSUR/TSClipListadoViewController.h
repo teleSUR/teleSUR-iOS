@@ -32,10 +32,13 @@
     
     // Auxiliares
     CGFloat celdaEstandarHeight;
-    CGFloat celdaPrincipalHeight;
+    CGFloat celdaGrandeHeight;
+    CGFloat celdaVerMasHeight;
     
     int indiceDeFiltroSeleccionado;
     int indiceDeClipSeleccionado;
+    
+    BOOL enConsulta;
     
 }
 
@@ -60,6 +63,8 @@
 // Auxiliares
 @property (nonatomic, assign) int indiceDeFiltroSeleccionado;
 @property (nonatomic, assign) int indiceDeClipSeleccionado;
+
+@property (nonatomic, assign) BOOL enConsulta;
 
 // Init
 - (id)initWithEntidad:(NSString *)entidad yFiltros:(NSDictionary *)diccionario;
