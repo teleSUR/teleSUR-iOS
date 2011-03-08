@@ -356,7 +356,7 @@
 		63EDAB4F13232F8200496B83 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		63EDAB511323316500496B83 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		C4F400311325281D00239C39 /* ClipGrandeTableCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClipGrandeTableCellView.xib; sourceTree = "<group>"; };
-		C4FEABE41324BF57003B6509 /* libGoogleAnalytics_NoThumb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGoogleAnalytics_NoThumb.a; path = "../../../../Downloads/Google Analytics SDK/Library/libGoogleAnalytics_NoThumb.a"; sourceTree = "<group>"; };
+		C4FEABE41324BF57003B6509 /* libGoogleAnalytics_NoThumb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGoogleAnalytics_NoThumb.a; path = "Google Analyics SDK/Library/libGoogleAnalytics_NoThumb.a"; sourceTree = "<group>"; };
 		C4FEABFE1324C25E003B6509 /* VerMasClipsTableCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VerMasClipsTableCellView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 

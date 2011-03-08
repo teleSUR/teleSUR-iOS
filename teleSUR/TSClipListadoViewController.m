@@ -413,6 +413,7 @@
 {
     // Se va a actualizar la lista, re-inicializar configuraci—n
     [self configurarConEntidad:self.entidadMenu yFiltros:self.diccionarioConfiguracionFiltros];
+    self.clips = [NSMutableArray array];
     
     [self cargarClips];
 }
