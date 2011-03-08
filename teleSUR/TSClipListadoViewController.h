@@ -38,7 +38,7 @@
     int indiceDeFiltroSeleccionado;
     int indiceDeClipSeleccionado;
     
-    BOOL enConsulta;
+    BOOL agregarAlFinal;
     
 }
 
@@ -64,7 +64,7 @@
 @property (nonatomic, assign) int indiceDeFiltroSeleccionado;
 @property (nonatomic, assign) int indiceDeClipSeleccionado;
 
-@property (nonatomic, assign) BOOL enConsulta;
+@property (nonatomic, assign) BOOL agregarAlFinal;
 
 // Init
 - (id)initWithEntidad:(NSString *)entidad yFiltros:(NSDictionary *)diccionario;

@@ -29,7 +29,7 @@
 @synthesize clipsTableView, menuScrollView;
 @synthesize clips, filtros;
 @synthesize arregloClipsAsyncImageViews;
-@synthesize indiceDeClipSeleccionado, indiceDeFiltroSeleccionado, enConsulta;
+@synthesize indiceDeClipSeleccionado, indiceDeFiltroSeleccionado, agregarAlFinal;
 
 
 #pragma mark -
@@ -58,7 +58,7 @@
     
     //Auxialiares
     self.indiceDeFiltroSeleccionado = 0;
-    self.enConsulta = 0;
+    self.agregarAlFinal = NO;
     
     // Clips
     //self.clips = [NSMutableArray array];
@@ -122,8 +122,6 @@
 // Obtiene clips asincrónicamente, con base en propiedades del objeto
 - (void)cargarClips
 {
-    self.enConsulta = YES;
-    
     static NSString *entidadClips = @"clip";
 	TSMultimediaData *dataClips = [[TSMultimediaData alloc] init];
     [dataClips getDatosParaEntidad:entidadClips // otros ejemplos: programa, pais, categoria
@@ -135,7 +133,6 @@
 // Obtiene filtros asincrónicamente, con base en propiedades del objeto
 - (void)cargarFiltros
 {
-    self.enConsulta = YES;
     // Obtener filtros
 	TSMultimediaData *dataFiltros = [[TSMultimediaData alloc] init];
     [dataFiltros getDatosParaEntidad:self.entidadMenu // otros ejemplos: programa, pais, categoria
@@ -179,8 +176,6 @@
     
     // Reinicializar datos, con misma entidad de menú pero nuevo diccionario de confgiruación de filtros 
     [self configurarConEntidad:self.entidadMenu yFiltros:self.diccionarioConfiguracionFiltros];
-    self.clips = [NSMutableArray array];
-    self.arregloClipsAsyncImageViews = [NSMutableArray array];
     
     // Actualizamos el boton que debe "seleccionarse"
 	self.indiceDeFiltroSeleccionado = indice;
@@ -287,7 +282,6 @@
 
 
 
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Si estamos en la última fila, entonces devolver celda para "Ver más"
@@ -302,9 +296,8 @@
     
     // Si estamos en medio una cosnulta, devolver la celda tal cual está en el NIB,
     // por ejemplo, si la tabla sigue con inercia después de empezar a cargar datos
-    if (self.enConsulta)
+    if ([self.clips count] == 0)
         return cell;
-    
     
     // Configurar celda
     
@@ -393,9 +386,14 @@
     {
         // Actualizar rango y cargar datos
         self.rangoUltimo = NSMakeRange(self.rangoUltimo.location + self.rangoUltimo.length, kTAMANO_PAGINA);
+        
+        // Bandera para no reemplazar la lista de clips, sino agregar los elementos al final
+        self.agregarAlFinal = YES;
+        
         [self cargarClips];
     }
 }
+
 
 -(void) tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
@@ -405,6 +403,7 @@
     [detalleView release];
 }
 
+
 #pragma mark -
 #pragma mark PullToReloadTableViewController
 
@@ -413,10 +412,10 @@
 {
     // Se va a actualizar la lista, re-inicializar configuración
     [self configurarConEntidad:self.entidadMenu yFiltros:self.diccionarioConfiguracionFiltros];
-    self.clips = [NSMutableArray array];
     
     [self cargarClips];
 }
+
 
 #pragma mark -
 #pragma mark Métodos redirigidos a PullToReloadTableViewController
@@ -451,6 +450,7 @@
     [super dealloc];
 }
 
+
 #pragma mark -
 #pragma mark TSMultimediaDataDelegate
 
@@ -460,7 +460,17 @@
     if ([entidad isEqualToString:@"clip"])
     {
         // En caso de haber recibido entidades de tipo clip, asignar arreglo de clips
-        [self.clips addObjectsFromArray:array];
+        
+        // Agregar al final o sustuituir listado actual ?
+        if (self.agregarAlFinal)
+        {
+            [self.clips addObjectsFromArray:array];
+        }
+        else
+        {
+            [self.clips setArray:array];
+            self.arregloClipsAsyncImageViews = [NSMutableArray array];
+        }
         
         // Para cada clip obtenido agregar un AsynchronousImageView al arregloClipsAsyncImageViews
         for (int i=0; i < [self.clips count]; i++)
@@ -475,21 +485,20 @@
         // Recargar tabla
         [self.clipsTableView reloadData];
         
+        // Si la bandera para agregar al final está apagada, hacer scrolla hasta arriba
+        if (!self.agregarAlFinal)
+        {
+            [self.clipsTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionNone animated:NO];
+        }
+        self.agregarAlFinal = NO;
+        
+        
         // Actualizar datos para la vista de pull-to-refresh
         [self.tableViewController setLastUpdate:[NSDate date]];
         [self.tableViewController dataSourceDidFinishLoadingNewData];
         
         // Ocultar vista de loading
         [self ocultarLoadingViewConAnimacion:YES];
-        
-        // Regresar el scroll de la tabla a la parte superior
-        // sólo si se trajo la primera página, lo que significa
-        // que se presionó un botón del menú de filtros
-        if (self.rangoUltimo.length == [self.clips count])
-        {
-            [self.clipsTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionNone animated:NO];
-        }
-        
     }
     else
     {
@@ -511,8 +520,6 @@
         // Reconstruir menú con nuevos fitros
         [self construirMenu];
     }
-    
-    self.enConsulta = NO;
     
     // Liberar objeto de datos
     [data release];
