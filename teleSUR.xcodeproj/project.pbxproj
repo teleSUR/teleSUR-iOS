@@ -124,6 +124,8 @@
 		635C6D65131DDA850017CD5F /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 635C6D64131DDA850017CD5F /* MediaPlayer.framework */; };
 		63C7AEFA131DAF9000BD7F64 /* AsynchronousImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C7AEF9131DAF9000BD7F64 /* AsynchronousImageView.m */; };
 		63E01697131B883D001928E4 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 63E01696131B883D001928E4 /* Default.png */; };
+		63E4A8EE1325EDF600669E91 /* TSProgramaListadoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E4A8ED1325EDF400669E91 /* TSProgramaListadoViewController.m */; };
+		63E4A8F01326045100669E91 /* ProgramaTableCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63E4A8EF1326045100669E91 /* ProgramaTableCellView.xib */; };
 		63EDAB5013232F8200496B83 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63EDAB4F13232F8200496B83 /* CFNetwork.framework */; };
 		63EDAB521323316500496B83 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 63EDAB511323316500496B83 /* libsqlite3.0.dylib */; };
 		C4F400321325281D00239C39 /* ClipGrandeTableCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4F400311325281D00239C39 /* ClipGrandeTableCellView.xib */; };
@@ -352,6 +354,9 @@
 		63C7AEF8131DAF8F00BD7F64 /* AsynchronousImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsynchronousImageView.h; sourceTree = "<group>"; };
 		63C7AEF9131DAF9000BD7F64 /* AsynchronousImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsynchronousImageView.m; sourceTree = "<group>"; };
 		63E01696131B883D001928E4 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		63E4A8EC1325EDF300669E91 /* TSProgramaListadoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSProgramaListadoViewController.h; sourceTree = "<group>"; };
+		63E4A8ED1325EDF400669E91 /* TSProgramaListadoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSProgramaListadoViewController.m; sourceTree = "<group>"; };
+		63E4A8EF1326045100669E91 /* ProgramaTableCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProgramaTableCellView.xib; sourceTree = "<group>"; };
 		63EDAB4C13232F4D00496B83 /* GANTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GANTracker.h; path = "Google Analyics SDK/Library/GANTracker.h"; sourceTree = "<group>"; };
 		63EDAB4F13232F8200496B83 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		63EDAB511323316500496B83 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
@@ -989,10 +994,13 @@
 				3A10016C131B2B0600717211 /* TSClipListadoViewController.h */,
 				3A10016D131B2B0600717211 /* TSClipListadoViewController.m */,
 				3A10016E131B2B0600717211 /* TSClipListadoViewController.xib */,
+				63E4A8EC1325EDF300669E91 /* TSProgramaListadoViewController.h */,
+				63E4A8ED1325EDF400669E91 /* TSProgramaListadoViewController.m */,
 				3A236146131C534300A941E2 /* ClipEstandarTableCellView.h */,
 				3A236147131C534300A941E2 /* ClipEstandarTableCellView.m */,
 				3A2360B5131C4B7200A941E2 /* ClipEstandarTableCellView.xib */,
 				C4F400311325281D00239C39 /* ClipGrandeTableCellView.xib */,
+				63E4A8EF1326045100669E91 /* ProgramaTableCellView.xib */,
 				6341A7D3132056A2008FFD9D /* EGORefreshTableHeaderView.h */,
 				6341A7D4132056A2008FFD9D /* EGORefreshTableHeaderView.m */,
 				6341A7D7132056FD008FFD9D /* PullToRefreshTableViewController.h */,
@@ -1112,6 +1120,7 @@
 				6341A7E8132073AB008FFD9D /* blueArrow.png in Resources */,
 				C4FEABFF1324C25E003B6509 /* VerMasClipsTableCellView.xib in Resources */,
 				C4F400321325281D00239C39 /* ClipGrandeTableCellView.xib in Resources */,
+				63E4A8F01326045100669E91 /* ProgramaTableCellView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1231,6 +1240,7 @@
 				6341A7D5132056A2008FFD9D /* EGORefreshTableHeaderView.m in Sources */,
 				6341A7D9132056FE008FFD9D /* PullToRefreshTableViewController.m in Sources */,
 				6341A7DC132057DF008FFD9D /* SoundEffect.m in Sources */,
+				63E4A8EE1325EDF600669E91 /* TSProgramaListadoViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

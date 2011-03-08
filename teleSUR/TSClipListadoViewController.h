@@ -40,6 +40,7 @@
     
     BOOL agregarAlFinal;
     BOOL omitirVerMas;
+    BOOL conFilltroTodos;
     
 }
 
@@ -67,6 +68,7 @@
 
 @property (nonatomic, assign) BOOL agregarAlFinal;
 @property (nonatomic, assign) BOOL omitirVerMas;
+@property (nonatomic, assign) BOOL conFiltroTodos;
 
 // Init
 - (id)initWithEntidad:(NSString *)entidad yFiltros:(NSDictionary *)diccionario;
@@ -82,6 +84,8 @@
 // Eventos
 - (void)filtroSeleccionadoConBoton: (UIButton *)boton;
 - (void)playerFinalizado:(NSNotification *)notification;
+
+- (NSString *)nombreNibParaIndexPath:(NSIndexPath *)indexPath;
 
 
 @end

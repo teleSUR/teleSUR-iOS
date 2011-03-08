@@ -30,7 +30,7 @@
 @synthesize clips, filtros;
 @synthesize arregloClipsAsyncImageViews;
 @synthesize indiceDeClipSeleccionado, indiceDeFiltroSeleccionado;
-@synthesize agregarAlFinal, omitirVerMas;
+@synthesize agregarAlFinal, omitirVerMas, conFiltroTodos;
 
 
 #pragma mark -
@@ -112,7 +112,7 @@
         // Actualizar offset
         offsetX += boton.frame.size.width + kMARGEN_MENU;
         
-        // A√±adir bot√≥n a la jerarqu√≠a de vistas
+        // Añadir botón a la jerarquón de vistas
         [self.menuScrollView addSubview:boton];
     }
     
@@ -220,6 +220,8 @@
     self.clipsTableView.scrollsToTop = YES;
     self.menuScrollView.scrollsToTop = NO;
     
+    self.conFiltroTodos = YES;
+    
     self.clips = [NSMutableArray array];
     self.arregloClipsAsyncImageViews = [NSMutableArray array];
     
@@ -288,15 +290,16 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Si estamos en la última fila, entonces devolver celda para "Ver más"
-    if (indexPath.row == [self.clips count])
-        return (UITableViewCell *)[[[NSBundle mainBundle] loadNibNamed:@"VerMasClipsTableCellView" owner:self options:nil] lastObject];
+    NSString *nombreNib = [self nombreNibParaIndexPath:indexPath];
     
-    // Reutilizar o bien crear nueva celda, tipo Grande o Estándar
-    NSString *nombreNIB = (indexPath.row == 0) ? @"ClipGrandeTableCellView" : @"ClipEstandarTableCellView";    
-    ClipEstandarTableCellView *cell = (ClipEstandarTableCellView *)[tableView dequeueReusableCellWithIdentifier:nombreNIB];
+    // Si estamos en la última fila, entonces devolver celda para "Ver más"
+    if ([nombreNib isEqualToString:@"VerMasClipsTableCellView"])
+        return (UITableViewCell *)[[[NSBundle mainBundle] loadNibNamed:nombreNib owner:self options:nil] lastObject];
+    
+    // Reutilizar o bien crear nueva celda, tipo Grande o Estándar  
+    ClipEstandarTableCellView *cell = (ClipEstandarTableCellView *)[tableView dequeueReusableCellWithIdentifier:nombreNib];
     if (cell == nil)
-        cell = (ClipEstandarTableCellView *)[[[NSBundle mainBundle] loadNibNamed:nombreNIB owner:self options:nil] lastObject];
+        cell = (ClipEstandarTableCellView *)[[[NSBundle mainBundle] loadNibNamed:nombreNib owner:self options:nil] lastObject];
     
     // Si estamos en medio una cosnulta, devolver la celda tal cual está en el NIB,
     // por ejemplo, si la tabla sigue con inercia después de empezar a cargar datos
@@ -325,25 +328,21 @@
 #pragma mark Table view delegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{		
-    NSString *nombreNIB;
+{
     CGFloat *cacheVar;
     
     // Determinar nombre de NIB y variable auxiliar de cache
     if (indexPath.row == [self.clips count])
     {
         cacheVar = &celdaVerMasHeight;
-        nombreNIB = @"VerMasClipsTableCellView";
     }
     else if (indexPath.row == 0)
     {
         cacheVar = &celdaGrandeHeight;
-        nombreNIB = @"ClipGrandeTableCellView";
     }
     else
     {
         cacheVar = &celdaEstandarHeight;
-        nombreNIB = @"ClipEstandarTableCellView";
     }
     
     // Si existe, devolver altura en cache
@@ -351,7 +350,7 @@
         return *cacheVar;
     
     // Si la altura no ha sido guardada en variable de instancia, obtenerla de NIB
-    UITableViewCell *celda= (ClipEstandarTableCellView *)[[[NSBundle mainBundle] loadNibNamed:nombreNIB owner:self options:nil] lastObject];
+    UITableViewCell *celda= (ClipEstandarTableCellView *)[[[NSBundle mainBundle] loadNibNamed:[self nombreNibParaIndexPath:indexPath] owner:self options:nil] lastObject];
     *cacheVar = celda.frame.size.height;
     
     return *cacheVar;
@@ -399,12 +398,28 @@
 }
 
 
--(void) tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
     // Crear y presentar vista de detalles
     TSClipDetallesViewController *detalleView = [[TSClipDetallesViewController alloc] initWithClip:[self.clips objectAtIndex:indexPath.row]];
     [self.navigationController pushViewController:detalleView animated:YES];
     [detalleView release];
+}
+
+- (NSString *)nombreNibParaIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == [self.clips count])
+    {
+        return @"VerMasClipsTableCellView";
+    }
+    else if (indexPath.row == 0)
+    {
+         return @"ClipGrandeTableCellView";
+    }
+    else
+    {
+         return @"ClipEstandarTableCellView";
+    }
 }
 
 
@@ -491,7 +506,7 @@
         [self.clipsTableView reloadData];
         
         // Si la bandera para agregar al final está apagada, hacer scrolla hasta arriba
-        if (!self.agregarAlFinal)
+        if (!self.agregarAlFinal && [self.clips count])
         {
             [self.clipsTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionNone animated:NO];
         }
@@ -510,17 +525,26 @@
         // En caso de haber recibido cualquier otro tipo de entidad, es para filtros
         
         // Crear diccionario para representar "todos", un primer filtro fake
-        NSMutableDictionary *filtroTodos = [NSMutableDictionary dictionary];
-        [filtroTodos setValue:@"Todos" forKey:@"nombre"];
-        [filtroTodos setValue:@"todos" forKey:@"slug"];
-        [filtroTodos setValue:@"Mostrar todos" forKey:@"descripcion"];
+        if (self.conFiltroTodos)
+        {
+            NSMutableDictionary *filtroTodos = [NSMutableDictionary dictionary];
+            [filtroTodos setValue:@"Todos" forKey:@"nombre"];
+            [filtroTodos setValue:@"todos" forKey:@"slug"];
+            [filtroTodos setValue:@"Mostrar todos" forKey:@"descripcion"];
+            
+            // Insertar filtro como primer elemento del arreglo recibido
+            NSMutableArray *arregloAumentado = [NSMutableArray arrayWithArray:array];
+            [arregloAumentado insertObject:filtroTodos atIndex:0];
+            
+            // Actualizar arreglo interno
+            self.filtros = arregloAumentado;
+        }
+        else
+        {
+            self.filtros = array;
+        }
         
-        // Insertar filtro como primer elemento del arreglo recibido
-        NSMutableArray *arregloAumentado = [NSMutableArray arrayWithArray:array];
-        [arregloAumentado insertObject:filtroTodos atIndex:0];
         
-        // Actualizar arreglo interno
-        self.filtros = arregloAumentado;
         
         // Reconstruir menú con nuevos fitros
         [self construirMenu];
