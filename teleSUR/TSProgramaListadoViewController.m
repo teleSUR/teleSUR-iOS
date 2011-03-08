@@ -32,7 +32,8 @@
     
     // Configuración de scrollview
     self.menuScrollView.pagingEnabled = YES;
-    self.menuScrollView.backgroundColor = [UIColor groupTableViewBackgroundColor];
+	
+    self.menuScrollView.backgroundColor = [UIColor viewFlipsideBackgroundColor];
     
     // No mostrar primer filtro "Todos"
     self.conFiltroTodos = NO;

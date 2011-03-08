@@ -981,9 +981,9 @@
 		63E016A5131D840E001928E4 /* Vistas */ = {
 			isa = PBXGroup;
 			children = (
+				3A1001F0131B354300717211 /* LoadingView.xib */,
 				63E016A7131D846E001928E4 /* Listado */,
 				63E016A8131D8481001928E4 /* Detalles */,
-				3A1001F0131B354300717211 /* LoadingView.xib */,
 			);
 			name = Vistas;
 			sourceTree = "<group>";
@@ -1001,13 +1001,13 @@
 				3A2360B5131C4B7200A941E2 /* ClipEstandarTableCellView.xib */,
 				C4F400311325281D00239C39 /* ClipGrandeTableCellView.xib */,
 				63E4A8EF1326045100669E91 /* ProgramaTableCellView.xib */,
+				C4FEABFE1324C25E003B6509 /* VerMasClipsTableCellView.xib */,
 				6341A7D3132056A2008FFD9D /* EGORefreshTableHeaderView.h */,
 				6341A7D4132056A2008FFD9D /* EGORefreshTableHeaderView.m */,
 				6341A7D7132056FD008FFD9D /* PullToRefreshTableViewController.h */,
 				6341A7D8132056FD008FFD9D /* PullToRefreshTableViewController.m */,
 				6341A7DA132057DE008FFD9D /* SoundEffect.h */,
 				6341A7DB132057DE008FFD9D /* SoundEffect.m */,
-				C4FEABFE1324C25E003B6509 /* VerMasClipsTableCellView.xib */,
 			);
 			name = Listado;
 			sourceTree = "<group>";
