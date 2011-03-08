@@ -217,6 +217,8 @@
 - (void)viewDidLoad
 {
 	[self personalizarNavigationBar];
+    self.clipsTableView.scrollsToTop = YES;
+    self.menuScrollView.scrollsToTop = NO;
     
     self.clips = [NSMutableArray array];
     self.arregloClipsAsyncImageViews = [NSMutableArray array];
