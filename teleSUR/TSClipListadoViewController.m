@@ -29,7 +29,8 @@
 @synthesize clipsTableView, menuScrollView;
 @synthesize clips, filtros;
 @synthesize arregloClipsAsyncImageViews;
-@synthesize indiceDeClipSeleccionado, indiceDeFiltroSeleccionado, agregarAlFinal;
+@synthesize indiceDeClipSeleccionado, indiceDeFiltroSeleccionado;
+@synthesize agregarAlFinal, omitirVerMas;
 
 
 #pragma mark -
@@ -275,11 +276,12 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if ([self.clips count] == 0) return 0;
-    else return [self.clips count] + 1;
+    // Nœmero de clips m‡s uno para celda "Ver M‡s"
+    if ([self.clips count] == 0 || self.omitirVerMas)
+        return [self.clips count];
+    else
+        return [self.clips count] + 1;
 }
-
-
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -478,9 +480,10 @@
             AsynchronousImageView *aiv = [[AsynchronousImageView alloc] init];
             [aiv loadImageFromURLString:[NSString stringWithFormat:@"%@", [[self.clips objectAtIndex:i] valueForKey:@"thumbnail_mediano"]]];
             [self.arregloClipsAsyncImageViews insertObject:aiv atIndex:i];
-            //[self.arregloClipsAsyncImageViews addObject:aiv];
             [aiv release];
         }
+        
+        self.omitirVerMas = [array count] < kTAMANO_PAGINA;
         
         // Recargar tabla
         [self.clipsTableView reloadData];

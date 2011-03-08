@@ -45,19 +45,5 @@
          landmarkName = "-TSMultimediaData:entidadesRecibidas:paraEntidad:"
          landmarkType = "5">
       </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "teleSUR/TSClipListadoViewController.m"
-         timestampString = "321246739.112418"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "483"
-         endingLineNumber = "483"
-         landmarkName = "-TSMultimediaData:entidadesRecibidas:paraEntidad:"
-         landmarkType = "5">
-      </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>

@@ -39,6 +39,7 @@
     int indiceDeClipSeleccionado;
     
     BOOL agregarAlFinal;
+    BOOL omitirVerMas;
     
 }
 
@@ -65,6 +66,7 @@
 @property (nonatomic, assign) int indiceDeClipSeleccionado;
 
 @property (nonatomic, assign) BOOL agregarAlFinal;
+@property (nonatomic, assign) BOOL omitirVerMas;
 
 // Init
 - (id)initWithEntidad:(NSString *)entidad yFiltros:(NSDictionary *)diccionario;
