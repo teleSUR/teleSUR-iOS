@@ -64,7 +64,7 @@
     if (rango.length)
     {
         [parametrosGET addObject:[NSString stringWithFormat:@"primero=%d", rango.location]];
-        [parametrosGET addObject:[NSString stringWithFormat:@"ultimo=%d", rango.length]];
+        [parametrosGET addObject:[NSString stringWithFormat:@"ultimo=%d", rango.location + rango.length - 1]];
     }
 	
 	// construir quierystring, URL, consulta y conexión

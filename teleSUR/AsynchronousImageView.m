@@ -15,7 +15,7 @@
 - (void)loadImageFromURLString:(NSString *)theUrlString
 {
 	//[self.image release], self.image = nil;
-    [self setImage:[UIImage imageNamed:@"SInImagen.png"]];
+    [self setImage:[UIImage imageNamed:@"SinImagen.png"]];
     
 	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:theUrlString] 
 											 cachePolicy:NSURLRequestReturnCacheDataElseLoad 

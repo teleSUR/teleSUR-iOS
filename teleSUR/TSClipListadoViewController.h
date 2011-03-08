@@ -21,11 +21,12 @@
 	
 	// Datos de entrada para configurar peticiones al API
 	NSString *entidadMenu;
-	NSRange rango;
+    NSRange rangoUltimo;
+    
 	NSMutableDictionary *diccionarioConfiguracionFiltros;
 	
     // Resultados de consultas a API
-	NSArray *clips;
+	NSMutableArray *clips;
 	NSArray *filtros;
     NSMutableArray *arregloClipsAsyncImageViews;
     
@@ -49,10 +50,10 @@
 // Datos de entrada para configurar peticiones al API
 @property (nonatomic, retain) NSString *entidadMenu;
 @property (nonatomic, retain) NSMutableDictionary *diccionarioConfiguracionFiltros;
-@property (nonatomic, assign) NSRange rango;
+@property (nonatomic, assign) NSRange rangoUltimo;
 
 // Resultados de consultas a API
-@property (nonatomic, retain) NSArray *clips;
+@property (nonatomic, retain) NSMutableArray *clips;
 @property (nonatomic, retain) NSArray *filtros;
 @property (nonatomic, retain) NSMutableArray *arregloClipsAsyncImageViews;
 
@@ -65,7 +66,9 @@
 - (void)configurarConEntidad:(NSString *)entidad yFiltros:(NSDictionary *)diccionario;
 
 // Operaciones
-- (void)cargarDatos;
+- (void)cargarClips;
+- (void)cargarFiltros;
+
 - (void)construirMenu;
 - (void)reloadTableViewDataSource; // Para pull-to-refresh
 

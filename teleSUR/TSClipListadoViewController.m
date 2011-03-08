@@ -25,7 +25,7 @@
 @implementation TSClipListadoViewController
 
 @synthesize tableViewController;
-@synthesize entidadMenu, rango, diccionarioConfiguracionFiltros;
+@synthesize entidadMenu, rangoUltimo, diccionarioConfiguracionFiltros;
 @synthesize clipsTableView, menuScrollView;
 @synthesize clips, filtros;
 @synthesize arregloClipsAsyncImageViews;
@@ -40,6 +40,8 @@
 	if ((self = [super init]))
     {
 		[self configurarConEntidad:entidad yFiltros:diccionario];
+        self.clips = [NSMutableArray array];
+        self.arregloClipsAsyncImageViews = [NSMutableArray array];
 	}
 	
 	return self;
@@ -51,11 +53,15 @@
     // Datos
     self.entidadMenu = (entidad != nil) ? entidad : @"categoria";
     self.diccionarioConfiguracionFiltros = diccionario ? diccionario : [NSMutableDictionary dictionary];
-    self.rango = NSMakeRange(1, kTAMANO_PAGINA);
+    
+    self.rangoUltimo = NSMakeRange(1, kTAMANO_PAGINA);
     
     //Auxialiares
     self.indiceDeFiltroSeleccionado = 0;
-    self.arregloClipsAsyncImageViews = [NSMutableArray array];
+    
+    // Clips
+    //self.clips = [NSMutableArray array];
+    
 }
 
 
@@ -78,8 +84,7 @@
         boton.backgroundColor = [UIColor clearColor];
         
         // Asignar acci—n del bot—n
-        if (self.indiceDeFiltroSeleccionado != i)
-            [boton addTarget:self action:@selector(filtroSeleccionadoConBoton:) forControlEvents:(UIControlEventTouchUpInside)];
+        [boton addTarget:self action:@selector(filtroSeleccionadoConBoton:) forControlEvents:(UIControlEventTouchUpInside)];
         
         // Configurar label de bot—n
         boton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:15.0];
@@ -114,30 +119,26 @@
 }
 
 
-- (void)cargarDatos
+- (void)cargarClips
 {
     // Inicializar arreglos
-    self.clips = nil;
-    self.filtros = nil;
-    
-	// Regresar el scroll de la tabla a la parte superior
-	[self.clipsTableView setContentOffset:CGPointMake(0, 0) animated:NO];
-	
-	
+
     // Obtener clips
     static NSString *entidadClips = @"clip";
 	TSMultimediaData *dataClips = [[TSMultimediaData alloc] init];
     [dataClips getDatosParaEntidad:entidadClips // otros ejemplos: programa, pais, categoria
                         conFiltros:self.diccionarioConfiguracionFiltros // otro ejemplo: conFiltros:[NSDictionary dictionaryWithObject:@"2010-01-01" forKey:@"hasta"]
-                           enRango:self.rango  // otro ejemplo: NSMakeRange(1, 1) -sÃ³lo uno-
+                           enRango:self.rangoUltimo  // otro ejemplo: NSMakeRange(1, 1) -sÃ³lo uno-
                        conDelegate:self];
-    
-    
+}
+
+- (void)cargarFiltros
+{
     // Obtener filtros
 	TSMultimediaData *dataFiltros = [[TSMultimediaData alloc] init];
     [dataFiltros getDatosParaEntidad:self.entidadMenu // otros ejemplos: programa, pais, categoria
                           conFiltros:nil // otro ejemplo: conFiltros:[NSDictionary dictionaryWithObject:@"2010-01-01" forKey:@"hasta"]
-                             enRango:NSMakeRange(0, 0)  // otro ejemplo: NSMakeRange(1, 1) -sÃ³lo uno-
+                             enRango:NSMakeRange(1, 0)  // otro ejemplo: NSMakeRange(1, 1) -sÃ³lo uno-
                          conDelegate:self];
 }
 
@@ -147,6 +148,13 @@
 
 - (void)filtroSeleccionadoConBoton:(UIButton *)boton
 {
+    // Obtener ’ndice y slug del filtro seleccionado
+    NSInteger indice = [[self.menuScrollView subviews] indexOfObject:boton];
+    NSString *slug = [[self.filtros objectAtIndex:indice] valueForKey:@"slug"];
+    
+    // Si se presion— el mismo que estaba seleccionado, no hacer nada
+    if (self.indiceDeFiltroSeleccionado == indice) return;
+    
     // Apagar todos los botones y prender el bot—n en cuesti—n
     for (UIButton *btn in [self.menuScrollView subviews]) [btn setSelected:NO];
 	[boton setSelected:YES];
@@ -163,21 +171,22 @@
     
     // Aplicar nuevo offset
     [[self menuScrollView] setContentOffset:CGPointMake(offset, 0) animated:YES];
-    
-    // Obtener ’ndice y slug del filtro seleccionado
-    NSInteger indice = [[self.menuScrollView subviews] indexOfObject:boton];
-    NSString *slug = [[self.filtros objectAtIndex:indice] valueForKey:@"slug"];
-    	
-	// Actualizamos el boton que debe "seleccionarse"
-	self.indiceDeFiltroSeleccionado = indice;
 	
     // Configurar nuevo diccionario de filtros, no filtrar si se us— bot—n "todos"
     [self.diccionarioConfiguracionFiltros setValue:((indice > 0) ? slug : nil) forKey:self.entidadMenu];
     
+    // Reinicializar datos, con misma entidad de menœ pero nuevo diccionario de confgiruaci—n de filtros 
+    [self configurarConEntidad:self.entidadMenu yFiltros:self.diccionarioConfiguracionFiltros];
+    self.clips = [NSMutableArray array];
+    self.arregloClipsAsyncImageViews = [NSMutableArray array];
+    
+    // Actualizamos el boton que debe "seleccionarse"
+	self.indiceDeFiltroSeleccionado = indice;
+    
     // Re-cargar datos
     // Mostrar vista de loading
-    [self.tableViewController mostrarLoadingViewConAnimacion:YES];
-    [self cargarDatos];
+    [self mostrarLoadingViewConAnimacion:YES];
+    [self cargarClips];
 }   
 
 - (void)playerFinalizado:(NSNotification *)notification
@@ -211,6 +220,9 @@
 {
 	[self personalizarNavigationBar];
     
+    self.clips = [NSMutableArray array];
+    self.arregloClipsAsyncImageViews = [NSMutableArray array];
+    
     
     // Detemrinar datos de entrada: filtros a aplicar, y filtros a mostrar
     NSMutableDictionary *dict = [NSMutableDictionary dictionary]; 
@@ -238,8 +250,10 @@
     
     
     // Mostrar vista de loading y cargar datos
-    [self.tableViewController mostrarLoadingViewConAnimacion:YES];
-    [self cargarDatos];
+    [self mostrarLoadingViewConAnimacion:YES];
+    [self cargarFiltros];
+    [self cargarClips];
+    
 	
     [super viewDidLoad];
     
@@ -269,12 +283,12 @@
 }
 
 
+
+
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    
-    
-    if (indexPath.row < [self.clips count]) {
+    if (indexPath.row != [self.clips count]) {
         
         // Reutilizar o bien crear nueva celda
         static NSString *CellIdentifierEstandar = @"CeldaEstandar";
@@ -290,26 +304,28 @@
         }
             
         // Copiar propiedades de thumbnailView (definidas en NIB) y sustitirlo por AsyncImageView correspondiente
+        
         CGRect frame = cell.thumbnailView.frame;
         [cell.thumbnailView removeFromSuperview];
         cell.thumbnailView = [self.arregloClipsAsyncImageViews objectAtIndex:indexPath.row];
         cell.thumbnailView.frame = frame;
-        [cell addSubview:cell.thumbnailView];
-        
+        [cell insertSubview:cell.thumbnailView atIndex:1];
+     
         // Establecer texto de etiquetas
         [cell.titulo setText: [[self.clips objectAtIndex:indexPath.row] valueForKey:@"titulo"]];
         [cell.duracion setText: [[self.clips objectAtIndex:indexPath.row] valueForKey:@"duracion"]];	
         [cell.firma setText:[[self.clips objectAtIndex:indexPath.row] obtenerTiempoDesdeParaEsteClip]];
         return cell;        
-    } else {
+        
+        
+    }
+    else // Celda Ver M‡s
+    {
         static NSString *CellIdentifierVerMas = @"CeldaVerMas";
         UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifierVerMas];
         if (cell == nil) cell = (UITableViewCell *)[[[NSBundle mainBundle] loadNibNamed:@"VerMasClipsTableCellView" owner:self options:nil] lastObject];
         return cell;
-        
-    
     }
-
 }
 
 
@@ -330,6 +346,8 @@
     
     if (indexPath.row == 0) nombreNIB = @"ClipGrandeTableCellView";
     
+    else if (indexPath.row == [self.clips count]) nombreNIB = @"VerMasClipsTableCellView";
+    
     else nombreNIB = @"ClipEstandarTableCellView";
     
     UITableViewCell *celda= (ClipEstandarTableCellView *)[[[NSBundle mainBundle] loadNibNamed:nombreNIB owner:self options:nil] lastObject];
@@ -347,41 +365,38 @@
     // Guardar referencia a ’ndice, notificaci—n del player lo necesita
     self.indiceDeClipSeleccionado = indexPath.row;
     
-    if (self.indiceDeClipSeleccionado < [self.clips count]) {   // Se trata de un video
+    if (self.indiceDeClipSeleccionado < [self.clips count]) // Se trata de un video
+    {
+        // Obtener NSURL del video
+        NSString *stringURL = [NSString stringWithFormat:@"%@", [[self.clips objectAtIndex:indexPath.row] valueForKey:@"archivo_url"]];
+        NSURL *urlVideo = [NSURL URLWithString: stringURL];
         
-            // Obtener NSURL del video
-            ;
-            NSString *stringURL = [NSString stringWithFormat:@"%@", [[self.clips objectAtIndex:indexPath.row] valueForKey:@"archivo_url"]];
-            NSURL *urlVideo = [NSURL URLWithString: stringURL];
+        // Crear y configurar player
+        MPMoviePlayerViewController *movieController = [[MPMoviePlayerViewController alloc] initWithContentURL:urlVideo];
+        [movieController.view setBackgroundColor: [UIColor blackColor]];
+        
+        // Presentar player y reproducir video
+        [self presentMoviePlayerViewControllerAnimated:movieController];
+        [movieController.moviePlayer play];  
+        
+        // Agregar observer al finalizar reproducci—n
+        [[NSNotificationCenter defaultCenter] 
+         addObserver:self
+         selector:@selector(playerFinalizado:)                                                 
+         name:MPMoviePlayerPlaybackDidFinishNotification
+         object:movieController.moviePlayer];
             
-            // Crear y configurar player
-            MPMoviePlayerViewController *movieController = [[MPMoviePlayerViewController alloc] initWithContentURL:urlVideo];
-            [movieController.view setBackgroundColor: [UIColor blackColor]];
-            
-            // Presentar player y reproducir video
-            [self presentMoviePlayerViewControllerAnimated:movieController];
-            [movieController.moviePlayer play];  
-            
-            // Agregar observer al finalizar reproducci—n
-            [[NSNotificationCenter defaultCenter] 
-             addObserver:self
-             selector:@selector(playerFinalizado:)                                                 
-             name:MPMoviePlayerPlaybackDidFinishNotification
-             object:movieController.moviePlayer];
-            
-    } else {    // Se trata de la celda "M‡s Video"
+    } else {    // Se trata de la celda "Ver M‡s"
     
-        self.rango = NSMakeRange(0, self.rango.length+kTAMANO_PAGINA);
-        // Aqui no se que metodo es el correcto para recargar. Lo vemos ma–ana.
-//        [self configurarConEntidad:self.entidadMenu yFiltros:self.diccionarioConfiguracionFiltros];
+        // Actualizar rango
+        self.rangoUltimo = NSMakeRange(self.rangoUltimo.location + self.rangoUltimo.length, kTAMANO_PAGINA);
+        
+        [self cargarClips];
         
     }
     
-
-
-    
     // Des-seleccionar fila en tabla
-    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    
 }
 
 -(void) tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
@@ -395,9 +410,13 @@
 #pragma mark -
 #pragma mark PullToReloadTableViewController
 
+// Llamado al actualizar desde pull-to-refresh
 - (void)reloadTableViewDataSource
 {
-    [self cargarDatos];
+    // Se va a actualizar la lista, re-inicializar configuraci—n
+    [self configurarConEntidad:self.entidadMenu yFiltros:self.diccionarioConfiguracionFiltros];
+    
+    [self cargarClips];
 }
 
 #pragma mark -
@@ -442,20 +461,38 @@
     if ([entidad isEqualToString:@"clip"])
     {
         // En caso de haber recibido entidades de tipo clip, asignar arreglo de clips
-        self.clips = array;
+        [self.clips addObjectsFromArray:array];
         
         // Para cada clip obtenido agregar un AsynchronousImageView al arregloClipsAsyncImageViews
-        [self.arregloClipsAsyncImageViews removeAllObjects];
-        for (int i=0; i<[self.clips count]; i++)
+        for (int i=0; i < [self.clips count]; i++)
         {
             AsynchronousImageView *aiv = [[AsynchronousImageView alloc] init];
-            [aiv loadImageFromURLString:[NSString stringWithFormat:@"%@", [[array objectAtIndex:i] valueForKey:@"thumbnail_mediano"]]];
+            [aiv loadImageFromURLString:[NSString stringWithFormat:@"%@", [[self.clips objectAtIndex:i] valueForKey:@"thumbnail_mediano"]]];
+//          [self.arregloClipsAsyncImageViews insertObject:aiv atIndex:i];
             [self.arregloClipsAsyncImageViews addObject:aiv];
+            
+            //NSLog(@"aa %@", [self.arregloClipsAsyncImageViews count]);
             [aiv release];
         }
         
         // Recargar tabla
         [self.clipsTableView reloadData];
+        
+        // Actualizar datos para la vista de pull-to-refresh
+        [self.tableViewController setLastUpdate:[NSDate date]];
+        [self.tableViewController dataSourceDidFinishLoadingNewData];
+        
+        // Ocultar vista de loading
+        [self ocultarLoadingViewConAnimacion:YES];
+        
+        // Regresar el scroll de la tabla a la parte superior
+        // s—lo si se trajo la primera p‡gina, lo que significa
+        // que se presion— un bot—n del menœ de filtros
+        if (self.rangoUltimo.length == [self.clips count])
+        {
+            [self.clipsTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionNone animated:NO];
+        }
+        
     }
     else
     {
@@ -478,17 +515,6 @@
         [self construirMenu];
         
         
-    }
-    
-    // Cuando ya se han cargado los datos tanto para clips como para filtros:
-    if (self.clips != nil && self.filtros != nil)
-    {
-        // Actualizar datos para la vista de pull-to-refresh
-        [self.tableViewController setLastUpdate:[NSDate date]];
-        [self.tableViewController dataSourceDidFinishLoadingNewData];
-        
-        // Ocultar vista de loading
-        [self.tableViewController ocultarLoadingViewConAnimacion:YES];
     }
     
     // Liberar objeto de datos
