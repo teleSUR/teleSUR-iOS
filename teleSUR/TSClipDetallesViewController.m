@@ -9,7 +9,7 @@
 
 #import "TSClipDetallesViewController.h"
 #import <MediaPlayer/MediaPlayer.h>
-#import "TSCLipListadoViewController.h"
+#import "TSClipListadoViewController.h"
 #import "NSDictionary_Datos.m"
 #import "SHK.h"
 
@@ -94,35 +94,36 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    return 1;
+    return 2;
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    /*
+    
     switch (section)
     {
         case kDETALLES_SECTION:
-            return 3;
+            return 1;
         case kCLASIFICACION_SECTION:
-            return 2;
+            return [[self.clip arregloDiccionariosClasificadores] count];
         default:
             return 0;
-    }*/
-    return 3;
+    } 
 }
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    switch (indexPath.row) {
+    switch (indexPath.section) {
         case 0:
-            return self.descripcionCell.frame.size.height;
+            if (indexPath.row == 0) {
+                return self.descripcionCell.frame.size.height;
+            }
             break;
             
         default:
-            return 100;
+            return 45.0;
             break;
     }
 
@@ -139,41 +140,27 @@
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
     
-    switch (indexPath.row)
+    switch (indexPath.section)
     {
+            
+            
         case 0:
-            [(UILabel *)[self.descripcionCell viewWithTag:1] setText: [self.clip valueForKey:@"titulo"]];
-            [(UILabel *)[self.descripcionCell viewWithTag:4] setText: [self.clip obtenerTiempoDesdeParaEsteClip]];
-            [(UILabel *)[self.descripcionCell viewWithTag:5] setText: [self.clip valueForKey:@"descripcion"]];
-            return descripcionCell;
-            /*
-            switch (indexPath.row) {                  
-                case 0: // imagen
-                    break;
-                case 1: // titulo
-                    [cell.textLabel setText:[self.clip valueForKey:@"titulo"]];
-                    break;
-                case 2: // descripcion
-                    [cell.textLabel setText:[self.clip valueForKey:@"descripcion"]];
-                    break;
+            if (indexPath.row == 0) {
+                [(UILabel *)[self.descripcionCell viewWithTag:1] setText: [self.clip valueForKey:@"titulo"]];
+                [(UILabel *)[self.descripcionCell viewWithTag:4] setText: [self.clip obtenerTiempoDesdeParaEsteClip]];
+                [(UILabel *)[self.descripcionCell viewWithTag:5] setText: [self.clip valueForKey:@"descripcion"]];
+                return descripcionCell;
             }
-             */
+
             break;
-        case 1:
-            /*
-            switch (indexPath.row) {
-                case 0: // pais
-                    [cell.textLabel setText:[[self.clip valueForKey:@"pais"] valueForKey:@"nombre"]];
-                    break;
-            }
-             */
+        default:
+            cell.textLabel.text = [[[self.clip arregloDiccionariosClasificadores] objectAtIndex:indexPath.row] valueForKey:@"valor"];
+            [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+            return cell;
+
             break;
     }
     
-   	
-    // Configure the cell...
-    
-    return cell;
 }
 
 
@@ -221,20 +208,26 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    TSClipListadoViewController *listadoView = [[TSClipListadoViewController alloc] initWithEntidad:nil yFiltros:[NSDictionary dictionaryWithObject://[[self.clip valueForKey:@"pais"] valueForKey:@"nombre"] forKey:@"pais"]];
     
-//    [self.navigationController pushViewController:listadoView animated:YES];
+    switch (indexPath.section) {
+        case 1:
+            
+            ;
+            
+            TSClipListadoViewController *listadoView =[[TSClipListadoViewController alloc] init];
+            
+            [self.navigationController pushViewController:listadoView animated:YES];
+            
+            [listadoView release];
+
+            
+            
+            break;
+            
+        default:
+            break;
+    }
     
-//    [listadoView release];
-    
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     DetailViewController *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     [detailViewController release];
-     */
 }
 
 #pragma mark -
