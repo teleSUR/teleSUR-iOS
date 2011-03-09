@@ -12,6 +12,7 @@
 #import "TSClipListadoViewController.h"
 #import "NSDictionary_Datos.m"
 #import "SHK.h"
+#import "GANTracker.h"
 
 #define kDETALLES_SECTION 0
 #define kCLASIFICACION_SECTION 1
@@ -252,6 +253,30 @@
 {
     
     switch (indexPath.section) {
+        case 0:
+            ;
+            
+            NSString *stringURL = [NSString stringWithFormat:@"%@", [self.clip valueForKey:@"archivo_url"]];
+            NSURL *urlVideo = [NSURL URLWithString: stringURL];
+            
+            // Crear y configurar player
+            MPMoviePlayerViewController *movieController = [[MPMoviePlayerViewController alloc] initWithContentURL:urlVideo];
+            [movieController.view setBackgroundColor: [UIColor blackColor]];
+            
+            // Presentar player y reproducir video
+            [self presentMoviePlayerViewControllerAnimated:movieController];
+            [movieController.moviePlayer play];  
+            
+            // Agregar observer al finalizar reproducción
+            [[NSNotificationCenter defaultCenter] 
+             addObserver:self
+             selector:@selector(playerFinalizado:)                                                 
+             name:MPMoviePlayerPlaybackDidFinishNotification
+             object:movieController.moviePlayer];
+            
+            [self.detallesTableView deselectRowAtIndexPath:indexPath animated:NO];
+            break;
+            
         case 1:
             
             ;
@@ -313,7 +338,24 @@
     [data release];
 }
 
-
+- (void)playerFinalizado:(NSNotification *)notification
+{
+    // Crear y presentar vista de detalles para el video que acaba de finalizar (índice guardado en tag de view)
+    // ENviar notificación a Google Analytics
+    NSError *error;
+    if (![[GANTracker sharedTracker] trackEvent:@"iPhone"
+                                         action:@"Video reproducido"
+                                          label:[self.clip valueForKey:@"archivo"]
+                                          value:-1
+                                      withError:&error])
+    {
+        NSLog(@"Error");
+    }
+    
+    //
+    // Un posible momento para insertar publicidad
+    //
+}
 
 
 @end
