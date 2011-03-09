@@ -12,7 +12,6 @@
 		3A1001A9131B30D600717211 /* UIViewController_Configuracion.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A1001A8131B30D600717211 /* UIViewController_Configuracion.m */; };
 		3A1001F1131B354300717211 /* LoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A1001F0131B354300717211 /* LoadingView.xib */; };
 		3A2360B6131C4B7200A941E2 /* ClipEstandarTableCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A2360B5131C4B7200A941E2 /* ClipEstandarTableCellView.xib */; };
-		3A236148131C534300A941E2 /* ClipEstandarTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A236147131C534300A941E2 /* ClipEstandarTableCellView.m */; };
 		3A236262131C8BD700A941E2 /* NSDictionary_Datos.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A236261131C8BD700A941E2 /* NSDictionary_Datos.m */; };
 		3AD81911131EF7B40006C5A0 /* NSDate_Utilidad.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD81910131EF7B40006C5A0 /* NSDate_Utilidad.m */; };
 		63099E0713199D1800D15603 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63099E0613199D1800D15603 /* UIKit.framework */; };
@@ -151,8 +150,6 @@
 		3A1001A8131B30D600717211 /* UIViewController_Configuracion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIViewController_Configuracion.m; path = ../UIViewController_Configuracion.m; sourceTree = "<group>"; };
 		3A1001F0131B354300717211 /* LoadingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingView.xib; sourceTree = "<group>"; };
 		3A2360B5131C4B7200A941E2 /* ClipEstandarTableCellView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ClipEstandarTableCellView.xib; sourceTree = "<group>"; };
-		3A236146131C534300A941E2 /* ClipEstandarTableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClipEstandarTableCellView.h; sourceTree = "<group>"; };
-		3A236147131C534300A941E2 /* ClipEstandarTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClipEstandarTableCellView.m; sourceTree = "<group>"; };
 		3A236260131C8BD700A941E2 /* NSDictionary_Datos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDictionary_Datos.h; sourceTree = "<group>"; };
 		3A236261131C8BD700A941E2 /* NSDictionary_Datos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDictionary_Datos.m; sourceTree = "<group>"; };
 		3AD8190F131EF7B40006C5A0 /* NSDate_Utilidad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDate_Utilidad.h; sourceTree = "<group>"; };
@@ -487,7 +484,6 @@
 				63099E1913199D1800D15603 /* teleSURAppDelegate_iPhone.h */,
 				63099E1A13199D1800D15603 /* teleSURAppDelegate_iPhone.m */,
 				63099E1C13199D1800D15603 /* MainWindow_iPhone.xib */,
-				63099F5F1319A27500D15603 /* Vistas */,
 			);
 			name = iPhone;
 			sourceTree = "<group>";
@@ -961,11 +957,28 @@
 			name = VIstas;
 			sourceTree = "<group>";
 		};
-		63099F5F1319A27500D15603 /* Vistas */ = {
+		6346F80313271C7E008802EA /* Celdas */ = {
 			isa = PBXGroup;
 			children = (
+				3A2360B5131C4B7200A941E2 /* ClipEstandarTableCellView.xib */,
+				C4F400311325281D00239C39 /* ClipGrandeTableCellView.xib */,
+				C4FEABFE1324C25E003B6509 /* VerMasClipsTableCellView.xib */,
+				63E4A8EF1326045100669E91 /* ProgramaTableCellView.xib */,
 			);
-			name = Vistas;
+			name = Celdas;
+			sourceTree = "<group>";
+		};
+		6346F80413271CBD008802EA /* Pull-To-Refresh */ = {
+			isa = PBXGroup;
+			children = (
+				6341A7D3132056A2008FFD9D /* EGORefreshTableHeaderView.h */,
+				6341A7D4132056A2008FFD9D /* EGORefreshTableHeaderView.m */,
+				6341A7D7132056FD008FFD9D /* PullToRefreshTableViewController.h */,
+				6341A7D8132056FD008FFD9D /* PullToRefreshTableViewController.m */,
+				6341A7DA132057DE008FFD9D /* SoundEffect.h */,
+				6341A7DB132057DE008FFD9D /* SoundEffect.m */,
+			);
+			name = "Pull-To-Refresh";
 			sourceTree = "<group>";
 		};
 		634D9EEE131F4AFC005B46FE /* Images */ = {
@@ -996,18 +1009,8 @@
 				3A10016E131B2B0600717211 /* TSClipListadoViewController.xib */,
 				63E4A8EC1325EDF300669E91 /* TSProgramaListadoViewController.h */,
 				63E4A8ED1325EDF400669E91 /* TSProgramaListadoViewController.m */,
-				3A236146131C534300A941E2 /* ClipEstandarTableCellView.h */,
-				3A236147131C534300A941E2 /* ClipEstandarTableCellView.m */,
-				3A2360B5131C4B7200A941E2 /* ClipEstandarTableCellView.xib */,
-				C4F400311325281D00239C39 /* ClipGrandeTableCellView.xib */,
-				63E4A8EF1326045100669E91 /* ProgramaTableCellView.xib */,
-				C4FEABFE1324C25E003B6509 /* VerMasClipsTableCellView.xib */,
-				6341A7D3132056A2008FFD9D /* EGORefreshTableHeaderView.h */,
-				6341A7D4132056A2008FFD9D /* EGORefreshTableHeaderView.m */,
-				6341A7D7132056FD008FFD9D /* PullToRefreshTableViewController.h */,
-				6341A7D8132056FD008FFD9D /* PullToRefreshTableViewController.m */,
-				6341A7DA132057DE008FFD9D /* SoundEffect.h */,
-				6341A7DB132057DE008FFD9D /* SoundEffect.m */,
+				6346F80313271C7E008802EA /* Celdas */,
+				6346F80413271CBD008802EA /* Pull-To-Refresh */,
 			);
 			name = Listado;
 			sourceTree = "<group>";
@@ -1233,7 +1236,6 @@
 				635A78A11319D3F600C3977D /* TSClipDetallesViewController.m in Sources */,
 				3A10016F131B2B0600717211 /* TSClipListadoViewController.m in Sources */,
 				3A1001A9131B30D600717211 /* UIViewController_Configuracion.m in Sources */,
-				3A236148131C534300A941E2 /* ClipEstandarTableCellView.m in Sources */,
 				3A236262131C8BD700A941E2 /* NSDictionary_Datos.m in Sources */,
 				63C7AEFA131DAF9000BD7F64 /* AsynchronousImageView.m in Sources */,
 				3AD81911131EF7B40006C5A0 /* NSDate_Utilidad.m in Sources */,

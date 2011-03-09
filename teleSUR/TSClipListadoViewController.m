@@ -12,14 +12,19 @@
 #import "UIViewController_Configuracion.h"
 #import "NSDictionary_Datos.h"
 #import "TSClipDetallesViewController.h"
-#import "ClipEstandarTableCellView.h"
 #import "PullToRefreshTableViewController.h"
+#import "AsynchronousImageView.h"
 #import <MediaPlayer/MediaPlayer.h>
 #import "GANTracker.h"
 
 
 #define kMARGEN_MENU 12
 #define kTAMANO_PAGINA 10
+
+#define kTITULO_LABEL_TAG 1
+#define kTHUMBNAIL_IMAGE_VIEW_TAG 2
+#define kDURACION_LABEL_TAG 3
+#define kFIRMA_LBAEL_TAG 4
 
 
 @implementation TSClipListadoViewController
@@ -297,28 +302,32 @@
         return (UITableViewCell *)[[[NSBundle mainBundle] loadNibNamed:nombreNib owner:self options:nil] lastObject];
     
     // Reutilizar o bien crear nueva celda, tipo Grande o Estándar  
-    ClipEstandarTableCellView *cell = (ClipEstandarTableCellView *)[tableView dequeueReusableCellWithIdentifier:nombreNib];
+    UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:nombreNib];
     if (cell == nil)
-        cell = (ClipEstandarTableCellView *)[[[NSBundle mainBundle] loadNibNamed:nombreNib owner:self options:nil] lastObject];
+        cell = (UITableViewCell *)[[[NSBundle mainBundle] loadNibNamed:nombreNib owner:self options:nil] lastObject];
     
     // Si estamos en medio una cosnulta, devolver la celda tal cual está en el NIB,
     // por ejemplo, si la tabla sigue con inercia después de empezar a cargar datos
     if ([self.clips count] == 0)
         return cell;
     
-    // Configurar celda
+    // Elementos de celda
+    UILabel *tituloLabel = (UILabel *)[cell viewWithTag:kTITULO_LABEL_TAG];
+    UIImageView *thumbnailImageView = (UIImageView *)[cell viewWithTag:kTHUMBNAIL_IMAGE_VIEW_TAG];
+    UILabel *duracionLabel = (UILabel *)[cell viewWithTag:kDURACION_LABEL_TAG];
+    UILabel *firmaLabel = (UILabel *)[cell viewWithTag:kFIRMA_LBAEL_TAG];
     
     // Copiar propiedades de thumbnailView (definidas en NIB) y sustitirlo por AsyncImageView correspondiente
-    CGRect frame = cell.thumbnailView.frame;
-    [cell.thumbnailView removeFromSuperview];
-    cell.thumbnailView = [self.arregloClipsAsyncImageViews objectAtIndex:indexPath.row];
-    cell.thumbnailView.frame = frame;
-    [cell insertSubview:cell.thumbnailView atIndex:1];
+    CGRect frame = thumbnailImageView.frame;
+    [thumbnailImageView removeFromSuperview];
+    thumbnailImageView = [self.arregloClipsAsyncImageViews objectAtIndex:indexPath.row];
+    thumbnailImageView.frame = frame;
+    [cell addSubview:thumbnailImageView];
  
     // Establecer texto de etiquetas
-    [cell.titulo setText: [[self.clips objectAtIndex:indexPath.row] valueForKey:@"titulo"]];
-    [cell.duracion setText: [[self.clips objectAtIndex:indexPath.row] valueForKey:@"duracion"]];	
-    [cell.firma setText:[[self.clips objectAtIndex:indexPath.row] obtenerTiempoDesdeParaEsteClip]];
+    tituloLabel.text = [[self.clips objectAtIndex:indexPath.row] valueForKey:@"titulo"];
+    duracionLabel.text = [[self.clips objectAtIndex:indexPath.row] valueForKey:@"duracion"];	
+    firmaLabel.text = [[self.clips objectAtIndex:indexPath.row] obtenerTiempoDesdeParaEsteClip];
     
     return cell;        
 }
@@ -350,7 +359,7 @@
         return *cacheVar;
     
     // Si la altura no ha sido guardada en variable de instancia, obtenerla de NIB
-    UITableViewCell *celda= (ClipEstandarTableCellView *)[[[NSBundle mainBundle] loadNibNamed:[self nombreNibParaIndexPath:indexPath] owner:self options:nil] lastObject];
+    UITableViewCell *celda = (UITableViewCell *)[[[NSBundle mainBundle] loadNibNamed:[self nombreNibParaIndexPath:indexPath] owner:self options:nil] lastObject];
     *cacheVar = celda.frame.size.height;
     
     return *cacheVar;
