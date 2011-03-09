@@ -84,12 +84,10 @@
 	
     NSArray *componentesTiempoQueFalta = [tiempoQueFalta componentsSeparatedByString:@"_"];
     
-    NSString *cadenaConResolucionDeDos = [NSString stringWithFormat:@"%@ %@", [componentesTiempoQueFalta objectAtIndex:0], [componentesTiempoQueFalta objectAtIndex:1]];
-    
-    
+    //NSString *cadenaConResolucionDeDos = [NSString stringWithFormat:@"%@ %@", [componentesTiempoQueFalta objectAtIndex:0], [componentesTiempoQueFalta objectAtIndex:1]];
     
 	
-	return cadenaConResolucionDeDos;
+	//return cadenaConResolucionDeDos;
 	
 }
 

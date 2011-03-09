@@ -991,12 +991,20 @@
 			path = Images;
 			sourceTree = "<group>";
 		};
+		6354893B1327F875000B2971 /* Búsqueda */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Búsqueda";
+			sourceTree = "<group>";
+		};
 		63E016A5131D840E001928E4 /* Vistas */ = {
 			isa = PBXGroup;
 			children = (
 				3A1001F0131B354300717211 /* LoadingView.xib */,
 				63E016A7131D846E001928E4 /* Listado */,
 				63E016A8131D8481001928E4 /* Detalles */,
+				6354893B1327F875000B2971 /* Búsqueda */,
 			);
 			name = Vistas;
 			sourceTree = "<group>";

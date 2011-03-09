@@ -11,6 +11,7 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import "TSClipListadoViewController.h"
 #import "NSDictionary_Datos.m"
+#import "AsynchronousImageView.h"
 #import "SHK.h"
 
 #define kDETALLES_SECTION 0
@@ -142,23 +143,34 @@
     
     switch (indexPath.section)
     {
-            
-            
         case 0:
-            if (indexPath.row == 0) {
+            if (indexPath.row == 0)
+            {
                 [(UILabel *)[self.descripcionCell viewWithTag:1] setText: [self.clip valueForKey:@"titulo"]];
-                [(UILabel *)[self.descripcionCell viewWithTag:4] setText: [self.clip obtenerTiempoDesdeParaEsteClip]];
+              //  [(UILabel *)[self.descripcionCell viewWithTag:4] setText: [self.clip obtenerTiempoDesdeParaEsteClip]];
                 [(UILabel *)[self.descripcionCell viewWithTag:5] setText: [self.clip valueForKey:@"descripcion"]];
+                
+                AsynchronousImageView *imageView = (AsynchronousImageView *)[self.descripcionCell viewWithTag:2];
+                
+                // Copiar propiedades de thumbnailView (definidas en NIB) y sustitirlo por AsyncImageView correspondiente
+                CGRect frame = imageView.frame;
+                [imageView removeFromSuperview];
+                
+                AsynchronousImageView *aiv = [[AsynchronousImageView alloc] init];
+                
+                [aiv loadImageFromURLString:[self.clip valueForKey:@"thumbnail_grande"]];
+                aiv.frame = frame;
+                [self.descripcionCell addSubview:aiv];
+                
+                [aiv release];
+                
                 return descripcionCell;
             }
-
-            break;
+            
         default:
             cell.textLabel.text = [[[self.clip arregloDiccionariosClasificadores] objectAtIndex:indexPath.row] valueForKey:@"valor"];
             [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
             return cell;
-
-            break;
     }
     
 }

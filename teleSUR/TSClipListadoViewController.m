@@ -327,7 +327,7 @@
     // Establecer texto de etiquetas
     tituloLabel.text = [[self.clips objectAtIndex:indexPath.row] valueForKey:@"titulo"];
     duracionLabel.text = [[self.clips objectAtIndex:indexPath.row] valueForKey:@"duracion"];	
-    firmaLabel.text = [[self.clips objectAtIndex:indexPath.row] obtenerTiempoDesdeParaEsteClip];
+   // firmaLabel.text = [[self.clips objectAtIndex:indexPath.row] obtenerTiempoDesdeParaEsteClip];
     
     return cell;        
 }
@@ -401,7 +401,11 @@
         
         // Bandera para no reemplazar la lista de clips, sino agregar los elementos al final
         self.agregarAlFinal = YES;
-        [(UIActivityIndicatorView *) [self.view viewWithTag:2] startAnimating]; // Animar "Animation View"
+        
+        // Animar Activity Indicator
+        [(UIActivityIndicatorView *)[self.view viewWithTag:2] startAnimating];
+        
+        // Cargar datos
         [self cargarClips];
     }
 }
