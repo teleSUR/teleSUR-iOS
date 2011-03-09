@@ -11,28 +11,45 @@
 
 @interface TSClipDetallesViewController : UIViewController {
     
-    // Controladores
+    // Tabla de detalles
 	UITableViewController *detallesTableViewController;
-	
-	// Sub-Vistas
 	UITableView *detallesTableView;
+    
+    // Celdas
+    UITableViewCell *tituloCell;
+    UITableViewCell *firmaCell;
+    UITableViewCell *descripcionCell;
+    UITableViewCell *categoriaCell;
+    
+    // Tabla de relacionados
+	UITableViewController *relacionadosTableViewController;
+	UITableView *relacionadosTableView;
     
     // Datos
     NSDictionary *clip;
     
 }
 
-// Controladores
+// Tabla de detalles
 @property (nonatomic, retain) UITableViewController *detallesTableViewController;
-
-// Sub-Vistas
 @property (nonatomic, retain) IBOutlet UITableView *detallesTableView;
 
-// Datos
-@property (nonatomic, retain) NSDictionary *clip;
+// Celdas
+@property (nonatomic, retain) IBOutlet UITableViewCell *tituloCell;
+@property (nonatomic, retain) IBOutlet UITableViewCell *firmaCell;
+@property (nonatomic, retain) IBOutlet UITableViewCell *descripcionCell;
+@property (nonatomic, retain) IBOutlet UITableViewCell *categoriaCell;
+////////////
+// Tabla de relacionados
+@property (nonatomic, retain) UITableViewController *relacionadosTableViewController;
+@property (nonatomic, retain) IBOutlet UITableView *relacionadosTableView;
 
+@property (nonatomic, retain) NSDictionary *clip;
 
 // Init
 - (id)initWithClip:(NSDictionary *)diccionarioClip;
 
+
+
 @end
+

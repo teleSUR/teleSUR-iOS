@@ -3,7 +3,7 @@
 //  teleSUR
 //
 //  Created by Hector Zarate on 2/28/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Copyright 2011 teleSUR®. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -14,6 +14,54 @@
 
 
 @implementation NSDictionary (NSDictionary_Datos)
+
+# pragma mark -
+# pragma mark Clasificadores
+
+// Devuelve arreglo con todos diccionarios diccionarios clasificadores conocidos
+- (NSArray *)arregloDiccionariosClasificadores
+{
+    // Arreglo de campos clasificadores
+    NSArray *camposClasificadores = [NSArray arrayWithObjects:@"categoria", @"pais", @"tema", @"corresponsal", @"entrevistador", @"entrevistado", nil];
+    
+    // Auxiliares
+    NSDictionary *clasificadorActual;
+    NSMutableArray *arregloClasificadores = [NSMutableArray array];
+    
+    // Recorrer cada campo conocido y añadir su respectivo diccionario clasificador, si es que hay
+    for (NSString *campo in camposClasificadores)
+        if ((clasificadorActual = [self diccionarioClasificadorParaCampo:campo]))
+            [arregloClasificadores addObject:clasificadorActual];
+    
+    return arregloClasificadores;
+}
+
+
+// En caso de que clip tenga un valor asignado para el campo elegido,
+// devuelve un diccionario con 3 elementos:
+// @"nombre"  -> (NSString *) Campo o clasificador: categoria, pais, tema, etc..
+// @"valor"   -> (id) Valor actual, ej: Cuba, México, Economía, Deportes, etc.
+// @"slug"    -> (NSString *) Identificador interno del valor actual
+- (NSDictionary *)diccionarioClasificadorParaCampo:(NSString *)campo
+{
+    // Objeto que generalmente es un diccionario ó un objeto NSNull
+    id diccionarioCampo = [self valueForKey:campo];
+    
+    // Si no hay valor, devolver nil
+    if ([diccionarioCampo isKindOfClass:[NSNull class]]) return nil;
+    
+    // Crear diccionario clasificador de tres elementos
+    // Se espera encontrar "nombre" y "slug" en un diccionario
+    if (![diccionarioCampo isKindOfClass:[NSDictionary class]]) return nil;
+    
+    NSMutableDictionary *clasificador = [NSMutableDictionary dictionary];
+    [clasificador setValue:campo forKey:@"nombre"];
+    [clasificador setValue:[diccionarioCampo valueForKey:@"nombre"] forKey:@"valor"];
+    [clasificador setValue:[diccionarioCampo valueForKey:@"slug"] forKey:@"slug"];
+    
+    return clasificador;
+}
+
 
 // Obtener NSString con firma de clip con el formato: [ciudad, ]país | fecha_completa
 - (NSString *)obtenerFirmaParaEsteClip

@@ -6,17 +6,23 @@
 //  Copyright 2011 teleSUR. All rights reserved.
 //
 
+
 #import "TSClipDetallesViewController.h"
+#import <MediaPlayer/MediaPlayer.h>
 #import "TSCLipListadoViewController.h"
+#import "NSDictionary_Datos.m"
 #import "SHK.h"
 
-#import <MediaPlayer/MediaPlayer.h>
+#define kDETALLES_SECTION 0
+#define kCLASIFICACION_SECTION 1
+
 
 @implementation TSClipDetallesViewController
 
-@synthesize detallesTableView;
-@synthesize detallesTableViewController;
 @synthesize clip;
+@synthesize detallesTableView, detallesTableViewController;
+@synthesize tituloCell, categoriaCell, firmaCell, descripcionCell;
+@synthesize relacionadosTableViewController, relacionadosTableView;
 
 @class teleSURAppDelegate;
 
@@ -39,11 +45,12 @@
 - (void)viewDidLoad
 {
     // Provisional
-    [(UILabel *)[self.view viewWithTag:1] setText:[clip valueForKey:@"descripcion"]];
-    [(UIImageView *)[self.view viewWithTag:2] setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@", [clip valueForKey:@"thumbnail_grande"]]]]]];
-    
+   // [(UILabel *)[self.view viewWithTag:1] setText:[clip valueForKey:@"descripcion"]];
+    //[(UIImageView *)[self.view viewWithTag:2] setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@", [clip valueForKey:@"thumbnail_grande"]]]]]];
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    NSLog(@"%@", [self.clip arregloDiccionariosClasificadores]);
 }
 
 
@@ -95,14 +102,17 @@
     // Return the number of rows in the section.
     switch (section)
     {
-        case 0:
+        case kDETALLES_SECTION:
             return 3;
-        case 1:
+        case kCLASIFICACION_SECTION:
             return 2;
         default:
             return 0;
     }
 }
+
+
+
 
 
 // Customize the appearance of table view cells.
@@ -118,8 +128,7 @@
     switch (indexPath.section)
     {
         case 0:
-            switch (indexPath.row) {
-                case 0: // imagen
+            switch (indexPath.row) {                  case 0: // imagen
                     break;
                 case 1: // titulo
                     [cell.textLabel setText:[self.clip valueForKey:@"titulo"]];
@@ -223,6 +232,29 @@
     teleSURAppDelegate *appDelegate= (teleSURAppDelegate *)[[UIApplication sharedApplication] delegate];
     [actionSheet showFromTabBar:[(UITabBarController *)[[appDelegate window] rootViewController] tabBar]];
 }
+
+
+#pragma mark -
+#pragma mark TSMultimediaDataDelegate
+
+// Maneja los datos recibidos
+- (void)TSMultimediaData:(TSMultimediaData *)data entidadesRecibidas:(NSArray *)array paraEntidad:(NSString *)entidad
+{
+    
+    // Liberar objeto de datos
+    [data release];
+}
+
+
+- (void)TSMultimediaData:(TSMultimediaData *)data entidadesRecibidasConError:(id)error
+{
+    // TODO: Informar al usuario sobre error
+	NSLog(@"Error: %@", error);
+    
+    // Liberar objeto de datos
+    [data release];
+}
+
 
 
 
