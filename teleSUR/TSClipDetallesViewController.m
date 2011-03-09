@@ -94,12 +94,13 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    return 2;
+    return 1;
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
+    /*
     switch (section)
     {
         case kDETALLES_SECTION:
@@ -108,11 +109,24 @@
             return 2;
         default:
             return 0;
-    }
+    }*/
+    return 3;
 }
 
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    switch (indexPath.row) {
+        case 0:
+            return self.descripcionCell.frame.size.height;
+            break;
+            
+        default:
+            return 100;
+            break;
+    }
 
+}
 
 
 // Customize the appearance of table view cells.
@@ -125,10 +139,16 @@
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
     
-    switch (indexPath.section)
+    switch (indexPath.row)
     {
         case 0:
-            switch (indexPath.row) {                  case 0: // imagen
+            [(UILabel *)[self.descripcionCell viewWithTag:1] setText: [self.clip valueForKey:@"titulo"]];
+            [(UILabel *)[self.descripcionCell viewWithTag:4] setText: [self.clip obtenerTiempoDesdeParaEsteClip]];
+            [(UILabel *)[self.descripcionCell viewWithTag:5] setText: [self.clip valueForKey:@"descripcion"]];
+            return descripcionCell;
+            /*
+            switch (indexPath.row) {                  
+                case 0: // imagen
                     break;
                 case 1: // titulo
                     [cell.textLabel setText:[self.clip valueForKey:@"titulo"]];
@@ -137,13 +157,16 @@
                     [cell.textLabel setText:[self.clip valueForKey:@"descripcion"]];
                     break;
             }
+             */
             break;
         case 1:
+            /*
             switch (indexPath.row) {
                 case 0: // pais
                     [cell.textLabel setText:[[self.clip valueForKey:@"pais"] valueForKey:@"nombre"]];
                     break;
             }
+             */
             break;
     }
     
@@ -198,11 +221,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    TSClipListadoViewController *listadoView = [[TSClipListadoViewController alloc] initWithEntidad:nil yFiltros:[NSDictionary dictionaryWithObject:[[self.clip valueForKey:@"pais"] valueForKey:@"nombre"] forKey:@"pais"]];
+//    TSClipListadoViewController *listadoView = [[TSClipListadoViewController alloc] initWithEntidad:nil yFiltros:[NSDictionary dictionaryWithObject://[[self.clip valueForKey:@"pais"] valueForKey:@"nombre"] forKey:@"pais"]];
     
-    [self.navigationController pushViewController:listadoView animated:YES];
+//    [self.navigationController pushViewController:listadoView animated:YES];
     
-    [listadoView release];
+//    [listadoView release];
     
     // Navigation logic may go here. Create and push another view controller.
     /*
