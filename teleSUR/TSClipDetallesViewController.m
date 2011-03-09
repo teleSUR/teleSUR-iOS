@@ -48,7 +48,22 @@
    // [(UILabel *)[self.view viewWithTag:1] setText:[clip valueForKey:@"descripcion"]];
     //[(UIImageView *)[self.view viewWithTag:2] setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@", [clip valueForKey:@"thumbnail_grande"]]]]]];
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+
+    UILabel *etiquetaDescripcion = (UILabel *)[self.descripcionCell viewWithTag:5] ;
+
+    CGSize maximumLabelSize = CGSizeMake(262,9999);
+    
+    CGSize expectedLabelSize = [[self.clip valueForKey:@"descripcion"]
+                                  sizeWithFont:etiquetaDescripcion.font 
+                                      constrainedToSize:maximumLabelSize 
+                                          lineBreakMode:etiquetaDescripcion.lineBreakMode]; 
+
+
+
+    self.descripcionCell.frame = CGRectMake(self.descripcionCell.frame.origin.x, self.descripcionCell.frame.origin.y, self.descripcionCell.frame.size.width, expectedLabelSize.height+15);
+    
+    
+    etiquetaDescripcion.frame = CGRectMake(etiquetaDescripcion.frame.origin.x, etiquetaDescripcion.frame.origin.y, etiquetaDescripcion.frame.size.width, expectedLabelSize.height);    
     
     NSLog(@"%@", [self.clip arregloDiccionariosClasificadores]);
 }
@@ -104,7 +119,7 @@
     switch (section)
     {
         case kDETALLES_SECTION:
-            return 1;
+            return 3;
         case kCLASIFICACION_SECTION:
             return [[self.clip arregloDiccionariosClasificadores] count];
         default:
@@ -117,9 +132,22 @@
     
     switch (indexPath.section) {
         case 0:
-            if (indexPath.row == 0) {
-                return self.descripcionCell.frame.size.height;
-            }
+            switch (indexPath.row) {
+                case 0:
+                    return self.tituloCell.frame.size.height;
+                    break;
+                case 1:
+                    return self.firmaCell.frame.size.height;
+                    break;
+                case 2:
+            
+                    
+                    
+                    return self.descripcionCell.frame.size.height;                    
+                    break;
+                
+            }   
+            
             break;
             
         default:
@@ -145,12 +173,26 @@
             
             
         case 0:
-            if (indexPath.row == 0) {
-                [(UILabel *)[self.descripcionCell viewWithTag:1] setText: [self.clip valueForKey:@"titulo"]];
-                [(UILabel *)[self.descripcionCell viewWithTag:4] setText: [self.clip obtenerTiempoDesdeParaEsteClip]];
-                [(UILabel *)[self.descripcionCell viewWithTag:5] setText: [self.clip valueForKey:@"descripcion"]];
-                return descripcionCell;
+            switch (indexPath.row) {
+                case 0:
+                    [(UILabel *)[self.tituloCell viewWithTag:1] setText: [self.clip valueForKey:@"titulo"]];                    
+                    return tituloCell;
+                    break;
+                case 1:
+                    [(UILabel *)[self.firmaCell viewWithTag:4] setText: [self.clip obtenerTiempoDesdeParaEsteClip]];
+                    return firmaCell;                    
+                case 2:
+                    [(UILabel *)[self.descripcionCell viewWithTag:5] setText: [self.clip valueForKey:@"descripcion"]];
+                    return descripcionCell;
+                default:
+                    break;
+            
+                
+                
+                
+                
             }
+            
 
             break;
         default:
