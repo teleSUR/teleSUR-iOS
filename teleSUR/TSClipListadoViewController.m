@@ -401,7 +401,7 @@
         
         // Bandera para no reemplazar la lista de clips, sino agregar los elementos al final
         self.agregarAlFinal = YES;
-        
+        [(UIActivityIndicatorView *) [self.view viewWithTag:2] startAnimating]; // Animar "Animation View"
         [self cargarClips];
     }
 }

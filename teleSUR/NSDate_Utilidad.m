@@ -33,48 +33,45 @@
 													   options:0];
 	
 	
-	NSString *dias = [[NSString alloc] init];
-	NSString *horas = [[NSString alloc] init];
-	NSString *mins = [[NSString alloc] init];
+	NSString *dias = @"";
+	NSString *horas = @"";
+	NSString *mins = @"";
 	
 	BOOL diasListo = false;
     BOOL horasListo = false;
     BOOL minsListo = false;
     
     if ([conversionInfo day] == 0) {
-		dias = @"";
         diasListo = true;
 	}
     
 	if ([conversionInfo day] == 1) {
-		dias = @"1 dia";
+		dias = @"1 dia_";
         diasListo = true;
 	}
 	
 	if ([conversionInfo hour] == 0) {
-		horas = @"";
         horasListo = true;
 	}
 	
     if ([conversionInfo hour] == 1) {
-		horas = @"1 hora";
+		horas = @"1 hora_";
         horasListo = true;
 	}
 	
 	if ([conversionInfo minute] == 0) {
-		mins = @"";
         minsListo = true;
 	}
 	
 	if ([conversionInfo minute] == 1) {
-		mins = @"1 min";
+		mins = @"1 min_";
         minsListo = true;
 	}
     
     if (!diasListo)
-        dias = [NSString stringWithFormat:@"%d dias", (-1) * [conversionInfo day]];
+        dias = [NSString stringWithFormat:@"%d dias_", (-1) * [conversionInfo day]];
     if (!horasListo)
-        horas = [NSString stringWithFormat:@"%d horas", (-1) * [conversionInfo hour]];
+        horas = [NSString stringWithFormat:@"%d horas_", (-1) * [conversionInfo hour]];
     if (!minsListo)
         mins = [NSString stringWithFormat:@"%d mins", (-1) * [conversionInfo minute]];
 	
@@ -85,8 +82,14 @@
 	[date1 release];
 	[date2 release];
 	
+    NSArray *componentesTiempoQueFalta = [tiempoQueFalta componentsSeparatedByString:@"_"];
+    
+    NSString *cadenaConResolucionDeDos = [NSString stringWithFormat:@"%@ %@", [componentesTiempoQueFalta objectAtIndex:0], [componentesTiempoQueFalta objectAtIndex:1]];
+    
+    
+    
 	
-	return tiempoQueFalta;
+	return cadenaConResolucionDeDos;
 	
 }
 

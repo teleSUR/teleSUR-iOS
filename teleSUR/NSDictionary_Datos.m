@@ -11,7 +11,7 @@
 #import "NSDate_Utilidad.h"
 
 #define kTIEMPO_DESDE_DIAS 7
-
+#define kTIEMPO_MINIMO_TIMER -604800
 
 @implementation NSDictionary (NSDictionary_Datos)
 
@@ -123,8 +123,14 @@
 //     Hace 2 horas y 20 minutos, Hace 40 minutos, Justo ahora
 - (NSString *)obtenerTiempoDesdeParaEsteClip
 {
+    NSTimeInterval tiempoFaltante = [[self obtenerNSDateParaEsteClip] timeIntervalSinceDate:[NSDate date]];
 		
-	return [[self obtenerNSDateParaEsteClip] enTimerContraAhora];
+    if (tiempoFaltante > kTIEMPO_MINIMO_TIMER) {
+        return [[self obtenerNSDateParaEsteClip] enTimerContraAhora];
+    
+    }
+    return [self obtenerFechaCompletaParaEsteClip];
+	
 	
 }
 
