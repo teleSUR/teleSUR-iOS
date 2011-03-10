@@ -13,6 +13,7 @@
 #import "NSDictionary_Datos.m"
 #import "AsynchronousImageView.h"
 #import "SHK.h"
+#import "GANTracker.h"
 
 #define kDETALLES_SECTION 0
 #define kCLASIFICACION_SECTION 1
@@ -49,7 +50,22 @@
    // [(UILabel *)[self.view viewWithTag:1] setText:[clip valueForKey:@"descripcion"]];
     //[(UIImageView *)[self.view viewWithTag:2] setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@", [clip valueForKey:@"thumbnail_grande"]]]]]];
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+
+    UILabel *etiquetaDescripcion = (UILabel *)[self.descripcionCell viewWithTag:5] ;
+
+    CGSize maximumLabelSize = CGSizeMake(262,9999);
+    
+    CGSize expectedLabelSize = [[self.clip valueForKey:@"descripcion"]
+                                  sizeWithFont:etiquetaDescripcion.font 
+                                      constrainedToSize:maximumLabelSize 
+                                          lineBreakMode:etiquetaDescripcion.lineBreakMode]; 
+
+
+
+    self.descripcionCell.frame = CGRectMake(self.descripcionCell.frame.origin.x, self.descripcionCell.frame.origin.y, self.descripcionCell.frame.size.width, expectedLabelSize.height+15);
+    
+    
+    etiquetaDescripcion.frame = CGRectMake(etiquetaDescripcion.frame.origin.x, etiquetaDescripcion.frame.origin.y, etiquetaDescripcion.frame.size.width, expectedLabelSize.height);    
     
     NSLog(@"%@", [self.clip arregloDiccionariosClasificadores]);
 }
@@ -105,7 +121,7 @@
     switch (section)
     {
         case kDETALLES_SECTION:
-            return 1;
+            return 3;
         case kCLASIFICACION_SECTION:
             return [[self.clip arregloDiccionariosClasificadores] count];
         default:
@@ -118,9 +134,22 @@
     
     switch (indexPath.section) {
         case 0:
-            if (indexPath.row == 0) {
-                return self.descripcionCell.frame.size.height;
-            }
+            switch (indexPath.row) {
+                case 0:
+                    return self.tituloCell.frame.size.height;
+                    break;
+                case 1:
+                    return self.firmaCell.frame.size.height;
+                    break;
+                case 2:
+            
+                    
+                    
+                    return self.descripcionCell.frame.size.height;                    
+                    break;
+                
+            }   
+            
             break;
             
         default:
@@ -144,29 +173,24 @@
     switch (indexPath.section)
     {
         case 0:
-            if (indexPath.row == 0)
-            {
-                [(UILabel *)[self.descripcionCell viewWithTag:1] setText: [self.clip valueForKey:@"titulo"]];
-              //  [(UILabel *)[self.descripcionCell viewWithTag:4] setText: [self.clip obtenerTiempoDesdeParaEsteClip]];
-                [(UILabel *)[self.descripcionCell viewWithTag:5] setText: [self.clip valueForKey:@"descripcion"]];
+            switch (indexPath.row) {
+                case 0:
+                    [(UILabel *)[self.tituloCell viewWithTag:1] setText: [self.clip valueForKey:@"titulo"]];                    
+                    return tituloCell;
+                    break;
+                case 1:
+                    [(UILabel *)[self.firmaCell viewWithTag:4] setText: [self.clip obtenerTiempoDesdeParaEsteClip]];
+                    return firmaCell;                    
+                case 2:
+                    [(UILabel *)[self.descripcionCell viewWithTag:5] setText: [self.clip valueForKey:@"descripcion"]];
+                    return descripcionCell;
+                default:
+                    break;
                 
-                AsynchronousImageView *imageView = (AsynchronousImageView *)[self.descripcionCell viewWithTag:2];
-                
-                // Copiar propiedades de thumbnailView (definidas en NIB) y sustitirlo por AsyncImageView correspondiente
-                CGRect frame = imageView.frame;
-                [imageView removeFromSuperview];
-                
-                AsynchronousImageView *aiv = [[AsynchronousImageView alloc] init];
-                
-                [aiv loadImageFromURLString:[self.clip valueForKey:@"thumbnail_grande"]];
-                aiv.frame = frame;
-                [self.descripcionCell addSubview:aiv];
-                
-                [aiv release];
-                
-                return descripcionCell;
             }
-            
+           
+
+            break;
         default:
             cell.textLabel.text = [[[self.clip arregloDiccionariosClasificadores] objectAtIndex:indexPath.row] valueForKey:@"valor"];
             [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
@@ -222,6 +246,30 @@
 {
     
     switch (indexPath.section) {
+        case 0:
+            ;
+            
+            NSString *stringURL = [NSString stringWithFormat:@"%@", [self.clip valueForKey:@"archivo_url"]];
+            NSURL *urlVideo = [NSURL URLWithString: stringURL];
+            
+            // Crear y configurar player
+            MPMoviePlayerViewController *movieController = [[MPMoviePlayerViewController alloc] initWithContentURL:urlVideo];
+            [movieController.view setBackgroundColor: [UIColor blackColor]];
+            
+            // Presentar player y reproducir video
+            [self presentMoviePlayerViewControllerAnimated:movieController];
+            [movieController.moviePlayer play];  
+            
+            // Agregar observer al finalizar reproducción
+            [[NSNotificationCenter defaultCenter] 
+             addObserver:self
+             selector:@selector(playerFinalizado:)                                                 
+             name:MPMoviePlayerPlaybackDidFinishNotification
+             object:movieController.moviePlayer];
+            
+            [self.detallesTableView deselectRowAtIndexPath:indexPath animated:NO];
+            break;
+            
         case 1:
             
             ;
@@ -283,7 +331,24 @@
     [data release];
 }
 
-
+- (void)playerFinalizado:(NSNotification *)notification
+{
+    // Crear y presentar vista de detalles para el video que acaba de finalizar (índice guardado en tag de view)
+    // ENviar notificación a Google Analytics
+    NSError *error;
+    if (![[GANTracker sharedTracker] trackEvent:@"iPhone"
+                                         action:@"Video reproducido"
+                                          label:[self.clip valueForKey:@"archivo"]
+                                          value:-1
+                                      withError:&error])
+    {
+        NSLog(@"Error");
+    }
+    
+    //
+    // Un posible momento para insertar publicidad
+    //
+}
 
 
 @end

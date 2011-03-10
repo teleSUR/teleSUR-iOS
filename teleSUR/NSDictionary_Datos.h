@@ -14,6 +14,7 @@
 - (NSString *)obtenerFirmaParaEsteClip;
 - (NSDate *)obtenerNSDateParaEsteClip;
 - (NSString *)obtenerFechaCompletaParaEsteClip;
+- (NSString *)obtenerFechaLargaParaEsteClip;
 - (NSString *)obtenerTiempoDesdeParaEsteClip;
 
 // Clasificadores

@@ -51,11 +51,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "teleSUR/NSDictionary_Datos.m"
-         timestampString = "321382414.462008"
+         timestampString = "321407761.7202"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "126"
-         endingLineNumber = "126"
+         startingLineNumber = "137"
+         endingLineNumber = "137"
          landmarkName = "-obtenerTiempoDesdeParaEsteClip"
          landmarkType = "5">
       </FileBreakpoint>
@@ -65,12 +65,40 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "teleSUR/NSDate_Utilidad.m"
-         timestampString = "321382747.395259"
+         timestampString = "321407857.98703"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "85"
-         endingLineNumber = "85"
+         startingLineNumber = "49"
+         endingLineNumber = "49"
          landmarkName = "-enTimerContraAhora"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "teleSUR/NSDate_Utilidad.m"
+         timestampString = "321407889.292781"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "21"
+         endingLineNumber = "21"
+         landmarkName = "-enTimerContraAhora"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "teleSUR/TSClipDetallesViewController.m"
+         timestampString = "321408066.747026"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "114"
+         endingLineNumber = "114"
+         landmarkName = "-numberOfSectionsInTableView:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
