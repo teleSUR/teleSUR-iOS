@@ -33,6 +33,7 @@
 @synthesize detallesTableView, detallesTableViewController;
 @synthesize tituloCell, categoriaCell, firmaCell, descripcionCell;
 @synthesize relacionadosTableViewController, relacionadosTableView;
+@synthesize indexPathSeleccionado;
 
 @class teleSURAppDelegate;
 
@@ -72,7 +73,7 @@
 
 -(void)viewDidAppear:(BOOL)animated 
 {
-    
+    [self.detallesTableView deselectRowAtIndexPath:self.indexPathSeleccionado animated:animated];
 }
 
 - (void)viewDidUnload
@@ -223,7 +224,6 @@
                         [imageView release];	
                     }
                     
-                    
                     return tituloCell;
                     
                 case kFIRMA_ROW:
@@ -317,6 +317,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    self.indexPathSeleccionado = indexPath;
+    
     switch (indexPath.section)
     {
         case kINFO_SECTION:
@@ -340,8 +342,6 @@
                  selector:@selector(playerFinalizado:)                                                 
                  name:MPMoviePlayerPlaybackDidFinishNotification
                  object:movieController.moviePlayer];
-                
-                [self.detallesTableView deselectRowAtIndexPath:indexPath animated:NO];
             }
             
             break;

@@ -279,10 +279,19 @@
     
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    // Si ya había un clip seleccionado, asegurar que esté marcado 
+    if (self.indiceDeClipSeleccionado)
+        [self.clipsTableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:self.indiceDeClipSeleccionado inSection:0] animated:NO scrollPosition: UITableViewScrollPositionNone];
+}
+
+
 - (void)viewDidAppear:(BOOL)animated
 {
+    // Si ya había un clip seleccionado, desmarcarlo con animación
     if (self.indiceDeClipSeleccionado)
-        [self.clipsTableView deselectRowAtIndexPath:[NSIndexPath indexPathForRow:self.indiceDeClipSeleccionado inSection:0] animated:YES];
+        [self.clipsTableView deselectRowAtIndexPath:[NSIndexPath indexPathForRow:self.indiceDeClipSeleccionado inSection:0] animated:animated];
 }
 
 
@@ -379,7 +388,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Guardar referencia a índice, notificación del player lo necesita
+    // Guardar referencia a índice
     self.indiceDeClipSeleccionado = indexPath.row;
     
     if (self.indiceDeClipSeleccionado < [self.clips count]) // Se trata de un video
@@ -422,6 +431,9 @@
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
+    // Guardar feferencia a clip seleccionado
+    self.indiceDeClipSeleccionado = indexPath.row;
+    
     // Crear y presentar vista de detalles
     TSClipDetallesViewController *detalleView = [[TSClipDetallesViewController alloc] initWithClip:[self.clips objectAtIndex:indexPath.row]];
     [self.navigationController pushViewController:detalleView animated:YES];

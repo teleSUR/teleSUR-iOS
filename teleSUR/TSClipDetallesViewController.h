@@ -28,6 +28,9 @@
     // Datos
     NSDictionary *clip;
     
+    // Auxiliares
+    NSIndexPath *indexPathSeleccionado;
+    
 }
 
 // Tabla de detalles
@@ -45,6 +48,9 @@
 @property (nonatomic, retain) IBOutlet UITableView *relacionadosTableView;
 
 @property (nonatomic, retain) NSDictionary *clip;
+
+// Auxiliares
+@property (nonatomic, retain) NSIndexPath *indexPathSeleccionado;
 
 // Init
 - (id)initWithClip:(NSDictionary *)diccionarioClip;
