@@ -30,20 +30,12 @@
     // Agregar posibles filtros para clips
 	if ([entidad isEqualToString:@"clip"])
     {
-		if ((currentFiltro = [filtros objectForKey:@"categoria"]))
-			[parametrosGET addObject:[NSString stringWithFormat:@"categoria=%@", currentFiltro]];
+        // Buscar nombres de parámetros reconocidos y agregarlos al arreglo de parámetros GET
+        NSArray *params = [NSArray arrayWithObjects:@"categoria", @"programa", @"tipo", @"desde", @"hasta", @"pais", @"tema", nil];
         
-        if ((currentFiltro = [filtros objectForKey:@"programa"]))
-			[parametrosGET addObject:[NSString stringWithFormat:@"programa=%@", currentFiltro]];
-		
-		if ((currentFiltro = [filtros objectForKey:@"tipo"]))
-			[parametrosGET addObject:[NSString stringWithFormat:@"tipo=%@", currentFiltro]];
-		
-		if ((currentFiltro = [filtros objectForKey:@"desde"]))
-			[parametrosGET addObject:[NSString stringWithFormat:@"desde=%@", currentFiltro]];
-		
-		if ((currentFiltro = [filtros objectForKey:@"hasta"]))
-			[parametrosGET addObject:[NSString stringWithFormat:@"hasta=%@", currentFiltro]];
+        for (NSString *param in params)
+            if ((currentFiltro = [filtros objectForKey:param]))
+                [parametrosGET addObject:[NSString stringWithFormat:@"%@=%@", param, currentFiltro]];
 	
 	} else if ([entidad isEqualToString:@"categoria"]) {
 	} else if ([entidad isEqualToString:@"programa"]) {
