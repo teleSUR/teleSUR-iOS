@@ -34,7 +34,7 @@
 @synthesize clipsTableView, menuScrollView;
 @synthesize clips, filtros;
 @synthesize arregloClipsAsyncImageViews;
-@synthesize indiceDeClipSeleccionado, indiceDeFiltroSeleccionado;
+@synthesize indiceDeClipSeleccionado, indiceDeFiltroSeleccionado, slugDeFiltroSeleccionado;
 @synthesize agregarAlFinal, omitirVerMas, conFiltroTodos;
 
 
@@ -84,7 +84,7 @@
     int offsetX = 0 + kMARGEN_MENU;
     
     // Recorrer filtros
-    for (float i=0; i < [self.filtros count]; i++)
+    for (int i=0; i < [self.filtros count]; i++)
     {
         // Crear nuevo botÃ³n para filtro
         UIButton *boton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -116,6 +116,10 @@
         
         // Actualizar offset
         offsetX += boton.frame.size.width + kMARGEN_MENU;
+        
+        // Si el bot—n tiene un slug igual al que se indic— como seleccionado, actualizar ’ndiceDeClipSeleccionado
+        if ([self.slugDeFiltroSeleccionado isEqualToString:[[self.filtros objectAtIndex:i] valueForKey:@"slug"]])
+            self.indiceDeFiltroSeleccionado = i;
         
         // A–adir bot—n a la jerarqu—n de vistas
         [self.menuScrollView addSubview:boton];

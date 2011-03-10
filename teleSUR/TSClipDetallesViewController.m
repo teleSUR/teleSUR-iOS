@@ -353,8 +353,8 @@
             
             NSDictionary *filtros = [NSDictionary dictionaryWithObject:[categorizador valueForKey:@"slug"] forKey:[categorizador valueForKey:@"nombre"]];
             
-            TSClipListadoViewController *listadoView =[[TSClipListadoViewController alloc] initWithEntidad:[categorizador valueForKey:@"nombre"] yFiltros:filtros];
-            listadoView.indiceDeFiltroSeleccionado = 4;
+            TSClipListadoViewController *listadoView = [[TSClipListadoViewController alloc] initWithEntidad:[categorizador valueForKey:@"nombre"] yFiltros:filtros];
+            listadoView.slugDeFiltroSeleccionado = [categorizador valueForKey:@"slug"];
             [self.navigationController pushViewController:listadoView animated:YES];
             [listadoView release];
             

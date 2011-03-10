@@ -37,6 +37,7 @@
     
     int indiceDeFiltroSeleccionado;
     int indiceDeClipSeleccionado;
+    NSString *slugDeFiltroSeleccionado;
     
     BOOL agregarAlFinal;
     BOOL omitirVerMas;
@@ -65,6 +66,7 @@
 // Auxiliares
 @property (nonatomic, assign) int indiceDeFiltroSeleccionado;
 @property (nonatomic, assign) int indiceDeClipSeleccionado;
+@property (nonatomic, retain) NSString *slugDeFiltroSeleccionado;
 
 @property (nonatomic, assign) BOOL agregarAlFinal;
 @property (nonatomic, assign) BOOL omitirVerMas;
