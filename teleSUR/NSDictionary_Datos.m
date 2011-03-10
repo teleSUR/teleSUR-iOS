@@ -114,6 +114,17 @@
     return fechaCompleta;
 }
 
+- (NSString *)obtenerFechaLargaParaEsteClip
+{
+    NSDateFormatter *formater = [[NSDateFormatter alloc] init];
+	[formater setDateStyle:NSDateFormatterLongStyle];
+    
+	NSString *fechaCompleta = [formater stringFromDate:[self obtenerNSDateParaEsteClip]];
+    
+	[formater release];
+    
+    return fechaCompleta;
+}
 
 // TODO: Implementar
 // Devuelve cadena localizada con tiempo transcurrido desde la fecha de este clip:
@@ -129,7 +140,7 @@
         return [[self obtenerNSDateParaEsteClip] enTimerContraAhora];
     
     }
-    return [self obtenerFechaCompletaParaEsteClip];
+    return [self obtenerFechaLargaParaEsteClip];
 	
 	
 }

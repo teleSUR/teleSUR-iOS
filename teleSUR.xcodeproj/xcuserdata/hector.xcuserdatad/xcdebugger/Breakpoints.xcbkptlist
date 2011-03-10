@@ -51,11 +51,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "teleSUR/NSDictionary_Datos.m"
-         timestampString = "321382414.462008"
+         timestampString = "321407761.7202"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "126"
-         endingLineNumber = "126"
+         startingLineNumber = "137"
+         endingLineNumber = "137"
          landmarkName = "-obtenerTiempoDesdeParaEsteClip"
          landmarkType = "5">
       </FileBreakpoint>
@@ -65,11 +65,25 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "teleSUR/NSDate_Utilidad.m"
-         timestampString = "321403217.876456"
+         timestampString = "321407857.98703"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "86"
-         endingLineNumber = "86"
+         startingLineNumber = "49"
+         endingLineNumber = "49"
+         landmarkName = "-enTimerContraAhora"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "teleSUR/NSDate_Utilidad.m"
+         timestampString = "321407889.292781"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "21"
+         endingLineNumber = "21"
          landmarkName = "-enTimerContraAhora"
          landmarkType = "5">
       </FileBreakpoint>
