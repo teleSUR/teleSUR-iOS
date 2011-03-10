@@ -376,7 +376,8 @@
 - (IBAction)botonRedesSocialesPresionado:(id)boton
 {
     // Crear item para compartir en redes sociales
-	NSURL *url = [NSURL URLWithString:@"http://multimedia.telesurtv.net/"];
+    NSString *urlBase = [[[[NSBundle mainBundle] infoDictionary] objectForKey:@"Configuración"] objectForKey:@"API URL Base"];
+	NSURL *url = [NSURL URLWithString:urlBase];
 	SHKItem *item = [SHKItem URL:url title:@"Awesome!"];
     
 	// Crear Action Sheet

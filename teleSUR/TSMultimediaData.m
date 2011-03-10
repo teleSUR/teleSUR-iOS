@@ -22,9 +22,16 @@
     self.entidadString = entidad;
 	self.delegate = datosDelegate;
 	
-	NSString *urlBase = @"http://multimedia.telesurtv.net";
-	NSString *langCode = @""; // default otros:  @"pt/", @"en/" (OJO: slash al final)
-	NSMutableArray *parametrosGET = [NSMutableArray array];
+	NSString *urlBase = [[[[NSBundle mainBundle] infoDictionary] objectForKey:@"Configuración"] objectForKey:@"API URL Base"];
+	NSString *langCode = [[[[NSBundle mainBundle] infoDictionary] objectForKey:@"Configuración"] objectForKey:@"Código de idioma"]; // default otros:  @"pt/", @"en/" (OJO: slash al final)
+	
+    // Prefijo de idioma
+    if ([langCode isEqualToString:@"es"])
+        langCode = @"";
+    else
+        langCode = [NSString stringWithFormat:@"%@/", langCode];
+    
+    NSMutableArray *parametrosGET = [NSMutableArray array];
 	NSString *currentFiltro = nil;
 	
     // Agregar posibles filtros para clips

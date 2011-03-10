@@ -47,5 +47,12 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>Configuración</key>
+	<dict>
+		<key>API URL Base</key>
+		<string>http://multimedia.telesurtv.net</string>
+		<key>Código de idioma</key>
+		<string>es</string>
+	</dict>
 </dict>
 </plist>
