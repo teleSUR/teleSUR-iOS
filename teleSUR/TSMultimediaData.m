@@ -23,7 +23,7 @@
 	self.delegate = datosDelegate;
 	
 	NSString *urlBase = @"http://multimedia.telesurtv.net";
-	NSString *langCode = @"pt/"; // default otros:  @"pt/", @"en/" (OJO: slash al final)
+	NSString *langCode = @""; // default otros:  @"pt/", @"en/" (OJO: slash al final)
 	NSMutableArray *parametrosGET = [NSMutableArray array];
 	NSString *currentFiltro = nil;
 	
