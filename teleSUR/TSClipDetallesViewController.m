@@ -7,7 +7,7 @@
 //
 
 
-#import "TSClipDetallesViewController.h"
+#import "TSClipDetallesViewController.h" 
 #import <MediaPlayer/MediaPlayer.h>
 #import "TSClipListadoViewController.h"
 #import "NSDictionary_Datos.m"
@@ -15,8 +15,16 @@
 #import "SHK.h"
 #import "GANTracker.h"
 
-#define kDETALLES_SECTION 0
+// TODO: Integrar estas constantes mejor a configuración, quizá plist principal
+// Orden de secciones
+#define kINFO_SECTION          0
 #define kCLASIFICACION_SECTION 1
+#define kRELACIONADOS_SECTION  2
+
+// Sección INFO
+#define kTITULO_ROW        0
+#define kFIRMA_ROW         1
+#define kDESCRIOCION_ROW   2
 
 
 @implementation TSClipDetallesViewController
@@ -120,7 +128,7 @@
     
     switch (section)
     {
-        case kDETALLES_SECTION:
+        case kINFO_SECTION:
             return 3;
         case kCLASIFICACION_SECTION:
             return [[self.clip arregloDiccionariosClasificadores] count];
@@ -163,55 +171,69 @@
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    static NSString *CellIdentifier = @"ACell";
-    
+    NSString *CellIdentifier = [NSString stringWithFormat:@"%d", indexPath.section];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
     
     switch (indexPath.section)
     {
-        case 0:
-            switch (indexPath.row) {
-                case 0:
+        case kINFO_SECTION:
+            
+            switch (indexPath.row)
+            {
+                case kTITULO_ROW:
+                    
                     [(UILabel *)[self.tituloCell viewWithTag:1] setText: [self.clip valueForKey:@"titulo"]];
                     
-                    AsynchronousImageView *imageView = (AsynchronousImageView *)[self.tituloCell viewWithTag:2];
-                    
-                    if (imageView)
+                    // Imagen
+                    AsynchronousImageView *imageView;
+                    if ((imageView = (AsynchronousImageView *)[self.tituloCell viewWithTag:2]))
                     {
                         CGRect frame = imageView.frame;
                         [imageView removeFromSuperview];
                         
-                        AsynchronousImageView *aiv = [[AsynchronousImageView alloc] init];
-                        [aiv loadImageFromURLString:[self.clip valueForKey:@"thumbnail_grande"]];
-                        aiv.frame = frame;
-                        [self.tituloCell addSubview:aiv];
-                        [aiv release];	
+                        imageView = [[AsynchronousImageView alloc] init];
+                        [imageView loadImageFromURLString:[self.clip valueForKey:@"thumbnail_grande"]];
+                        imageView.frame = frame;
+                        [self.tituloCell addSubview:imageView];
+                        [imageView release];	
                     }
                     
                     return tituloCell;
                     
-                case 1:
+                case kFIRMA_ROW:
+                    
                     [(UILabel *)[self.firmaCell viewWithTag:4] setText: [self.clip obtenerTiempoDesdeParaEsteClip]];
-                    return firmaCell;                    
-                case 2:
+                    
+                    return firmaCell;   
+                    
+                case kDESCRIOCION_ROW:
+                    
                     [(UILabel *)[self.descripcionCell viewWithTag:5] setText: [self.clip valueForKey:@"descripcion"]];
+                    
                     return descripcionCell;
-                default:
-                    break;
-                
             }
-           
-
-            break;
-        default:
+            
+        case kCLASIFICACION_SECTION:
+            
             cell.textLabel.text = [[[self.clip arregloDiccionariosClasificadores] objectAtIndex:indexPath.row] valueForKey:@"valor"];
             [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+            
+            return cell;
+        
+        case kRELACIONADOS_SECTION:
+            
+            // TODO: Videos relacionados
+            // IDEA: proxy redirigir mensaje a datadelegate de tabla de clips, sólo para esta sección
+            return cell;
+        
+        default:
+            
             return cell;
     }
-    
 }
 
 
