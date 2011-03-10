@@ -47,7 +47,7 @@
 
     NSLog(@"%d", [conversionInfo day]);
 	if ([conversionInfo day] == -1) {
-		dias = @"1 dia";
+		dias = @"1 día";
         diasListo = true;
 	}
     
@@ -69,7 +69,7 @@
 
     
     if (!diasListo) {
-        dias = [NSString stringWithFormat:@"%d dias", (-1) * [conversionInfo day]];
+        dias = [NSString stringWithFormat:@"%d días", (-1) * [conversionInfo day]];
     }
     if (!horasListo)
         horas = [NSString stringWithFormat:@"%d horas", (-1) * [conversionInfo hour]];
@@ -84,11 +84,11 @@
     
     if (![dias isEqualToString:@""])  { 
         numeroDeComponentes++;
-        [tiempoQueFalta appendFormat:@"%@ ", dias];
+        [tiempoQueFalta appendFormat:@"%@, ", dias];
     }
     if (![horas isEqualToString:@""]) {
         numeroDeComponentes++;        
-        [tiempoQueFalta appendFormat:@"%@ ",horas];  
+        [tiempoQueFalta appendFormat:@"%@, ",horas];  
     }
     if (![mins isEqualToString:@""] && numeroDeComponentes < 2) {
         numeroDeComponentes++;        
