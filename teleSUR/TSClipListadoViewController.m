@@ -483,6 +483,8 @@
     self.clips = nil;
     self.filtros = nil;
     self.arregloClipsAsyncImageViews = nil;
+    self.clipsTableView = nil;
+    self.tableViewController = nil;
 }
 
 
