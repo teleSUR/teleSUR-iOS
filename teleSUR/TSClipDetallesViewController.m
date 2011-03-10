@@ -178,14 +178,18 @@
                     [(UILabel *)[self.tituloCell viewWithTag:1] setText: [self.clip valueForKey:@"titulo"]];
                     
                     AsynchronousImageView *imageView = (AsynchronousImageView *)[self.tituloCell viewWithTag:2];
-                    CGRect frame = imageView.frame;
-                    [imageView removeFromSuperview];
                     
-                    AsynchronousImageView *aiv = [[AsynchronousImageView alloc] init];
-                    [aiv loadImageFromURLString:[self.clip valueForKey:@"thumbnail_grande"]];
-                    aiv.frame = frame;
-                    [self.tituloCell addSubview:aiv];
-                    [aiv release];	 
+                    if (imageView)
+                    {
+                        CGRect frame = imageView.frame;
+                        [imageView removeFromSuperview];
+                        
+                        AsynchronousImageView *aiv = [[AsynchronousImageView alloc] init];
+                        [aiv loadImageFromURLString:[self.clip valueForKey:@"thumbnail_grande"]];
+                        aiv.frame = frame;
+                        [self.tituloCell addSubview:aiv];
+                        [aiv release];	
+                    }
                     
                     return tituloCell;
                     
