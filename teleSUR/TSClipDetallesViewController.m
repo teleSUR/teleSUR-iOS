@@ -162,7 +162,7 @@
             
         case kCLASIFICACION_SECTION:
             
-            return 45.0;
+            return 40.0;
         
         case kRELACIONADOS_SECTION:
             
@@ -197,7 +197,17 @@
             {
                 case kTITULO_ROW:
                     
-                    [(UILabel *)[self.tituloCell viewWithTag:1] setText: [self.clip valueForKey:@"titulo"]];
+                    ;// Configurar label para título
+                    UILabel *tituloLabel = (UILabel *)[self.tituloCell viewWithTag:1];
+                    
+                    tituloLabel.text  = [self.clip valueForKey:@"titulo"];
+                    
+                    CGRect tituloFrame = tituloLabel.frame;
+                    CGSize tituloSize = [tituloLabel.text sizeWithFont:tituloLabel.font 
+                                                     constrainedToSize:CGSizeMake(tituloFrame.size.width, 9999) 
+                                                         lineBreakMode:tituloLabel.lineBreakMode];
+                    
+                    tituloLabel.frame = CGRectMake(tituloFrame.origin.x, tituloFrame.origin.y, tituloFrame.size.width, tituloSize.height);
                     
                     // Imagen
                     AsynchronousImageView *imageView;
@@ -212,6 +222,7 @@
                         [self.tituloCell addSubview:imageView];
                         [imageView release];	
                     }
+                    
                     
                     return tituloCell;
                     
@@ -231,6 +242,7 @@
         case kCLASIFICACION_SECTION:
             
             cell.textLabel.text = [[[self.clip arregloDiccionariosClasificadores] objectAtIndex:indexPath.row] valueForKey:@"valor"];
+            cell.textLabel.font = [UIFont systemFontOfSize:14.0];
             [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
             
             return cell;
@@ -245,6 +257,58 @@
             
             return cell;
     }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    switch (section)
+    {
+        case kINFO_SECTION:
+            
+            return 0;
+            
+        case kCLASIFICACION_SECTION:
+            
+            return 20.0;
+            
+        case kRELACIONADOS_SECTION:
+            
+            return 20.0;
+            
+        default:
+            
+            NSLog(@"Sección de tabla no reconocida: %d", section);
+            
+            return 0;
+    }
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UILabel *label = [[UILabel alloc] init];
+    label.backgroundColor = [UIColor clearColor];
+    
+    switch (section)
+    {
+        case kINFO_SECTION:
+            
+            return nil;
+            
+        case kCLASIFICACION_SECTION:
+            
+            label.text = @"Más videos de...";
+            
+            break;
+            
+        case kRELACIONADOS_SECTION:
+            
+            label.text = @"Videos relacionados";
+            
+            break;
+    }
+    
+    label.text = [NSString stringWithFormat:@"   %@", label.text];
+    return label;
 }
 
 
@@ -285,7 +349,12 @@
         case kCLASIFICACION_SECTION:
             
             ;// Crear y mistrar controlador de vista de listado
-            TSClipListadoViewController *listadoView =[[TSClipListadoViewController alloc] init];
+            NSDictionary *categorizador = [[self.clip arregloDiccionariosClasificadores] objectAtIndex:indexPath.row];
+            
+            NSDictionary *filtros = [NSDictionary dictionaryWithObject:[categorizador valueForKey:@"slug"] forKey:[categorizador valueForKey:@"nombre"]];
+            
+            TSClipListadoViewController *listadoView =[[TSClipListadoViewController alloc] initWithEntidad:[categorizador valueForKey:@"nombre"] yFiltros:filtros];
+            listadoView.indiceDeFiltroSeleccionado = 4;
             [self.navigationController pushViewController:listadoView animated:YES];
             [listadoView release];
             

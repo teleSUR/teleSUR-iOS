@@ -45,7 +45,7 @@
     
     if ([conversionInfo day] == 0) diasListo = true;
 
-    NSLog(@"%d", [conversionInfo day]);
+    //NSLog(@"%d", [conversionInfo day]);
 	if ([conversionInfo day] == -1) {
 		dias = @"1 día";
         diasListo = true;
@@ -101,7 +101,7 @@
 	
     NSArray *componentesTiempoQueFalta = [tiempoQueFalta componentsSeparatedByString:@" "];
     
-    NSLog(@":::: %@", componentesTiempoQueFalta);
+    //NSLog(@":::: %@", componentesTiempoQueFalta);
         
     return tiempoQueFalta;
 }

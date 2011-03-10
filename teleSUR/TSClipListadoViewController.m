@@ -58,7 +58,7 @@
 {
     // Datos
     self.entidadMenu = (entidad != nil) ? entidad : @"categoria";
-    self.diccionarioConfiguracionFiltros = diccionario ? diccionario : [NSMutableDictionary dictionary];
+    self.diccionarioConfiguracionFiltros = diccionario ? [NSMutableDictionary dictionaryWithDictionary:diccionario] : [NSMutableDictionary dictionary];
     
     self.rangoUltimo = NSMakeRange(1, kTAMANO_PAGINA);
     
@@ -123,6 +123,9 @@
     
     // Deifnir ‡rea de scroll
     [self.menuScrollView setContentSize: CGSizeMake(offsetX, self.menuScrollView.frame.size.height)];
+    
+    // Fingir presionar el bot—n del clip seleccionado
+    [self filtroSeleccionadoConBoton:[[self.menuScrollView subviews] objectAtIndex:self.indiceDeFiltroSeleccionado]];
 }
 
 // Obtiene clips asincr—nicamente, con base en propiedades del objeto
@@ -157,9 +160,6 @@
     NSInteger indice = [[self.menuScrollView subviews] indexOfObject:boton];
     NSString *slug = [[self.filtros objectAtIndex:indice] valueForKey:@"slug"];
     
-    // Si se presion— el mismo que estaba seleccionado, no hacer nada
-    if (self.indiceDeFiltroSeleccionado == indice) return;
-    
     // Apagar todos los botones y prender el bot—n en cuesti—n
     for (UIButton *btn in [self.menuScrollView subviews]) [btn setSelected:NO];
 	[boton setSelected:YES];
@@ -176,20 +176,24 @@
     
     // Aplicar nuevo offset
     [[self menuScrollView] setContentOffset:CGPointMake(offset, 0) animated:YES];
-	
-    // Configurar nuevo diccionario de filtros, no filtrar si se us— bot—n "todos"
-    [self.diccionarioConfiguracionFiltros setValue:((indice > 0) ? slug : nil) forKey:self.entidadMenu];
     
-    // Reinicializar datos, con misma entidad de menœ pero nuevo diccionario de confgiruaci—n de filtros 
-    [self configurarConEntidad:self.entidadMenu yFiltros:self.diccionarioConfiguracionFiltros];
-    
-    // Actualizamos el boton que debe "seleccionarse"
-	self.indiceDeFiltroSeleccionado = indice;
-    
-    // Re-cargar datos
-    // Mostrar vista de loading
-    [self mostrarLoadingViewConAnimacion:YES];
-    [self cargarClips];
+    // Si se presion— el mismo que estaba seleccionado, no hacer nada
+    if (self.indiceDeFiltroSeleccionado != indice)
+    {
+        // Configurar nuevo diccionario de filtros, no filtrar si se us— bot—n "todos"
+        [self.diccionarioConfiguracionFiltros setValue:((indice > 0) ? slug : nil) forKey:self.entidadMenu];
+        
+        // Reinicializar datos, con misma entidad de menœ pero nuevo diccionario de confgiruaci—n de filtros 
+        [self configurarConEntidad:self.entidadMenu yFiltros:self.diccionarioConfiguracionFiltros];
+        
+        // Actualizamos el boton que debe "seleccionarse"
+        self.indiceDeFiltroSeleccionado = indice;
+        
+        // Re-cargar datos
+        // Mostrar vista de loading
+        [self mostrarLoadingViewConAnimacion:YES];
+        [self cargarClips];
+    }
 }   
 
 - (void)playerFinalizado:(NSNotification *)notification
@@ -231,39 +235,50 @@
     self.arregloClipsAsyncImageViews = [NSMutableArray array];
     
     
-    // Detemrinar datos de entrada: filtros a aplicar, y filtros a mostrar
-    NSMutableDictionary *dict = [NSMutableDictionary dictionary]; 
-    NSString *filtro;
-    NSString *tab = [[self navigationItem] title];
-    
-    if ([tab isEqualToString:@"Noticias"])
+    if (!self.diccionarioConfiguracionFiltros) // S—lo si no se llam— ya a initWith... 
     {
-        filtro = @"categoria";
-        [dict setValue:@"noticia" forKey:@"tipo"];
-    }
-    else if ([tab isEqualToString:@"Entrevistas"])
-    {
-        filtro = @"categoria";
-        [dict setValue:@"entrevista" forKey:@"tipo"];
-    }
-    else if ([tab isEqualToString:@"Programas"])
-    {
-        filtro = @"programa";
-        [dict setValue:@"programa" forKey:@"tipo"];
-    }
+        // Detemrinar datos de entrada: filtros a aplicar, y filtros a mostrar
+        NSMutableDictionary *dict = [NSMutableDictionary dictionary]; 
+        NSString *filtro;
+        NSString *tab = [[self navigationItem] title];
         
-    // Configurar variables internas
-    [self configurarConEntidad:filtro yFiltros:dict];
+        NSLog(@"Titulo tab: %@", tab);
+        
+        if ([tab isEqualToString:@"Noticias"])
+        {
+            filtro = @"categoria";
+            [dict setValue:@"noticia" forKey:@"tipo"];
+        }
+        else if ([tab isEqualToString:@"Entrevistas"])
+        {
+            filtro = @"categoria";
+            [dict setValue:@"entrevista" forKey:@"tipo"];
+        }
+        else if ([tab isEqualToString:@"Programas"])
+        {
+            filtro = @"programa";
+            [dict setValue:@"programa" forKey:@"tipo"];
+        }
+            
+        // Configurar variables internas
+        [self configurarConEntidad:filtro yFiltros:dict];
+    }
     
     
     // Mostrar vista de loading y cargar datos
+    
     [self mostrarLoadingViewConAnimacion:YES];
     [self cargarFiltros];
     [self cargarClips];
-    
 	
     [super viewDidLoad];
     
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    if (self.indiceDeClipSeleccionado)
+        [self.clipsTableView deselectRowAtIndexPath:[NSIndexPath indexPathForRow:self.indiceDeClipSeleccionado inSection:0] animated:YES];
 }
 
 
@@ -340,26 +355,18 @@
 {
     CGFloat *cacheVar;
     
-    // Determinar nombre de NIB y variable auxiliar de cache
-    if (indexPath.row == [self.clips count])
-    {
-        cacheVar = &celdaVerMasHeight;
-    }
-    else if (indexPath.row == 0)
-    {
-        cacheVar = &celdaGrandeHeight;
-    }
-    else
-    {
-        cacheVar = &celdaEstandarHeight;
-    }
+    // Determinar variable auxiliar cache para cargar NIB una sola vez
+         if (indexPath.row == 0)                  cacheVar = &celdaEstandarHeight;
+    else if (indexPath.row < [self.clips count])  cacheVar = &celdaGrandeHeight;
+    else if (indexPath.row == [self.clips count]) cacheVar = &celdaVerMasHeight;
     
     // Si existe, devolver altura en cache
-    if (*cacheVar)
-        return *cacheVar;
+    if (*cacheVar) return *cacheVar;
     
-    // Si la altura no ha sido guardada en variable de instancia, obtenerla de NIB
+    // Si la altura no ha sido guardada en variable de instancia, cargar NIB
     UITableViewCell *celda = (UITableViewCell *)[[[NSBundle mainBundle] loadNibNamed:[self nombreNibParaIndexPath:indexPath] owner:self options:nil] lastObject];
+   
+    // Leer altura de celda, guardarla en cache y devolverla
     *cacheVar = celda.frame.size.height;
     
     return *cacheVar;
@@ -391,8 +398,6 @@
          selector:@selector(playerFinalizado:)                                                 
          name:MPMoviePlayerPlaybackDidFinishNotification
          object:movieController.moviePlayer];
-        
-        [self.clipsTableView deselectRowAtIndexPath:indexPath animated:NO];
     }
     else // Se trata de la celda "Ver M‡s"
     {
@@ -508,7 +513,7 @@
         for (int i=0; i < [self.clips count]; i++)
         {
             AsynchronousImageView *aiv = [[AsynchronousImageView alloc] init];
-            [aiv loadImageFromURLString:[NSString stringWithFormat:@"%@", [[self.clips objectAtIndex:i] valueForKey:@"thumbnail_mediano"]]];
+            [aiv loadImageFromURLString:[NSString stringWithFormat:@"%@", [[self.clips objectAtIndex:i] valueForKey:@"thumbnail_pequeno"]]];
             [self.arregloClipsAsyncImageViews insertObject:aiv atIndex:i];
             [aiv release];
         }
@@ -556,8 +561,6 @@
         {
             self.filtros = array;
         }
-        
-        
         
         // Reconstruir menœ con nuevos fitros
         [self construirMenu];

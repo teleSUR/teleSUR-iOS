@@ -121,6 +121,8 @@
 		635A78A11319D3F600C3977D /* TSClipDetallesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 635A789F1319D3F600C3977D /* TSClipDetallesViewController.m */; };
 		635A78A21319D3F600C3977D /* TSClipDetallesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 635A78A01319D3F600C3977D /* TSClipDetallesViewController.xib */; };
 		635C6D65131DDA850017CD5F /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 635C6D64131DDA850017CD5F /* MediaPlayer.framework */; };
+		63C034B61328A510005D9F32 /* TSClipBusquedaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C034B41328A510005D9F32 /* TSClipBusquedaViewController.m */; };
+		63C034B71328A510005D9F32 /* TSClipBusquedaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63C034B51328A510005D9F32 /* TSClipBusquedaViewController.xib */; };
 		63C7AEFA131DAF9000BD7F64 /* AsynchronousImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C7AEF9131DAF9000BD7F64 /* AsynchronousImageView.m */; };
 		63E01697131B883D001928E4 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 63E01696131B883D001928E4 /* Default.png */; };
 		63E4A8EE1325EDF600669E91 /* TSProgramaListadoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E4A8ED1325EDF400669E91 /* TSProgramaListadoViewController.m */; };
@@ -348,6 +350,9 @@
 		635A789F1319D3F600C3977D /* TSClipDetallesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSClipDetallesViewController.m; sourceTree = "<group>"; };
 		635A78A01319D3F600C3977D /* TSClipDetallesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TSClipDetallesViewController.xib; sourceTree = "<group>"; };
 		635C6D64131DDA850017CD5F /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		63C034B31328A510005D9F32 /* TSClipBusquedaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSClipBusquedaViewController.h; sourceTree = "<group>"; };
+		63C034B41328A510005D9F32 /* TSClipBusquedaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSClipBusquedaViewController.m; sourceTree = "<group>"; };
+		63C034B51328A510005D9F32 /* TSClipBusquedaViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TSClipBusquedaViewController.xib; sourceTree = "<group>"; };
 		63C7AEF8131DAF8F00BD7F64 /* AsynchronousImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsynchronousImageView.h; sourceTree = "<group>"; };
 		63C7AEF9131DAF9000BD7F64 /* AsynchronousImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsynchronousImageView.m; sourceTree = "<group>"; };
 		63E01696131B883D001928E4 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
@@ -994,6 +999,9 @@
 		6354893B1327F875000B2971 /* Búsqueda */ = {
 			isa = PBXGroup;
 			children = (
+				63C034B31328A510005D9F32 /* TSClipBusquedaViewController.h */,
+				63C034B41328A510005D9F32 /* TSClipBusquedaViewController.m */,
+				63C034B51328A510005D9F32 /* TSClipBusquedaViewController.xib */,
 			);
 			name = "Búsqueda";
 			sourceTree = "<group>";
@@ -1132,6 +1140,7 @@
 				C4FEABFF1324C25E003B6509 /* VerMasClipsTableCellView.xib in Resources */,
 				C4F400321325281D00239C39 /* ClipGrandeTableCellView.xib in Resources */,
 				63E4A8F01326045100669E91 /* ProgramaTableCellView.xib in Resources */,
+				63C034B71328A510005D9F32 /* TSClipBusquedaViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1251,6 +1260,7 @@
 				6341A7D9132056FE008FFD9D /* PullToRefreshTableViewController.m in Sources */,
 				6341A7DC132057DF008FFD9D /* SoundEffect.m in Sources */,
 				63E4A8EE1325EDF600669E91 /* TSProgramaListadoViewController.m in Sources */,
+				63C034B61328A510005D9F32 /* TSClipBusquedaViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

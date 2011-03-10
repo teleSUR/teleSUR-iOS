@@ -132,12 +132,12 @@
 	
 	if (!JSONError)
     {
-		if ([delegate respondsToSelector:@selector(TSMultimediaData:entidadesRecibidas:paraEntidad:)])
+		if (delegate && [delegate respondsToSelector:@selector(TSMultimediaData:entidadesRecibidas:paraEntidad:)])
 			[delegate TSMultimediaData:self entidadesRecibidas:resultadoArray paraEntidad:self.entidadString];
 	}
     else // falla
     {
-		if ([delegate respondsToSelector:@selector(TSMultimediaData:entidadesRecibidasConError:)])
+		if (delegate && [delegate respondsToSelector:@selector(TSMultimediaData:entidadesRecibidasConError:)])
 			[delegate TSMultimediaData:self entidadesRecibidasConError:JSONError];
 	}
     

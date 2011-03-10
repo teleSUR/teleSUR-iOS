@@ -57,7 +57,7 @@
 									<object class="IBUILabel" id="1003706245">
 										<reference key="NSNextResponder" ref="296281804"/>
 										<int key="NSvFlags">308</int>
-										<string key="NSFrame">{{138, 1}, {145, 50}}</string>
+										<string key="NSFrame">{{129, 5}, {151, 50}}</string>
 										<reference key="NSSuperview" ref="296281804"/>
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="688951068"/>
@@ -89,7 +89,7 @@
 									<object class="IBUIImageView" id="202426131">
 										<reference key="NSNextResponder" ref="296281804"/>
 										<int key="NSvFlags">292</int>
-										<string key="NSFrameSize">{130, 89}</string>
+										<string key="NSFrame">{{10, 8}, {107, 73}}</string>
 										<reference key="NSSuperview" ref="296281804"/>
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="1003706245"/>
@@ -105,7 +105,7 @@
 									<object class="IBUILabel" id="688951068">
 										<reference key="NSNextResponder" ref="296281804"/>
 										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{138, 54}, {55, 18}}</string>
+										<string key="NSFrame">{{129, 53}, {55, 18}}</string>
 										<reference key="NSSuperview" ref="296281804"/>
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="704771043"/>
@@ -135,10 +135,9 @@
 									<object class="IBUILabel" id="704771043">
 										<reference key="NSNextResponder" ref="296281804"/>
 										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{138, 71}, {174, 13}}</string>
+										<string key="NSFrame">{{129, 71}, {174, 13}}</string>
 										<reference key="NSSuperview" ref="296281804"/>
 										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView"/>
 										<bool key="IBUIOpaque">NO</bool>
 										<bool key="IBUIClipsSubviews">YES</bool>
 										<int key="IBUIContentMode">7</int>
@@ -162,7 +161,7 @@
 										<int key="IBUINumberOfLines">6</int>
 									</object>
 								</object>
-								<string key="NSFrameSize">{320, 89}</string>
+								<string key="NSFrameSize">{320, 90}</string>
 								<reference key="NSSuperview" ref="1047157674"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="202426131"/>
@@ -176,7 +175,7 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 							</object>
 						</object>
-						<string key="NSFrameSize">{287, 89}</string>
+						<string key="NSFrameSize">{287, 90}</string>
 						<reference key="NSSuperview" ref="14326282"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="296281804"/>
@@ -191,7 +190,7 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
 				</object>
-				<string key="NSFrameSize">{320, 89}</string>
+				<string key="NSFrameSize">{320, 90}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="1047157674"/>
@@ -203,6 +202,7 @@
 				<int key="IBUISeparatorStyle">1</int>
 				<int key="IBUIAccessoryType">2</int>
 				<reference key="IBUIContentView" ref="1047157674"/>
+				<string key="IBUIReuseIdentifier">Celda Estándar</string>
 			</object>
 		</object>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
@@ -243,10 +243,10 @@
 						<reference key="object" ref="296281804"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="202426131"/>
-							<reference ref="688951068"/>
 							<reference ref="1003706245"/>
 							<reference ref="704771043"/>
+							<reference ref="202426131"/>
+							<reference ref="688951068"/>
 						</object>
 						<reference key="parent" ref="14326282"/>
 					</object>
@@ -302,7 +302,7 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="IBUserGuide">
 							<reference key="view" ref="296281804"/>
-							<double key="location">68</double>
+							<double key="location">67.8927001953125</double>
 							<int key="affinity">1</int>
 						</object>
 					</object>
