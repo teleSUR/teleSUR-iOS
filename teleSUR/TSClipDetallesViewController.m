@@ -131,6 +131,8 @@
             
         case kRELACIONADOS_SECTION:
             
+            return 1;
+            
         default:
             
             NSLog(@"sección de tabla no reconocida: %d", section);
@@ -169,7 +171,7 @@
             
             //TODO: relacionados
             
-            return 0;
+            return 50.0;
             
         default:
             
@@ -251,6 +253,7 @@
             
             // TODO: Videos relacionados
             // IDEA: proxy redirigir mensaje a datadelegate de tabla de clips, sólo para esta sección
+            cell.textLabel.text = @"videos relacionados...";
             return cell;
         
         default:

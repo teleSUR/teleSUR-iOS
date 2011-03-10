@@ -233,6 +233,8 @@
     self.clipsTableView.scrollsToTop = YES;
     self.menuScrollView.scrollsToTop = NO;
     
+    self.indiceDeClipSeleccionado = -1;
+    
     self.conFiltroTodos = YES;
     
     self.clips = [NSMutableArray array];
@@ -282,7 +284,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     // Si ya había un clip seleccionado, asegurar que esté marcado 
-    if (self.indiceDeClipSeleccionado)
+    if (self.indiceDeClipSeleccionado != -1 && animated)
         [self.clipsTableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:self.indiceDeClipSeleccionado inSection:0] animated:NO scrollPosition: UITableViewScrollPositionNone];
 }
 
@@ -290,7 +292,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     // Si ya había un clip seleccionado, desmarcarlo con animación
-    if (self.indiceDeClipSeleccionado)
+    if (self.indiceDeClipSeleccionado != -1 && animated)
         [self.clipsTableView deselectRowAtIndexPath:[NSIndexPath indexPathForRow:self.indiceDeClipSeleccionado inSection:0] animated:animated];
 }
 
