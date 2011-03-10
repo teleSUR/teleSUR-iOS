@@ -327,7 +327,7 @@
     // Establecer texto de etiquetas
     tituloLabel.text = [[self.clips objectAtIndex:indexPath.row] valueForKey:@"titulo"];
     duracionLabel.text = [[self.clips objectAtIndex:indexPath.row] valueForKey:@"duracion"];	
-   // firmaLabel.text = [[self.clips objectAtIndex:indexPath.row] obtenerTiempoDesdeParaEsteClip];
+    firmaLabel.text = [[self.clips objectAtIndex:indexPath.row] obtenerTiempoDesdeParaEsteClip];
     
     return cell;        
 }
