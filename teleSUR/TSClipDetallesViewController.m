@@ -111,7 +111,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return 3;
 }
 
 
@@ -254,6 +254,7 @@
             // TODO: Videos relacionados
             // IDEA: proxy redirigir mensaje a datadelegate de tabla de clips, sólo para esta sección
             cell.textLabel.text = @"videos relacionados...";
+            
             return cell;
         
         default:
@@ -299,7 +300,7 @@
             
         case kCLASIFICACION_SECTION:
             
-            label.text = @"Más videos de...";
+            label.text = @"Más videos sobre...";
             
             break;
             

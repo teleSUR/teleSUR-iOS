@@ -23,7 +23,7 @@
 	self.delegate = datosDelegate;
 	
 	NSString *urlBase = @"http://multimedia.telesurtv.net";
-	NSString *langCode = @""; // default otros:  @"pt/", @"en/" (OJO: slash al final)
+	NSString *langCode = @"pt/"; // default otros:  @"pt/", @"en/" (OJO: slash al final)
 	NSMutableArray *parametrosGET = [NSMutableArray array];
 	NSString *currentFiltro = nil;
 	
@@ -40,6 +40,7 @@
 	} else if ([entidad isEqualToString:@"categoria"]) {
 	} else if ([entidad isEqualToString:@"programa"]) {
 	} else if ([entidad isEqualToString:@"pais"]) {
+    } else if ([entidad isEqualToString:@"tema"]) {
 	} else if ([entidad isEqualToString:@"tipo_clip"]) {
 	} else
     {

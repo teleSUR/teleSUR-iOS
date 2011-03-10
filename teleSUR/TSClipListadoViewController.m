@@ -150,7 +150,7 @@
 	TSMultimediaData *dataFiltros = [[TSMultimediaData alloc] init];
     [dataFiltros getDatosParaEntidad:self.entidadMenu // otros ejemplos: programa, pais, categoria
                           conFiltros:nil // otro ejemplo: conFiltros:[NSDictionary dictionaryWithObject:@"2010-01-01" forKey:@"hasta"]
-                             enRango:NSMakeRange(1, 0)  // otro ejemplo: NSMakeRange(1, 1) -s√≥lo uno-
+                             enRango:NSMakeRange(1, 300)  // otro ejemplo: NSMakeRange(1, 1) -s√≥lo uno-
                          conDelegate:self];
 }
 
@@ -167,19 +167,23 @@
     // Apagar todos los botones y prender el botón en cuestión
     for (UIButton *btn in [self.menuScrollView subviews]) [btn setSelected:NO];
 	[boton setSelected:YES];
-
-    // Calcular nuevo offset para que el botón esté centrado
-    CGFloat offset = + boton.frame.origin.x
-                     + boton.frame.size.width/2.0
-                     - self.menuScrollView.frame.size.width/2.0;
     
-    // Si el offset es negativo o más grande que la barra completa, no centrar el botón
-    CGFloat maxOffset = self.menuScrollView.contentSize.width - self.menuScrollView.frame.size.width;
-    if (offset < 0) offset = 0;
-    else if (offset > maxOffset) offset = maxOffset;
-    
-    // Aplicar nuevo offset
-    [[self menuScrollView] setContentOffset:CGPointMake(offset, 0) animated:YES];
+    // Autoscroll de menú, sólo si el contenido es más grande que el frame visible
+    if (self.menuScrollView.contentSize.width > self.menuScrollView.frame.size.width)
+    {
+        // Calcular nuevo offset para que el botón esté centrado
+        CGFloat offset = + boton.frame.origin.x
+                         + boton.frame.size.width/2.0
+                         - self.menuScrollView.frame.size.width/2.0;
+        
+        // Si el offset es negativo o más grande que la barra completa, no centrar el botón
+        CGFloat maxOffset = self.menuScrollView.contentSize.width - self.menuScrollView.frame.size.width;
+        if (offset < 0) offset = 0;
+        else if (offset > maxOffset) offset = maxOffset;
+        
+        // Aplicar nuevo offset
+        [[self menuScrollView] setContentOffset:CGPointMake(offset, 0) animated:YES];
+    }
     
     // Si se presionó el mismo que estaba seleccionado, no hacer nada
     if (self.indiceDeFiltroSeleccionado != indice)
