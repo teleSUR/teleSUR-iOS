@@ -54,28 +54,19 @@
 
 - (void)viewDidLoad
 {
-    // Provisional
-   // [(UILabel *)[self.view viewWithTag:1] setText:[clip valueForKey:@"descripcion"]];
-    //[(UIImageView *)[self.view viewWithTag:2] setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@", [clip valueForKey:@"thumbnail_grande"]]]]]];
     [super viewDidLoad];
-
-    UILabel *etiquetaDescripcion = (UILabel *)[self.descripcionCell viewWithTag:5] ;
+    
+    UILabel *etiquetaDescripcion = (UILabel *)[self.descripcionCell viewWithTag:5];
 
     CGSize maximumLabelSize = CGSizeMake(262,9999);
     
     CGSize expectedLabelSize = [[self.clip valueForKey:@"descripcion"]
                                   sizeWithFont:etiquetaDescripcion.font 
                                       constrainedToSize:maximumLabelSize 
-                                          lineBreakMode:etiquetaDescripcion.lineBreakMode]; 
-
-
-
+                                          lineBreakMode:etiquetaDescripcion.lineBreakMode];
+    
     self.descripcionCell.frame = CGRectMake(self.descripcionCell.frame.origin.x, self.descripcionCell.frame.origin.y, self.descripcionCell.frame.size.width, expectedLabelSize.height+15);
-    
-    
     etiquetaDescripcion.frame = CGRectMake(etiquetaDescripcion.frame.origin.x, etiquetaDescripcion.frame.origin.y, etiquetaDescripcion.frame.size.width, expectedLabelSize.height);    
-    
-    NSLog(@"%@", [self.clip arregloDiccionariosClasificadores]);
 }
 
 
@@ -117,60 +108,80 @@
 #pragma mark -
 #pragma mark Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    // Return the number of sections.
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
     return 2;
 }
 
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    // Return the number of rows in the section.
-    
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
     switch (section)
     {
         case kINFO_SECTION:
+            
+            // Tres filas: título, firma y descripción
             return 3;
+            
         case kCLASIFICACION_SECTION:
+            
+            // Una fila para cada diccionario clasificador
             return [[self.clip arregloDiccionariosClasificadores] count];
+            
+        case kRELACIONADOS_SECTION:
+            
         default:
+            
+            NSLog(@"sección de tabla no reconocida: %d", section);
+            
             return 0;
     } 
 }
 
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    switch (indexPath.section) {
-        case 0:
-            switch (indexPath.row) {
-                case 0:
-                    return self.tituloCell.frame.size.height;
-                    break;
-                case 1:
-                    return self.firmaCell.frame.size.height;
-                    break;
-                case 2:
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    switch (indexPath.section)
+    {
+        case kINFO_SECTION:
             
+            switch (indexPath.row)
+            {
+                case kTITULO_ROW:
                     
+                    return self.tituloCell.frame.size.height;
+                    
+                case kFIRMA_ROW:
+                    
+                    return self.firmaCell.frame.size.height;
+
+                case kDESCRIOCION_ROW:
                     
                     return self.descripcionCell.frame.size.height;                    
-                    break;
-                
-            }   
+            }
             
-            break;
+        case kCLASIFICACION_SECTION:
+            
+            return 45.0;
+        
+        case kRELACIONADOS_SECTION:
+            
+            //TODO: relacionados
+            
+            return 0;
             
         default:
-            return 45.0;
-            break;
+            
+            NSLog(@"sección de tabla no reconocida: %d", indexPath.section);
+            
+            return 0;
     }
-
 }
 
 
 // Customize the appearance of table view cells.
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{    
     NSString *CellIdentifier = [NSString stringWithFormat:@"%d", indexPath.section];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
@@ -237,94 +248,53 @@
 }
 
 
-/*
- // Override to support conditional editing of the table view.
- - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
- // Return NO if you do not want the specified item to be editable.
- return YES;
- }
- */
-
-
-/*
- // Override to support editing the table view.
- - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
- 
- if (editingStyle == UITableViewCellEditingStyleDelete) {
- // Delete the row from the data source.
- [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
- }   
- else if (editingStyle == UITableViewCellEditingStyleInsert) {
- // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
- }   
- }
- */
-
-
-/*
- // Override to support rearranging the table view.
- - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
- }
- */
-
-
-/*
- // Override to support conditional rearranging of the table view.
- - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
- // Return NO if you do not want the item to be re-orderable.
- return YES;
- }
- */
-
 #pragma mark -
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    switch (indexPath.section) {
-        case 0:
-            ;
+    switch (indexPath.section)
+    {
+        case kINFO_SECTION:
             
-            NSString *stringURL = [NSString stringWithFormat:@"%@", [self.clip valueForKey:@"archivo_url"]];
-            NSURL *urlVideo = [NSURL URLWithString: stringURL];
+            if (indexPath.row == kTITULO_ROW)
+            {
+                NSString *stringURL = [NSString stringWithFormat:@"%@", [self.clip valueForKey:@"archivo_url"]];
+                NSURL *urlVideo = [NSURL URLWithString: stringURL];
+                
+                // Crear y configurar player
+                MPMoviePlayerViewController *movieController = [[MPMoviePlayerViewController alloc] initWithContentURL:urlVideo];
+                [movieController.view setBackgroundColor: [UIColor blackColor]];
+                
+                // Presentar player y reproducir video
+                [self presentMoviePlayerViewControllerAnimated:movieController];
+                [movieController.moviePlayer play];  
+                
+                // Agregar observer al finalizar reproducción
+                [[NSNotificationCenter defaultCenter] 
+                 addObserver:self
+                 selector:@selector(playerFinalizado:)                                                 
+                 name:MPMoviePlayerPlaybackDidFinishNotification
+                 object:movieController.moviePlayer];
+                
+                [self.detallesTableView deselectRowAtIndexPath:indexPath animated:NO];
+            }
             
-            // Crear y configurar player
-            MPMoviePlayerViewController *movieController = [[MPMoviePlayerViewController alloc] initWithContentURL:urlVideo];
-            [movieController.view setBackgroundColor: [UIColor blackColor]];
-            
-            // Presentar player y reproducir video
-            [self presentMoviePlayerViewControllerAnimated:movieController];
-            [movieController.moviePlayer play];  
-            
-            // Agregar observer al finalizar reproducción
-            [[NSNotificationCenter defaultCenter] 
-             addObserver:self
-             selector:@selector(playerFinalizado:)                                                 
-             name:MPMoviePlayerPlaybackDidFinishNotification
-             object:movieController.moviePlayer];
-            
-            [self.detallesTableView deselectRowAtIndexPath:indexPath animated:NO];
             break;
             
-        case 1:
+        case kCLASIFICACION_SECTION:
             
-            ;
-            
+            ;// Crear y mistrar controlador de vista de listado
             TSClipListadoViewController *listadoView =[[TSClipListadoViewController alloc] init];
-            
             [self.navigationController pushViewController:listadoView animated:YES];
-            
             [listadoView release];
-
-            
             
             break;
+        
+        case kRELACIONADOS_SECTION:
             
-        default:
             break;
     }
-    
 }
 
 #pragma mark -
@@ -346,27 +316,6 @@
     [actionSheet showFromTabBar:[(UITabBarController *)[[appDelegate window] rootViewController] tabBar]];
 }
 
-
-#pragma mark -
-#pragma mark TSMultimediaDataDelegate
-
-// Maneja los datos recibidos
-- (void)TSMultimediaData:(TSMultimediaData *)data entidadesRecibidas:(NSArray *)array paraEntidad:(NSString *)entidad
-{
-    
-    // Liberar objeto de datos
-    [data release];
-}
-
-
-- (void)TSMultimediaData:(TSMultimediaData *)data entidadesRecibidasConError:(id)error
-{
-    // TODO: Informar al usuario sobre error
-	NSLog(@"Error: %@", error);
-    
-    // Liberar objeto de datos
-    [data release];
-}
 
 - (void)playerFinalizado:(NSNotification *)notification
 {
