@@ -81,7 +81,14 @@
     [super viewDidUnload];
     self.detallesTableView = nil;
     self.detallesTableViewController = nil;
+    self.relacionadosTableView = nil;
+    self.relacionadosTableViewController = nil;
     self.clip = nil;
+    self.tituloCell = nil;
+    self.categoriaCell = nil;
+    self.firmaCell = nil;
+    self.descripcionCell = nil;
+    self.indexPathSeleccionado = nil;
 }
 
 
@@ -111,7 +118,11 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 3;
+    // Si es un programa, no están definidos sus categorizadores ni sus videos relacionados
+    if ([[[self.clip valueForKey:@"tipo"] valueForKey:@"nombre"] isEqualToString:@"Programa completo"])
+        return 1;
+    else
+        return 3;
 }
 
 
@@ -121,8 +132,15 @@
     {
         case kINFO_SECTION:
             
-            // Tres filas: título, firma y descripción
-            return 3;
+            ;// Tres filas: título, firma y descripción
+            NSInteger numeroFilas = 3.0;
+            
+            // Si no hay descripción, no mostrar tercer celda
+            if ([[self.clip valueForKey:@"descripcion"] isKindOfClass:[NSNull class]]
+                || [[self.clip valueForKey:@"descripcion"] isEqualToString:@""])
+                numeroFilas--;
+            
+            return numeroFilas;
             
         case kCLASIFICACION_SECTION:
             
@@ -243,7 +261,14 @@
             
         case kCLASIFICACION_SECTION:
             
-            cell.textLabel.text = [[[self.clip arregloDiccionariosClasificadores] objectAtIndex:indexPath.row] valueForKey:@"valor"];
+            ;// Obtener datos de clasificador
+            NSDictionary *clasificador = [[self.clip arregloDiccionariosClasificadores] objectAtIndex:indexPath.row];
+            
+            if ([[clasificador valueForKey:@"nombre"] isEqualToString:@"corresponsal"])
+                cell.textLabel.text = [NSString stringWithFormat:@"Corresponsal: %@", [clasificador valueForKey:@"valor"]];
+            else
+                cell.textLabel.text = [clasificador valueForKey:@"valor"];
+            
             cell.textLabel.font = [UIFont systemFontOfSize:14.0];
             [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
             

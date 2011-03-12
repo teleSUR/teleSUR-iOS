@@ -22,7 +22,7 @@
 - (NSArray *)arregloDiccionariosClasificadores
 {
     // Arreglo de campos clasificadores
-    NSArray *camposClasificadores = [NSArray arrayWithObjects:@"categoria", @"pais", @"tema", @"corresponsal", @"entrevistador", @"entrevistado", nil];
+    NSArray *camposClasificadores = [NSArray arrayWithObjects:@"categoria", @"pais", @"tema", @"corresponsal", @"personajes", @"entrevistador", @"entrevistado", nil];
     
     // Auxiliares
     NSDictionary *clasificadorActual;
@@ -31,8 +31,9 @@
     // Recorrer cada campo conocido y añadir su respectivo diccionario clasificador, si es que hay
     for (NSString *campo in camposClasificadores)
         if ((clasificadorActual = [self diccionarioClasificadorParaCampo:campo]))
-            [arregloClasificadores addObject:clasificadorActual];
-    
+            if ([clasificadorActual count])
+                [arregloClasificadores addObject:clasificadorActual];
+        
     return arregloClasificadores;
 }
 
@@ -42,22 +43,37 @@
 // @"nombre"  -> (NSString *) Campo o clasificador: categoria, pais, tema, etc..
 // @"valor"   -> (id) Valor actual, ej: Cuba, México, Economía, Deportes, etc.
 // @"slug"    -> (NSString *) Identificador interno del valor actual
-- (NSDictionary *)diccionarioClasificadorParaCampo:(NSString *)campo
+- (NSDictionary *)diccionarioClasificadorParaCampo:(NSString *)nombreCampo
 {
-    // Objeto que generalmente es un diccionario ó un objeto NSNull
-    id diccionarioCampo = [self valueForKey:campo];
+    // Objeto que generalmente es un diccionario, arreglo ó un objeto NSNull
+    id objetoCampo = [self valueForKey:nombreCampo];
     
     // Si no hay valor, devolver nil
-    if ([diccionarioCampo isKindOfClass:[NSNull class]]) return nil;
+    if (!objetoCampo || [objetoCampo isKindOfClass:[NSNull class]]) return nil;
     
     // Crear diccionario clasificador de tres elementos
-    // Se espera encontrar "nombre" y "slug" en un diccionario
-    if (![diccionarioCampo isKindOfClass:[NSDictionary class]]) return nil;
+    // Se espera encontrar diccionario
+    //if (![diccionarioCampo isKindOfClass:[NSDictionary class]]) return nil;
+    
+    
     
     NSMutableDictionary *clasificador = [NSMutableDictionary dictionary];
-    [clasificador setValue:campo forKey:@"nombre"];
-    [clasificador setValue:[diccionarioCampo valueForKey:@"nombre"] forKey:@"valor"];
-    [clasificador setValue:[diccionarioCampo valueForKey:@"slug"] forKey:@"slug"];
+    if ([nombreCampo isEqualToString:@"personajes"])
+    {
+        for (NSDictionary *personaje in objetoCampo)
+        {
+            //NSLog(@"%@", personaje);
+            [clasificador setValue:@"personaje" forKey:@"nombre"];
+            [clasificador setValue:[personaje valueForKey:@"nombre"] forKey:@"valor"];
+            [clasificador setValue:[personaje valueForKey:@"slug"] forKey:@"slug"];
+        }
+    }
+    else // default buscar "nombre" y "slug" en diccionario
+    {
+        [clasificador setValue:nombreCampo forKey:@"nombre"];
+        [clasificador setValue:[objetoCampo valueForKey:@"nombre"] forKey:@"valor"];
+        [clasificador setValue:[objetoCampo valueForKey:@"slug"] forKey:@"slug"];
+    }
     
     return clasificador;
 }

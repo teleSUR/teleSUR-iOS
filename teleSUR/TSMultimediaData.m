@@ -38,18 +38,27 @@
 	if ([entidad isEqualToString:@"clip"])
     {
         // Buscar nombres de parámetros reconocidos y agregarlos al arreglo de parámetros GET
-        NSArray *params = [NSArray arrayWithObjects:@"categoria", @"programa", @"tipo", @"desde", @"hasta", @"pais", @"tema", nil];
+        NSArray *params = [NSArray arrayWithObjects:@"desde", @"hasta", @"categoria", @"programa", @"tipo", @"pais", @"tema", @"corresponsal", @"personaje", @"ubicacion", nil];
         
         for (NSString *param in params)
             if ((currentFiltro = [filtros objectForKey:param]))
                 [parametrosGET addObject:[NSString stringWithFormat:@"%@=%@", param, currentFiltro]];
-	
-	} else if ([entidad isEqualToString:@"categoria"]) {
-	} else if ([entidad isEqualToString:@"programa"]) {
-	} else if ([entidad isEqualToString:@"pais"]) {
-    } else if ([entidad isEqualToString:@"tema"]) {
-	} else if ([entidad isEqualToString:@"tipo_clip"]) {
-	} else
+	}
+    else if ([entidad isEqualToString:@"categoria"])
+    { }
+    else if ([entidad isEqualToString:@"programa"])
+    { }
+    else if ([entidad isEqualToString:@"pais"])
+    { }
+    else if ([entidad isEqualToString:@"tema"])
+    { }
+    else if ([entidad isEqualToString:@"corresponsal"])
+    { }
+    else if ([entidad isEqualToString:@"personaje"])
+    { }
+    else if ([entidad isEqualToString:@"tipo_clip"])
+    { }
+    else
     {
 		NSLog(@"El nombre de la entidad no se reconoce: %@", entidad);
 		if ([delegate respondsToSelector:@selector(entidadesRecibidasConFalla:)])

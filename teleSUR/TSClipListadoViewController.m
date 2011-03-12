@@ -503,6 +503,10 @@
     self.arregloClipsAsyncImageViews = nil;
     self.clipsTableView = nil;
     self.tableViewController = nil;
+    self.diccionarioConfiguracionFiltros = nil;
+    self.entidadMenu = nil;
+    self.menuScrollView = nil;
+    self.slugDeFiltroSeleccionado = nil;
 }
 
 
