@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface TSClipBusquedaViewController : UIViewController {
+@interface TSClipBusquedaViewController : UITableViewController {
     
 }
 
