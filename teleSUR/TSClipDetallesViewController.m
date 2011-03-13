@@ -62,7 +62,7 @@
     CGSize maximumLabelSize = CGSizeMake(262,9999);
     
     CGSize expectedLabelSize = [[self.clip valueForKey:@"descripcion"]
-                                  sizeWithFont:etiquetaDescripcion.font 
+                                           sizeWithFont:etiquetaDescripcion.font 
                                       constrainedToSize:maximumLabelSize 
                                           lineBreakMode:etiquetaDescripcion.lineBreakMode];
     
@@ -119,6 +119,7 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Si es un programa, no están definidos sus categorizadores ni sus videos relacionados
+    // TODO: mover lógica a NSDictionary,  ej:  (BOOL)[self.clip esPrograma]
     if ([[[self.clip valueForKey:@"tipo"] valueForKey:@"nombre"] isEqualToString:@"Programa completo"])
         return 1;
     else
@@ -136,6 +137,7 @@
             NSInteger numeroFilas = 3.0;
             
             // Si no hay descripción, no mostrar tercer celda
+            // TODO: mover a [self.clip tieneDescripcion]
             if ([[self.clip valueForKey:@"descripcion"] isKindOfClass:[NSNull class]]
                 || [[self.clip valueForKey:@"descripcion"] isEqualToString:@""])
                 numeroFilas--;
@@ -264,6 +266,8 @@
             ;// Obtener datos de clasificador
             NSDictionary *clasificador = [[self.clip arregloDiccionariosClasificadores] objectAtIndex:indexPath.row];
             
+            // Si es corresponsal, anteponer "Corresponsal: " para diferenciarlos de los perosnajes
+            // TODO: [clasificador esCorresponsal]
             if ([[clasificador valueForKey:@"nombre"] isEqualToString:@"corresponsal"])
                 cell.textLabel.text = [NSString stringWithFormat:@"Corresponsal: %@", [clasificador valueForKey:@"valor"]];
             else
@@ -287,6 +291,70 @@
             return cell;
     }
 }
+
+
+#pragma mark - Footers de sección
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    switch (section)
+    {
+        case kINFO_SECTION:
+            
+            // Altura de botón para redes sociales
+            return 60.0;
+            
+        default:
+            
+            return 0;
+    }
+}
+
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    switch (section)
+    {
+        case kINFO_SECTION:
+            
+            ;// Crear botón para compartir en redes sociales
+            const SEL compartirSelector = @selector(botonCompartirPresionado:);
+            const SEL descargarSelector = @selector(botonDescargarPresionado:);
+            
+            UIButton *botonCompartir = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+            [botonCompartir addTarget:self action:compartirSelector forControlEvents:UIControlEventTouchUpInside];
+            [botonCompartir setTitle:@"Compartir" forState:UIControlStateNormal];
+            [botonCompartir setBackgroundColor:[UIColor clearColor]];
+            
+            botonCompartir.frame = CGRectMake(30, 10, 120, 35);
+            
+            UIButton *botonDescargar = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+            [botonDescargar addTarget:self action:descargarSelector forControlEvents:UIControlEventTouchUpInside];
+            [botonDescargar setTitle:@"Descargar" forState:UIControlStateNormal];
+            [botonDescargar setBackgroundColor:[UIColor clearColor]];
+            
+            botonDescargar.frame = CGRectMake(170, 10, 120, 35);
+            
+            
+            
+            UIView *container = [[[UIView alloc] init] autorelease];
+            
+            [container addSubview:botonCompartir];
+            [container addSubview:botonDescargar];
+            
+            return container;
+        
+        default:
+            
+            return nil;
+    }
+    
+    //label.text = [NSString stringWithFormat:@"   %@", label.text];
+    //return label;
+}
+
+
+#pragma mark - Headers de sección
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
@@ -314,7 +382,7 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    UILabel *label = [[UILabel alloc] init];
+    UILabel *label = [[[UILabel alloc] init] autorelease];
     label.backgroundColor = [UIColor clearColor];
     
     switch (section)
@@ -398,12 +466,12 @@
 #pragma mark -
 #pragma mark Acciones
 
-- (IBAction)botonRedesSocialesPresionado:(id)boton
+- (void)botonCompartirPresionado:(UIButton *)boton
 {
     // Crear item para compartir en redes sociales
     NSString *urlBase = [[[[NSBundle mainBundle] infoDictionary] objectForKey:@"Configuración"] objectForKey:@"API URL Base"];
-	NSURL *url = [NSURL URLWithString:urlBase];
-	SHKItem *item = [SHKItem URL:url title:@"Awesome!"];
+	NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", urlBase, [self.clip valueForKey:@"url"]]];
+	SHKItem *item = [SHKItem URL:url title:[self.clip valueForKey:@"titulo"]];
     
 	// Crear Action Sheet
 	SHKActionSheet *actionSheet = [SHKActionSheet actionSheetForItem:item];
@@ -413,6 +481,11 @@
     //       de clase UITabBarController. qué otra forma habrá de referenciar al TabBar? o de insertar el action sheet?
     teleSURAppDelegate *appDelegate= (teleSURAppDelegate *)[[UIApplication sharedApplication] delegate];
     [actionSheet showFromTabBar:[(UITabBarController *)[[appDelegate window] rootViewController] tabBar]];
+}
+
+- (void)botonDescargarPresionado:(UIButton *)boton;
+{
+    
 }
 
 

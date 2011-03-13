@@ -33,6 +33,9 @@
     
 }
 
+- (void)botonCompartirPresionado:(UIButton *)boton;
+- (void)botonDescargarPresionado:(UIButton *)boton;
+
 // Tabla de detalles
 @property (nonatomic, retain) UITableViewController *detallesTableViewController;
 @property (nonatomic, retain) IBOutlet UITableView *detallesTableView;
@@ -42,7 +45,7 @@
 @property (nonatomic, retain) IBOutlet UITableViewCell *firmaCell;
 @property (nonatomic, retain) IBOutlet UITableViewCell *descripcionCell;
 @property (nonatomic, retain) IBOutlet UITableViewCell *categoriaCell;
-////////////
+
 // Tabla de relacionados
 @property (nonatomic, retain) UITableViewController *relacionadosTableViewController;
 @property (nonatomic, retain) IBOutlet UITableView *relacionadosTableView;
