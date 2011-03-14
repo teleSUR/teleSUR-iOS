@@ -380,32 +380,22 @@
     }
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+- (NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section 
 {
-    UILabel *label = [[[UILabel alloc] init] autorelease];
-    label.backgroundColor = [UIColor clearColor];
-    
     switch (section)
     {
         case kINFO_SECTION:
             
-            return nil;
+            return @"";
             
         case kCLASIFICACION_SECTION:
             
-            label.text = @"Más videos sobre...";
-            
-            break;
-            
+            return @"Más videos sobre...";
+                    
         case kRELACIONADOS_SECTION:
             
-            label.text = @"Videos relacionados";
-            
-            break;
+            return @"Videos relacionados";
     }
-    
-    label.text = [NSString stringWithFormat:@"   %@", label.text];
-    return label;
 }
 
 

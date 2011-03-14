@@ -29,8 +29,8 @@
 #define kPAIS_ROW     1
 
 // Sección PERSONAS
-#define kPERSONAJES   0
-#define kCORRESPONSAL 1
+#define kPERSONAJES_ROW   0
+#define kCORRESPONSAL_ROW 1
 
 // Sección FECHA
 #define kDESDE_ROW   0
@@ -41,6 +41,26 @@
 @implementation TSClipBusquedaViewController
 
 #pragma mark - Memoria
+
+-(id) initWithStyle:(UITableViewStyle)style {
+    
+    NSLog(@"hola!");
+    
+    if ((self =  [super initWithStyle:UITableViewStyleGrouped])) {
+        
+    }
+    return self;
+    
+}
+
+-(id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
+    NSLog(@"hola1!");
+    
+    if ((self =  [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
+        
+    }
+    return self;
+}
 
 - (void)dealloc
 {
@@ -78,8 +98,7 @@
 
 
 
-#pragma mark -
-#pragma mark Table view data source
+#pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -109,7 +128,7 @@
         
         case kFECHA_SECTION:
             
-            return 1; // desde, hasta
+            return 2; // desde, hasta
             
         default:
             
@@ -133,8 +152,88 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
+    
+    switch (indexPath.section)
+    {
+        case kTEXTO_SECTION:
+            
+            cell.textLabel.text = @"Búsqueda de Texto";
+            cell.detailTextLabel.text = @"Prueba";
+            
+            break;
+            
+        case kCLASIFICACION_SECTION:
+            
+            switch (indexPath.row)
+            {
+                case kTIPO_ROW:
+                    
+                    cell.textLabel.text = @"Tipo";
+                    
+                    break;
+                    
+                case kCATEGORIA_ROW:
+                    
+                    cell.textLabel.text = @"Sección";
+                    
+                case kTEMA_ROW:
+                    
+                    cell.textLabel.text = @"Tema";
+                    
+                default:
+                    break;
+            }
+            break;
+        case kUBICACION_SECTION:
+            
+            switch (indexPath.row) {
+                case kREGION_ROW:
+                    cell.textLabel.text = @"Región";
+                    break;
+                case kPAIS_ROW:
+                    cell.textLabel.text = @"País";
+                default:
+                    break;
+            }
+            
+            
+            break;
+            
+        case kPERSONAS_SECTION:
+            
+            switch (indexPath.row) {
+                case kCORRESPONSAL_ROW:
+                    cell.textLabel.text = @"Corresponsal";
+                    break;
+                case kPERSONAJES_ROW:
+                    cell.textLabel.text = @"Personajes";
+                default:
+                    break;
+            }
+            
+            break;
+        case kFECHA_SECTION:
+            
+            switch (indexPath.row) {
+                case kDESDE_ROW:
+                    cell.textLabel.text = @"Desde";
+                    break;
+                case kHASTA_ROW:
+                    cell.textLabel.text = @"Hasta";
+                default:
+                    break;
+            }
+            
+            break;
+            
+        default:
+            break;
+    }
+    
+    
     
     return cell;
 }
@@ -144,51 +243,37 @@
     return 20.0;
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+- (NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section 
 {
-    UILabel *label = [[UILabel alloc] init];
-    label.backgroundColor = [UIColor clearColor];
-    
     switch (section)
     {
         case kTEXTO_SECTION:
             
-            label.text = @"Palabras clave";
-            
-            break;
+            return @"Palabras clave";
             
         case kCLASIFICACION_SECTION:
             
-            label.text = @"Clasificación";
-            
-            break;
+            return @"Clasificación";
             
         case kUBICACION_SECTION:
             
-            label.text = @"Ubicación";
-            
-            break;
+            return @"Ubicación";
             
         case kPERSONAS_SECTION:
             
-            label.text = @"Personas";
-            
-            break;
+            return @"Personas";
             
         case kFECHA_SECTION:
             
-            label.text = @"Fecha";
+            return @"Fecha";	
             
-            break;
+        default:
+            NSLog(@"Advertencia: Sección Reconocida: %d!", section);
+            return @"";
     }
-    
-    label.text = [NSString stringWithFormat:@"   %@", label.text];
-    return label;
 }
 
-
-#pragma mark -
-#pragma mark Table view delegate
+#pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

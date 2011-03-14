@@ -32,7 +32,7 @@
         langCode = [NSString stringWithFormat:@"%@/", langCode];
     
     NSMutableArray *parametrosGET = [NSMutableArray array];
-	NSString *currentFiltro = nil;
+	id currentFiltro = nil;
 	
     // Agregar posibles filtros para clips
 	if ([entidad isEqualToString:@"clip"])
@@ -42,7 +42,11 @@
         
         for (NSString *param in params)
             if ((currentFiltro = [filtros objectForKey:param]))
-                [parametrosGET addObject:[NSString stringWithFormat:@"%@=%@", param, currentFiltro]];
+                if ([currentFiltro isKindOfClass:[NSArray class]])
+                    for (currentFiltro in currentFiltro)
+                        [parametrosGET addObject:[NSString stringWithFormat:@"%@=%@", param, currentFiltro]];
+                else
+                    [parametrosGET addObject:[NSString stringWithFormat:@"%@=%@", param, currentFiltro]];
 	}
     else if ([entidad isEqualToString:@"categoria"])
     { }
