@@ -356,30 +356,6 @@
 
 #pragma mark - Headers de sección
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    switch (section)
-    {
-        case kINFO_SECTION:
-            
-            return 0;
-            
-        case kCLASIFICACION_SECTION:
-            
-            return 20.0;
-            
-        case kRELACIONADOS_SECTION:
-            
-            return 20.0;
-            
-        default:
-            
-            NSLog(@"Sección de tabla no reconocida: %d", section);
-            
-            return 0;
-    }
-}
-
 - (NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section 
 {
     switch (section)

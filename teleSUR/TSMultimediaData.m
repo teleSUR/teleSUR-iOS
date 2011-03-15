@@ -72,6 +72,8 @@
 		}
 		return;
 	}
+    
+    NSLog(@"GETTT: %@", parametrosGET);
 	
 	// cualquier entidad puede ser paginada
     if (rango.length)

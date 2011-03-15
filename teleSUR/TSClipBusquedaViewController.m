@@ -7,6 +7,8 @@
 //
 
 #import "TSClipBusquedaViewController.h"
+#import "TSBusquedaSeleccionTableViewController.h"
+#import "TSClipListadoViewController.h"
 
 // TODO: Integrar estas constantes mejor a configuración, quizá plist principal
 // Orden de secciones
@@ -20,9 +22,9 @@
 #define kTEXTO_ROW 0
 
 // Sección CLASIFICACION
-#define kTIPO_ROW      0
-#define kCATEGORIA_ROW 1
-#define kTEMA_ROW      2
+#define kTIPO_ROW      5
+#define kCATEGORIA_ROW 0
+#define kTEMA_ROW      1
 
 // Sección UBICACION
 #define kREGION_ROW   0
@@ -40,27 +42,10 @@
 
 @implementation TSClipBusquedaViewController
 
+@synthesize selecciones;
+
+
 #pragma mark - Memoria
-
--(id) initWithStyle:(UITableViewStyle)style {
-    
-    NSLog(@"hola!");
-    
-    if ((self =  [super initWithStyle:UITableViewStyleGrouped])) {
-        
-    }
-    return self;
-    
-}
-
--(id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
-    NSLog(@"hola1!");
-    
-    if ((self =  [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
-        
-    }
-    return self;
-}
 
 - (void)dealloc
 {
@@ -75,10 +60,34 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
+
+#pragma mark - Acciones
+
+-(void) botonBuscarPresionado:(UIBarButtonItem *)sender
+{
+    NSLog(@"selecciones: %@", self.selecciones);
+    
+    TSClipListadoViewController *controladorResultado  = [[TSClipListadoViewController alloc] initWithEntidad:@"clip" yFiltros:self.selecciones];
+    
+    [self.navigationController pushViewController:controladorResultado animated:YES];
+    
+    [controladorResultado release];
+}
+
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
 {
+//    self.selecciones = [NSMutableDictionary d
+    
+    UIBarButtonItem *boton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch 
+                                                                           target:self 
+                                                                           action:@selector(botonBuscarPresionado:)];
+    
+    self.navigationItem.rightBarButtonItem = boton;
+    [boton release];
+    
+    self.selecciones = [NSMutableDictionary dictionaryWithCapacity:10];
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
@@ -95,7 +104,6 @@
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
-
 
 
 #pragma mark - Table view data source
@@ -116,7 +124,7 @@
             
         case kCLASIFICACION_SECTION:
             
-            return 3; // tipo, categoría, tema
+            return 2; // tipo, categoría, tema
         
         case kUBICACION_SECTION:
             
@@ -179,68 +187,87 @@
                     
                     cell.textLabel.text = @"Sección";
                     
+                    break;
+                    
                 case kTEMA_ROW:
                     
                     cell.textLabel.text = @"Tema";
                     
                 default:
+                    
                     break;
             }
+            
             break;
+            
         case kUBICACION_SECTION:
             
-            switch (indexPath.row) {
+            switch (indexPath.row)
+            {
                 case kREGION_ROW:
+                    
                     cell.textLabel.text = @"Región";
+                    
                     break;
+                    
                 case kPAIS_ROW:
+                    
                     cell.textLabel.text = @"País";
+                    
                 default:
+                    
                     break;
             }
-            
             
             break;
             
         case kPERSONAS_SECTION:
             
-            switch (indexPath.row) {
+            switch (indexPath.row)
+            {
                 case kCORRESPONSAL_ROW:
+                    
                     cell.textLabel.text = @"Corresponsal";
+                    
                     break;
+                    
                 case kPERSONAJES_ROW:
+                    
                     cell.textLabel.text = @"Personajes";
+                    
                 default:
+                    
                     break;
             }
             
             break;
+            
         case kFECHA_SECTION:
             
-            switch (indexPath.row) {
+            switch (indexPath.row)
+            {
                 case kDESDE_ROW:
                     cell.textLabel.text = @"Desde";
+                    
                     break;
+                    
                 case kHASTA_ROW:
+                    
                     cell.textLabel.text = @"Hasta";
+                    
                 default:
+                    
                     break;
             }
             
             break;
             
         default:
+            
             break;
     }
     
-    
-    
     return cell;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 20.0;
 }
 
 - (NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section 
@@ -277,7 +304,102 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    				      
+    NSString *entidad;
+    
+    switch (indexPath.section)
+    {
+        case kTEXTO_SECTION:
+            
+            //
+            
+            break;
+            
+        case kCLASIFICACION_SECTION:
+            
+            switch (indexPath.row)
+            {
+                case kTIPO_ROW:
+                    
+                    entidad = @"tipo_clip";
+                    break;
+                
+                case kCATEGORIA_ROW:
+                    
+                    entidad = @"categoria";
+                    break;
+                    
+                case kTEMA_ROW:
+                    
+                    entidad = @"tema";
+                    break;
+            }
+            
+            break;
+            
+        case kUBICACION_SECTION:
+            
+            switch (indexPath.row)
+            {
+                case kREGION_ROW:
+
+                    entidad = @"ubicacion";
+                    break;
+
+                case kPAIS_ROW:
+
+                    entidad = @"pais";
+            }
+            
+            break;
+            
+        case kPERSONAS_SECTION:
+            
+            switch (indexPath.row)
+            {
+                case kCORRESPONSAL_ROW:
+                    
+                    entidad = @"corresponsal";
+                    break;
+                    
+                case kPERSONAJES_ROW:
+                    
+                    entidad = @"personaje";
+            }
+            
+            break;
+            
+        case kFECHA_SECTION:
+            
+            switch (indexPath.row)
+            {
+                case kDESDE_ROW:
+                    
+                    //
+                    
+                    break;
+                    
+                case kHASTA_ROW:
+                    
+                    //
+                    
+                default:
+                    
+                    break;
+            }
+            
+            break;
+            
+        default:
+            
+            break;
+    }		      
+    
+    TSBusquedaSeleccionTableViewController *controladorSeleccion = [[TSBusquedaSeleccionTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    controladorSeleccion.entidad = entidad;
+    controladorSeleccion.controladorBusqueda = self;
+    controladorSeleccion.seleccion = [self.selecciones valueForKey:entidad];
+    [self.navigationController pushViewController:controladorSeleccion animated:YES];
+    [controladorSeleccion release];
 }
 
 

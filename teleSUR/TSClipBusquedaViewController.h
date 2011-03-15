@@ -10,7 +10,11 @@
 
 
 @interface TSClipBusquedaViewController : UITableViewController {
-    
+    NSMutableDictionary *selecciones;
 }
+
+@property (nonatomic,retain) NSMutableDictionary *selecciones;
+
+-(void) botonBuscarPresionado:(UIBarButtonItem *)sender;
 
 @end
