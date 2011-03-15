@@ -187,6 +187,10 @@
                     
                     cell.textLabel.text = @"Sección";
                     
+                    NSLog(@"....  %@", self.selecciones);
+                    
+                    cell.detailTextLabel.text = ([[self.selecciones objectForKey:@"categoria"] count]) ? [NSString stringWithFormat:@"%d", [[self.selecciones objectForKey:@"categoria"] count]] : @"Todos";
+                    
                     break;
                     
                 case kTEMA_ROW:

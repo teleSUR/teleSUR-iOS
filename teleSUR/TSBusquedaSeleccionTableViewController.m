@@ -48,15 +48,27 @@
     content = [DataGenerator wordsFromLetters];
     indices = [[content valueForKey:@"headerTitle"] retain];
     
-    self.indicadorActividad = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(150.0, 174.0, 20, 20)];
-    [self.indicadorActividad startAnimating];
-    [self.view addSubview: self.indicadorActividad];
+    if (!self.seleccion)
+        self.seleccion = [NSMutableArray array];
     
-    TSMultimediaData *dataFiltros = [[TSMultimediaData alloc] init];
-    [dataFiltros getDatosParaEntidad:self.entidad // otros ejemplos: programa, pais, categoria
-                          conFiltros:nil // otro ejemplo: conFiltros:[NSDictionary dictionaryWithObject:@"2010-01-01" forKey:@"hasta"]
-                             enRango:NSMakeRange(1, 300)  // otro ejemplo: NSMakeRange(1, 1) -s√≥lo uno-
-                         conDelegate:self];
+    self.opciones = [NSMutableArray array];
+    
+    if ([self.entidad isEqualToString:@"ubicacion"])
+    {
+        self.opciones = [[[[NSBundle mainBundle] infoDictionary] valueForKey:@"Configuración"] valueForKey:@"Ubicaciones"];
+    }
+    else
+    {
+        self.indicadorActividad = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(150.0, 174.0, 20, 20)];
+        [self.indicadorActividad startAnimating];
+        [self.view addSubview: self.indicadorActividad];
+        
+        TSMultimediaData *dataFiltros = [[TSMultimediaData alloc] init];
+        [dataFiltros getDatosParaEntidad:self.entidad // otros ejemplos: programa, pais, categoria
+                              conFiltros:nil // otro ejemplo: conFiltros:[NSDictionary dictionaryWithObject:@"2010-01-01" forKey:@"hasta"]
+                                 enRango:NSMakeRange(1, 300)  // otro ejemplo: NSMakeRange(1, 1) -s√≥lo uno-
+                             conDelegate:self];
+    }
     
     self.title = self.entidad;
 
@@ -83,6 +95,7 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [self.controladorBusqueda.selecciones setValue:self.seleccion forKey:self.entidad];
+    [self.controladorBusqueda.tableView reloadData];
     
     [super viewWillDisappear:animated];
 }
@@ -111,12 +124,14 @@
 {
     // Return the number of sections.
     if ([self.entidad isEqualToString:@"pais"]) return [content count];
-    else return 1;
+    else return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Return the number of rows in the section.
+    if (section == 0)
+        return 1;
+    
     if ([self.entidad isEqualToString:@"pais"]) 
         return [[[content objectAtIndex:section] objectForKey:@"rowValues"] count] ;
     else return [self.opciones count];
@@ -131,6 +146,16 @@
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
         
     }
+    
+    if (indexPath.section == 0)
+    {
+        cell.textLabel.text = @"Todos";
+        
+        cell.accessoryType = ([self.seleccion count]) ? UITableViewCellAccessoryNone : UITableViewCellAccessoryCheckmark;
+        
+        return cell;
+    }
+    
     if ([self.entidad isEqualToString:@"pais"]) {
     cell.textLabel.text = [[[content objectAtIndex:indexPath.section] objectForKey:@"rowValues"]
                            objectAtIndex:indexPath.row];
@@ -199,20 +224,37 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    if ([self.seleccion containsObject: [[self.opciones objectAtIndex:indexPath.row] valueForKey:@"slug"]])
+    if (indexPath.section == 0)
     {
-        [self.seleccion removeObject:[[self.opciones objectAtIndex:indexPath.row] valueForKey:@"slug"]];
-        [[self.tableView cellForRowAtIndexPath:indexPath] setAccessoryType:UITableViewCellAccessoryNone];                
+        [self.seleccion removeAllObjects];
+        [[self.tableView cellForRowAtIndexPath:indexPath] setAccessoryType:UITableViewCellAccessoryCheckmark];
+        
+        for (int i=0; i<[self.opciones count]; i++)
+        {
+            [[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:1]] setAccessoryType:UITableViewCellAccessoryNone];                
+        }
     }
     else
     {
-        [self.seleccion addObject:[[self.opciones objectAtIndex:indexPath.row] valueForKey:@"slug"]];
-        [[self.tableView cellForRowAtIndexPath:indexPath] setAccessoryType:UITableViewCellAccessoryCheckmark];        
+        // Navigation logic may go here. Create and push another view controller.
+        if ([self.seleccion containsObject: [[self.opciones objectAtIndex:indexPath.row] valueForKey:@"slug"]])
+        {
+            [self.seleccion removeObject:[[self.opciones objectAtIndex:indexPath.row] valueForKey:@"slug"]];
+            [[self.tableView cellForRowAtIndexPath:indexPath] setAccessoryType:UITableViewCellAccessoryNone];   
+            
+            if ([self.seleccion count] == 0)
+                [[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]] setAccessoryType:UITableViewCellAccessoryCheckmark];
+        }
+        else
+        {
+            [self.seleccion addObject:[[self.opciones objectAtIndex:indexPath.row] valueForKey:@"slug"]];
+            [[self.tableView cellForRowAtIndexPath:indexPath] setAccessoryType:UITableViewCellAccessoryCheckmark];    
+            
+            [[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]] setAccessoryType:UITableViewCellAccessoryNone];
+        }
     }
+    
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    
 }
 
 
@@ -225,11 +267,13 @@
 
 
     
-    [self.indicadorActividad stopAnimating];    
-    self.opciones = array;
+    [self.indicadorActividad stopAnimating];   
     
-    if (!self.seleccion)
-        self.seleccion = [NSMutableArray array];
+    //[self.opciones addObject:[NSDictionary dictionaryWithObject:@"Todos" forKey:@"nombre" ]];
+    
+    [self.opciones addObjectsFromArray:array];
+    
+    //NSLog(@":::: %@", self.opciones);
     
     [self.tableView reloadData];
      
@@ -241,7 +285,8 @@
 
 - (void)TSMultimediaData:(TSMultimediaData *)data entidadesRecibidasConError:(id)error
 {
-    [self.indicadorActividad stopAnimating];        
+    [self.indicadorActividad stopAnimating];    
+    
     // TODO: Informar al usuario sobre error
 	NSLog(@"Error: %@", error);
     

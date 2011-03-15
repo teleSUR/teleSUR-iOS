@@ -17,7 +17,7 @@
     
     UIActivityIndicatorView *indicadorActividad;
     
-    NSArray *opciones;
+    NSMutableArray *opciones;
     NSString *entidad;
     NSMutableArray *seleccion;
     
@@ -30,7 +30,7 @@
 
 @property (nonatomic, assign) TSClipBusquedaViewController *controladorBusqueda;
 @property (nonatomic, retain) UIActivityIndicatorView *indicadorActividad;
-@property (nonatomic, retain) NSArray *opciones;
+@property (nonatomic, retain) NSMutableArray *opciones;
 @property (nonatomic, retain) NSString *entidad;
 @property (nonatomic, retain) NSMutableArray *seleccion;
 

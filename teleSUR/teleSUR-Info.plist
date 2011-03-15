@@ -28,6 +28,52 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
+	<key>Configuración</key>
+	<dict>
+		<key>API URL Base</key>
+		<string>http://multimedia.telesurtv.net</string>
+		<key>Código de idioma</key>
+		<string>es</string>
+		<key>Ubicaciones</key>
+		<array>
+			<dict>
+				<key>nombre</key>
+				<string>Latinoamérica</string>
+				<key>slug</key>
+				<string>america-latina</string>
+			</dict>
+			<dict>
+				<key>nombre</key>
+				<string>América</string>
+				<key>slug</key>
+				<string>america</string>
+			</dict>
+			<dict>
+				<key>nombre</key>
+				<string>Asia</string>
+				<key>slug</key>
+				<string>asia</string>
+			</dict>
+			<dict>
+				<key>nombre</key>
+				<string>Europa</string>
+				<key>slug</key>
+				<string>europa</string>
+			</dict>
+			<dict>
+				<key>nombre</key>
+				<string>África</string>
+				<key>slug</key>
+				<string>africa</string>
+			</dict>
+			<dict>
+				<key>nombre</key>
+				<string>Oceanía</string>
+				<key>slug</key>
+				<string>oceania</string>
+			</dict>
+		</array>
+	</dict>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSMainNibFile</key>
@@ -47,12 +93,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>Configuración</key>
-	<dict>
-		<key>API URL Base</key>
-		<string>http://multimedia.telesurtv.net</string>
-		<key>Código de idioma</key>
-		<string>es</string>
-	</dict>
 </dict>
 </plist>
