@@ -13,6 +13,8 @@
 		3A1001F1131B354300717211 /* LoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A1001F0131B354300717211 /* LoadingView.xib */; };
 		3A2360B6131C4B7200A941E2 /* ClipEstandarTableCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A2360B5131C4B7200A941E2 /* ClipEstandarTableCellView.xib */; };
 		3A236262131C8BD700A941E2 /* NSDictionary_Datos.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A236261131C8BD700A941E2 /* NSDictionary_Datos.m */; };
+		3ACA5FB7133011AB00DB9402 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3ACA5FB6133011AB00DB9402 /* Settings.bundle */; };
+		3ACA5FC0133019A100DB9402 /* UIViewController_Preferencias.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACA5FBF133019A100DB9402 /* UIViewController_Preferencias.m */; };
 		3AD81911131EF7B40006C5A0 /* NSDate_Utilidad.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD81910131EF7B40006C5A0 /* NSDate_Utilidad.m */; };
 		63099E0713199D1800D15603 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63099E0613199D1800D15603 /* UIKit.framework */; };
 		63099E0913199D1800D15603 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63099E0813199D1800D15603 /* Foundation.framework */; };
@@ -155,6 +157,9 @@
 		3A2360B5131C4B7200A941E2 /* ClipEstandarTableCellView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ClipEstandarTableCellView.xib; sourceTree = "<group>"; };
 		3A236260131C8BD700A941E2 /* NSDictionary_Datos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDictionary_Datos.h; sourceTree = "<group>"; };
 		3A236261131C8BD700A941E2 /* NSDictionary_Datos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDictionary_Datos.m; sourceTree = "<group>"; };
+		3ACA5FB6133011AB00DB9402 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		3ACA5FBE133019A100DB9402 /* UIViewController_Preferencias.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewController_Preferencias.h; sourceTree = "<group>"; };
+		3ACA5FBF133019A100DB9402 /* UIViewController_Preferencias.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewController_Preferencias.m; sourceTree = "<group>"; };
 		3AD8190F131EF7B40006C5A0 /* NSDate_Utilidad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDate_Utilidad.h; sourceTree = "<group>"; };
 		3AD81910131EF7B40006C5A0 /* NSDate_Utilidad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDate_Utilidad.m; sourceTree = "<group>"; };
 		63099E0213199D1800D15603 /* teleSUR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = teleSUR.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -413,8 +418,18 @@
 				63C7AEF9131DAF9000BD7F64 /* AsynchronousImageView.m */,
 				3AD8190F131EF7B40006C5A0 /* NSDate_Utilidad.h */,
 				3AD81910131EF7B40006C5A0 /* NSDate_Utilidad.m */,
+				3ACA5FBE133019A100DB9402 /* UIViewController_Preferencias.h */,
+				3ACA5FBF133019A100DB9402 /* UIViewController_Preferencias.m */,
 			);
 			name = Extensiones;
+			sourceTree = "<group>";
+		};
+		3ACA5FB41330118D00DB9402 /* Preferencias */ = {
+			isa = PBXGroup;
+			children = (
+				3ACA5FB6133011AB00DB9402 /* Settings.bundle */,
+			);
+			name = Preferencias;
 			sourceTree = "<group>";
 		};
 		63099DF713199D1800D15603 = {
@@ -460,6 +475,7 @@
 		63099E0C13199D1800D15603 /* teleSUR */ = {
 			isa = PBXGroup;
 			children = (
+				3ACA5FB41330118D00DB9402 /* Preferencias */,
 				6341A7E113205B90008FFD9D /* pop.wav */,
 				6341A7E213205B91008FFD9D /* psst1.wav */,
 				6341A7E313205B91008FFD9D /* psst2.wav */,
@@ -1147,6 +1163,7 @@
 				C4FEABFF1324C25E003B6509 /* VerMasClipsTableCellView.xib in Resources */,
 				C4F400321325281D00239C39 /* ClipGrandeTableCellView.xib in Resources */,
 				63E4A8F01326045100669E91 /* ProgramaTableCellView.xib in Resources */,
+				3ACA5FB7133011AB00DB9402 /* Settings.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1269,6 +1286,7 @@
 				63C034B61328A510005D9F32 /* TSClipBusquedaViewController.m in Sources */,
 				63FB4EF6132ECE980027E304 /* TSBusquedaSeleccionTableViewController.m in Sources */,
 				C4AA37BE132F2942005C5874 /* DataGenerator.m in Sources */,
+				3ACA5FC0133019A100DB9402 /* UIViewController_Preferencias.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
