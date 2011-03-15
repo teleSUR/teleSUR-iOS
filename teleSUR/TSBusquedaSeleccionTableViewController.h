@@ -15,13 +15,21 @@
     
     TSClipBusquedaViewController *controladorBusqueda;
     
+    UIActivityIndicatorView *indicadorActividad;
+    
     NSArray *opciones;
     NSString *entidad;
     NSMutableArray *seleccion;
+    
+    //Indices
+    NSArray *content;
+    NSArray *indices;
+    
 }
 
 
 @property (nonatomic, assign) TSClipBusquedaViewController *controladorBusqueda;
+@property (nonatomic, retain) UIActivityIndicatorView *indicadorActividad;
 @property (nonatomic, retain) NSArray *opciones;
 @property (nonatomic, retain) NSString *entidad;
 @property (nonatomic, retain) NSMutableArray *seleccion;

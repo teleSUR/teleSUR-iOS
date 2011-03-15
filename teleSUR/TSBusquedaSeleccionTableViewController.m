@@ -9,11 +9,12 @@
 #import "TSBusquedaSeleccionTableViewController.h"
 #import "TSMultimediaData.h"
 #import "TSClipBusquedaViewController.h"
+#import "DataGenerator.h"
 
 
 @implementation TSBusquedaSeleccionTableViewController
 
-@synthesize opciones, entidad, seleccion, controladorBusqueda;
+@synthesize opciones, entidad, seleccion, controladorBusqueda, indicadorActividad;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -41,6 +42,16 @@
 
 - (void)viewDidLoad
 {
+    
+    // Indices:
+    
+    content = [DataGenerator wordsFromLetters];
+    indices = [[content valueForKey:@"headerTitle"] retain];
+    
+    self.indicadorActividad = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(150.0, 174.0, 20, 20)];
+    [self.indicadorActividad startAnimating];
+    [self.view addSubview: self.indicadorActividad];
+    
     TSMultimediaData *dataFiltros = [[TSMultimediaData alloc] init];
     [dataFiltros getDatosParaEntidad:self.entidad // otros ejemplos: programa, pais, categoria
                           conFiltros:nil // otro ejemplo: conFiltros:[NSDictionary dictionaryWithObject:@"2010-01-01" forKey:@"hasta"]
@@ -49,6 +60,9 @@
     
     self.title = self.entidad;
 
+    // Indices
+    
+    
     [super viewDidLoad];
 
     // Uncomment the following line to preserve selection between presentations.
@@ -75,16 +89,37 @@
 
 #pragma mark - Table view data source
 
+- (NSString *)tableView:(UITableView *)aTableView titleForHeaderInSection:(NSInteger)section {
+	if ([self.entidad isEqualToString:@"pais"]) return [[content objectAtIndex:section] objectForKey:@"headerTitle"];
+    else return @"";
+    
+}
+
+- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
+    if ([self.entidad isEqualToString:@"pais"]) return [content valueForKey:@"headerTitle"];
+    else return nil;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index
+{
+    if ([self.entidad isEqualToString:@"pais"]) return [indices indexOfObject:title];
+    else return 0;
+    
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 1;
+    if ([self.entidad isEqualToString:@"pais"]) return [content count];
+    else return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [self.opciones count];
+    if ([self.entidad isEqualToString:@"pais"]) 
+        return [[[content objectAtIndex:section] objectForKey:@"rowValues"] count] ;
+    else return [self.opciones count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -96,8 +131,13 @@
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
         
     }
-    
-    cell.textLabel.text = [[self.opciones objectAtIndex:indexPath.row] valueForKey:@"nombre"];    
+    if ([self.entidad isEqualToString:@"pais"]) {
+    cell.textLabel.text = [[[content objectAtIndex:indexPath.section] objectForKey:@"rowValues"]
+                           objectAtIndex:indexPath.row];
+    }
+    else {
+        cell.textLabel.text = [[self.opciones objectAtIndex:indexPath.row] valueForKey:@"nombre"];    
+    }
     
     
     if ([self.seleccion containsObject: [[self.opciones objectAtIndex:indexPath.row] valueForKey:@"slug"]] ) {
@@ -182,6 +222,10 @@
 // Maneja los datos recibidos
 - (void)TSMultimediaData:(TSMultimediaData *)data entidadesRecibidas:(NSArray *)array paraEntidad:(NSString *)entidad
 {
+
+
+    
+    [self.indicadorActividad stopAnimating];    
     self.opciones = array;
     
     if (!self.seleccion)
@@ -197,6 +241,7 @@
 
 - (void)TSMultimediaData:(TSMultimediaData *)data entidadesRecibidasConError:(id)error
 {
+    [self.indicadorActividad stopAnimating];        
     // TODO: Informar al usuario sobre error
 	NSLog(@"Error: %@", error);
     

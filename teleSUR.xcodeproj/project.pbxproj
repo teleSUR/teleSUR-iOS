@@ -129,6 +129,7 @@
 		63EDAB5013232F8200496B83 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63EDAB4F13232F8200496B83 /* CFNetwork.framework */; };
 		63EDAB521323316500496B83 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 63EDAB511323316500496B83 /* libsqlite3.0.dylib */; };
 		63FB4EF6132ECE980027E304 /* TSBusquedaSeleccionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63FB4EF5132ECE980027E304 /* TSBusquedaSeleccionTableViewController.m */; };
+		C4AA37BE132F2942005C5874 /* DataGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = C4AA37BD132F2941005C5874 /* DataGenerator.m */; };
 		C4F400321325281D00239C39 /* ClipGrandeTableCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4F400311325281D00239C39 /* ClipGrandeTableCellView.xib */; };
 		C4FEABE51324BF57003B6509 /* libGoogleAnalytics_NoThumb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C4FEABE41324BF57003B6509 /* libGoogleAnalytics_NoThumb.a */; };
 		C4FEABFF1324C25E003B6509 /* VerMasClipsTableCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4FEABFE1324C25E003B6509 /* VerMasClipsTableCellView.xib */; };
@@ -361,8 +362,10 @@
 		63EDAB4C13232F4D00496B83 /* GANTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GANTracker.h; path = "Google Analyics SDK/Library/GANTracker.h"; sourceTree = "<group>"; };
 		63EDAB4F13232F8200496B83 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		63EDAB511323316500496B83 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
-		63FB4EF4132ECE980027E304 /* TSBusquedaSeleccionTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; path = TSBusquedaSeleccionTableViewController.h; sourceTree = "<group>"; };
+		63FB4EF4132ECE980027E304 /* TSBusquedaSeleccionTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSBusquedaSeleccionTableViewController.h; sourceTree = "<group>"; };
 		63FB4EF5132ECE980027E304 /* TSBusquedaSeleccionTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSBusquedaSeleccionTableViewController.m; sourceTree = "<group>"; };
+		C4AA37BC132F2941005C5874 /* DataGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataGenerator.h; sourceTree = "<group>"; };
+		C4AA37BD132F2941005C5874 /* DataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataGenerator.m; sourceTree = "<group>"; };
 		C4F400311325281D00239C39 /* ClipGrandeTableCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClipGrandeTableCellView.xib; sourceTree = "<group>"; };
 		C4FEABE41324BF57003B6509 /* libGoogleAnalytics_NoThumb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGoogleAnalytics_NoThumb.a; path = "Google Analyics SDK/Library/libGoogleAnalytics_NoThumb.a"; sourceTree = "<group>"; };
 		C4FEABFE1324C25E003B6509 /* VerMasClipsTableCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VerMasClipsTableCellView.xib; sourceTree = "<group>"; };
@@ -1004,6 +1007,8 @@
 				63C034B41328A510005D9F32 /* TSClipBusquedaViewController.m */,
 				63FB4EF4132ECE980027E304 /* TSBusquedaSeleccionTableViewController.h */,
 				63FB4EF5132ECE980027E304 /* TSBusquedaSeleccionTableViewController.m */,
+				C4AA37BC132F2941005C5874 /* DataGenerator.h */,
+				C4AA37BD132F2941005C5874 /* DataGenerator.m */,
 			);
 			name = "Búsqueda";
 			sourceTree = "<group>";
@@ -1263,6 +1268,7 @@
 				63E4A8EE1325EDF600669E91 /* TSProgramaListadoViewController.m in Sources */,
 				63C034B61328A510005D9F32 /* TSClipBusquedaViewController.m in Sources */,
 				63FB4EF6132ECE980027E304 /* TSBusquedaSeleccionTableViewController.m in Sources */,
+				C4AA37BE132F2942005C5874 /* DataGenerator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
