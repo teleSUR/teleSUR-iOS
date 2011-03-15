@@ -9,6 +9,7 @@
 #import "TSMultimediaData.h"
 #include "NSDictionary_JSONExtensions.h"
 #include "TSMultimediaDataDelegate.h"
+#include "UIViewController_Preferencias.h"
 
 @implementation TSMultimediaData
 
@@ -23,7 +24,7 @@
 	self.delegate = datosDelegate;
 	
 	NSString *urlBase = [[[[NSBundle mainBundle] infoDictionary] objectForKey:@"Configuración"] objectForKey:@"API URL Base"];
-	NSString *langCode = [[[[NSBundle mainBundle] infoDictionary] objectForKey:@"Configuración"] objectForKey:@"Código de idioma"]; // default otros:  @"pt/", @"en/" (OJO: slash al final)
+	NSString *langCode = [self idiomaDeContenido]; // default otros:  @"pt/", @"en/" (OJO: slash al final)
 	
     // Prefijo de idioma
     if ([langCode isEqualToString:@"es"])

@@ -107,11 +107,48 @@
     else return @"";
     
 }
-
+- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
+    
+    if (![self.entidad isEqualToString:@"pais"])
+        return nil;
+    else
+    {
+        NSMutableArray *tempArray = [[NSMutableArray alloc] init];
+        [tempArray addObject:@"1"];
+        [tempArray addObject:@"2"];
+        [tempArray addObject:@"3"];
+        [tempArray addObject:@"4"];
+        [tempArray addObject:@"5"];
+        [tempArray addObject:@"6"];
+        [tempArray addObject:@"7"];
+        [tempArray addObject:@"8"];
+        [tempArray addObject:@"9"];
+        [tempArray addObject:@"10"];
+        [tempArray addObject:@"11"];
+        [tempArray addObject:@"12"];
+        [tempArray addObject:@"13"];
+        [tempArray addObject:@"14"];
+        [tempArray addObject:@"15"];
+        [tempArray addObject:@"16"];
+        [tempArray addObject:@"17"];
+        [tempArray addObject:@"18"];
+        [tempArray addObject:@"19"];
+        [tempArray addObject:@"20"];
+        [tempArray addObject:@"21"];
+        [tempArray addObject:@"22"];
+        [tempArray addObject:@"23"];
+        [tempArray addObject:@"24"];
+        [tempArray addObject:@"25"];
+        [tempArray addObject:@"26"];
+    
+        return tempArray;
+    }
+}
+/*
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
     if ([self.entidad isEqualToString:@"pais"]) return [content valueForKey:@"headerTitle"];
     else return nil;
-}
+}*/
 
 - (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index
 {
@@ -157,7 +194,7 @@
     }
     
     if ([self.entidad isEqualToString:@"pais"]) {
-    cell.textLabel.text = [[[content objectAtIndex:indexPath.section] objectForKey:@"rowValues"]
+        cell.textLabel.text = [[[content objectAtIndex:indexPath.section] objectForKey:@"rowValues"]
                            objectAtIndex:indexPath.row];
     }
     else {

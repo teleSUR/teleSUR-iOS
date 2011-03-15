@@ -16,7 +16,7 @@
 #import "AsynchronousImageView.h"
 #import <MediaPlayer/MediaPlayer.h>
 #import "GANTracker.h"
-
+#import "UIViewController_Preferencias.h"
 
 #define kMARGEN_MENU 12
 #define kTAMANO_PAGINA 10
@@ -233,6 +233,8 @@
 
 - (void)viewDidLoad
 {
+    NSLog(@"IdiomaContenido: %@", [self idiomaDeContenido]);
+    
 	[self personalizarNavigationBar];
     self.clipsTableView.scrollsToTop = YES;
     self.menuScrollView.scrollsToTop = NO;
