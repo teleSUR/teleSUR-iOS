@@ -30,6 +30,10 @@
 	<string>1.0</string>
 	<key>Configuración</key>
 	<dict>
+		<key>API URL Base</key>
+		<string>http://multimedia.telesurtv.net</string>
+		<key>Código de idioma</key>
+		<string>es</string>
 		<key>Secciones de Búsqueda</key>
 		<array>
 			<dict>
@@ -48,85 +52,83 @@
 				<string>Búsqueda de texto</string>
 			</dict>
 			<dict>
-				<key>Header</key>
-				<string>Clasificación</string>
 				<key>Filas</key>
 				<array>
 					<dict>
-						<key>Todos</key>
-						<string>Cualquier tipo</string>
 						<key>Entidad</key>
 						<string>tipo_clip</string>
 						<key>Nombre</key>
 						<string>Tipo</string>
+						<key>Todos</key>
+						<string>Cualquier tipo</string>
 					</dict>
 					<dict>
-						<key>Todos</key>
-						<string>Todas las secciones</string>
 						<key>Entidad</key>
 						<string>categoria</string>
 						<key>Nombre</key>
 						<string>Sección</string>
+						<key>Todos</key>
+						<string>Todas las secciones</string>
 					</dict>
 					<dict>
-						<key>Todos</key>
-						<string>Cualquier tema</string>
 						<key>Entidad</key>
 						<string>Tema</string>
 						<key>Nombre</key>
 						<string>Tema</string>
+						<key>Todos</key>
+						<string>Cualquier tema</string>
 					</dict>
 				</array>
+				<key>Header</key>
+				<string>Clasificación</string>
 			</dict>
 			<dict>
-				<key>Header</key>
-				<string>Ubicación</string>
 				<key>Filas</key>
 				<array>
 					<dict>
-						<key>Todos</key>
-						<string>Cualquier región</string>
 						<key>Entidad</key>
 						<string>ubicacion</string>
 						<key>Nombre</key>
 						<string>Región</string>
+						<key>Todos</key>
+						<string>Cualquier región</string>
 					</dict>
 					<dict>
-						<key>Todos</key>
-						<string>Todos los países</string>
 						<key>Entidad</key>
 						<string>pais</string>
 						<key>Nombre</key>
 						<string>País</string>
+						<key>Todos</key>
+						<string>Todos los países</string>
 					</dict>
 				</array>
+				<key>Header</key>
+				<string>Ubicación</string>
 			</dict>
 			<dict>
-				<key>Header</key>
-				<string>Personas</string>
 				<key>Filas</key>
 				<array>
 					<dict>
-						<key>Todos</key>
-						<string>Todos</string>
 						<key>Entidad</key>
 						<string>personaje</string>
 						<key>Nombre</key>
 						<string>Personajes</string>
-					</dict>
-					<dict>
 						<key>Todos</key>
 						<string>Todos</string>
+					</dict>
+					<dict>
 						<key>Entidad</key>
 						<string>corresponsal</string>
 						<key>Nombre</key>
 						<string>Corresponsal</string>
+						<key>Todos</key>
+						<string>Todos</string>
 					</dict>
 				</array>
+				<key>Header</key>
+				<string>Personas</string>
 			</dict>
 			<dict>
-				<key>Header</key>
-				<string>Fecha</string>
 				<key>Filas</key>
 				<array>
 					<dict>
@@ -138,12 +140,10 @@
 						<string>Fecha</string>
 					</dict>
 				</array>
+				<key>Header</key>
+				<string>Fecha</string>
 			</dict>
 		</array>
-		<key>API URL Base</key>
-		<string>http://multimedia.telesurtv.net</string>
-		<key>Código de idioma</key>
-		<string>es</string>
 		<key>Ubicaciones</key>
 		<array>
 			<dict>

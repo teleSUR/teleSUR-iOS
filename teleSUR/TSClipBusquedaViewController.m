@@ -1,4 +1,3 @@
-
 //
 //  TSClipBusquedaViewController.m
 //  teleSUR
@@ -11,6 +10,7 @@
 #import "TSBusquedaSeleccionTableViewController.h"
 #import "TSClipListadoViewController.h"
 #import "TSBusquedaSeleccionFechaViewController.h"
+#import "TSBusquedaSeleccionTextoViewController.h"
 
 
 #define kALTURA_CELDA 40.0
@@ -142,6 +142,12 @@
         TSBusquedaSeleccionFechaViewController *controladorSeleccionFecha = [[TSBusquedaSeleccionFechaViewController alloc] init];
         [self.navigationController pushViewController:controladorSeleccionFecha animated:YES];
         [controladorSeleccionFecha release];
+    }
+    else if ([entidad isEqualToString:@"texto"])
+    {
+        TSBusquedaSeleccionTextoViewController *controladorSeleccionTexto = [[TSBusquedaSeleccionTextoViewController alloc] init];
+        [self.navigationController pushViewController:controladorSeleccionTexto animated:YES];
+        [controladorSeleccionTexto release];
     }
     else
     {
