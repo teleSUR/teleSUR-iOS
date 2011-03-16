@@ -1,3 +1,4 @@
+
 //
 //  TSClipBusquedaViewController.m
 //  teleSUR
@@ -9,7 +10,7 @@
 #import "TSClipBusquedaViewController.h"
 #import "TSBusquedaSeleccionTableViewController.h"
 #import "TSClipListadoViewController.h"
-
+#import "TSBusquedaSeleccionFechaViewController.h"
 // TODO: Integrar estas constantes mejor a configuración, quizá plist principal
 // Orden de secciones
 #define kTEXTO_SECTION         0
@@ -391,19 +392,26 @@
                     break;
             }
             
+            TSBusquedaSeleccionFechaViewController *controladorSeleccionFecha = [[TSBusquedaSeleccionFechaViewController alloc] init];
+            [self.navigationController pushViewController:controladorSeleccionFecha animated:YES];
+            [controladorSeleccionFecha release];
+
+            return;
+            
             break;
             
         default:
             
             break;
     }		      
-    
+    /*
     TSBusquedaSeleccionTableViewController *controladorSeleccion = [[TSBusquedaSeleccionTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
     controladorSeleccion.entidad = entidad;
     controladorSeleccion.controladorBusqueda = self;
     controladorSeleccion.seleccion = [self.selecciones valueForKey:entidad];
     [self.navigationController pushViewController:controladorSeleccion animated:YES];
     [controladorSeleccion release];
+     */
 }
 
 

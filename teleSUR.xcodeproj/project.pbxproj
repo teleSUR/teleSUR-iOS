@@ -15,6 +15,8 @@
 		3A236262131C8BD700A941E2 /* NSDictionary_Datos.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A236261131C8BD700A941E2 /* NSDictionary_Datos.m */; };
 		3ACA5FB7133011AB00DB9402 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3ACA5FB6133011AB00DB9402 /* Settings.bundle */; };
 		3ACA5FC0133019A100DB9402 /* UIViewController_Preferencias.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACA5FBF133019A100DB9402 /* UIViewController_Preferencias.m */; };
+		3ACA5FCA1330237E00DB9402 /* TSBusquedaSeleccionFechaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACA5FC81330237800DB9402 /* TSBusquedaSeleccionFechaViewController.m */; };
+		3ACA5FCB1330237E00DB9402 /* TSBusquedaSeleccionFechaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3ACA5FC91330237A00DB9402 /* TSBusquedaSeleccionFechaViewController.xib */; };
 		3AD81911131EF7B40006C5A0 /* NSDate_Utilidad.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD81910131EF7B40006C5A0 /* NSDate_Utilidad.m */; };
 		63099E0713199D1800D15603 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63099E0613199D1800D15603 /* UIKit.framework */; };
 		63099E0913199D1800D15603 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63099E0813199D1800D15603 /* Foundation.framework */; };
@@ -160,6 +162,9 @@
 		3ACA5FB6133011AB00DB9402 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		3ACA5FBE133019A100DB9402 /* UIViewController_Preferencias.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewController_Preferencias.h; sourceTree = "<group>"; };
 		3ACA5FBF133019A100DB9402 /* UIViewController_Preferencias.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewController_Preferencias.m; sourceTree = "<group>"; };
+		3ACA5FC71330237400DB9402 /* TSBusquedaSeleccionFechaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSBusquedaSeleccionFechaViewController.h; sourceTree = "<group>"; };
+		3ACA5FC81330237800DB9402 /* TSBusquedaSeleccionFechaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSBusquedaSeleccionFechaViewController.m; sourceTree = "<group>"; };
+		3ACA5FC91330237A00DB9402 /* TSBusquedaSeleccionFechaViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TSBusquedaSeleccionFechaViewController.xib; sourceTree = "<group>"; };
 		3AD8190F131EF7B40006C5A0 /* NSDate_Utilidad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDate_Utilidad.h; sourceTree = "<group>"; };
 		3AD81910131EF7B40006C5A0 /* NSDate_Utilidad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDate_Utilidad.m; sourceTree = "<group>"; };
 		63099E0213199D1800D15603 /* teleSUR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = teleSUR.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1023,6 +1028,9 @@
 				63C034B41328A510005D9F32 /* TSClipBusquedaViewController.m */,
 				63FB4EF4132ECE980027E304 /* TSBusquedaSeleccionTableViewController.h */,
 				63FB4EF5132ECE980027E304 /* TSBusquedaSeleccionTableViewController.m */,
+				3ACA5FC71330237400DB9402 /* TSBusquedaSeleccionFechaViewController.h */,
+				3ACA5FC81330237800DB9402 /* TSBusquedaSeleccionFechaViewController.m */,
+				3ACA5FC91330237A00DB9402 /* TSBusquedaSeleccionFechaViewController.xib */,
 				C4AA37BC132F2941005C5874 /* DataGenerator.h */,
 				C4AA37BD132F2941005C5874 /* DataGenerator.m */,
 			);
@@ -1164,6 +1172,7 @@
 				C4F400321325281D00239C39 /* ClipGrandeTableCellView.xib in Resources */,
 				63E4A8F01326045100669E91 /* ProgramaTableCellView.xib in Resources */,
 				3ACA5FB7133011AB00DB9402 /* Settings.bundle in Resources */,
+				3ACA5FCB1330237E00DB9402 /* TSBusquedaSeleccionFechaViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1287,6 +1296,7 @@
 				63FB4EF6132ECE980027E304 /* TSBusquedaSeleccionTableViewController.m in Sources */,
 				C4AA37BE132F2942005C5874 /* DataGenerator.m in Sources */,
 				3ACA5FC0133019A100DB9402 /* UIViewController_Preferencias.m in Sources */,
+				3ACA5FCA1330237E00DB9402 /* TSBusquedaSeleccionFechaViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
