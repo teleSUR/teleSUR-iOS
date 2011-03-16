@@ -11,93 +11,50 @@
 #import "TSBusquedaSeleccionTableViewController.h"
 #import "TSClipListadoViewController.h"
 #import "TSBusquedaSeleccionFechaViewController.h"
-// TODO: Integrar estas constantes mejor a configuración, quizá plist principal
-// Orden de secciones
-#define kTEXTO_SECTION         0
-#define kCLASIFICACION_SECTION 1
-#define kUBICACION_SECTION     2
-#define kPERSONAS_SECTION      3
-#define kFECHA_SECTION         4
 
-// Sección PALABRAS
-#define kTEXTO_ROW 0
 
-// Sección CLASIFICACION
-#define kTIPO_ROW      5
-#define kCATEGORIA_ROW 0
-#define kTEMA_ROW      1
-
-// Sección UBICACION
-#define kREGION_ROW   0
-#define kPAIS_ROW     1
-
-// Sección PERSONAS
-#define kPERSONAJES_ROW   0
-#define kCORRESPONSAL_ROW 1
-
-// Sección FECHA
-#define kDESDE_ROW   0
-#define kHASTA_ROW   1
-
+#define kALTURA_CELDA 40.0
 
 
 @implementation TSClipBusquedaViewController
 
-@synthesize selecciones;
+@synthesize selecciones, configuracionSeccionesBusqueda;
 
 
 #pragma mark - Memoria
 
 - (void)dealloc
 {
+    self.selecciones = nil;
+    
     [super dealloc];
 }
 
 - (void)didReceiveMemoryWarning
 {
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
+    [super didReceiveMemoryWarning];    
 }
 
-
-#pragma mark - Acciones
-
--(void) botonBuscarPresionado:(UIBarButtonItem *)sender
-{
-    NSLog(@"selecciones: %@", self.selecciones);
-    
-    TSClipListadoViewController *controladorResultado  = [[TSClipListadoViewController alloc] initWithEntidad:@"clip" yFiltros:self.selecciones];
-    
-    [self.navigationController pushViewController:controladorResultado animated:YES];
-    
-    [controladorResultado release];
-}
 
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
 {
-//    self.selecciones = [NSMutableDictionary d
+    // Cargar arreglo de configuración
+    self.configuracionSeccionesBusqueda = [[[[NSBundle mainBundle] infoDictionary] objectForKey:@"Configuración"] objectForKey:@"Secciones de Búsqueda"];
     
-    UIBarButtonItem *boton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch 
-                                                                           target:self 
-                                                                           action:@selector(botonBuscarPresionado:)];
+    // Inicializar diccionario para selecciones
+    self.selecciones = [NSMutableDictionary dictionary];
     
+    // Crear y asignar botón para ejecutar la búsqueda como rightBarButtonItem en la barra de navegación
+    UIBarButtonItem *boton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(botonBuscarPresionado:)];
     self.navigationItem.rightBarButtonItem = boton;
     [boton release];
-    
-    self.selecciones = [NSMutableDictionary dictionaryWithCapacity:10];
-    [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -111,222 +68,74 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 5;
+    return [self.configuracionSeccionesBusqueda count];
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    switch (section)
-    {
-        case kTEXTO_SECTION:
-            
-            return 1; // texto
-            
-        case kCLASIFICACION_SECTION:
-            
-            return 2; // tipo, categoría, tema
-        
-        case kUBICACION_SECTION:
-            
-            return 2; // región, país
-        
-        case kPERSONAS_SECTION:
-            
-            return 2; // personajes, corresponsal
-        
-        case kFECHA_SECTION:
-            
-            return 2; // desde, hasta
-            
-        default:
-            
-            NSLog(@"sección de tabla no reconocida: %d", section);
-            
-            return 0;
-    } 
+    return [[[self.configuracionSeccionesBusqueda objectAtIndex:section] valueForKey:@"Filas"] count];
 }
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 40.0;
+    return kALTURA_CELDA;
 }
 
 
-// Customize the appearance of table view cells.
+- (NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section 
+{
+    return [[self.configuracionSeccionesBusqueda objectAtIndex:section] valueForKey:@"Header"];
+}
+
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{    
-    NSString *CellIdentifier = @"busquedaCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+{   
+    // Crear o reutilizar celda
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"busquedaCell"];
     
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"busquedaCell"] autorelease];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     
-    NSString *entidad = [self nombreEntidadParaIndexPath:indexPath];
-    NSArray *seleccion = [self.selecciones objectForKey:entidad];
+    // Obtener datos de configuración para la fila actual
+    NSDictionary *fila = [[[self.configuracionSeccionesBusqueda objectAtIndex:indexPath.section] valueForKey:@"Filas"] objectAtIndex:indexPath.row];
     
+    // Obtener arreglo de elementos seleccionados para la fila actual
+    NSArray *seleccion = [self.selecciones objectForKey:[fila valueForKey:@"Entidad"]];
+    
+    // Establecer texto de la celda
+    cell.textLabel.text = [fila valueForKey:@"Nombre"];
+    
+    // Establecer detalles de la celda 
     switch ([seleccion count])
     {
-            case 0:
-                cell.detailTextLabel.text = @"Todos";
-                break;
-            
-            case 1:
-                cell.detailTextLabel.text = [seleccion objectAtIndex:0];
-                break;
-            
-            default:
-                cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", [seleccion count]];
-    }
-    
-    if ([entidad isEqualToString:@"Texto"])
-    {
-        cell.detailTextLabel.text = @"";
-    }
-    
-    switch (indexPath.section)
-    {
-        case kTEXTO_SECTION:
-            
-            cell.textLabel.text = @"Búsqueda de Texto";
-            
+        case 0:
+            // Texto default para "Todos"
+            cell.detailTextLabel.text = [fila valueForKey:@"Todos"];
             break;
             
-        case kCLASIFICACION_SECTION:
-            
-            switch (indexPath.row)
-            {
-                case kTIPO_ROW:
-                    
-                    cell.textLabel.text = @"Tipo";
-                    
-                    break;
-                    
-                case kCATEGORIA_ROW:
-                    
-                    cell.textLabel.text = @"Sección";
-                    
-                    break;
-                    
-                case kTEMA_ROW:
-                    
-                    cell.textLabel.text = @"Tema";
-                    
-                default:
-                    
-                    break;
-            }
-            
-            break;
-            
-        case kUBICACION_SECTION:
-            
-            switch (indexPath.row)
-            {
-                case kREGION_ROW:
-                    
-                    cell.textLabel.text = @"Región";
-                    
-                    break;
-                    
-                case kPAIS_ROW:
-                    
-                    cell.textLabel.text = @"País";
-                    
-                default:
-                    
-                    break;
-            }
-            
-            break;
-            
-        case kPERSONAS_SECTION:
-            
-            switch (indexPath.row)
-            {
-                case kCORRESPONSAL_ROW:
-                    
-                    cell.textLabel.text = @"Corresponsal";
-                    
-                    break;
-                    
-                case kPERSONAJES_ROW:
-                    
-                    cell.textLabel.text = @"Personajes";
-                    
-                default:
-                    
-                    break;
-            }
-            
-            break;
-            
-        case kFECHA_SECTION:
-            
-            switch (indexPath.row)
-            {
-                case kDESDE_ROW:
-                    cell.textLabel.text = @"Desde";
-                    
-                    break;
-                    
-                case kHASTA_ROW:
-                    
-                    cell.textLabel.text = @"Hasta";
-                    
-                default:
-                    
-                    break;
-            }
-            
+        case 1:
+            // Sólo uno seleccionado, mostrar
+            cell.detailTextLabel.text = [seleccion objectAtIndex:0];
             break;
             
         default:
-            
-            break;
+            // Más de uno seleccionado, mostrar número
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", [seleccion count]];
     }
     
     return cell;
 }
 
-- (NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section 
-{
-    switch (section)
-    {
-        case kTEXTO_SECTION:
-            
-            return @"Palabras clave";
-            
-        case kCLASIFICACION_SECTION:
-            
-            return @"Clasificación";
-            
-        case kUBICACION_SECTION:
-            
-            return @"Ubicación";
-            
-        case kPERSONAS_SECTION:
-            
-            return @"Personas";
-            
-        case kFECHA_SECTION:
-            
-            return @"Fecha";	
-            
-        default:
-            NSLog(@"Advertencia: Sección Reconocida: %d!", section);
-            return @"";
-    }
-}
 
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *entidad = [self nombreEntidadParaIndexPath:indexPath];
+    NSString *entidad = [[[[self.configuracionSeccionesBusqueda objectAtIndex:indexPath.section] valueForKey:@"Filas"] objectAtIndex:indexPath.row] valueForKey:@"Entidad"];
     
     if ([entidad isEqualToString:@"fecha"])
     {
@@ -346,78 +155,14 @@
 }
 
 
-- (NSString *)nombreEntidadParaIndexPath:(NSIndexPath *)indexPath
+#pragma mark - Acciones
+
+-(void) botonBuscarPresionado:(UIBarButtonItem *)sender
 {
-    switch (indexPath.section)
-    {
-        case kTEXTO_SECTION:
-            
-            return @"texto";
-            
-        case kCLASIFICACION_SECTION:
-            
-            switch (indexPath.row)
-            {
-                case kTIPO_ROW:
-                    
-                    return @"tipo_clip";
-                    
-                case kCATEGORIA_ROW:
-                    
-                    return @"categoria";
-                    
-                case kTEMA_ROW:
-                    
-                    return @"tema";
-            }
-            
-            break;
-            
-        case kUBICACION_SECTION:
-            
-            switch (indexPath.row)
-            {
-                case kREGION_ROW:
-                    
-                    return @"ubicacion";
-                    
-                case kPAIS_ROW:
-                    
-                    return @"pais";
-            }
-            
-            break;
-            
-        case kPERSONAS_SECTION:
-            
-            switch (indexPath.row)
-            {
-                case kCORRESPONSAL_ROW:
-                    
-                    return @"corresponsal";
-                    
-                case kPERSONAJES_ROW:
-                    
-                    return @"personaje";
-            }
-            
-            break;
-            
-        case kFECHA_SECTION:
-            
-            switch (indexPath.row)
-            {
-                case kDESDE_ROW:
-                    
-                    return @"fecha";
-                    
-                case kHASTA_ROW:
-                    
-                    return @"fecha";
-            }
-    }
-    
-    return nil;
+    // Crear y mostrar controlador de listado con los filtros elegidos
+    TSClipListadoViewController *controladorResultado  = [[TSClipListadoViewController alloc] initWithEntidad:@"clip" yFiltros:self.selecciones];
+    [self.navigationController pushViewController:controladorResultado animated:YES];
+    [controladorResultado release];
 }
 
 

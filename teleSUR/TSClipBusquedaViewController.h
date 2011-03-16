@@ -9,13 +9,15 @@
 #import <UIKit/UIKit.h>
 
 
-@interface TSClipBusquedaViewController : UITableViewController {
+@interface TSClipBusquedaViewController : UITableViewController
+{
     NSMutableDictionary *selecciones;
+    NSArray *configuracionSeccionesBusqueda;
 }
 
-@property (nonatomic,retain) NSMutableDictionary *selecciones;
+@property (nonatomic, retain) NSMutableDictionary *selecciones;
+@property (nonatomic, assign) NSArray *configuracionSeccionesBusqueda;
 
 - (void) botonBuscarPresionado:(UIBarButtonItem *)sender;
-- (NSString *)nombreEntidadParaIndexPath:(NSIndexPath *)indexPath;
 
 @end

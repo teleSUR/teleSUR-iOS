@@ -30,6 +30,116 @@
 	<string>1.0</string>
 	<key>Configuración</key>
 	<dict>
+		<key>Secciones de Búsqueda</key>
+		<array>
+			<dict>
+				<key>Filas</key>
+				<array>
+					<dict>
+						<key>Todos</key>
+						<string></string>
+						<key>Entidad</key>
+						<string>texto</string>
+						<key>Nombre</key>
+						<string>Texto</string>
+					</dict>
+				</array>
+				<key>Header</key>
+				<string>Búsqueda de texto</string>
+			</dict>
+			<dict>
+				<key>Header</key>
+				<string>Clasificación</string>
+				<key>Filas</key>
+				<array>
+					<dict>
+						<key>Todos</key>
+						<string>Cualquier tipo</string>
+						<key>Entidad</key>
+						<string>tipo_clip</string>
+						<key>Nombre</key>
+						<string>Tipo</string>
+					</dict>
+					<dict>
+						<key>Todos</key>
+						<string>Todas las secciones</string>
+						<key>Entidad</key>
+						<string>categoria</string>
+						<key>Nombre</key>
+						<string>Sección</string>
+					</dict>
+					<dict>
+						<key>Todos</key>
+						<string>Cualquier tema</string>
+						<key>Entidad</key>
+						<string>Tema</string>
+						<key>Nombre</key>
+						<string>Tema</string>
+					</dict>
+				</array>
+			</dict>
+			<dict>
+				<key>Header</key>
+				<string>Ubicación</string>
+				<key>Filas</key>
+				<array>
+					<dict>
+						<key>Todos</key>
+						<string>Cualquier región</string>
+						<key>Entidad</key>
+						<string>ubicacion</string>
+						<key>Nombre</key>
+						<string>Región</string>
+					</dict>
+					<dict>
+						<key>Todos</key>
+						<string>Todos los países</string>
+						<key>Entidad</key>
+						<string>pais</string>
+						<key>Nombre</key>
+						<string>País</string>
+					</dict>
+				</array>
+			</dict>
+			<dict>
+				<key>Header</key>
+				<string>Personas</string>
+				<key>Filas</key>
+				<array>
+					<dict>
+						<key>Todos</key>
+						<string>Todos</string>
+						<key>Entidad</key>
+						<string>personaje</string>
+						<key>Nombre</key>
+						<string>Personajes</string>
+					</dict>
+					<dict>
+						<key>Todos</key>
+						<string>Todos</string>
+						<key>Entidad</key>
+						<string>corresponsal</string>
+						<key>Nombre</key>
+						<string>Corresponsal</string>
+					</dict>
+				</array>
+			</dict>
+			<dict>
+				<key>Header</key>
+				<string>Fecha</string>
+				<key>Filas</key>
+				<array>
+					<dict>
+						<key>Cualquier fecha</key>
+						<string></string>
+						<key>Entidad</key>
+						<string>fecha</string>
+						<key>Nombre</key>
+						<string>Fecha</string>
+					</dict>
+				</array>
+			</dict>
+		</array>
 		<key>API URL Base</key>
 		<string>http://multimedia.telesurtv.net</string>
 		<key>Código de idioma</key>
