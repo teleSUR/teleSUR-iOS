@@ -102,6 +102,7 @@
 }
 
 
+
 // Devuelve NSDate con la fecha de este clip,
 // que se espera tenga el formato: yyyy-MM-dd HH:mm:ss
 - (NSDate *)obtenerNSDateParaEsteClip

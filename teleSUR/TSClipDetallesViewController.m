@@ -250,7 +250,7 @@
                     
                 case kFIRMA_ROW:
                     
-                    [(UILabel *)[self.firmaCell viewWithTag:4] setText: [self.clip obtenerTiempoDesdeParaEsteClip]];
+                    [(UILabel *)[self.firmaCell viewWithTag:4] setText: [self.clip obtenerFirmaParaEsteClip]];
                     
                     return firmaCell;   
                     
