@@ -165,12 +165,33 @@
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     
+    NSString *entidad = [self nombreEntidadParaIndexPath:indexPath];
+    NSArray *seleccion = [self.selecciones objectForKey:entidad];
+    
+    switch ([seleccion count])
+    {
+            case 0:
+                cell.detailTextLabel.text = @"Todos";
+                break;
+            
+            case 1:
+                cell.detailTextLabel.text = [seleccion objectAtIndex:0];
+                break;
+            
+            default:
+                cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", [seleccion count]];
+    }
+    
+    if ([entidad isEqualToString:@"Texto"])
+    {
+        cell.detailTextLabel.text = @"";
+    }
+    
     switch (indexPath.section)
     {
         case kTEXTO_SECTION:
             
             cell.textLabel.text = @"Búsqueda de Texto";
-            cell.detailTextLabel.text = @"Prueba";
             
             break;
             
@@ -187,10 +208,6 @@
                 case kCATEGORIA_ROW:
                     
                     cell.textLabel.text = @"Sección";
-                    
-                    NSLog(@"....  %@", self.selecciones);
-                    
-                    cell.detailTextLabel.text = ([[self.selecciones objectForKey:@"categoria"] count]) ? [NSString stringWithFormat:@"%d", [[self.selecciones objectForKey:@"categoria"] count]] : @"Todos";
                     
                     break;
                     
@@ -309,15 +326,33 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *entidad;
+    NSString *entidad = [self nombreEntidadParaIndexPath:indexPath];
     
+    if ([entidad isEqualToString:@"fecha"])
+    {
+        TSBusquedaSeleccionFechaViewController *controladorSeleccionFecha = [[TSBusquedaSeleccionFechaViewController alloc] init];
+        [self.navigationController pushViewController:controladorSeleccionFecha animated:YES];
+        [controladorSeleccionFecha release];
+    }
+    else
+    {
+        TSBusquedaSeleccionTableViewController *controladorSeleccion = [[TSBusquedaSeleccionTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+        controladorSeleccion.entidad = entidad;
+        controladorSeleccion.controladorBusqueda = self;
+        controladorSeleccion.seleccion = [self.selecciones valueForKey:entidad];
+        [self.navigationController pushViewController:controladorSeleccion animated:YES];
+        [controladorSeleccion release];
+    }
+}
+
+
+- (NSString *)nombreEntidadParaIndexPath:(NSIndexPath *)indexPath
+{
     switch (indexPath.section)
     {
         case kTEXTO_SECTION:
             
-            //
-            
-            break;
+            return @"texto";
             
         case kCLASIFICACION_SECTION:
             
@@ -325,18 +360,15 @@
             {
                 case kTIPO_ROW:
                     
-                    entidad = @"tipo_clip";
-                    break;
-                
+                    return @"tipo_clip";
+                    
                 case kCATEGORIA_ROW:
                     
-                    entidad = @"categoria";
-                    break;
+                    return @"categoria";
                     
                 case kTEMA_ROW:
                     
-                    entidad = @"tema";
-                    break;
+                    return @"tema";
             }
             
             break;
@@ -346,13 +378,12 @@
             switch (indexPath.row)
             {
                 case kREGION_ROW:
-
-                    entidad = @"ubicacion";
-                    break;
-
+                    
+                    return @"ubicacion";
+                    
                 case kPAIS_ROW:
-
-                    entidad = @"pais";
+                    
+                    return @"pais";
             }
             
             break;
@@ -363,12 +394,11 @@
             {
                 case kCORRESPONSAL_ROW:
                     
-                    entidad = @"corresponsal";
-                    break;
+                    return @"corresponsal";
                     
                 case kPERSONAJES_ROW:
                     
-                    entidad = @"personaje";
+                    return @"personaje";
             }
             
             break;
@@ -379,39 +409,15 @@
             {
                 case kDESDE_ROW:
                     
-                    //
-                    
-                    break;
+                    return @"fecha";
                     
                 case kHASTA_ROW:
                     
-                    //
-                    
-                default:
-                    
-                    break;
+                    return @"fecha";
             }
-            
-            TSBusquedaSeleccionFechaViewController *controladorSeleccionFecha = [[TSBusquedaSeleccionFechaViewController alloc] init];
-            [self.navigationController pushViewController:controladorSeleccionFecha animated:YES];
-            [controladorSeleccionFecha release];
-
-            return;
-            
-            break;
-            
-        default:
-            
-            break;
-    }		      
-    /*
-    TSBusquedaSeleccionTableViewController *controladorSeleccion = [[TSBusquedaSeleccionTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
-    controladorSeleccion.entidad = entidad;
-    controladorSeleccion.controladorBusqueda = self;
-    controladorSeleccion.seleccion = [self.selecciones valueForKey:entidad];
-    [self.navigationController pushViewController:controladorSeleccion animated:YES];
-    [controladorSeleccion release];
-     */
+    }
+    
+    return nil;
 }
 
 

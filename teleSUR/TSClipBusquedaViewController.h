@@ -15,6 +15,7 @@
 
 @property (nonatomic,retain) NSMutableDictionary *selecciones;
 
--(void) botonBuscarPresionado:(UIBarButtonItem *)sender;
+- (void) botonBuscarPresionado:(UIBarButtonItem *)sender;
+- (NSString *)nombreEntidadParaIndexPath:(NSIndexPath *)indexPath;
 
 @end

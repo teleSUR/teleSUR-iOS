@@ -94,7 +94,10 @@
 
 - (void)viewWillDisappear:(BOOL)animated
 {
+    
     [self.controladorBusqueda.selecciones setValue:self.seleccion forKey:self.entidad];
+    
+    
     [self.controladorBusqueda.tableView reloadData];
     
     [super viewWillDisappear:animated];
@@ -167,7 +170,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (section == 0)
-        return 1;
+        return ([self.opciones count]) ? 1 : 0;
     
     if ([self.entidad isEqualToString:@"pais"]) 
         return [[[content objectAtIndex:section] objectForKey:@"rowValues"] count] ;
@@ -199,15 +202,18 @@
     }
     else {
         cell.textLabel.text = [[self.opciones objectAtIndex:indexPath.row] valueForKey:@"nombre"];    
+        
+        if ([self.seleccion containsObject: [[self.opciones objectAtIndex:indexPath.row] valueForKey:@"slug"]] ) {
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            
+        } else {
+            cell.accessoryType = UITableViewCellAccessoryNone;        
+        }
+        
     }
     
     
-    if ([self.seleccion containsObject: [[self.opciones objectAtIndex:indexPath.row] valueForKey:@"slug"]] ) {
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-
-    } else {
-        cell.accessoryType = UITableViewCellAccessoryNone;        
-    }
+    
 
     
     
@@ -288,6 +294,11 @@
             [[self.tableView cellForRowAtIndexPath:indexPath] setAccessoryType:UITableViewCellAccessoryCheckmark];    
             
             [[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]] setAccessoryType:UITableViewCellAccessoryNone];
+            
+            if ([self.seleccion count] == [self.opciones count]) {
+                [[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]] setAccessoryType:UITableViewCellAccessoryCheckmark];
+                [self.seleccion removeAllObjects];
+            }
         }
     }
     
