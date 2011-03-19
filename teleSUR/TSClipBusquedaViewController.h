@@ -18,6 +18,6 @@
 @property (nonatomic, retain) NSMutableDictionary *selecciones;
 @property (nonatomic, assign) NSArray *configuracionSeccionesBusqueda;
 
-- (void) botonBuscarPresionado:(UIBarButtonItem *)sender;
+- (void)botonBuscarPresionado:(UIBarButtonItem *)boton;
 
 @end

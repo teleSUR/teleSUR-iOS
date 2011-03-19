@@ -8,8 +8,8 @@
 
 
 #import "TSClipDetallesViewController.h" 
-#import <MediaPlayer/MediaPlayer.h>
-#import "TSClipListadoViewController.h"
+#import "TSClipPlayerViewController.h"
+#import "TSClipListadoTableViewController.h"
 #import "NSDictionary_Datos.m"
 #import "AsynchronousImageView.h"
 #import "SHK.h"
@@ -30,7 +30,6 @@
 @implementation TSClipDetallesViewController
 
 @synthesize clip;
-@synthesize detallesTableView, detallesTableViewController;
 @synthesize tituloCell, categoriaCell, firmaCell, descripcionCell;
 @synthesize relacionadosTableViewController, relacionadosTableView;
 @synthesize indexPathSeleccionado;
@@ -55,6 +54,9 @@
 
 - (void)viewDidLoad
 {
+    
+    self.diccionarioConfiguracionFiltros = [NSMutableDictionary dictionaryWithObject:[self.clip objectForKey:@"slug"] forKey:@"relacionados"];
+    
     [super viewDidLoad];
     
     UILabel *etiquetaDescripcion = (UILabel *)[self.descripcionCell viewWithTag:5];
@@ -73,14 +75,12 @@
 
 -(void)viewDidAppear:(BOOL)animated 
 {
-    [self.detallesTableView deselectRowAtIndexPath:self.indexPathSeleccionado animated:animated];
+    [self.tableViewController.tableView deselectRowAtIndexPath:self.indexPathSeleccionado animated:animated];
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    self.detallesTableView = nil;
-    self.detallesTableViewController = nil;
     self.relacionadosTableView = nil;
     self.relacionadosTableViewController = nil;
     self.clip = nil;
@@ -151,7 +151,9 @@
             
         case kRELACIONADOS_SECTION:
             
-            return 1;
+            NSLog(@"cunt: $%d", [self.clips count]);
+            
+            return [self.clips count];
             
         default:
             
@@ -189,9 +191,8 @@
         
         case kRELACIONADOS_SECTION:
             
-            //TODO: relacionados
-            
-            return 50.0;
+            //TODO: Obtener dato real de NIB
+            return 75.0;
             
         default:
             
@@ -280,9 +281,14 @@
         
         case kRELACIONADOS_SECTION:
             
-            // TODO: Videos relacionados
-            // IDEA: proxy redirigir mensaje a datadelegate de tabla de clips, sólo para esta sección
-            cell.textLabel.text = @"videos relacionados...";
+            ;// Crear controlador de tabla para obtener celdas y no repetir
+            TSClipListadoTableViewController *tempListadoController = [[TSClipListadoTableViewController alloc] init];
+            tempListadoController.clips = self.clips;
+            
+            UITableViewCell *cell = [tempListadoController tableView:tempListadoController.tableViewController.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row inSection:0]];
+            
+            [tempListadoController release];
+            //cell.textLabel.text = @"videos relacionados...";
             
             return cell;
         
@@ -371,6 +377,12 @@
         case kRELACIONADOS_SECTION:
             
             return @"Videos relacionados";
+        
+        default:
+            
+            NSLog(@"Advertencia: Sección no reconocida: %d", section);
+            
+            return nil;
     }
 }
 
@@ -388,23 +400,9 @@
             
             if (indexPath.row == kTITULO_ROW)
             {
-                NSString *stringURL = [NSString stringWithFormat:@"%@", [self.clip valueForKey:@"archivo_url"]];
-                NSURL *urlVideo = [NSURL URLWithString: stringURL];
-                
-                // Crear y configurar player
-                MPMoviePlayerViewController *movieController = [[MPMoviePlayerViewController alloc] initWithContentURL:urlVideo];
-                [movieController.view setBackgroundColor: [UIColor blackColor]];
-                
-                // Presentar player y reproducir video
-                [self presentMoviePlayerViewControllerAnimated:movieController];
-                [movieController.moviePlayer play];  
-                
-                // Agregar observer al finalizar reproducción
-                [[NSNotificationCenter defaultCenter] 
-                 addObserver:self
-                 selector:@selector(playerFinalizado:)                                                 
-                 name:MPMoviePlayerPlaybackDidFinishNotification
-                 object:movieController.moviePlayer];
+                // Crear y mostrar player
+                TSClipPlayerViewController *playercontroller = [[TSClipPlayerViewController alloc] initConClip:self.clip];
+                [playercontroller playEnViewController:self finalizarConSelector:@selector(playerFinalizado:) registrandoAccion:YES];
             }
             
             break;
@@ -416,8 +414,11 @@
             
             NSDictionary *filtros = [NSDictionary dictionaryWithObject:[categorizador valueForKey:@"slug"] forKey:[categorizador valueForKey:@"nombre"]];
             
-            TSClipListadoViewController *listadoView = [[TSClipListadoViewController alloc] initWithEntidad:[categorizador valueForKey:@"nombre"] yFiltros:filtros];
-            listadoView.slugDeFiltroSeleccionado = [categorizador valueForKey:@"slug"];
+            TSClipListadoTableViewController *listadoView = [[TSClipListadoTableViewController alloc] init];
+            
+            listadoView.diccionarioConfiguracionFiltros = [filtros mutableCopy];
+            
+            ////listadoView.slugDeFiltroSeleccionado = [categorizador valueForKey:@"slug"];
             [self.navigationController pushViewController:listadoView animated:YES];
             [listadoView release];
             
@@ -425,7 +426,7 @@
         
         case kRELACIONADOS_SECTION:
             
-            break;
+            [super tableView:tableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row inSection:0]];
     }
 }
 
@@ -454,24 +455,15 @@
     
 }
 
+#pragma mark -
+#pragma mark TSMultimediaDataDelegate
 
-- (void)playerFinalizado:(NSNotification *)notification
+// Maneja los datos recibidos
+- (void)TSMultimediaData:(TSMultimediaData *)data entidadesRecibidas:(NSArray *)array paraEntidad:(NSString *)entidad
 {
-    // Crear y presentar vista de detalles para el video que acaba de finalizar (índice guardado en tag de view)
-    // ENviar notificación a Google Analytics
-    NSError *error;
-    if (![[GANTracker sharedTracker] trackEvent:@"iPhone"
-                                         action:@"Video reproducido"
-                                          label:[self.clip valueForKey:@"archivo"]
-                                          value:-1
-                                      withError:&error])
-    {
-        NSLog(@"Error");
-    }
+    [super TSMultimediaData:data entidadesRecibidas:array paraEntidad:entidad];
     
-    //
-    // Un posible momento para insertar publicidad
-    //
+    [self.tableViewController.tableView reloadData];
 }
 
 

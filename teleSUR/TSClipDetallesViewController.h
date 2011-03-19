@@ -7,13 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TSClipListadoTableViewController.h"
 
 
-@interface TSClipDetallesViewController : UIViewController {
-    
-    // Tabla de detalles
-	UITableViewController *detallesTableViewController;
-	UITableView *detallesTableView;
+@interface TSClipDetallesViewController : TSClipListadoTableViewController {
     
     // Celdas
     UITableViewCell *tituloCell;
@@ -35,10 +32,6 @@
 
 - (void)botonCompartirPresionado:(UIButton *)boton;
 - (void)botonDescargarPresionado:(UIButton *)boton;
-
-// Tabla de detalles
-@property (nonatomic, retain) UITableViewController *detallesTableViewController;
-@property (nonatomic, retain) IBOutlet UITableView *detallesTableView;
 
 // Celdas
 @property (nonatomic, retain) IBOutlet UITableViewCell *tituloCell;

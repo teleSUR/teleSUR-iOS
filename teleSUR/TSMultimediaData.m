@@ -39,7 +39,7 @@
 	if ([entidad isEqualToString:@"clip"])
     {
         // Buscar nombres de parámetros reconocidos y agregarlos al arreglo de parámetros GET
-        NSArray *params = [NSArray arrayWithObjects:@"desde", @"hasta", @"categoria", @"programa", @"tipo", @"pais", @"tema", @"corresponsal", @"personaje", @"ubicacion", nil];
+        NSArray *params = [NSArray arrayWithObjects:@"desde", @"hasta", @"categoria", @"programa", @"tipo", @"pais", @"tema", @"corresponsal", @"personaje", @"ubicacion", @"relacionados", nil];
         
         for (NSString *param in params)
             if ((currentFiltro = [filtros objectForKey:param]))

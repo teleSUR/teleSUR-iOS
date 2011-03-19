@@ -163,7 +163,7 @@
 
 #pragma mark - Acciones
 
--(void) botonBuscarPresionado:(UIBarButtonItem *)sender
+- (void)botonBuscarPresionado:(UIBarButtonItem *)boton
 {
     // Crear y mostrar controlador de listado con los filtros elegidos
     TSClipListadoViewController *controladorResultado  = [[TSClipListadoViewController alloc] initWithEntidad:@"clip" yFiltros:self.selecciones];

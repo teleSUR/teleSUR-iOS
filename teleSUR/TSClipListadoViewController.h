@@ -10,84 +10,39 @@
 #import "TSMultimediaDataDelegate.h"
 #import "PullToRefreshTableViewController.h"
 
-@interface TSClipListadoViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, TSMultimediaDataDelegate> {
-	
-    //Controladores
-    PullToRefreshTableViewController *tableViewController;
+extern NSInteger const TSNumeroClipsPorPagina;
+extern NSString* const TSEntidadClip;
+
+@interface TSClipListadoViewController : UIViewController <TSMultimediaDataDelegate> {
     
-    // Sub-Vistas:
-	UITableView *clipsTableView;
-	UIScrollView *menuScrollView;
-	
-	// Datos de entrada para configurar peticiones al API
-	NSString *entidadMenu;
-    NSRange rangoUltimo;
+    // Arreglo de clips
+    NSMutableArray *clips;
     
-	NSMutableDictionary *diccionarioConfiguracionFiltros;
-	
-    // Resultados de consultas a API
-	NSMutableArray *clips;
-	NSArray *filtros;
-    NSMutableArray *arregloClipsAsyncImageViews;
+    // Banderas
+    BOOL agregarAlFinal;
     
     // Auxiliares
-    CGFloat celdaEstandarHeight;
-    CGFloat celdaGrandeHeight;
-    CGFloat celdaVerMasHeight;
-    
-    int indiceDeFiltroSeleccionado;
+    NSMutableDictionary *diccionarioConfiguracionFiltros;
+    NSRange rangoUltimo;
     int indiceDeClipSeleccionado;
-    NSString *slugDeFiltroSeleccionado;
-    
-    BOOL agregarAlFinal;
-    BOOL omitirVerMas;
-    BOOL conFilltroTodos;
-    
+    NSMutableArray *arregloClipsAsyncImageViews;
 }
 
 
-// Controladores:
-@property (nonatomic, retain) IBOutlet PullToRefreshTableViewController *tableViewController;
 
-// Sub-Vistas:
-@property (nonatomic, retain) IBOutlet UITableView *clipsTableView;
-@property (nonatomic, retain) IBOutlet UIScrollView *menuScrollView;
-
-// Datos de entrada para configurar peticiones al API
-@property (nonatomic, retain) NSString *entidadMenu;
-@property (nonatomic, retain) NSMutableDictionary *diccionarioConfiguracionFiltros;
-@property (nonatomic, assign) NSRange rangoUltimo;
-
-// Resultados de consultas a API
+// Clips
 @property (nonatomic, retain) NSMutableArray *clips;
-@property (nonatomic, retain) NSArray *filtros;
-@property (nonatomic, retain) NSMutableArray *arregloClipsAsyncImageViews;
-
-// Auxiliares
-@property (nonatomic, assign) int indiceDeFiltroSeleccionado;
+@property (nonatomic, assign) NSRange rangoUltimo;
 @property (nonatomic, assign) int indiceDeClipSeleccionado;
-@property (nonatomic, retain) NSString *slugDeFiltroSeleccionado;
-
 @property (nonatomic, assign) BOOL agregarAlFinal;
-@property (nonatomic, assign) BOOL omitirVerMas;
-@property (nonatomic, assign) BOOL conFiltroTodos;
+@property (nonatomic, retain) NSMutableArray *arregloClipsAsyncImageViews;
+@property (nonatomic, retain) NSMutableDictionary *diccionarioConfiguracionFiltros;
+
 
 // Init
-- (id)initWithEntidad:(NSString *)entidad yFiltros:(NSDictionary *)diccionario;
 - (void)configurarConEntidad:(NSString *)entidad yFiltros:(NSDictionary *)diccionario;
 
 // Operaciones
 - (void)cargarClips;
-- (void)cargarFiltros;
-
-- (void)construirMenu;
-- (void)reloadTableViewDataSource; // Para pull-to-refresh
-
-// Eventos
-- (void)filtroSeleccionadoConBoton: (UIButton *)boton;
-- (void)playerFinalizado:(NSNotification *)notification;
-
-- (NSString *)nombreNibParaIndexPath:(NSIndexPath *)indexPath;
-
 
 @end

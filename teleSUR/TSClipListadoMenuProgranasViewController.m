@@ -6,17 +6,19 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "TSProgramaListadoViewController.h"
+#import "TSClipListadoMenuProgranasViewController.h"
 
-#define kMENU_ALTURA_EXTRA 80
+#define kMENU_ALTURA 40
 
-@implementation TSProgramaListadoViewController
+@implementation TSClipListadoMenuProgranasViewController
 
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
+    
+    /*
     CGRect frame;
     
     // Agrandar menú
@@ -36,7 +38,10 @@
     self.menuScrollView.backgroundColor = [UIColor viewFlipsideBackgroundColor];
     
     // No mostrar primer filtro "Todos"
+     
+     
     self.conFiltroTodos = NO;
+     */
 }
 
 #pragma mark -
