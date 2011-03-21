@@ -14,9 +14,13 @@
 -(NSString *)idiomaDeContenido
 {
     NSUserDefaults *preferencias = [NSUserDefaults standardUserDefaults]; 
-	NSInteger entero = [preferencias integerForKey:@"contenido"];
+    
+    
+	NSInteger entero = [[preferencias objectForKey:@"contenido"] intValue];
 
-    if (entero ==0) [preferencias setInteger:1 forKey:@"contenido"];    // valor defualt
+    
+    
+    if (entero ==0) [preferencias setObject:[NSNumber numberWithInt: 1] forKey:@"contenido"];    // valor defualt
     
     switch (entero) {
             
@@ -32,6 +36,13 @@
             
             return @"es";
     }
+}
+
+-(NSInteger)numeroDeIdioma
+{
+    
+	return [[NSUserDefaults standardUserDefaults] integerForKey:@"contenido"];
+     
 }
 
 @end

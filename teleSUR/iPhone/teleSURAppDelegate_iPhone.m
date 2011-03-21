@@ -7,14 +7,22 @@
 //
 
 #import "teleSURAppDelegate_iPhone.h"
+#import "TSSeleccionIdioma.h"
+#import "UIViewController_Preferencias.h"
+
 
 @implementation teleSURAppDelegate_iPhone
+
+@synthesize tabBarController;
 
 #pragma mark -
 #pragma mark View lifecycle
 
+
+
 - (void)dealloc
 {
+//    [tabBarController release];
 	[super dealloc];
 }
 

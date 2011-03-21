@@ -11,7 +11,8 @@
 
 @interface NSObject (UIViewController_Preferencias)
 
--(NSString *) idiomaDeContenido;
+-(NSString *)idiomaDeContenido;
 
+-(NSInteger)numeroDeIdioma;
 
 @end

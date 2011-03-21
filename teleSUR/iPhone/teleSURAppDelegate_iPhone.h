@@ -10,7 +10,11 @@
 #import "teleSURAppDelegate.h"
 
 @interface teleSURAppDelegate_iPhone : teleSURAppDelegate {
-    
+  
+
+    UITabBarController *tabBarController;
 }
+
+@property (nonatomic, retain) IBOutlet UITabBarController *tabBarController;
 
 @end

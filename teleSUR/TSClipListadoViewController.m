@@ -15,6 +15,7 @@
 #import "PullToRefreshTableViewController.h"
 #import "AsynchronousImageView.h"
 #import "UIViewController_Preferencias.h"
+#import "TSSeleccionIdioma.h"
 
 
 NSInteger const TSNumeroClipsPorPagina = 10;
@@ -69,7 +70,21 @@ NSString* const TSEntidadClip = @"clip";
     self.arregloClipsAsyncImageViews = [NSMutableArray array];
     
     // Cargar datos
-    [self cargarClips];
+    
+    if ([self numeroDeIdioma] == 0)
+    {
+        TSSeleccionIdioma *vistaSeleccionIdioma = [[TSSeleccionIdioma alloc] init];
+        
+        vistaSeleccionIdioma.vistaListado = self;
+        
+        [self presentModalViewController:vistaSeleccionIdioma animated:NO];
+        
+        [vistaSeleccionIdioma release];
+        
+        
+    } else {
+        [self cargarClips];
+    }
 	
     [super viewDidLoad];
 }
