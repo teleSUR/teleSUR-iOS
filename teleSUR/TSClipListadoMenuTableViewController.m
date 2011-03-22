@@ -50,7 +50,9 @@ NSInteger const TSMargenMenu = 12;
 
 - (void)viewDidLoad
 {
-    if (!self.diccionarioConfiguracionFiltros) // Sólo si no se llamó ya a initWith... 
+    // Si no se ha configurado, entonces se creó desde NIB,
+    // por lo tanto hay que configurar dependiendo de la sección a mostrar
+    if (!self.diccionarioConfiguracionFiltros) 
     {
         // Detemrinar datos de entrada: filtros a aplicar, y filtros a mostrar
         NSMutableDictionary *dict = [NSMutableDictionary dictionary]; 
@@ -77,40 +79,37 @@ NSInteger const TSMargenMenu = 12;
         }
         
         // Configurar variables internas
-        [self configurarConEntidad:filtro yFiltros:dict];
+        self.diccionarioConfiguracionFiltros = dict;
+    }
+    
+    if (!self.entidadMenu)
+    {
+        self.entidadMenu = @"categoria";
     }
     
     
     [super viewDidLoad];
     
-
-   // NSLog(@"aa , %g", self.view.frame.origin.y);
+    // Auxiliares
+    self.indiceDeFiltroSeleccionado = 0;
+    self.conFiltroTodos = YES;
         
+    // Aumentar altura
     CGRect tableFrame = self.tableViewController.tableView.frame;
     tableFrame.origin.y += kMENU_ALTURA;
     tableFrame.size.height -= kMENU_ALTURA;
     self.tableViewController.tableView.frame = tableFrame;
     
+    // Crear y añadir menuScrollView
     self.menuScrollView = [[[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, kMENU_ALTURA)] autorelease];
-    self.menuScrollView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"BarraRoja.png"]];
-    
-    
-    
     [self.view addSubview:self.menuScrollView];
     
+    // Configurar menuScrollView
+    self.menuScrollView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"BarraRoja.png"]];
+    self.menuScrollView.scrollsToTop = NO; // Para que no compita con el listado
     
-    
-    self.indiceDeFiltroSeleccionado = 0;
-    
-    if (!self.entidadMenu) self.entidadMenu = @"categoria";
-    
-    self.menuScrollView.scrollsToTop = NO;
-    
-    self.conFiltroTodos = YES;
-    
-    [self cargarFiltros];
-    
-    // Do any additional setup after loading the view from its nib.
+    // Cargar filtros
+    [self cargarFiltros];    
 }
 
 - (void)viewDidUnload
@@ -141,6 +140,39 @@ NSInteger const TSMargenMenu = 12;
                          conDelegate:self];
 }
 
+
+- (UIButton *)botonParaFiltro:(NSDictionary *)filtro
+{
+    // Crear nuevo bot√≥n para filtro
+    UIButton *boton = [UIButton buttonWithType:UIButtonTypeCustom];
+    boton.backgroundColor = [UIColor clearColor];
+    
+    // Asignar acción del botón
+    [boton addTarget:self action:@selector(filtroSeleccionadoConBoton:) forControlEvents:(UIControlEventTouchUpInside)];
+    
+    // Configurar label de botón
+    boton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:12.0];
+    boton.titleLabel.backgroundColor = [UIColor clearColor];
+    
+    // Configurar colores para denotar un boton seleccionado
+    [boton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [boton setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+    [boton setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+    
+    [boton setBackgroundImage:[UIImage imageNamed:@"BarraAzul.png"] forState:UIControlStateSelected];
+    
+    // Texto del botón
+    NSString *nombre = [filtro valueForKey:@"nombre"];
+    [boton setTitle:nombre forState:UIControlStateNormal];
+    boton.titleLabel.text = nombre;
+    
+    // Ajustar tamaño de frame del botón con base en el volumen del texto
+    CGSize textoSize = [boton.titleLabel.text sizeWithFont: boton.titleLabel.font];
+    boton.frame = CGRectMake(boton.frame.origin.x, 5.0, textoSize.width, 30.0);
+    
+    return boton;
+}
+
 - (void)construirMenu 
 {
     // Retirar todos los botones del men√∫, si es que hay
@@ -152,45 +184,26 @@ NSInteger const TSMargenMenu = 12;
     // Recorrer filtros
     for (int i=0; i < [self.filtros count]; i++)
     {
-        // Crear nuevo bot√≥n para filtro
-        UIButton *boton = [UIButton buttonWithType:UIButtonTypeCustom];
-        boton.backgroundColor = [UIColor clearColor];
+        NSDictionary *filtro = [self.filtros objectAtIndex:i];
         
-        // Asignar acción del botón
-        [boton addTarget:self action:@selector(filtroSeleccionadoConBoton:) forControlEvents:(UIControlEventTouchUpInside)];
+        UIButton *boton = [self botonParaFiltro:filtro];
         
-        // Configurar label de botón
-        boton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:12.0];
-        boton.titleLabel.backgroundColor = [UIColor clearColor];
+        // Actualizar frame de botón
+        CGRect botonFrame = boton.frame;
+        botonFrame.origin.x = offsetX;
+        boton.frame = botonFrame;
         
-        // Configurar colores para denotar un boton seleccionado
-		[boton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [boton setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
-		[boton setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+        // Actualizar offset
+        offsetX += botonFrame.size.width + TSMargenMenu;
         
-        [boton setBackgroundImage:[UIImage imageNamed:@"BarraAzul.png"] forState:UIControlStateSelected];
-        
-        // Texto del botón
-        NSString *nombre = [[self.filtros objectAtIndex:i] valueForKey:@"nombre"];
-        [boton setTitle:nombre forState:UIControlStateNormal];
-        boton.titleLabel.text = nombre;
-		
         // Marcar sólo botón seleciconado
         [boton setSelected:(self.indiceDeFiltroSeleccionado == i)];
         
-        // Ajustar tamaño de frame del botón con base en el volumen del texto
-		CGSize textoSize = [boton.titleLabel.text sizeWithFont: boton.titleLabel.font];
-		boton.frame = CGRectMake(offsetX, boton.frame.origin.y, textoSize.width, self.menuScrollView.frame.size.height);
-        
-        // Actualizar offset
-        offsetX += boton.frame.size.width + TSMargenMenu;
-        
         // Si el botón tiene un slug igual al que se indicó como seleccionado, actualizar índiceDeClipSeleccionado
-        if ([self.slugDeFiltroSeleccionado isEqualToString:[[self.filtros objectAtIndex:i] valueForKey:@"slug"]])
+        if ([self.slugDeFiltroSeleccionado isEqualToString:[filtro valueForKey:@"slug"]])
             self.indiceDeFiltroSeleccionado = i;
         
         // Añadir botón a la jerarquón de vistas
-        NSLog(@"bot: %@", boton);
         [self.menuScrollView addSubview:boton];
     }
     
@@ -236,7 +249,7 @@ NSInteger const TSMargenMenu = 12;
     if (self.indiceDeFiltroSeleccionado != indice)
     {
         // Configurar nuevo diccionario de filtros, no filtrar si se us— bot—n "todos"
-        [self.diccionarioConfiguracionFiltros setValue:((indice > 0) ? slug : nil) forKey:self.entidadMenu];
+        [self.diccionarioConfiguracionFiltros setValue:([slug isEqualToString:@"todos"] ? nil : slug) forKey:self.entidadMenu];
         
         // Reinicializar datos, con misma entidad de menœ pero nuevo diccionario de confgiruaci—n de filtros 
         [self configurarConEntidad:self.entidadMenu yFiltros:self.diccionarioConfiguracionFiltros];

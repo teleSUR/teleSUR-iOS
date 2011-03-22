@@ -8,77 +8,80 @@
 
 #import "TSClipListadoMenuProgranasViewController.h"
 
-#define kMENU_ALTURA 40
+#define kMENU_ALTURA 80 // Altura extra aplicada a menuScrollView
 
 @implementation TSClipListadoMenuProgranasViewController
 
 
 - (void)viewDidLoad
 {
+    // Configurar para mostrar programas
     self.entidadMenu = @"programa";
+    self.diccionarioConfiguracionFiltros = [NSMutableDictionary dictionaryWithObject:@"programa" forKey:@"tipo"];
+    
     [super viewDidLoad];
     
-    /*
-    CGRect frame;
-    
     // Agrandar menú
+    CGRect frame;
     frame = self.menuScrollView.frame; 
-    frame.size.height += kMENU_ALTURA_EXTRA;
+    frame.size.height += kMENU_ALTURA;
     self.menuScrollView.frame = frame;
     
     // Achicar y recorrer tabla
-    frame = self.clipsTableView.frame;
-    frame.origin.y += kMENU_ALTURA_EXTRA;
-    frame.size.height -= kMENU_ALTURA_EXTRA;
-    self.clipsTableView.frame = frame;
+    frame = self.tableViewController.tableView.frame;
+    frame.origin.y += kMENU_ALTURA;
+    frame.size.height -= kMENU_ALTURA;
+    self.tableViewController.tableView.frame = frame;
     
     // Configuración de scrollview
     self.menuScrollView.pagingEnabled = YES;
-	
-    self.menuScrollView.backgroundColor = [UIColor viewFlipsideBackgroundColor];
+    self.menuScrollView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Fondo1.png"]];
     
     // No mostrar primer filtro "Todos"
-     
-     
     self.conFiltroTodos = NO;
-     */
 }
 
 #pragma mark -
 #pragma mark Internos
 
-- (void)construirMenu 
+- (UIButton *)botonParaFiltro:(NSDictionary *)filtro
 {
-    [super construirMenu];
+    UIButton *boton = [super botonParaFiltro:filtro];
+    
+    CGRect frame = boton.frame;
+    frame.size.width = 200.0;
+    frame.size.height = 100.0;
+    boton.frame = frame;
+    
+    // Mostrar imagen en vez de nombre
+    NSArray *arreglo = [NSArray arrayWithObjects:boton, filtro, nil]; 
+    NSOperationQueue *queue = [NSOperationQueue new];
+    NSInvocationOperation *operation = [[NSInvocationOperation alloc]  
+                                        initWithTarget:self
+                                        selector:@selector(cargarImagen:)
+                                        object:arreglo];
+    [queue addOperation:operation]; 
+    [operation release];
     
     
-    menuScrollView.pagingEnabled = YES;
+    [boton setTitle:[filtro valueForKey:@"nombre"] forState:UIControlStateNormal];
+    boton.titleLabel.text = [filtro valueForKey:@"nombre"];
     
-    // Retirar todos los botones del menú, si es que hay
-    for (int i=0; i<[self.menuScrollView.subviews count]; i++)
-    {
-        UIButton *boton = [self.menuScrollView.subviews objectAtIndex:i];
-        
-        CGRect frame = boton.frame;
-        frame.size.width = 200.0;
-        boton.frame = frame;
-        
-        
-        NSString *url = [[self.filtros objectAtIndex:i] valueForKey:@"imagen_url"];
-        
-        if (![url isEqual:[NSNull null]])
-            [boton setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:url]]] forState:UIControlStateNormal];
-        
-        [boton setTitle:@"" forState:UIControlStateNormal];
-        boton.titleLabel.text = @"";
-        
-    }
+    
+    return boton;
 }
-    
 
-        
-    // Deifnir área de scroll
-    //[self.menuScrollView setContentSize: CGSizeMake(offsetX, self.menuScrollView.frame.size.height)];
+
+- (void)cargarImagen:(NSArray *)arregloBotonFiltro
+{
+    UIButton *boton = (UIButton *)[arregloBotonFiltro objectAtIndex:0];
+    NSDictionary *filtro = (NSDictionary *)[arregloBotonFiltro objectAtIndex:1];
+    
+    NSString *url = [filtro valueForKey:@"imagen_url"];
+    if (![url isEqual:[NSNull null]])
+        [boton setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:url]]] forState:UIControlStateNormal];
+}
+
 
 
 - (NSString *)nombreNibParaIndexPath:(NSIndexPath *)indexPath
@@ -87,15 +90,6 @@
         return @"ProgramaTableCellView";
     else
         return [super nombreNibParaIndexPath:indexPath];
-}
-
-
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
 

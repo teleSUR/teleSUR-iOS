@@ -20,10 +20,7 @@
     {
         if (self.image == [UIImage imageNamed:@"SinImagen.png"] && data == nil)
         {
-            NSLog(@"vvvm %@", self.url);
-            //self.image = [UIImage imageNamed:@"SinImagen.png"];
             [self loadImageFromURLString:[NSString stringWithFormat:@"%@", self.url]];
-            //[self cargarImagenSiNecesario];
         }
         else
         {

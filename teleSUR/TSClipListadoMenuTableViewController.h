@@ -23,6 +23,7 @@ extern const NSInteger TSMargenMenu;
 
 - (void)cargarFiltros;
 - (void)construirMenu;
+- (UIButton *)botonParaFiltro:(NSDictionary *)filtro;
 - (void)filtroSeleccionadoConBoton: (UIButton *)boton;
 
 
