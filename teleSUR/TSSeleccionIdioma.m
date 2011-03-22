@@ -25,6 +25,7 @@
 
 - (void)dealloc
 {
+    [arregloIdiomas release];
     [super dealloc];
 }
 
@@ -52,7 +53,7 @@
     
     NSArray *arregloIdiomasBundlePreferencias = [diccionarioIdiomas valueForKey:@"Titles"];
     
-    arregloIdiomas = arregloIdiomasBundlePreferencias;
+    arregloIdiomas = [arregloIdiomasBundlePreferencias retain];
     
     [super viewDidLoad];
 }
