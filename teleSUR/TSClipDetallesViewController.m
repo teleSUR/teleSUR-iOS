@@ -198,8 +198,9 @@
         
         case kRELACIONADOS_SECTION:
             
-            //TODO: Obtener dato real de NIB
-            return 90.0;
+            ;//
+            UITableViewCell *celdaListado = [[[NSBundle mainBundle] loadNibNamed:@"ClipEstandarTableCellView" owner:self options:nil] objectAtIndex:0];
+            return celdaListado.frame.size.height;
             
         default:
             
@@ -304,7 +305,7 @@
     }
 }
 
-
+/*
 #pragma mark - Footers de sección
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
@@ -321,7 +322,7 @@
             return 0;
     }
 }
-
+*/
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {

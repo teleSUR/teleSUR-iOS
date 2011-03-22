@@ -9,7 +9,8 @@
 #import "teleSURAppDelegate.h"
 #import "TSMultimediaData.h"
 #import "GANTracker.h"
-
+#import "TSSeleccionIdioma.h"
+#import "UIViewController_Preferencias.h"
 
 @implementation teleSURAppDelegate
 
