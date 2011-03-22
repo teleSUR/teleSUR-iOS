@@ -16,6 +16,7 @@
 	
 	BOOL checkForRefresh;
 	BOOL reloading;
+    BOOL refreshDisabled;
 	
 	SoundEffect *psst1Sound;
 	SoundEffect *psst2Sound;
@@ -25,5 +26,9 @@
 - (void)dataSourceDidFinishLoadingNewData;
 - (void)showReloadAnimationAnimated:(BOOL)animated;
 - (void)setLastUpdate:(NSDate *)date;
+
+@property (nonatomic, assign) BOOL refreshDisabled;
+
+@property (nonatomic, retain) EGORefreshTableHeaderView *refreshHeaderView;
 
 @end

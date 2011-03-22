@@ -19,7 +19,11 @@
 - (void)personalizarNavigationBar
 {
     // Perosnalizar navigation bar
-	[self.navigationController.navigationBar setTintColor: [UIColor colorWithRed:0.6 green:0.04 blue:0.039 alpha:1.0] ];
+	[self.navigationController.navigationBar setTintColor: [UIColor colorWithRed:0.6 green:0.04 blue:0.039 alpha:1.0]];
+    
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Header.png"]];
+    self.navigationItem.titleView = imageView;
+    [imageView release];
 
 }
 

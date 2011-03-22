@@ -17,7 +17,7 @@
     
 }
 
-@property (nonatomic, assign) id <NSObject, TSMultimediaDataDelegate>  delegate;
+@property (nonatomic, retain) id <NSObject, TSMultimediaDataDelegate>  delegate;
 @property (nonatomic, retain) NSString *entidadString;
 
 - (void)getDatosParaEntidad:(NSString *)entidad conFiltros:(NSDictionary *)filtros enRango:(NSRange)rango conDelegate:(id)datosDelegate;

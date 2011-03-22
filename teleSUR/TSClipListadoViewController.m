@@ -36,7 +36,7 @@ NSString* const TSEntidadClip = @"clip";
 {
     // Defaults
     self.diccionarioConfiguracionFiltros = diccionario ? [NSMutableDictionary dictionaryWithDictionary:diccionario] : [NSMutableDictionary dictionary];
-    self.rangoUltimo = NSMakeRange(1, TSNumeroClipsPorPagina);
+    if (!self.rangoUltimo.length) self.rangoUltimo = NSMakeRange(1, TSNumeroClipsPorPagina);
     self.agregarAlFinal = NO;
 }
 
@@ -89,6 +89,8 @@ NSString* const TSEntidadClip = @"clip";
 {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
+    
+    [self.arregloClipsAsyncImageViews removeAllObjects];
     // Relinquish ownership any cached data, images, etc. that aren't in use.
 }
 
@@ -128,10 +130,10 @@ NSString* const TSEntidadClip = @"clip";
         // Para cada clip obtenido agregar un AsynchronousImageView al arregloClipsAsyncImageViews
         for (int i=0; i < [self.clips count]; i++)
         {
-            AsynchronousImageView *aiv = [[AsynchronousImageView alloc] init];
-            [aiv loadImageFromURLString:[NSString stringWithFormat:@"%@", [[self.clips objectAtIndex:i] valueForKey:@"thumbnail_pequeno"]]];
-            [self.arregloClipsAsyncImageViews insertObject:aiv atIndex:i];
-            [aiv release];
+            //AsynchronousImageView *aiv = [[AsynchronousImageView alloc] init];
+            //aiv.url = [NSURL URLWithString:[NSString stringWithFormat:@"%@", [[self.clips objectAtIndex:i] valueForKey:@"thumbnail_pequeno"]]];
+            //[self.arregloClipsAsyncImageViews insertObject:aiv atIndex:i];
+            //[aiv release];
         }
         
         self.agregarAlFinal = NO;

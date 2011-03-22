@@ -12,6 +12,7 @@
 #import "NSDate_Utilidad.h"
 #import "NSDictionary_Datos.m"
 #import "UIViewController_Configuracion.h"
+#import "AsynchronousImageView.h"
 
 #define kTITULO_LABEL_TAG 1
 #define kTHUMBNAIL_IMAGE_VIEW_TAG 2
@@ -92,7 +93,7 @@
 - (void)playerFinalizado:(NSNotification *)notification
 {
     // Crear y presentar vista de detalles para el video que acaba de finalizar (índice guardado en tag de view)
-    TSClipDetallesViewController *detalleView = [[TSClipDetallesViewController alloc] initWithClip:[self.clips objectAtIndex:indiceDeClipSeleccionado]];
+    TSClipDetallesViewController *detalleView = [[TSClipDetallesViewController alloc] initWithClip:[self.clips objectAtIndex:self.indiceDeClipSeleccionado]];
     [self.navigationController pushViewController:detalleView animated:NO];
     [detalleView release];
     
@@ -143,16 +144,8 @@
     
     // Elementos de celda
     UILabel *tituloLabel = (UILabel *)[cell viewWithTag:kTITULO_LABEL_TAG];
-    UIImageView *thumbnailImageView = (UIImageView *)[cell viewWithTag:kTHUMBNAIL_IMAGE_VIEW_TAG];
     UILabel *duracionLabel = (UILabel *)[cell viewWithTag:kDURACION_LABEL_TAG];
     UILabel *firmaLabel = (UILabel *)[cell viewWithTag:kFIRMA_LBAEL_TAG];
-    
-    // Copiar propiedades de thumbnailView (definidas en NIB) y sustitirlo por AsyncImageView correspondiente
-    CGRect frame = thumbnailImageView.frame;
-    [thumbnailImageView removeFromSuperview];
-    thumbnailImageView = [self.arregloClipsAsyncImageViews objectAtIndex:indexPath.row];
-    thumbnailImageView.frame = frame;
-    [cell addSubview:thumbnailImageView];
     
     // Establecer texto de etiquetas
     tituloLabel.text = [[self.clips objectAtIndex:indexPath.row] valueForKey:@"titulo"];
@@ -160,6 +153,29 @@
     firmaLabel.text = [[self.clips objectAtIndex:indexPath.row] obtenerTiempoDesdeParaEsteClip];
     
     return cell;        
+}
+
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row != [self.clips count] || self.omitirVerMas)
+    {
+        
+        AsynchronousImageView *thumbnailImageView = (AsynchronousImageView *)[cell viewWithTag:kTHUMBNAIL_IMAGE_VIEW_TAG];
+        
+        if (indexPath.row >= [self.arregloClipsAsyncImageViews count])
+        {
+            [self.arregloClipsAsyncImageViews addObject:thumbnailImageView];
+            thumbnailImageView.url = [NSURL URLWithString:[NSString stringWithFormat:@"%@", [[self.clips objectAtIndex:indexPath.row] valueForKey:@"thumbnail_mediano"]]];
+            [thumbnailImageView cargarImagenSiNecesario];
+        }
+        else
+        {
+            [[thumbnailImageView superview] addSubview:[self.arregloClipsAsyncImageViews objectAtIndex:indexPath.row]];
+            
+            [thumbnailImageView removeFromSuperview];            
+        }
+    }
 }
 
 
@@ -171,7 +187,7 @@
     CGFloat *cacheVar;
     
     // Determinar variable auxiliar cache para cargar NIB una sola vez
-    if (indexPath.row == 0)                  cacheVar = &celdaEstandarHeight;
+    if (indexPath.row == 0)                       cacheVar = &celdaEstandarHeight;
     else if (indexPath.row < [self.clips count])  cacheVar = &celdaGrandeHeight;
     else if (indexPath.row == [self.clips count]) cacheVar = &celdaVerMasHeight;
     
@@ -191,13 +207,15 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Guardar referencia a índice
+    NSLog(@"%d", indexPath.row);
     self.indiceDeClipSeleccionado = indexPath.row;
     
-    if (self.indiceDeClipSeleccionado < [self.clips count]) // Se trata de un video
+    if (self.indiceDeClipSeleccionado < [self.clips count] || self.omitirVerMas) // Se trata de un video
     {
         // Crear y configurar player
         TSClipPlayerViewController *playerController = [[TSClipPlayerViewController alloc] initConClip:[self.clips objectAtIndex:indexPath.row]];
         
+        NSLog(@"el es: %d", self.indiceDeClipSeleccionado);
         // Reproducir video
         [playerController playEnViewController:self
                           finalizarConSelector:@selector(playerFinalizado:)

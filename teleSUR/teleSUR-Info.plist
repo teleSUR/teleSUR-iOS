@@ -40,12 +40,12 @@
 				<key>Filas</key>
 				<array>
 					<dict>
-						<key>Todos</key>
-						<string></string>
 						<key>Entidad</key>
 						<string>texto</string>
 						<key>Nombre</key>
 						<string>Texto</string>
+						<key>Todos</key>
+						<string></string>
 					</dict>
 				</array>
 				<key>Header</key>
@@ -72,7 +72,7 @@
 					</dict>
 					<dict>
 						<key>Entidad</key>
-						<string>Tema</string>
+						<string>tema</string>
 						<key>Nombre</key>
 						<string>Tema</string>
 						<key>Todos</key>

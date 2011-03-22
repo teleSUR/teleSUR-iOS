@@ -177,7 +177,7 @@
 
 - (void)dealloc
 {
-	self.delegate= nil;
+	self.delegate = nil;
     
 	[super dealloc];
 }

@@ -24,14 +24,14 @@
     if ((self = [super initWithFrame:frame]))
 	{
         // Color de fondo
-		self.backgroundColor = [UIColor groupTableViewBackgroundColor];
+		self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Fondo2.png"]];
         
 		lastUpdatedLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, frame.size.height - 30.0f, 320.0f, 20.0f)];
 		lastUpdatedLabel.font = [UIFont systemFontOfSize:12.0f];
 		lastUpdatedLabel.textColor = TEXT_COLOR;
 		lastUpdatedLabel.shadowColor = [UIColor colorWithWhite:0.9f alpha:1.0f];
 		lastUpdatedLabel.shadowOffset = CGSizeMake(0.0f, 1.0f);
-		lastUpdatedLabel.backgroundColor = self.backgroundColor;
+		lastUpdatedLabel.backgroundColor = [UIColor clearColor];
 		lastUpdatedLabel.opaque = YES;
 		lastUpdatedLabel.textAlignment = UITextAlignmentCenter;
 		[self addSubview:lastUpdatedLabel];
@@ -43,7 +43,7 @@
 		statusLabel.textColor = TEXT_COLOR;
 		statusLabel.shadowColor = [UIColor colorWithWhite:0.9f alpha:1.0f];
 		statusLabel.shadowOffset = CGSizeMake(0.0f, 1.0f);
-		statusLabel.backgroundColor = self.backgroundColor;
+		statusLabel.backgroundColor = [UIColor clearColor];
 		statusLabel.opaque = YES;
 		statusLabel.textAlignment = UITextAlignmentCenter;
 		[self setStatus:kPullToReloadStatus];

@@ -15,8 +15,8 @@
 
 - (void)viewDidLoad
 {
+    self.entidadMenu = @"programa";
     [super viewDidLoad];
-    
     
     /*
     CGRect frame;
@@ -49,43 +49,36 @@
 
 - (void)construirMenu 
 {
+    [super construirMenu];
+    
+    
+    menuScrollView.pagingEnabled = YES;
+    
     // Retirar todos los botones del menú, si es que hay
-    for (UIButton *boton in self.menuScrollView.subviews) [boton removeFromSuperview];
-    
-    // Inicializar offset horizontal
-    int offsetX = 0;
-    
-    // Recorrer filtros
-    for (float i=0; i < [self.filtros count]; i++)
+    for (int i=0; i<[self.menuScrollView.subviews count]; i++)
     {
-        // Crear nuevo bot√≥n para filtro
-        UIButton *boton = [UIButton buttonWithType:UIButtonTypeCustom];
+        UIButton *boton = [self.menuScrollView.subviews objectAtIndex:i];
         
-        // Asignar acción del botón
-        [boton addTarget:self action:@selector(filtroSeleccionadoConBoton:) forControlEvents:(UIControlEventTouchUpInside)];
+        CGRect frame = boton.frame;
+        frame.size.width = 200.0;
+        boton.frame = frame;
         
-        // Imagen
+        
         NSString *url = [[self.filtros objectAtIndex:i] valueForKey:@"imagen_url"];
+        
         if (![url isEqual:[NSNull null]])
             [boton setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:url]]] forState:UIControlStateNormal];
         
-        // Marcar sólo botón seleciconado
-        [boton setSelected:(self.indiceDeFiltroSeleccionado == i)];
-        [boton setFrame:CGRectMake(offsetX, 15, 200, 100)];
+        [boton setTitle:@"" forState:UIControlStateNormal];
+        boton.titleLabel.text = @"";
         
-        NSString *nombre = [[self.filtros objectAtIndex:i] valueForKey:@"nombre"];
-        [boton setTitle:nombre forState:UIControlStateNormal];
-        boton.titleLabel.text = nombre;
-        
-        offsetX += boton.frame.size.width;
-        
-        // Añadir botón a la jerarquón de vistas
-        [self.menuScrollView addSubview:boton];
     }
-    
-    // Deifnir área de scroll
-    [self.menuScrollView setContentSize: CGSizeMake(offsetX, self.menuScrollView.frame.size.height)];
 }
+    
+
+        
+    // Deifnir área de scroll
+    //[self.menuScrollView setContentSize: CGSizeMake(offsetX, self.menuScrollView.frame.size.height)];
 
 
 - (NSString *)nombreNibParaIndexPath:(NSIndexPath *)indexPath

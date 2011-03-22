@@ -3,7 +3,7 @@
 //  teleSUR
 //
 //  Created by David Regla on 3/1/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Copyright 2011 teleSUR. All rights reserved.
 //
 
 #import "AsynchronousImageView.h"
@@ -11,12 +11,33 @@
 
 @implementation AsynchronousImageView
 
+@synthesize url;
+
+
+- (void)cargarImagenSiNecesario
+{
+    if (self.url)
+    {
+        if (self.image == [UIImage imageNamed:@"SinImagen.png"] && data == nil)
+        {
+            NSLog(@"vvvm %@", self.url);
+            //self.image = [UIImage imageNamed:@"SinImagen.png"];
+            [self loadImageFromURLString:[NSString stringWithFormat:@"%@", self.url]];
+            //[self cargarImagenSiNecesario];
+        }
+        else
+        {
+            
+        }
+    }
+    else
+    {
+        NSLog(@"Se intentó cargar imagen sin URL definida");
+    }
+}
 
 - (void)loadImageFromURLString:(NSString *)theUrlString
-{
-	//[self.image release], self.image = nil;
-    [self setImage:[UIImage imageNamed:@"SinImagen.png"]];
-    
+{    
 	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:theUrlString] 
 											 cachePolicy:NSURLRequestReturnCacheDataElseLoad 
 										 timeoutInterval:30.0];
@@ -52,8 +73,10 @@
 
 - (void)dealloc
 {
+    url = nil;
 	[data release];
 	[connection release];
+    
     [super dealloc];
 }
 

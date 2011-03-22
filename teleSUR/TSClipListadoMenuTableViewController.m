@@ -83,23 +83,20 @@ NSInteger const TSMargenMenu = 12;
     
     [super viewDidLoad];
     
+
+   // NSLog(@"aa , %g", self.view.frame.origin.y);
+        
+    CGRect tableFrame = self.tableViewController.tableView.frame;
+    tableFrame.origin.y += kMENU_ALTURA;
+    tableFrame.size.height -= kMENU_ALTURA;
+    self.tableViewController.tableView.frame = tableFrame;
     
-    CGRect menuFrame = self.view.frame;
+    self.menuScrollView = [[[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, kMENU_ALTURA)] autorelease];
+    self.menuScrollView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"BarraRoja.png"]];
     
-    NSLog(@"aa , %g", self.view.frame.origin.y);
     
-    //menuFrame.size.height = kMENU_ALTURA;
     
-    //CGRect tableFrame = self.view.frame;
-    //tableFrame.origin.y += kMENU_ALTURA;
-    //tableFrame.size.height -= kMENU_ALTURA;
-    
-    //self.menuScrollView = [[[UIScrollView alloc] initWithFrame:menuFrame] autorelease];
-    //self.menuScrollView.backgroundColor = [UIColor blueColor];
-    
-    //self.tableViewController.tableView.frame = tableFrame;
-    
-    //[self.view addSubview:self.menuScrollView];
+    [self.view addSubview:self.menuScrollView];
     
     
     
@@ -111,7 +108,7 @@ NSInteger const TSMargenMenu = 12;
     
     self.conFiltroTodos = YES;
     
-    //[self cargarFiltros];
+    [self cargarFiltros];
     
     // Do any additional setup after loading the view from its nib.
 }
@@ -163,13 +160,15 @@ NSInteger const TSMargenMenu = 12;
         [boton addTarget:self action:@selector(filtroSeleccionadoConBoton:) forControlEvents:(UIControlEventTouchUpInside)];
         
         // Configurar label de botón
-        boton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:15.0];
+        boton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:12.0];
         boton.titleLabel.backgroundColor = [UIColor clearColor];
         
         // Configurar colores para denotar un boton seleccionado
-		[boton setTitleColor:[UIColor colorWithWhite:0.6 alpha:1.0] forState:UIControlStateNormal];
+		[boton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [boton setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
-		[boton setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
+		[boton setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+        
+        [boton setBackgroundImage:[UIImage imageNamed:@"BarraAzul.png"] forState:UIControlStateSelected];
         
         // Texto del botón
         NSString *nombre = [[self.filtros objectAtIndex:i] valueForKey:@"nombre"];
@@ -191,6 +190,7 @@ NSInteger const TSMargenMenu = 12;
             self.indiceDeFiltroSeleccionado = i;
         
         // Añadir botón a la jerarquón de vistas
+        NSLog(@"bot: %@", boton);
         [self.menuScrollView addSubview:boton];
     }
     
@@ -212,7 +212,7 @@ NSInteger const TSMargenMenu = 12;
     NSString *slug = [[self.filtros objectAtIndex:indice] valueForKey:@"slug"];
     
     // Apagar todos los botones y prender el bot—n en cuesti—n
-    for (UIButton *btn in [self.menuScrollView subviews]) [btn setSelected:NO];
+    for (id btn in [self.menuScrollView subviews]) if ([btn isKindOfClass:[UIButton class]]) [btn setSelected:NO];
 	[boton setSelected:YES];
     
     // Autoscroll de menœ, s—lo si el contenido es m‡s grande que el frame visible
@@ -246,7 +246,7 @@ NSInteger const TSMargenMenu = 12;
         
         // Re-cargar datos
         // Mostrar vista de loading
-        [self mostrarLoadingViewConAnimacion:YES];
+        [self.tableViewController mostrarLoadingViewConAnimacion:YES];
         [self cargarClips];
     }
 }   
@@ -283,6 +283,8 @@ NSInteger const TSMargenMenu = 12;
         // Reconstruir menú con nuevos fitros
         [self construirMenu]; 
     }
+    
+    [self.tableViewController ocultarLoadingViewConAnimacion:YES];
 }
 
 

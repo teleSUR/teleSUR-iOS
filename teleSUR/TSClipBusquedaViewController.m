@@ -8,9 +8,10 @@
 
 #import "TSClipBusquedaViewController.h"
 #import "TSBusquedaSeleccionTableViewController.h"
-#import "TSClipListadoViewController.h"
+#import "TSClipListadoTableViewController.h"
 #import "TSBusquedaSeleccionFechaViewController.h"
 #import "TSBusquedaSeleccionTextoViewController.h"
+#import "UIViewController_Configuracion.h"
 
 
 #define kALTURA_CELDA 40.0
@@ -40,8 +41,11 @@
 
 - (void)viewDidLoad
 {
+    [self personalizarNavigationBar];
     // Cargar arreglo de configuración
     self.configuracionSeccionesBusqueda = [[[[NSBundle mainBundle] infoDictionary] objectForKey:@"Configuración"] objectForKey:@"Secciones de Búsqueda"];
+    
+    self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Fondo2.png"]];
     
     // Inicializar diccionario para selecciones
     self.selecciones = [NSMutableDictionary dictionary];
@@ -166,7 +170,8 @@
 - (void)botonBuscarPresionado:(UIBarButtonItem *)boton
 {
     // Crear y mostrar controlador de listado con los filtros elegidos
-    TSClipListadoViewController *controladorResultado  = [[TSClipListadoViewController alloc] initWithEntidad:@"clip" yFiltros:self.selecciones];
+    TSClipListadoTableViewController *controladorResultado  = [[TSClipListadoTableViewController alloc] init];
+    controladorResultado.diccionarioConfiguracionFiltros = self.selecciones;
     [self.navigationController pushViewController:controladorResultado animated:YES];
     [controladorResultado release];
 }

@@ -95,7 +95,7 @@
 										<int key="IBUIStyle">2</int>
 									</object>
 								</object>
-								<string key="NSFrameSize">{320, 90}</string>
+								<string key="NSFrameSize">{300, 90}</string>
 								<reference key="NSSuperview" ref="989173749"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="26164056"/>
@@ -106,7 +106,7 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 							</object>
 						</object>
-						<string key="NSFrameSize">{320, 90}</string>
+						<string key="NSFrameSize">{300, 90}</string>
 						<reference key="NSSuperview" ref="291876549"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="508137800"/>
@@ -121,7 +121,7 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
 				</object>
-				<string key="NSFrameSize">{320, 90}</string>
+				<string key="NSFrameSize">{300, 90}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="989173749"/>

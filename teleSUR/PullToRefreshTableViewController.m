@@ -14,18 +14,23 @@
 
 @implementation PullToRefreshTableViewController
 
+@synthesize refreshDisabled, refreshHeaderView;
 
 - (void)viewDidLoad 
 {
     [super viewDidLoad];
-	refreshHeaderView = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - self.view.bounds.size.height, 320.0f, self.view.bounds.size.height)];
-	[self.tableView addSubview:refreshHeaderView];
-	self.tableView.showsVerticalScrollIndicator = YES;
-	
-	// pre-load sounds
-	psst1Sound = [[SoundEffect alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"psst1" ofType:@"wav"]];
-	psst2Sound  = [[SoundEffect alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"psst2" ofType:@"wav"]];
-	popSound  = [[SoundEffect alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"pop" ofType:@"wav"]];
+    
+    if (!refreshDisabled)
+    {
+        self.refreshHeaderView = [[[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - self.view.bounds.size.height, 320.0f, self.view.bounds.size.height)] autorelease];
+        [self.tableView addSubview:refreshHeaderView];
+        self.tableView.showsVerticalScrollIndicator = YES;
+        
+        // pre-load sounds
+        psst1Sound = [[SoundEffect alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"psst1" ofType:@"wav"]];
+        psst2Sound  = [[SoundEffect alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"psst2" ofType:@"wav"]];
+        popSound  = [[SoundEffect alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"pop" ofType:@"wav"]];
+    }
 	
 }
 
@@ -34,7 +39,7 @@
 	[psst1Sound release];
 	[psst2Sound release];
 	[popSound release];
-	[refreshHeaderView release];
+	self.refreshHeaderView = nil;
     [super dealloc];
 }
 
@@ -65,15 +70,18 @@
 
 - (void)dataSourceDidFinishLoadingNewData
 {
-	reloading = NO;
-	[refreshHeaderView flipImageAnimated:NO];
-	[UIView beginAnimations:nil context:NULL];
-	[UIView setAnimationDuration:.3];
-	[self.tableView setContentInset:UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, 0.0f)];
-	[refreshHeaderView setStatus:kPullToReloadStatus];
-	[refreshHeaderView toggleActivityView:NO];
-	[UIView commitAnimations];
-	[popSound play];
+    if (!refreshDisabled)
+    {
+        reloading = NO;
+        [refreshHeaderView flipImageAnimated:NO];
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:.3];
+        [self.tableView setContentInset:UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, 0.0f)];
+        [refreshHeaderView setStatus:kPullToReloadStatus];
+        [refreshHeaderView toggleActivityView:NO];
+        [UIView commitAnimations];
+        [popSound play];
+    }
 }
 
 - (void)setLastUpdate:(NSDate *)date {
@@ -85,7 +93,7 @@
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
-	if (!reloading)
+	if (!reloading && !refreshDisabled)
 	{
 		checkForRefresh = YES;  //  only check offset when dragging 
 	}
@@ -94,7 +102,7 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-	if (reloading) return;
+	if (reloading || refreshDisabled) return;
 	
 	if (checkForRefresh) {
 		if (refreshHeaderView.isFlipped && scrollView.contentOffset.y > -65.0f && scrollView.contentOffset.y < 0.0f && !reloading) {
@@ -112,7 +120,7 @@
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
-	if (reloading) return;
+	if (reloading || refreshDisabled) return;
 	
 	if (scrollView.contentOffset.y <= - 65.0f) {
 		if([self.tableView.dataSource respondsToSelector:@selector(reloadTableViewDataSource)]){

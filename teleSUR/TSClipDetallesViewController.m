@@ -56,8 +56,17 @@
 {
     
     self.diccionarioConfiguracionFiltros = [NSMutableDictionary dictionaryWithObject:[self.clip objectForKey:@"slug"] forKey:@"relacionados"];
+    self.rangoUltimo = NSMakeRange(1, 5);
     
     [super viewDidLoad];
+    
+    // Deshabilitar Pull-to-reload
+    self.tableViewController.refreshDisabled = YES;
+    [self.tableViewController.refreshHeaderView removeFromSuperview];
+    
+    self.omitirVerMas = YES;
+    
+    tableViewController.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Fondo2.png"]];
     
     UILabel *etiquetaDescripcion = (UILabel *)[self.descripcionCell viewWithTag:5];
 
@@ -73,7 +82,8 @@
 }
 
 
--(void)viewDidAppear:(BOOL)animated 
+
+- (void)viewDidAppear:(BOOL)animated 
 {
     [self.tableViewController.tableView deselectRowAtIndexPath:self.indexPathSeleccionado animated:animated];
 }
@@ -151,8 +161,6 @@
             
         case kRELACIONADOS_SECTION:
             
-            NSLog(@"cunt: $%d", [self.clips count]);
-            
             return [self.clips count];
             
         default:
@@ -162,7 +170,6 @@
             return 0;
     } 
 }
-
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -192,7 +199,7 @@
         case kRELACIONADOS_SECTION:
             
             //TODO: Obtener dato real de NIB
-            return 75.0;
+            return 90.0;
             
         default:
             
@@ -282,12 +289,11 @@
         case kRELACIONADOS_SECTION:
             
             ;// Crear controlador de tabla para obtener celdas y no repetir
-            TSClipListadoTableViewController *tempListadoController = [[TSClipListadoTableViewController alloc] init];
-            tempListadoController.clips = self.clips;
+            //TSClipListadoTableViewController *tempListadoController = [[TSClipListadoTableViewController alloc] init];
+            //tempListadoController.clips = self.clips;
             
-            UITableViewCell *cell = [tempListadoController tableView:tempListadoController.tableViewController.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row inSection:0]];
+            UITableViewCell *cell = [super tableView:tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row inSection:0]];
             
-            [tempListadoController release];
             //cell.textLabel.text = @"videos relacionados...";
             
             return cell;
@@ -392,7 +398,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    self.indexPathSeleccionado = indexPath;
+    self.indiceDeClipSeleccionado = indexPath.row;
     
     switch (indexPath.section)
     {
@@ -400,9 +406,7 @@
             
             if (indexPath.row == kTITULO_ROW)
             {
-                // Crear y mostrar player
-                TSClipPlayerViewController *playercontroller = [[TSClipPlayerViewController alloc] initConClip:self.clip];
-                [playercontroller playEnViewController:self finalizarConSelector:@selector(playerFinalizado:) registrandoAccion:YES];
+                [super tableView:tableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row inSection:0]];
             }
             
             break;
@@ -450,21 +454,28 @@
     [actionSheet showFromTabBar:[(UITabBarController *)[[appDelegate window] rootViewController] tabBar]];
 }
 
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == kRELACIONADOS_SECTION)
+    {    
+        [super tableView:tableView willDisplayCell:cell forRowAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row inSection:0]];
+    }
+}
+
 - (void)botonDescargarPresionado:(UIButton *)boton;
 {
+    NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@", [self.clip valueForKey:@"archivo_url"]]]];
     
+    NSString *tempPath = [NSString stringWithFormat:@"%@/%@", NSTemporaryDirectory(), [NSString stringWithFormat:@"%@.mp4", [self.clip valueForKey:@"titulo"]]];
+    
+    [data writeToFile:tempPath atomically:NO];
+    
+    UISaveVideoAtPathToSavedPhotosAlbum (tempPath, self, @selector(video:didFinishSavingWithError: contextInfo:), nil);
 }
 
-#pragma mark -
-#pragma mark TSMultimediaDataDelegate
-
-// Maneja los datos recibidos
-- (void)TSMultimediaData:(TSMultimediaData *)data entidadesRecibidas:(NSArray *)array paraEntidad:(NSString *)entidad
+- (void) video:(NSString *)videoPath didFinishSavingWithError:(NSError *)error contextInfo: (id)contextInfo
 {
-    [super TSMultimediaData:data entidadesRecibidas:array paraEntidad:entidad];
-    
-    [self.tableViewController.tableView reloadData];
+    NSLog(@"Finished saving video with error: %@", error);
 }
-
 
 @end
