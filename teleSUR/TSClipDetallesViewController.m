@@ -245,14 +245,8 @@
                     AsynchronousImageView *imageView;
                     if ((imageView = (AsynchronousImageView *)[self.tituloCell viewWithTag:2]))
                     {
-                        CGRect frame = imageView.frame;
-                        [imageView removeFromSuperview];
-                        
-                        imageView = [[AsynchronousImageView alloc] init];
-                        [imageView loadImageFromURLString:[self.clip valueForKey:@"thumbnail_grande"]];
-                        imageView.frame = frame;
-                        [self.tituloCell addSubview:imageView];
-                        [imageView release];	
+                        imageView.url = [NSURL URLWithString:[self.clip valueForKey:@"thumbnail_grande"]];
+                        [imageView cargarImagenSiNecesario];
                     }
                     
                     return tituloCell;

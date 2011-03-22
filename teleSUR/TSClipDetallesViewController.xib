@@ -3,12 +3,12 @@
 	<data>
 		<int key="IBDocument.SystemTarget">1056</int>
 		<string key="IBDocument.SystemVersion">10J567</string>
-		<string key="IBDocument.InterfaceBuilderVersion">1294</string>
+		<string key="IBDocument.InterfaceBuilderVersion">1305</string>
 		<string key="IBDocument.AppKitVersion">1038.35</string>
 		<string key="IBDocument.HIToolboxVersion">462.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">294</string>
+			<string key="NS.object.0">300</string>
 		</object>
 		<object class="NSArray" key="IBDocument.IntegratedClassDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -199,7 +199,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAACAgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 							<object class="IBUILabel" id="163667586">
 								<reference key="NSNextResponder" ref="250441248"/>
 								<int key="NSvFlags">308</int>
-								<string key="NSFrame">{{149, 10}, {139, 98}}</string>
+								<string key="NSFrame">{{149, 13}, {139, 94.8454}}</string>
 								<reference key="NSSuperview" ref="250441248"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView"/>
@@ -212,7 +212,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAACAgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 								<string key="IBUIText">Bolivia ha logrado avances, Bolivia, en medio ha logrado, en defensa del medio ambiente</string>
 								<object class="NSFont" key="IBUIFont">
 									<string key="NSName">Helvetica-Bold</string>
-									<double key="NSSize">13</double>
+									<double key="NSSize">14</double>
 									<int key="NSfFlags">16</int>
 								</object>
 								<reference key="IBUITextColor" ref="875039020"/>
@@ -227,7 +227,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAACAgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 							<object class="IBUIImageView" id="282329232">
 								<reference key="NSNextResponder" ref="250441248"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{21, 13}, {126, 86}}</string>
+								<string key="NSFrame">{{16, 13}, {126, 86}}</string>
 								<reference key="NSSuperview" ref="250441248"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="163667586"/>
@@ -236,6 +236,10 @@ AAMAAAABAAEAAAFTAAMAAAAEAAACAgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 								<int key="IBUITag">2</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+								<object class="NSCustomResource" key="IBUIImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">SinImagen.png</string>
+								</object>
 							</object>
 						</object>
 						<string key="NSFrameSize">{300, 110}</string>
@@ -660,6 +664,10 @@ AAMAAAABAAEAAAFTAAMAAAAEAAACAgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 		</object>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
-		<string key="IBCocoaTouchPluginVersion">294</string>
+		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
+			<string key="NS.key.0">SinImagen.png</string>
+			<string key="NS.object.0">{108, 73}</string>
+		</object>
+		<string key="IBCocoaTouchPluginVersion">300</string>
 	</data>
 </archive>
