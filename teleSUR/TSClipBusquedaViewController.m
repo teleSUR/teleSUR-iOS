@@ -90,7 +90,7 @@
 
 - (NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section 
 {
-    return [[self.configuracionSeccionesBusqueda objectAtIndex:section] valueForKey:@"Header"];
+    return NSLocalizedString([[self.configuracionSeccionesBusqueda objectAtIndex:section] valueForKey:@"Header"], @"Títulos Búsqueda: Búsqueda de Texto, Clasificación, Ubicación, Personas, Fecha");
 }
 
 
@@ -111,7 +111,7 @@
     NSArray *seleccion = [self.selecciones objectForKey:[fila valueForKey:@"Entidad"]];
     
     // Establecer texto de la celda
-    cell.textLabel.text = [fila valueForKey:@"Nombre"];
+    cell.textLabel.text = NSLocalizedString([fila valueForKey:@"Nombre"], @"Búsqueda: Texto, Tipo, Sección, Tema, Región, País, Personajes, Corresponsal, Fecha");
     
     // Establecer detalles de la celda 
     switch ([seleccion count])

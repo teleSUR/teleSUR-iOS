@@ -162,6 +162,7 @@ NSInteger const TSMargenMenu = 12;
     [boton setBackgroundImage:[UIImage imageNamed:@"BarraAzul.png"] forState:UIControlStateSelected];
     
     // Texto del botón
+//    NSString *nombre = NSLocalizedString([filtro valueForKey:@"nombre"], @"Nombres de Secciones: Todos, Política, Economía, Medio ambiente, etc...");
     NSString *nombre = [filtro valueForKey:@"nombre"];
     [boton setTitle:nombre forState:UIControlStateNormal];
     boton.titleLabel.text = nombre;

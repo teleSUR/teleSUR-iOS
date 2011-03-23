@@ -249,7 +249,7 @@
             // Si es corresponsal, anteponer "Corresponsal: " para diferenciarlos de los perosnajes
             // TODO: [clasificador esCorresponsal]
             if ([[clasificador valueForKey:@"nombre"] isEqualToString:@"corresponsal"])
-                cell.textLabel.text = [NSString stringWithFormat:@"Corresponsal: %@", [clasificador valueForKey:@"valor"]];
+                cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", NSLocalizedString(@"Corresponsal:", @"Corresponsal:"),[clasificador valueForKey:@"valor"]];
             else
                 cell.textLabel.text = [clasificador valueForKey:@"valor"];
             
@@ -302,15 +302,17 @@
             
             UIButton *botonCompartir = [UIButton buttonWithType:UIButtonTypeRoundedRect];
             [botonCompartir addTarget:self action:compartirSelector forControlEvents:UIControlEventTouchUpInside];
-            [botonCompartir setTitle:@"Compartir" forState:UIControlStateNormal];
+            [botonCompartir setTitle:NSLocalizedString(@"Compartir", @"Compartir") forState:UIControlStateNormal];
             [botonCompartir setBackgroundColor:[UIColor clearColor]];
             
             botonCompartir.frame = CGRectMake(30, 10, 120, 35);
             
             UIButton *botonDescargar = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+
             // TODO:
             //[botonDescargar addTarget:self action:descargarSelector forControlEvents:UIControlEventTouchUpInside];
-            [botonDescargar setTitle:@"Descargar" forState:UIControlStateNormal];
+            [botonDescargar setTitle:NSLocalizedString(@"Descargar", @"Descargar") forState:UIControlStateNormal];
+
             [botonDescargar setBackgroundColor:[UIColor clearColor]];
             
             botonDescargar.frame = CGRectMake(170, 10, 120, 35);
@@ -341,11 +343,11 @@
             
         case kCLASIFICACION_SECTION:
             
-            return @"Más videos sobre...";
+            return NSLocalizedString(@"Más videos sobre...", @"Más videos sobre...") ;
                     
         case kRELACIONADOS_SECTION:
             
-            return @"Videos relacionados";
+            return NSLocalizedString(@"Videos relacionados",@"Videos relacionados");
         
         default:
             

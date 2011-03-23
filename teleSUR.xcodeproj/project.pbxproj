@@ -151,6 +151,7 @@
 		63EDAB5013232F8200496B83 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63EDAB4F13232F8200496B83 /* CFNetwork.framework */; };
 		63EDAB521323316500496B83 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 63EDAB511323316500496B83 /* libsqlite3.0.dylib */; };
 		63FB4EF6132ECE980027E304 /* TSBusquedaSeleccionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63FB4EF5132ECE980027E304 /* TSBusquedaSeleccionTableViewController.m */; };
+		C470FBC5133988E5007BEC50 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C470FBC7133988E5007BEC50 /* Localizable.strings */; };
 		C4AA37BE132F2942005C5874 /* DataGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = C4AA37BD132F2941005C5874 /* DataGenerator.m */; };
 		C4F400321325281D00239C39 /* ClipGrandeTableCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4F400311325281D00239C39 /* ClipGrandeTableCellView.xib */; };
 		C4FEABE51324BF57003B6509 /* libGoogleAnalytics_NoThumb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C4FEABE41324BF57003B6509 /* libGoogleAnalytics_NoThumb.a */; };
@@ -415,6 +416,7 @@
 		63EDAB511323316500496B83 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		63FB4EF4132ECE980027E304 /* TSBusquedaSeleccionTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSBusquedaSeleccionTableViewController.h; sourceTree = "<group>"; };
 		63FB4EF5132ECE980027E304 /* TSBusquedaSeleccionTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSBusquedaSeleccionTableViewController.m; sourceTree = "<group>"; };
+		C470FBC913398904007BEC50 /* es */ = {isa = PBXFileReference; lastKnownFileType = file; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C4AA37BC132F2941005C5874 /* DataGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataGenerator.h; sourceTree = "<group>"; };
 		C4AA37BD132F2941005C5874 /* DataGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataGenerator.m; sourceTree = "<group>"; };
 		C4F400311325281D00239C39 /* ClipGrandeTableCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClipGrandeTableCellView.xib; sourceTree = "<group>"; };
@@ -483,6 +485,7 @@
 			children = (
 				634D9EF1131F4B1F005B46FE /* Icono.png */,
 				63E01696131B883D001928E4 /* Default.png */,
+				C470FBC7133988E5007BEC50 /* Localizable.strings */,
 				63099E0C13199D1800D15603 /* teleSUR */,
 				63099E3113199D1800D15603 /* teleSURTests */,
 				63099E4C13199DF900D15603 /* Vendor */,
@@ -1267,6 +1270,7 @@
 				6374D2A1133823D70089F46D /* BarraRoja.png in Resources */,
 				6374D2A31338242B0089F46D /* BarraAzul.png in Resources */,
 				3A4A242C1337CB540093F5E1 /* TSSeleccionIdioma.xib in Resources */,
+				C470FBC5133988E5007BEC50 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1457,6 +1461,15 @@
 				63099E9513199F6700D15603 /* es */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		C470FBC7133988E5007BEC50 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C470FBC913398904007BEC50 /* es */,
+			);
+			name = Localizable.strings;
+			path = teleSUR;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

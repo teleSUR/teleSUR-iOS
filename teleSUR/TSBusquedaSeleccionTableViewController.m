@@ -44,9 +44,8 @@
 {
     
     // Indices:
-    
-    content = [DataGenerator wordsFromLetters];
-    indices = [[content valueForKey:@"headerTitle"] retain];
+    indices = [[NSMutableArray alloc] init];
+    nombrePaises = [[NSMutableArray alloc] init];
     
     if (!self.seleccion)
         self.seleccion = [NSMutableArray array];
@@ -106,56 +105,32 @@
 #pragma mark - Table view data source
 
 - (NSString *)tableView:(UITableView *)aTableView titleForHeaderInSection:(NSInteger)section {
-	if ([self.entidad isEqualToString:@"pais"]) return [[content objectAtIndex:section] objectForKey:@"headerTitle"];
+    
+	if ([self.entidad isEqualToString:@"pais"]) {
+        
+        if (section != 0) {
+            
+            return [indices objectAtIndex:section-1];
+        } else return @"";
+        
+    }
     else return @"";
     
 }
-- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
-    
-    if (![self.entidad isEqualToString:@"pais"])
-        return nil;
-    else
-    {
-        NSMutableArray *tempArray = [[NSMutableArray alloc] init];
-        [tempArray addObject:@"1"];
-        [tempArray addObject:@"2"];
-        [tempArray addObject:@"3"];
-        [tempArray addObject:@"4"];
-        [tempArray addObject:@"5"];
-        [tempArray addObject:@"6"];
-        [tempArray addObject:@"7"];
-        [tempArray addObject:@"8"];
-        [tempArray addObject:@"9"];
-        [tempArray addObject:@"10"];
-        [tempArray addObject:@"11"];
-        [tempArray addObject:@"12"];
-        [tempArray addObject:@"13"];
-        [tempArray addObject:@"14"];
-        [tempArray addObject:@"15"];
-        [tempArray addObject:@"16"];
-        [tempArray addObject:@"17"];
-        [tempArray addObject:@"18"];
-        [tempArray addObject:@"19"];
-        [tempArray addObject:@"20"];
-        [tempArray addObject:@"21"];
-        [tempArray addObject:@"22"];
-        [tempArray addObject:@"23"];
-        [tempArray addObject:@"24"];
-        [tempArray addObject:@"25"];
-        [tempArray addObject:@"26"];
-    
-        return tempArray;
-    }
-}
-/*
-- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
-    if ([self.entidad isEqualToString:@"pais"]) return [content valueForKey:@"headerTitle"];
+
+- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
+{
+    if ([self.entidad isEqualToString:@"pais"]) return indices;
     else return nil;
-}*/
+    
+    
+    
+}
+
 
 - (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index
 {
-    if ([self.entidad isEqualToString:@"pais"]) return [indices indexOfObject:title];
+    if ([self.entidad isEqualToString:@"pais"]) return index+1;
     else return 0;
     
 }
@@ -163,7 +138,7 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    if ([self.entidad isEqualToString:@"pais"]) return [content count];
+    if ([self.entidad isEqualToString:@"pais"]) return [indices count]+1;
     else return 2;
 }
 
@@ -172,8 +147,20 @@
     if (section == 0)
         return ([self.opciones count]) ? 1 : 0;
     
-    if ([self.entidad isEqualToString:@"pais"]) 
-        return [[[content objectAtIndex:section] objectForKey:@"rowValues"] count] ;
+    if ([self.entidad isEqualToString:@"pais"]) {
+        
+        //---get the letter in each section; e.g., A, B, C, etc.---
+        NSString *alphabet = [indices objectAtIndex:section-1];
+        
+        //---get all states beginning with the letter---
+        NSPredicate *predicate = 
+        [NSPredicate predicateWithFormat:@"SELF beginswith[c] %@", alphabet];
+        NSArray *paises = [nombrePaises filteredArrayUsingPredicate:predicate];
+        
+        //---return the number of states beginning with the letter---
+        return [paises count];   
+    }
+    
     else return [self.opciones count];
 }
 
@@ -194,7 +181,7 @@
     
     if (indexPath.section == 0)
     {
-        cell.textLabel.text = @"Todos";
+        cell.textLabel.text = NSLocalizedString(@"Todos", @"Todos");
         
         cell.accessoryType = ([self.seleccion count]) ? UITableViewCellAccessoryNone : UITableViewCellAccessoryCheckmark;
         
@@ -202,8 +189,22 @@
     }
     
     if ([self.entidad isEqualToString:@"pais"]) {
+        
+        //---get the letter in the current section---
+        NSString *alphabet = [indices objectAtIndex:[indexPath section]-1];
+        
+        //---get all states beginning with the letter---
+        NSPredicate *predicate = 
+        [NSPredicate predicateWithFormat:@"SELF beginswith[c] %@", alphabet];
+        NSArray *paisesFiltrado = [nombrePaises filteredArrayUsingPredicate:predicate];
+        
+        //---extract the relevant state from the states object---
+        NSString *cellValue = [paisesFiltrado objectAtIndex:indexPath.row];
+        cell.textLabel.text = cellValue;
+        
+        /*
         cell.textLabel.text = [[[content objectAtIndex:indexPath.section] objectForKey:@"rowValues"]
-                           objectAtIndex:indexPath.row];
+                           objectAtIndex:indexPath.row];*/
     }
     else {
         cell.textLabel.text = [[self.opciones objectAtIndex:indexPath.row] valueForKey:@"nombre"];    
@@ -325,6 +326,26 @@
     //[self.opciones addObject:[NSDictionary dictionaryWithObject:@"Todos" forKey:@"nombre" ]];
     
     [self.opciones addObjectsFromArray:array];
+    
+
+    
+    for (NSDictionary *diccionario in self.opciones) {
+        [nombrePaises addObject: [diccionario valueForKey:@"nombre"] ];
+    }
+    
+    for (int i=0; i<[nombrePaises count]-1; i++){
+        //---get the first char of each state---
+        char alphabet = [[nombrePaises objectAtIndex:i] characterAtIndex:0];
+        NSString *uniChar = [NSString stringWithFormat:@"%C", alphabet];
+        
+        //---add each letter to the index array---
+        if (![indices containsObject:uniChar])
+        {            
+            [indices addObject:uniChar];
+        }        
+    }
+
+    
     
     //NSLog(@":::: %@", self.opciones);
     

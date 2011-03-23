@@ -23,8 +23,8 @@
     
     //Indices
     NSArray *content;
-    NSArray *indices;
-    
+    NSMutableArray *indices;
+    NSMutableArray *nombrePaises;
 }
 
 
@@ -33,6 +33,6 @@
 @property (nonatomic, retain) NSMutableArray *opciones;
 @property (nonatomic, retain) NSString *entidad;
 @property (nonatomic, retain) NSMutableArray *seleccion;
-
+@property (nonatomic, retain) NSMutableArray *indices;
 
 @end
