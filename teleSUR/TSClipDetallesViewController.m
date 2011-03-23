@@ -298,7 +298,7 @@
             
             ;// Crear botón para compartir en redes sociales
             const SEL compartirSelector = @selector(botonCompartirPresionado:);
-            const SEL descargarSelector = @selector(botonDescargarPresionado:);
+            //const SEL descargarSelector = @selector(botonDescargarPresionado:);
             
             UIButton *botonCompartir = [UIButton buttonWithType:UIButtonTypeRoundedRect];
             [botonCompartir addTarget:self action:compartirSelector forControlEvents:UIControlEventTouchUpInside];
