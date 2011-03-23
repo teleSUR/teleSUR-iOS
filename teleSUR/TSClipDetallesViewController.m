@@ -8,7 +8,6 @@
 
 
 #import "TSClipDetallesViewController.h" 
-#import "TSClipPlayerViewController.h"
 #import "TSClipListadoTableViewController.h"
 #import "NSDictionary_Datos.m"
 #import "AsynchronousImageView.h"
@@ -31,8 +30,6 @@
 
 @synthesize clip;
 @synthesize tituloCell, categoriaCell, firmaCell, descripcionCell;
-@synthesize relacionadosTableViewController, relacionadosTableView;
-@synthesize indexPathSeleccionado;
 
 @class teleSURAppDelegate;
 
@@ -54,58 +51,39 @@
 
 - (void)viewDidLoad
 {
-    
     self.diccionarioConfiguracionFiltros = [NSMutableDictionary dictionaryWithObject:[self.clip objectForKey:@"slug"] forKey:@"relacionados"];
     self.rangoUltimo = NSMakeRange(1, 5);
     
     [super viewDidLoad];
     
-    // Deshabilitar Pull-to-reload
-    self.tableViewController.refreshDisabled = YES;
-    [self.tableViewController.refreshHeaderView removeFromSuperview];
-    
     self.omitirVerMas = YES;
+    self.tableViewController.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Fondo2.png"]];
     
-    tableViewController.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Fondo2.png"]];
-    
+    // Ajustar tamanno de celda para descripción
     UILabel *etiquetaDescripcion = (UILabel *)[self.descripcionCell viewWithTag:5];
-
     CGSize maximumLabelSize = CGSizeMake(262,9999);
-    
     CGSize expectedLabelSize = [[self.clip valueForKey:@"descripcion"]
                                            sizeWithFont:etiquetaDescripcion.font 
                                       constrainedToSize:maximumLabelSize 
                                           lineBreakMode:etiquetaDescripcion.lineBreakMode];
-    
     self.descripcionCell.frame = CGRectMake(self.descripcionCell.frame.origin.x, self.descripcionCell.frame.origin.y, self.descripcionCell.frame.size.width, expectedLabelSize.height+15);
-    etiquetaDescripcion.frame = CGRectMake(etiquetaDescripcion.frame.origin.x, etiquetaDescripcion.frame.origin.y, etiquetaDescripcion.frame.size.width, expectedLabelSize.height);    
+    etiquetaDescripcion.frame = CGRectMake(etiquetaDescripcion.frame.origin.x, etiquetaDescripcion.frame.origin.y, etiquetaDescripcion.frame.size.width, expectedLabelSize.height);
+    
+    // Deshabilitar Pull-to-reload
+    self.tableViewController.refreshDisabled = YES;
+    [self.tableViewController.refreshHeaderView removeFromSuperview];
 }
 
-
-
-- (void)viewDidAppear:(BOOL)animated 
-{
-    [self.tableViewController.tableView deselectRowAtIndexPath:self.indexPathSeleccionado animated:animated];
-}
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    self.relacionadosTableView = nil;
-    self.relacionadosTableViewController = nil;
+    
     self.clip = nil;
     self.tituloCell = nil;
     self.categoriaCell = nil;
     self.firmaCell = nil;
     self.descripcionCell = nil;
-    self.indexPathSeleccionado = nil;
-}
-
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    return !(interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown);
 }
 
 - (void)dealloc
@@ -198,7 +176,7 @@
         
         case kRELACIONADOS_SECTION:
             
-            ;//
+            ;// TODO: Tomar en cuenta diferentes tamaños de celda
             UITableViewCell *celdaListado = [[[NSBundle mainBundle] loadNibNamed:@"ClipEstandarTableCellView" owner:self options:nil] objectAtIndex:0];
             return celdaListado.frame.size.height;
             
@@ -211,7 +189,6 @@
 }
 
 
-// Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {    
     NSString *CellIdentifier = [NSString stringWithFormat:@"%d", indexPath.section];
@@ -283,13 +260,8 @@
         
         case kRELACIONADOS_SECTION:
             
-            ;// Crear controlador de tabla para obtener celdas y no repetir
-            //TSClipListadoTableViewController *tempListadoController = [[TSClipListadoTableViewController alloc] init];
-            //tempListadoController.clips = self.clips;
-            
+            ;// Celda para video relacionado
             UITableViewCell *cell = [super tableView:tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row inSection:0]];
-            
-            //cell.textLabel.text = @"videos relacionados...";
             
             return cell;
         
@@ -299,7 +271,7 @@
     }
 }
 
-/*
+
 #pragma mark - Footers de sección
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
@@ -316,7 +288,7 @@
             return 0;
     }
 }
-*/
+
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
@@ -336,13 +308,12 @@
             botonCompartir.frame = CGRectMake(30, 10, 120, 35);
             
             UIButton *botonDescargar = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-            [botonDescargar addTarget:self action:descargarSelector forControlEvents:UIControlEventTouchUpInside];
+            // TODO:
+            //[botonDescargar addTarget:self action:descargarSelector forControlEvents:UIControlEventTouchUpInside];
             [botonDescargar setTitle:@"Descargar" forState:UIControlStateNormal];
             [botonDescargar setBackgroundColor:[UIColor clearColor]];
             
             botonDescargar.frame = CGRectMake(170, 10, 120, 35);
-            
-            
             
             UIView *container = [[[UIView alloc] init] autorelease];
             
@@ -355,9 +326,6 @@
             
             return nil;
     }
-    
-    //label.text = [NSString stringWithFormat:@"   %@", label.text];
-    //return label;
 }
 
 
@@ -392,9 +360,7 @@
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    self.indiceDeClipSeleccionado = indexPath.row;
-    
+{    
     switch (indexPath.section)
     {
         case kINFO_SECTION:
@@ -427,6 +393,8 @@
             
             [super tableView:tableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row inSection:0]];
     }
+    
+    self.indexPathSeleccionado = indexPath;
 }
 
 #pragma mark -
@@ -471,6 +439,15 @@
 - (void) video:(NSString *)videoPath didFinishSavingWithError:(NSError *)error contextInfo: (id)contextInfo
 {
     NSLog(@"Finished saving video with error: %@", error);
+}
+
+
+- (void)playerFinalizado:(NSNotification *)notification
+{
+    // Si se terminó de reproducir el video principal, no crear vista de detalles, ya se está en ella
+    if (self.indexPathSeleccionado.section == kINFO_SECTION) return;
+    
+    [super playerFinalizado:notification];
 }
 
 @end
