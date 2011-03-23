@@ -19,6 +19,8 @@
     CGFloat celdaEstandarHeight;
     CGFloat celdaGrandeHeight;
     CGFloat celdaVerMasHeight;
+    
+    NSIndexPath *indexPathSeleccionado;
 }
 
 
@@ -29,5 +31,7 @@
 @property (nonatomic, retain) IBOutlet PullToRefreshTableViewController *tableViewController;
 
 @property (nonatomic, assign) BOOL omitirVerMas;
+
+@property (nonatomic, retain) NSIndexPath *indexPathSeleccionado;
 
 @end

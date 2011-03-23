@@ -69,22 +69,23 @@ NSString* const TSEntidadClip = @"clip";
     self.indiceDeClipSeleccionado = -1;
     self.arregloClipsAsyncImageViews = [NSMutableArray array];
     
-    // Cargar datos
+    if (!self.rangoUltimo.length)
+    {
+        self.rangoUltimo = NSMakeRange(1, TSNumeroClipsPorPagina);
+    }
     
     if ([self numeroDeIdioma] == 0)
     {
         TSSeleccionIdioma *vistaSeleccionIdioma = [[TSSeleccionIdioma alloc] init];
-        
         vistaSeleccionIdioma.vistaListado = self;
-        
         [self presentModalViewController:vistaSeleccionIdioma animated:NO];
-        
         [vistaSeleccionIdioma release];
         
-        
-    } else {
-        [self cargarClips];
+        return;
     }
+    
+    // Cargar datos
+    [self cargarClips];
 	
     [super viewDidLoad];
 }

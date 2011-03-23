@@ -24,6 +24,7 @@
 
 @synthesize tableViewController;
 @synthesize omitirVerMas;
+@synthesize indexPathSeleccionado;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -63,15 +64,15 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     // Si ya había un clip seleccionado, asegurar que esté marcado 
-    if (self.indiceDeClipSeleccionado != -1 && animated)
-        [self.tableViewController.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:self.indiceDeClipSeleccionado inSection:0] animated:NO scrollPosition: UITableViewScrollPositionNone];
+    if (self.indexPathSeleccionado && animated)
+        [self.tableViewController.tableView selectRowAtIndexPath:self.indexPathSeleccionado animated:NO scrollPosition:UITableViewScrollPositionNone];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     // Si ya había un clip seleccionado, desmarcarlo con animación
-    if (self.indiceDeClipSeleccionado != -1 && animated)
-        [self.tableViewController.tableView deselectRowAtIndexPath:[NSIndexPath indexPathForRow:self.indiceDeClipSeleccionado inSection:0] animated:animated];
+    if (self.indexPathSeleccionado && animated)
+        [self.tableViewController.tableView deselectRowAtIndexPath:self.indexPathSeleccionado animated:animated];
 }
 
 
@@ -207,7 +208,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Guardar referencia a índice
-    NSLog(@"%d", indexPath.row);
+    self.indexPathSeleccionado = indexPath;
     self.indiceDeClipSeleccionado = indexPath.row;
     
     if (self.indiceDeClipSeleccionado < [self.clips count] || self.omitirVerMas) // Se trata de un video
@@ -215,7 +216,6 @@
         // Crear y configurar player
         TSClipPlayerViewController *playerController = [[TSClipPlayerViewController alloc] initConClip:[self.clips objectAtIndex:indexPath.row]];
         
-        NSLog(@"el es: %d", self.indiceDeClipSeleccionado);
         // Reproducir video
         [playerController playEnViewController:self
                           finalizarConSelector:@selector(playerFinalizado:)
@@ -242,6 +242,7 @@
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
     // Guardar feferencia a clip seleccionado
+    self.indexPathSeleccionado = indexPath;
     self.indiceDeClipSeleccionado = indexPath.row;
     
     // Crear y presentar vista de detalles
