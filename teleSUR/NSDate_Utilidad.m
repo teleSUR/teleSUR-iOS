@@ -20,7 +20,7 @@
 	// Obtenemos los segundos faltantes para el sig sorteo
 	NSTimeInterval tiempoFaltante = [self timeIntervalSinceDate:fechaFutura];
 	
-    if (tiempoFaltante > (kTIEMPO_JUSTO_AHORA *-1)) return @"Justo Ahora";
+    if (tiempoFaltante > (kTIEMPO_JUSTO_AHORA *-1)) return NSLocalizedString(@"Justo Ahora",@"Justo Ahora");
     
 	// Create the NSDates
 	NSDate *date1 = [[NSDate alloc] init];
@@ -47,7 +47,7 @@
 
     //NSLog(@"%d", [conversionInfo day]);
 	if ([conversionInfo day] == -1) {
-		dias = @"1 día";
+		dias = NSLocalizedString(@"1 día", @"1 día");
         diasListo = true;
 	}
     
@@ -55,32 +55,32 @@
 	
 	
     if ([conversionInfo hour] == -1) {
-		horas = @"1 hora";
+		horas = NSLocalizedString(@"1 hora", @"1 hora");
         horasListo = true;
 	}
 	
 	if ([conversionInfo minute] == 0) minsListo = true;
 	
 	if ([conversionInfo minute] == -1) {
-		mins = @"1 min";
+		mins = NSLocalizedString(@"1 min", @"1 min");
         minsListo = true;
 	}
     
 
     
     if (!diasListo) {
-        dias = [NSString stringWithFormat:@"%d días", (-1) * [conversionInfo day]];
+        dias = [NSString stringWithFormat:@"%d %@", (-1) * [conversionInfo day], NSLocalizedString(@"días", @"días")];
     }
     if (!horasListo)
-        horas = [NSString stringWithFormat:@"%d horas", (-1) * [conversionInfo hour]];
+        horas = [NSString stringWithFormat:@"%d %@", (-1) * [conversionInfo hour], NSLocalizedString(@"horas", @"horas")];
     if (!minsListo)
-        mins = [NSString stringWithFormat:@"%d mins", (-1) * [conversionInfo minute]];
+        mins = [NSString stringWithFormat:@"%d %@", (-1) * [conversionInfo minute], NSLocalizedString(@"mins", @"mins")];
 	
 //	tiempoQueFalta = [NSString stringWithFormat:@"%@ %@ %@", dias, horas, mins ];
 	
     int numeroDeComponentes = 0;
     
-    [tiempoQueFalta appendString:@"Hace "];
+    [tiempoQueFalta appendString:NSLocalizedString(@"Hace ",@"Hace ")];
     
     if (![dias isEqualToString:@""])  { 
         numeroDeComponentes++;
@@ -100,8 +100,6 @@
 	[date2 release];
 	
     NSArray *componentesTiempoQueFalta = [tiempoQueFalta componentsSeparatedByString:@" "];
-    
-    //NSLog(@":::: %@", componentesTiempoQueFalta);
         
     return tiempoQueFalta;
 }

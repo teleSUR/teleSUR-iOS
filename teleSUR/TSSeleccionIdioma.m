@@ -60,12 +60,12 @@
     
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return @"Selecciona un idioma para el contenido de los videos";
+    return NSLocalizedString(@"Selecciona un idioma para el contenido de los videos", @"Selecciona un idioma para el contenido de los videos") ;
 }
 
 -(NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
 {
-        return @"Esta configuración puede ser cambiada en las preferencias de la aplicación.";
+        return NSLocalizedString(@"Esta configuración puede ser cambiada en las preferencias de la aplicación.", @"Esta configuración puede ser cambiada en las preferencias de la aplicación.");
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

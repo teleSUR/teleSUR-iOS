@@ -125,18 +125,18 @@
     
     switch (indexPath.row) {
         case 0:
-            cell.textLabel.text = @"Cualquier Fecha";
+            cell.textLabel.text = NSLocalizedString(@"Cualquier Fecha", @"Cualquier Fecha") ;
             if (self.seleccionTodos) 
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
             else 
                 cell.accessoryType = UITableViewCellAccessoryNone;
             break;
         case 1:
-            cell.textLabel.text = @"Desde";
+            cell.textLabel.text = NSLocalizedString(@"Desde", @"Desde");
             cell.detailTextLabel.text = [fechaDesde description];
             break;
         case 2:
-            cell.textLabel.text = @"Hasta";
+            cell.textLabel.text = NSLocalizedString(@"Hasta", @"Hasta");
             cell.detailTextLabel.text = [fechaHasta description];            
             break;
         default:

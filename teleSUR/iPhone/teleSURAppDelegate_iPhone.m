@@ -19,6 +19,14 @@
 #pragma mark View lifecycle
 
 
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    [[[self.tabBarController.tabBar items] objectAtIndex:0] setTitle:NSLocalizedString(@"Noticias", @"Noticias")];
+    [[[self.tabBarController.tabBar items] objectAtIndex:1] setTitle:NSLocalizedString(@"Entrevistas", @"Entrevistas")];
+    [[[self.tabBarController.tabBar items] objectAtIndex:2] setTitle:NSLocalizedString(@"Programas", @"Programas")];
+
+    
+}
 
 - (void)dealloc
 {

@@ -194,7 +194,7 @@
     
     if (indexPath.section == 0)
     {
-        cell.textLabel.text = @"Todos";
+        cell.textLabel.text = NSLocalizedString(@"Todos", @"Todos");
         
         cell.accessoryType = ([self.seleccion count]) ? UITableViewCellAccessoryNone : UITableViewCellAccessoryCheckmark;
         

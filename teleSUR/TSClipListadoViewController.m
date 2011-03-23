@@ -42,13 +42,13 @@ NSString* const TSEntidadClip = @"clip";
 }
 
 
-// Obtiene clips asincr�nicamente, con base en propiedades del objeto
+// Obtiene clips asincrónicamente, con base en propiedades del objeto
 - (void)cargarClips
 {
 	TSMultimediaData *dataClips = [[TSMultimediaData alloc] init];
     [dataClips getDatosParaEntidad:TSEntidadClip // otros ejemplos: programa, pais, categoria
                         conFiltros:self.diccionarioConfiguracionFiltros // otro ejemplo: conFiltros:[NSDictionary dictionaryWithObject:@"2010-01-01" forKey:@"hasta"]
-                           enRango:self.rangoUltimo  // otro ejemplo: NSMakeRange(1, 1) -sólo uno-
+                           enRango:self.rangoUltimo  // otro ejemplo: NSMakeRange(1, 1) -s√≥lo uno-
                        conDelegate:self];
 }
 

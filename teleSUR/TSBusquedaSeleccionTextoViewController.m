@@ -79,7 +79,7 @@
 
 
     [cell addSubview:self.texto];
-    cell.textLabel.text = @"Cadena";
+    cell.textLabel.text = NSLocalizedString(@"Cadena", @"Cadena");
 
     return cell;
     

@@ -112,13 +112,13 @@
 		[formatter setDateStyle:NSDateFormatterShortStyle];
 		[formatter setTimeStyle:NSDateFormatterShortStyle];
 		lastUpdatedLabel.text = [NSString stringWithFormat:
-                                 @"Actualizado en: %@", [formatter stringFromDate:lastUpdatedDate]];
+                                 @"%@ %@", NSLocalizedString(@"Actualizado en:", @"Actualizado en:"), [formatter stringFromDate:lastUpdatedDate]];
 		[formatter release];
 	}
 	else
 	{
 		lastUpdatedDate = nil;
-		lastUpdatedLabel.text = @"ÚActualizado en: nunca";
+		lastUpdatedLabel.text = NSLocalizedString(@"Actualizado en: nunca", @"Actualizado en: nunca") ;
 	}
 }
 
@@ -126,13 +126,13 @@
 {
 	switch (status) {
 		case kReleaseToReloadStatus:
-			statusLabel.text = @"Suelta para actualizar...";
+			statusLabel.text = NSLocalizedString(@"Suelta para actualizar...", @"Suelta para actualizar...");
 			break;
 		case kPullToReloadStatus:
-			statusLabel.text = @"Jala para actualizar...";
+			statusLabel.text = NSLocalizedString(@"Jala para actualizar...", @"Jala para actualizar...");
 			break;
 		case kLoadingStatus:
-			statusLabel.text = @"Cargando...";
+			statusLabel.text = NSLocalizedString(@"Cargando...",@"Cargando...");
 			break;
 		default:
 			break;
