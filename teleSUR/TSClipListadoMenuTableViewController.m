@@ -102,6 +102,7 @@ NSInteger const TSMargenMenu = 12;
     
     // Crear y añadir menuScrollView
     self.menuScrollView = [[[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, kMENU_ALTURA)] autorelease];
+    self.menuScrollView.delegate = self;
     [self.view addSubview:self.menuScrollView];
     
     // Configurar menuScrollView
@@ -211,6 +212,9 @@ NSInteger const TSMargenMenu = 12;
     // Deifnir área de scroll
     [self.menuScrollView setContentSize: CGSizeMake(offsetX, self.menuScrollView.frame.size.height)];
     
+    // Ajustes para Scroll personalizado
+    [self.menuScrollView setPagingEnabled:NO];
+    
     // Fingir presionar el botón del clip seleccionado
     [self filtroSeleccionadoConBoton:[[self.menuScrollView subviews] objectAtIndex:self.indiceDeFiltroSeleccionado]];
 }
@@ -300,7 +304,6 @@ NSInteger const TSMargenMenu = 12;
     
     [self.tableViewController ocultarLoadingViewConAnimacion:YES];
 }
-
 
 
 @end

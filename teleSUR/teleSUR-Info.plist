@@ -60,7 +60,7 @@
 						<key>Nombre</key>
 						<string>Tipo</string>
 						<key>Todos</key>
-						<string>Cualquier tipo</string>
+						<string>Cualquiera</string>
 					</dict>
 					<dict>
 						<key>Entidad</key>
@@ -68,7 +68,7 @@
 						<key>Nombre</key>
 						<string>Sección</string>
 						<key>Todos</key>
-						<string>Todas las secciones</string>
+						<string>Cualquiera</string>
 					</dict>
 					<dict>
 						<key>Entidad</key>
@@ -76,7 +76,7 @@
 						<key>Nombre</key>
 						<string>Tema</string>
 						<key>Todos</key>
-						<string>Cualquier tema</string>
+						<string>Cualquiera</string>
 					</dict>
 				</array>
 				<key>Header</key>
@@ -91,7 +91,7 @@
 						<key>Nombre</key>
 						<string>Región</string>
 						<key>Todos</key>
-						<string>Cualquier región</string>
+						<string>Cualquiera</string>
 					</dict>
 					<dict>
 						<key>Entidad</key>
@@ -99,7 +99,7 @@
 						<key>Nombre</key>
 						<string>País</string>
 						<key>Todos</key>
-						<string>Todos los países</string>
+						<string>Todos</string>
 					</dict>
 				</array>
 				<key>Header</key>
