@@ -16,6 +16,8 @@
     NSURLConnection *connection;
     NSMutableData *data;
     
+    BOOL imagenCargada;
+    
 }
 
 
@@ -24,6 +26,7 @@
 
 
 @property (nonatomic, retain) NSURL *url;
+@property (nonatomic, assign) BOOL imagenCargada;
 
 
 @end

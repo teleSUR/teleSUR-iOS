@@ -300,12 +300,13 @@
     
     if (entidad == TSEntidadClip)
     {
+        // Si parece que no hay más elementos, no mostrar celda "ver más"
         self.omitirVerMas = [array count] < TSNumeroClipsPorPagina;
         
         // Recargar tabla
         [self.tableViewController.tableView reloadData];
         
-        // Si la bandera para agregar al final está apagada, hacer scrolla hasta arriba
+        // Si la bandera para agregar al final está apagada, hacer scroll hasta arriba
         if (!self.agregarAlFinal && [self.clips count])
         {
             [self.tableViewController.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionNone animated:NO];

@@ -143,16 +143,7 @@ NSString* const TSEntidadClip = @"clip";
             self.arregloClipsAsyncImageViews = [NSMutableArray array];
         }
         
-        // Para cada clip obtenido agregar un AsynchronousImageView al arregloClipsAsyncImageViews
-        for (int i=0; i < [self.clips count]; i++)
-        {
-            //AsynchronousImageView *aiv = [[AsynchronousImageView alloc] init];
-            //aiv.url = [NSURL URLWithString:[NSString stringWithFormat:@"%@", [[self.clips objectAtIndex:i] valueForKey:@"thumbnail_pequeno"]]];
-            //[self.arregloClipsAsyncImageViews insertObject:aiv atIndex:i];
-            //[aiv release];
-        }
-        
-        self.agregarAlFinal = NO;
+        //self.agregarAlFinal = NO;
     }
     
     // Ocultar vista de loading

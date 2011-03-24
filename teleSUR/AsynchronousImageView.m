@@ -11,7 +11,7 @@
 
 @implementation AsynchronousImageView
 
-@synthesize url;
+@synthesize url, imagenCargada;
 
 
 - (void)cargarImagenSiNecesario
@@ -61,6 +61,7 @@
 {
     self.image = [UIImage imageWithData:data];
 	
+    self.imagenCargada = YES;
     [data release], 
 	data = nil;
 	
