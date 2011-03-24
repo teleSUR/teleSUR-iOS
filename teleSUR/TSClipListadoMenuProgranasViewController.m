@@ -92,5 +92,23 @@
         return [super nombreNibParaIndexPath:indexPath];
 }
 
+#pragma - Scroll
 
+-(void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView
+{
+    // Autoscroll de menœ, s—lo si el contenido es m‡s grande que el frame visible
+    
+        // Calcular nuevo offset para que el bot—n estŽ centrado
+        CGFloat offset = + scrollView.contentOffset.x + 180 - self.menuScrollView.frame.size.width/2.0;
+        
+        // Si el offset es negativo o m‡s grande que la barra completa, no centrar el bot—n
+        CGFloat maxOffset = self.menuScrollView.contentSize.width - self.menuScrollView.frame.size.width;
+        if (offset < 0) offset = 0;
+        else if (offset > maxOffset) offset = maxOffset;
+        
+        // Aplicar nuevo offset
+        [scrollView setContentOffset:CGPointMake(offset, 0) animated:YES];
+    
+    
+}
 @end

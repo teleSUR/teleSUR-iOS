@@ -10,7 +10,7 @@
 #import "TSClipListadoMenuTableViewController.h"
 
 
-@interface TSClipListadoMenuProgranasViewController : TSClipListadoMenuTableViewController {
+@interface TSClipListadoMenuProgranasViewController : TSClipListadoMenuTableViewController <UIScrollViewDelegate> {
     
 }
 
