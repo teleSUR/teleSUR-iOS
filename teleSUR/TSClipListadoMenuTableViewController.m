@@ -103,7 +103,9 @@ NSInteger const TSMargenMenu = 12;
     // Crear y añadir menuScrollView
     self.menuScrollView = [[[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, kMENU_ALTURA)] autorelease];
     self.menuScrollView.delegate = self;
+    self.menuScrollView.clipsToBounds = NO;
     [self.view addSubview:self.menuScrollView];
+
     
     // Configurar menuScrollView
     self.menuScrollView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"BarraRoja.png"]];
@@ -213,7 +215,7 @@ NSInteger const TSMargenMenu = 12;
     [self.menuScrollView setContentSize: CGSizeMake(offsetX, self.menuScrollView.frame.size.height)];
     
     // Ajustes para Scroll personalizado
-    [self.menuScrollView setPagingEnabled:NO];
+//    [self.menuScrollView setPagingEnabled:NO];
     
     // Fingir presionar el botón del clip seleccionado
     [self filtroSeleccionadoConBoton:[[self.menuScrollView subviews] objectAtIndex:self.indiceDeFiltroSeleccionado]];

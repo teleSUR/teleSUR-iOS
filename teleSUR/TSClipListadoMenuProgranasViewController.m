@@ -7,10 +7,57 @@
 //
 
 #import "TSClipListadoMenuProgranasViewController.h"
+#import "UIViewWrapUIScrollView.h"
 
 #define kMENU_ALTURA 80 // Altura extra aplicada a menuScrollView
 
 @implementation TSClipListadoMenuProgranasViewController
+
+- (void)construirMenu 
+{
+
+    // Retirar todos los botones del men√∫, si es que hay
+    for (UIButton *boton in self.menuScrollView.subviews) [boton removeFromSuperview];
+    
+    // Inicializar offset horizontal
+    int offsetX = 6;
+    
+    // Recorrer filtros
+    for (int i=0; i < [self.filtros count]; i++)
+    {
+        NSDictionary *filtro = [self.filtros objectAtIndex:i];
+        
+        UIButton *boton = [self botonParaFiltro:filtro];
+        
+        // Actualizar frame de botón
+        CGRect botonFrame = boton.frame;
+        botonFrame.origin.x = offsetX;
+        boton.frame = botonFrame;
+        
+        // Actualizar offset
+        offsetX += botonFrame.size.width + TSMargenMenu;
+        
+        // Marcar sólo botón seleciconado
+        [boton setSelected:(self.indiceDeFiltroSeleccionado == i)];
+        
+        // Si el botón tiene un slug igual al que se indicó como seleccionado, actualizar índiceDeClipSeleccionado
+        if ([self.slugDeFiltroSeleccionado isEqualToString:[filtro valueForKey:@"slug"]])
+            self.indiceDeFiltroSeleccionado = i;
+        
+        // Añadir botón a la jerarquón de vistas
+        [self.menuScrollView addSubview:boton];
+    }
+    
+    // Deifnir área de scroll
+    [self.menuScrollView setContentSize: CGSizeMake(offsetX, self.menuScrollView.frame.size.height)];
+    
+    // Ajustes para Scroll personalizado
+    //    [self.menuScrollView setPagingEnabled:NO];
+    
+    // Fingir presionar el botón del clip seleccionado
+    [self filtroSeleccionadoConBoton:[[self.menuScrollView subviews] objectAtIndex:self.indiceDeFiltroSeleccionado]];
+}
+
 
 
 - (void)viewDidLoad
@@ -19,13 +66,39 @@
     self.entidadMenu = @"programa";
     self.diccionarioConfiguracionFiltros = [NSMutableDictionary dictionaryWithObject:@"programa" forKey:@"tipo"];
     
+    // Poner fondo.
+//    CGRect frame;
+//    frame = self.menuScrollView.frame; 
+    UIView *vistaFondo = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, kMENU_ALTURA +kMENU_ALTURA)] autorelease];
+
+    // Configurar menuScrollView
+    vistaFondo.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Fondo1.png"]];    
+    [self.view addSubview:vistaFondo];
+    
+    
+
+
+    
+    
     [super viewDidLoad];
     
     // Agrandar menú
     CGRect frame;
     frame = self.menuScrollView.frame; 
+    frame.origin.x = (self.tableViewController.tableView.frame.size.width - 212) / 2;
     frame.size.height += kMENU_ALTURA;
+    frame.size.width = 200+12;
+    
     self.menuScrollView.frame = frame;
+    
+    UIViewWrapUIScrollView *vistaFrente = [[[UIViewWrapUIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.menuScrollView.frame.size.height)] autorelease];
+    vistaFrente.scrollEnCuestion = self.menuScrollView;
+    // Configurar vistaFrente
+    vistaFrente.backgroundColor = [UIColor clearColor];
+    
+    [self.view addSubview:vistaFrente];
+
+    
     
     // Achicar y recorrer tabla
     frame = self.tableViewController.tableView.frame;
@@ -35,7 +108,9 @@
     
     // Configuración de scrollview
     self.menuScrollView.pagingEnabled = YES;
-    self.menuScrollView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Fondo1.png"]];
+
+    self.menuScrollView.scrollEnabled = YES;
+    self.menuScrollView.backgroundColor = [UIColor clearColor];
     
     // No mostrar primer filtro "Todos"
     self.conFiltroTodos = NO;
@@ -93,7 +168,7 @@
 }
 
 #pragma - Scroll
-
+/*
 -(void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView
 {
     // Autoscroll de menœ, s—lo si el contenido es m‡s grande que el frame visible
@@ -111,4 +186,5 @@
     
     
 }
+ */
 @end

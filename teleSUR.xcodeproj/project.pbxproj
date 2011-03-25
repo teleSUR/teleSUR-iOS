@@ -18,6 +18,7 @@
 		3ACA5FC0133019A100DB9402 /* UIViewController_Preferencias.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACA5FBF133019A100DB9402 /* UIViewController_Preferencias.m */; };
 		3ACA5FCA1330237E00DB9402 /* TSBusquedaSeleccionFechaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACA5FC81330237800DB9402 /* TSBusquedaSeleccionFechaViewController.m */; };
 		3ACA5FCB1330237E00DB9402 /* TSBusquedaSeleccionFechaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3ACA5FC91330237A00DB9402 /* TSBusquedaSeleccionFechaViewController.xib */; };
+		3AD03845133D54600087925F /* UIViewWrapUIScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD03844133D54600087925F /* UIViewWrapUIScrollView.m */; };
 		3AD81911131EF7B40006C5A0 /* NSDate_Utilidad.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD81910131EF7B40006C5A0 /* NSDate_Utilidad.m */; };
 		3AE0BCE71331110000E41F85 /* TSBusquedaSeleccionTextoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AE0BCE51331110000E41F85 /* TSBusquedaSeleccionTextoViewController.m */; };
 		3AE0BCE81331110000E41F85 /* TSBusquedaSeleccionTextoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AE0BCE61331110000E41F85 /* TSBusquedaSeleccionTextoViewController.xib */; };
@@ -186,6 +187,8 @@
 		3ACA5FC71330237400DB9402 /* TSBusquedaSeleccionFechaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSBusquedaSeleccionFechaViewController.h; sourceTree = "<group>"; };
 		3ACA5FC81330237800DB9402 /* TSBusquedaSeleccionFechaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSBusquedaSeleccionFechaViewController.m; sourceTree = "<group>"; };
 		3ACA5FC91330237A00DB9402 /* TSBusquedaSeleccionFechaViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TSBusquedaSeleccionFechaViewController.xib; sourceTree = "<group>"; };
+		3AD03843133D54600087925F /* UIViewWrapUIScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIViewWrapUIScrollView.h; path = teleSUR.xcodeproj/UIViewWrapUIScrollView.h; sourceTree = SOURCE_ROOT; };
+		3AD03844133D54600087925F /* UIViewWrapUIScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIViewWrapUIScrollView.m; path = teleSUR.xcodeproj/UIViewWrapUIScrollView.m; sourceTree = SOURCE_ROOT; };
 		3AD8190F131EF7B40006C5A0 /* NSDate_Utilidad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDate_Utilidad.h; sourceTree = "<group>"; };
 		3AD81910131EF7B40006C5A0 /* NSDate_Utilidad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDate_Utilidad.m; sourceTree = "<group>"; };
 		3AE0BCE41331110000E41F85 /* TSBusquedaSeleccionTextoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSBusquedaSeleccionTextoViewController.h; sourceTree = "<group>"; };
@@ -1120,6 +1123,8 @@
 		63E016A7131D846E001928E4 /* Listado */ = {
 			isa = PBXGroup;
 			children = (
+				3AD03843133D54600087925F /* UIViewWrapUIScrollView.h */,
+				3AD03844133D54600087925F /* UIViewWrapUIScrollView.m */,
 				3A10016C131B2B0600717211 /* TSClipListadoViewController.h */,
 				3A10016D131B2B0600717211 /* TSClipListadoViewController.m */,
 				63B776EA1333D6B50024D77E /* TSClipListadoTableViewController.h */,
@@ -1390,6 +1395,7 @@
 				63B776F21333D84B0024D77E /* TSClipPlayerViewController.m in Sources */,
 				63B776F713340ED90024D77E /* TSClipListadoMenuTableViewController.m in Sources */,
 				3A4A242B1337CB540093F5E1 /* TSSeleccionIdioma.m in Sources */,
+				3AD03845133D54600087925F /* UIViewWrapUIScrollView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

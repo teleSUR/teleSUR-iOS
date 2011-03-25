@@ -15,6 +15,7 @@ extern const NSInteger TSMargenMenu;
     
     BOOL conFilltroTodos;
     UIScrollView *menuScrollView;
+    
 	NSString *entidadMenu;
     int indiceDeFiltroSeleccionado;
     NSString *slugDeFiltroSeleccionado;
