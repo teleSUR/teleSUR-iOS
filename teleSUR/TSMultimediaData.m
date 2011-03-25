@@ -54,7 +54,16 @@
     else if ([entidad isEqualToString:@"programa"])
     { }
     else if ([entidad isEqualToString:@"pais"])
-    { }
+    {
+        NSArray *params = [NSArray arrayWithObjects:@"ubicacion", nil];
+        for (NSString *param in params)
+            if ((currentFiltro = [filtros objectForKey:param]))
+                if ([currentFiltro isKindOfClass:[NSArray class]])
+                    for (currentFiltro in currentFiltro)
+                        [parametrosGET addObject:[NSString stringWithFormat:@"%@=%@", param, currentFiltro]];
+                else
+                    [parametrosGET addObject:[NSString stringWithFormat:@"%@=%@", param, currentFiltro]];
+    }
     else if ([entidad isEqualToString:@"tema"])
     { }
     else if ([entidad isEqualToString:@"corresponsal"])
@@ -74,7 +83,7 @@
 		return;
 	}
     
-    NSLog(@"GETTT: %@", parametrosGET);
+    NSLog(@"GET: %@", parametrosGET);
 	
 	// cualquier entidad puede ser paginada
     if (rango.length)
@@ -87,7 +96,7 @@
 	NSString *queryString = [parametrosGET componentsJoinedByString:@"&"];
 	
 	NSURL *multimediaAPIRequestURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@api/%@?%@", urlBase, langCode, entidad, queryString]];
-	NSLog(@"URL a consular: %@", multimediaAPIRequestURL);
+	NSLog(@"URL a consultar: %@", multimediaAPIRequestURL);
 	
 	NSURLRequest *apiRequest=[NSURLRequest requestWithURL:multimediaAPIRequestURL
 											  cachePolicy:NSURLRequestReloadIgnoringLocalCacheData

@@ -257,10 +257,10 @@
     {
         return @"VerMasClipsTableCellView";
     }
-    else if (indexPath.row == 0)
-    {
-        return @"ClipGrandeTableCellView";
-    }
+    //else if (indexPath.row == 0)
+    //{
+    //    return @"ClipGrandeTableCellView";
+    //}
     else
     {
         return @"ClipEstandarTableCellView";

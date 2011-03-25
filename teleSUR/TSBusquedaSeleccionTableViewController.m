@@ -41,7 +41,6 @@
 
 - (void)viewDidLoad
 {
-    
     // Indices:
     indices = [[NSMutableArray alloc] init];
     nombrePaises = [[NSMutableArray alloc] init];
@@ -57,13 +56,19 @@
     }
     else
     {
+        NSMutableDictionary *filtros = [NSMutableDictionary dictionary];
+        if ([self.entidad isEqualToString:@"pais"])
+        {
+            [filtros setObject:[self.controladorBusqueda.selecciones valueForKey:@"ubicacion"] forKey:@"ubicacion"];
+        }
+        
         self.indicadorActividad = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(150.0, 174.0, 20, 20)];
         [self.indicadorActividad startAnimating];
         [self.view addSubview: self.indicadorActividad];
         
         TSMultimediaData *dataFiltros = [[TSMultimediaData alloc] init];
         [dataFiltros getDatosParaEntidad:self.entidad // otros ejemplos: programa, pais, categoria
-                              conFiltros:nil // otro ejemplo: conFiltros:[NSDictionary dictionaryWithObject:@"2010-01-01" forKey:@"hasta"]
+                              conFiltros:filtros // otro ejemplo: conFiltros:[NSDictionary dictionaryWithObject:@"2010-01-01" forKey:@"hasta"]
                                  enRango:NSMakeRange(1, 300)  // otro ejemplo: NSMakeRange(1, 1) -s√≥lo uno-
                              conDelegate:self];
     }
@@ -74,7 +79,6 @@
     
     
     [super viewDidLoad];
-
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
