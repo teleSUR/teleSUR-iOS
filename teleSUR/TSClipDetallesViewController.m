@@ -30,6 +30,7 @@
 
 @synthesize clip;
 @synthesize tituloCell, categoriaCell, firmaCell, descripcionCell;
+@synthesize descargaData;
 
 @class teleSURAppDelegate;
 
@@ -278,7 +279,7 @@
 {
     switch (section)
     {
-        case kINFO_SECTION:
+        case kCLASIFICACION_SECTION:
             
             // Altura de botón para redes sociales
             return 60.0;
@@ -294,33 +295,39 @@
 {
     switch (section)
     {
-        case kINFO_SECTION:
+        case kCLASIFICACION_SECTION:
             
-            ;// Crear botón para compartir en redes sociales
+            ;// Crear botones para compartir y/o descargar
+            
+            UIView *container = [[[UIView alloc] init] autorelease];
+            
             const SEL compartirSelector = @selector(botonCompartirPresionado:);
-            //const SEL descargarSelector = @selector(botonDescargarPresionado:);
-            
             UIButton *botonCompartir = [UIButton buttonWithType:UIButtonTypeRoundedRect];
             [botonCompartir addTarget:self action:compartirSelector forControlEvents:UIControlEventTouchUpInside];
             [botonCompartir setTitle:NSLocalizedString(@"Compartir", @"Compartir") forState:UIControlStateNormal];
             [botonCompartir setBackgroundColor:[UIColor clearColor]];
             
             botonCompartir.frame = CGRectMake(30, 10, 120, 35);
-            
-            UIButton *botonDescargar = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-
-            // TODO:
-            //[botonDescargar addTarget:self action:descargarSelector forControlEvents:UIControlEventTouchUpInside];
-            [botonDescargar setTitle:NSLocalizedString(@"Descargar", @"Descargar") forState:UIControlStateNormal];
-
-            [botonDescargar setBackgroundColor:[UIColor clearColor]];
-            
-            botonDescargar.frame = CGRectMake(170, 10, 120, 35);
-            
-            UIView *container = [[[UIView alloc] init] autorelease];
-            
             [container addSubview:botonCompartir];
-            [container addSubview:botonDescargar];
+            
+            if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum([[NSBundle mainBundle] pathForResource:@"Sample" ofType:@"mp4"]))
+            {
+                const SEL descargarSelector = @selector(botonDescargarPresionado:);
+                UIButton *botonDescargar = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+                [botonDescargar addTarget:self action:descargarSelector forControlEvents:UIControlEventTouchUpInside];
+                [botonDescargar setTitle:NSLocalizedString(@"Descargar", @"Descargar") forState:UIControlStateNormal];
+                [botonDescargar setBackgroundColor:[UIColor clearColor]];
+                [botonDescargar setTag:110];
+                if (self.descargaData)
+                {
+                    [botonDescargar setEnabled:NO];
+                    [botonDescargar setAlpha:0.70];
+                }
+                
+                
+                botonDescargar.frame = CGRectMake(170, 10, 120, 35);
+                [container addSubview:botonDescargar];
+            }
             
             return container;
         
@@ -343,7 +350,7 @@
             
         case kCLASIFICACION_SECTION:
             
-            return NSLocalizedString(@"Más videos sobre...", @"Más videos sobre...") ;
+            return @"";// NSLocalizedString(@"Más videos sobre...", @"Más videos sobre...") ;
                     
         case kRELACIONADOS_SECTION:
             
@@ -429,18 +436,84 @@
 
 - (void)botonDescargarPresionado:(UIButton *)boton;
 {
-    NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@", [self.clip valueForKey:@"archivo_url"]]]];
-    
-    NSString *tempPath = [NSString stringWithFormat:@"%@/%@", NSTemporaryDirectory(), [NSString stringWithFormat:@"%@.mp4", [self.clip valueForKey:@"titulo"]]];
-    
-    [data writeToFile:tempPath atomically:NO];
-    
-    UISaveVideoAtPathToSavedPhotosAlbum (tempPath, self, @selector(video:didFinishSavingWithError: contextInfo:), nil);
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Descargar video", @"Descargar video") message:@"Se va a descargar este video, puede tardar unos minutos dependiendo de la velocidad de conexión, otro mensaje te avisará cuando la descarga haya finalizado."  delegate:self cancelButtonTitle:@"Cancelar" otherButtonTitles: @"Continuar", nil];
+    [alert show];
+    [alert release];
 }
 
-- (void) video:(NSString *)videoPath didFinishSavingWithError:(NSError *)error contextInfo: (id)contextInfo
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+	if (buttonIndex == 1)
+    {
+        [(UIButton *)[self.view viewWithTag:110] setEnabled:NO];
+        [(UIButton *)[self.view viewWithTag:110] setAlpha:0.75];
+        
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[self.clip valueForKey:@"archivo_url"]]
+                                                 cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                             timeoutInterval:60.0];
+        NSURLConnection *theConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+        if (theConnection)
+        {
+            self.descargaData = [NSMutableData data];
+        }
+        else
+        {
+            // Error
+        }
+    }
+}
+
+
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
-    NSLog(@"Finished saving video with error: %@", error);
+    [self.descargaData setLength:0];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+    [self.descargaData appendData:data];
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+    // release the connection, and the data object
+    [connection release];
+    // receivedData is declared as a method instance elsewhere
+    self.descargaData = nil;
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error de descarga", @"Error de descarga") message:@"Falló la descarga, intenta nuevamente"  delegate:self cancelButtonTitle:@"Aceptar" otherButtonTitles: nil];
+    [alert show];
+    [alert release];
+    
+    NSLog(@"Connection failed! Error - %@ %@",
+          [error localizedDescription],
+          [[error userInfo] objectForKey:NSURLErrorFailingURLStringErrorKey]);
+}
+
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+{  
+    NSString *tempPath = [NSString stringWithFormat:@"%@/%@", NSTemporaryDirectory(), [NSString stringWithFormat:@"%@.mp4", [self.clip valueForKey:@"titulo"]]];
+    
+    [self.descargaData writeToFile:tempPath atomically:NO];
+    
+    UISaveVideoAtPathToSavedPhotosAlbum([[NSBundle mainBundle] pathForResource:@"Sample" ofType:@"mp4"], self, @selector(video:didFinishSavingWithError:contextInfo:), nil);
+    
+    [connection release];
+    self.descargaData = nil;
+}
+
+- (void)video:(NSString *)videoPath didFinishSavingWithError:(NSError *)error contextInfo: (id)contextInfo
+{
+    if (error == nil)
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Descarga finalizada", @"Descarga finalizada") message:@"Finalizó la descarga, el video se encuentra en el rollo de tu cámara."  delegate:self cancelButtonTitle:@"Aceptar" otherButtonTitles: nil];
+        [alert show];
+        [alert release];
+    }
+    else
+    {
+        NSLog(@"Error guardando video: %@", error);
+    }
 }
 
 

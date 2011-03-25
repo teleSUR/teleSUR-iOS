@@ -113,6 +113,7 @@
 		63099F4F13199FC500D15603 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63099F4E13199FC500D15603 /* SystemConfiguration.framework */; };
 		63099F5113199FCA00D15603 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63099F5013199FCA00D15603 /* Security.framework */; };
 		63099F5C1319A23000D15603 /* TSMultimediaData.m in Sources */ = {isa = PBXBuildFile; fileRef = 63099F5A1319A23000D15603 /* TSMultimediaData.m */; };
+		631B622D133C950000E42342 /* Sample.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 631B622C133C950000E42342 /* Sample.mp4 */; };
 		632FE555131F582B007B7167 /* IconoLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 632FE554131F582B007B7167 /* IconoLogo.png */; };
 		632FE558131F5E6D007B7167 /* SinImagen.png in Resources */ = {isa = PBXBuildFile; fileRef = 632FE557131F5E6D007B7167 /* SinImagen.png */; };
 		6341A7D5132056A2008FFD9D /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6341A7D4132056A2008FFD9D /* EGORefreshTableHeaderView.m */; };
@@ -364,6 +365,7 @@
 		63099F591319A23000D15603 /* TSMultimediaData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSMultimediaData.h; sourceTree = "<group>"; };
 		63099F5A1319A23000D15603 /* TSMultimediaData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSMultimediaData.m; sourceTree = "<group>"; };
 		63099F5B1319A23000D15603 /* TSMultimediaDataDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSMultimediaDataDelegate.h; sourceTree = "<group>"; };
+		631B622C133C950000E42342 /* Sample.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Sample.mp4; sourceTree = "<group>"; };
 		632FE554131F582B007B7167 /* IconoLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IconoLogo.png; sourceTree = "<group>"; };
 		632FE557131F5E6D007B7167 /* SinImagen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SinImagen.png; sourceTree = "<group>"; };
 		6341A7D3132056A2008FFD9D /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
@@ -480,6 +482,7 @@
 		63099DF713199D1800D15603 = {
 			isa = PBXGroup;
 			children = (
+				631B622C133C950000E42342 /* Sample.mp4 */,
 				634D9EF1131F4B1F005B46FE /* Icono.png */,
 				63E01696131B883D001928E4 /* Default.png */,
 				C470FBC7133988E5007BEC50 /* Localizable.strings */,
@@ -549,7 +552,6 @@
 		63099E1813199D1800D15603 /* iPhone */ = {
 			isa = PBXGroup;
 			children = (
-				63B776F313340A330024D77E /* iPhone */,
 				63099E1913199D1800D15603 /* teleSURAppDelegate_iPhone.h */,
 				63099E1A13199D1800D15603 /* teleSURAppDelegate_iPhone.m */,
 				63099E1C13199D1800D15603 /* MainWindow_iPhone.xib */,
@@ -1090,13 +1092,6 @@
 			name = "Búsqueda";
 			sourceTree = "<group>";
 		};
-		63B776F313340A330024D77E /* iPhone */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = iPhone;
-			sourceTree = "<group>";
-		};
 		63B776F91334393D0024D77E /* Sonidos */ = {
 			isa = PBXGroup;
 			children = (
@@ -1266,6 +1261,7 @@
 				6374D2A31338242B0089F46D /* BarraAzul.png in Resources */,
 				3A4A242C1337CB540093F5E1 /* TSSeleccionIdioma.xib in Resources */,
 				C470FBC5133988E5007BEC50 /* Localizable.strings in Resources */,
+				631B622D133C950000E42342 /* Sample.mp4 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

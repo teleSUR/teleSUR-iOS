@@ -20,6 +20,9 @@
     
     // Datos
     NSDictionary *clip;
+    
+    // Auxiliares
+    NSMutableData *descargaData;
 }
 
 - (void)botonCompartirPresionado:(UIButton *)boton;
@@ -30,6 +33,7 @@
 @property (nonatomic, retain) IBOutlet UITableViewCell *firmaCell;
 @property (nonatomic, retain) IBOutlet UITableViewCell *descripcionCell;
 @property (nonatomic, retain) IBOutlet UITableViewCell *categoriaCell;
+@property (nonatomic, retain) IBOutlet NSMutableData *descargaData;
 
 @property (nonatomic, retain) NSDictionary *clip;
 
