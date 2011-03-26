@@ -104,6 +104,7 @@ NSInteger const TSMargenMenu = 12;
     self.menuScrollView = [[[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, kMENU_ALTURA)] autorelease];
     self.menuScrollView.delegate = self;
     self.menuScrollView.clipsToBounds = NO;
+    self.menuScrollView.showsHorizontalScrollIndicator = NO;
     [self.view addSubview:self.menuScrollView];
 
     
