@@ -43,9 +43,13 @@
 */
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
 
-    if (CGRectContainsPoint(self.scrollEnCuestion.frame, point)) {
-        return nil;
-    } else return self.scrollEnCuestion;
+    if ([self pointInside:point withEvent:event]){
+    
+        if (CGRectContainsPoint(self.scrollEnCuestion.frame, point)) {
+            return nil;
+        } else return self.scrollEnCuestion;
+    }
+    else return nil;
 
     
 
