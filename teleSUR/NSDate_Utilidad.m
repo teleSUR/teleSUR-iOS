@@ -98,9 +98,7 @@
 	
 	[date1 release];
 	[date2 release];
-	
-    NSArray *componentesTiempoQueFalta = [tiempoQueFalta componentsSeparatedByString:@" "];
-        
+	        
     return tiempoQueFalta;
 }
 

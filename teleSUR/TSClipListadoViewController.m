@@ -45,6 +45,8 @@ NSString* const TSEntidadClip = @"clip";
 // Obtiene clips asincrónicamente, con base en propiedades del objeto
 - (void)cargarClips
 {
+    [self mostrarLoadingViewConAnimacion:YES];
+    
 	TSMultimediaData *dataClips = [[TSMultimediaData alloc] init];
     [dataClips getDatosParaEntidad:TSEntidadClip // otros ejemplos: programa, pais, categoria
                         conFiltros:self.diccionarioConfiguracionFiltros // otro ejemplo: conFiltros:[NSDictionary dictionaryWithObject:@"2010-01-01" forKey:@"hasta"]
@@ -62,7 +64,7 @@ NSString* const TSEntidadClip = @"clip";
     [self personalizarNavigationBar];
     
     // Mostrar vista de loading
-    [self mostrarLoadingViewConAnimacion:YES];
+    //[self mostrarLoadingViewConAnimacion:YES];
     
     // Inicializar datos
     self.clips = [NSMutableArray array];
@@ -143,11 +145,8 @@ NSString* const TSEntidadClip = @"clip";
             self.arregloClipsAsyncImageViews = [NSMutableArray array];
         }
         
-        //self.agregarAlFinal = NO;
+        [self ocultarLoadingViewConAnimacion:YES];
     }
-    
-    // Ocultar vista de loading
-    [self ocultarLoadingViewConAnimacion:YES];
     
     // Liberar objeto de datos
     [data release];

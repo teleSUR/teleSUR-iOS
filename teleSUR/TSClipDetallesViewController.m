@@ -13,6 +13,7 @@
 #import "AsynchronousImageView.h"
 #import "SHK.h"
 #import "GANTracker.h"
+#import "TSClipPlayerViewController.h"
 
 // TODO: Integrar estas constantes mejor a configuración, quizá plist principal
 // Orden de secciones
@@ -58,15 +59,16 @@
     [super viewDidLoad];
     
     self.omitirVerMas = YES;
+    self.agregarAlFinal = YES;
     self.tableViewController.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Fondo2.png"]];
     
     // Ajustar tamanno de celda para descripción
     UILabel *etiquetaDescripcion = (UILabel *)[self.descripcionCell viewWithTag:5];
     CGSize maximumLabelSize = CGSizeMake(262,9999);
-    CGSize expectedLabelSize = [[self.clip valueForKey:@"descripcion"]
-                                           sizeWithFont:etiquetaDescripcion.font 
-                                      constrainedToSize:maximumLabelSize 
-                                          lineBreakMode:etiquetaDescripcion.lineBreakMode];
+    CGSize expectedLabelSize = [[self.clip obtenerDescripcion]
+                                   sizeWithFont:etiquetaDescripcion.font 
+                              constrainedToSize:maximumLabelSize 
+                                  lineBreakMode:etiquetaDescripcion.lineBreakMode];
     self.descripcionCell.frame = CGRectMake(self.descripcionCell.frame.origin.x, self.descripcionCell.frame.origin.y, self.descripcionCell.frame.size.width, expectedLabelSize.height+15);
     etiquetaDescripcion.frame = CGRectMake(etiquetaDescripcion.frame.origin.x, etiquetaDescripcion.frame.origin.y, etiquetaDescripcion.frame.size.width, expectedLabelSize.height);
     
@@ -109,8 +111,8 @@
 {
     // Si es un programa, no están definidos sus categorizadores ni sus videos relacionados
     // TODO: mover lógica a NSDictionary,  ej:  (BOOL)[self.clip esPrograma]
-    if ([[[self.clip valueForKey:@"tipo"] valueForKey:@"nombre"] isEqualToString:@"Programa completo"])
-        return 1;
+    if ([self.clip esPrograma])
+        return 2;
     else
         return 3;
 }
@@ -123,15 +125,7 @@
         case kINFO_SECTION:
             
             ;// Tres filas: título, firma y descripción
-            NSInteger numeroFilas = 3.0;
-            
-            // Si no hay descripción, no mostrar tercer celda
-            // TODO: mover a [self.clip tieneDescripcion]
-            if ([[self.clip valueForKey:@"descripcion"] isKindOfClass:[NSNull class]]
-                || [[self.clip valueForKey:@"descripcion"] isEqualToString:@""])
-                numeroFilas--;
-            
-            return numeroFilas;
+            return 3;
             
         case kCLASIFICACION_SECTION:
             
@@ -179,6 +173,7 @@
             
             ;// TODO: Tomar en cuenta diferentes tamaños de celda
             UITableViewCell *celdaListado = [[[NSBundle mainBundle] loadNibNamed:@"ClipEstandarTableCellView" owner:self options:nil] objectAtIndex:0];
+            
             return celdaListado.frame.size.height;
             
         default:
@@ -237,7 +232,7 @@
                     
                 case kDESCRIOCION_ROW:
                     
-                    [(UILabel *)[self.descripcionCell viewWithTag:5] setText: [self.clip valueForKey:@"descripcion"]];
+                    [(UILabel *)[self.descripcionCell viewWithTag:5] setText: [self.clip obtenerDescripcion]];
                     
                     return descripcionCell;
             }
@@ -376,7 +371,13 @@
             
             if (indexPath.row == kTITULO_ROW)
             {
-                [super tableView:tableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row inSection:0]];
+                ;// Crear y configurar player
+                TSClipPlayerViewController *playerController = [[TSClipPlayerViewController alloc] initConClip:self.clip];
+                
+                // Reproducir video
+                [playerController playEnViewController:self
+                                  finalizarConSelector:@selector(playerFinalizado:)
+                                     registrandoAccion:YES];
             }
             
             break;
@@ -431,7 +432,7 @@
     if (indexPath.section == kRELACIONADOS_SECTION)
     {    
         [super tableView:tableView willDisplayCell:cell forRowAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row inSection:0]];
-    }
+    }    
 }
 
 - (void)botonDescargarPresionado:(UIButton *)boton;
@@ -523,6 +524,21 @@
     if (self.indexPathSeleccionado.section == kINFO_SECTION) return;
     
     [super playerFinalizado:notification];
+}
+
+
+- (void)ocultarLoadingViewConAnimacion:(BOOL)animacion
+{
+    //self.tableViewController.tableView.alpha = 1.0;
+    
+    //[super ocultarLoadingViewConAnimacion:animacion];
+}
+
+- (void)mostrarLoadingViewConAnimacion:(BOOL)animacion
+{
+    //[super mostrarLoadingViewConAnimacion:animacion];
+    
+    //self.tableViewController.tableView.alpha = 0.2;
 }
 
 @end

@@ -80,6 +80,7 @@ NSInteger const TSMargenMenu = 12;
         
         // Configurar variables internas
         self.diccionarioConfiguracionFiltros = dict;
+        [self mostrarLoadingViewConAnimacion:NO];
     }
     
     if (!self.entidadMenu)
@@ -266,8 +267,6 @@ NSInteger const TSMargenMenu = 12;
         self.indiceDeFiltroSeleccionado = indice;
         
         // Re-cargar datos
-        // Mostrar vista de loading
-        [self.tableViewController mostrarLoadingViewConAnimacion:YES];
         [self cargarClips];
     }
 }   
@@ -305,7 +304,7 @@ NSInteger const TSMargenMenu = 12;
         [self construirMenu]; 
     }
     
-    [self.tableViewController ocultarLoadingViewConAnimacion:YES];
+    //[self ocultarLoadingViewConAnimacion:YES];
 }
 
 

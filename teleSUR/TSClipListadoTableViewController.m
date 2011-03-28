@@ -323,6 +323,38 @@
     }
 }
 
+- (void)ocultarLoadingViewConAnimacion:(BOOL)animacion
+{
+    if (animacion)
+    {
+        [UIView beginAnimations:@"mostrarTableView" context:nil];
+        self.tableViewController.tableView.alpha = 1.0;
+        [UIView commitAnimations];
+    }
+    else
+    {
+        self.tableViewController.tableView.alpha = 1.0;
+    }
+    
+    [super ocultarLoadingViewConAnimacion:animacion];
+}
+
+- (void)mostrarLoadingViewConAnimacion:(BOOL)animacion
+{
+    if (animacion)
+    {
+        [UIView beginAnimations:@"opacarTableView" context:nil];
+        self.tableViewController.tableView.alpha = 0.3;
+        [UIView commitAnimations];
+    }
+    else
+    {
+        self.tableViewController.tableView.alpha = 0.3;
+    }
+    
+    [super mostrarLoadingViewConAnimacion:animacion];
+}
+
 
 
 @end

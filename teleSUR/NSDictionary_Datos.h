@@ -17,6 +17,10 @@
 - (NSString *)obtenerFechaLargaParaEsteClip;
 - (NSString *)obtenerTiempoDesdeParaEsteClip;
 
+- (NSString *)obtenerDescripcion;
+
+- (BOOL)esPrograma;
+
 // Clasificadores
 - (NSArray *)arregloDiccionariosClasificadores;
 - (NSDictionary *)diccionarioClasificadorParaCampo:(NSString *)campo;

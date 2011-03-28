@@ -1034,6 +1034,32 @@
 			name = VIstas;
 			sourceTree = "<group>";
 		};
+		6341D1D9133FFDCE00A0E3AE /* Tabla */ = {
+			isa = PBXGroup;
+			children = (
+				63B776EA1333D6B50024D77E /* TSClipListadoTableViewController.h */,
+				63B776EB1333D6B50024D77E /* TSClipListadoTableViewController.m */,
+				63B776EC1333D6B50024D77E /* TSClipListadoTableViewController.xib */,
+				6341D1DB133FFDE700A0E3AE /* Tabla con menú */,
+				6346F80313271C7E008802EA /* Celdas */,
+				6346F80413271CBD008802EA /* Pull-To-Refresh */,
+			);
+			name = Tabla;
+			sourceTree = "<group>";
+		};
+		6341D1DB133FFDE700A0E3AE /* Tabla con menú */ = {
+			isa = PBXGroup;
+			children = (
+				63B776F413340ED80024D77E /* TSClipListadoMenuTableViewController.h */,
+				63B776F513340ED80024D77E /* TSClipListadoMenuTableViewController.m */,
+				63E4A8EC1325EDF300669E91 /* TSClipListadoMenuProgranasViewController.h */,
+				63E4A8ED1325EDF400669E91 /* TSClipListadoMenuProgranasViewController.m */,
+				3AD03843133D54600087925F /* UIViewWrapUIScrollView.h */,
+				3AD03844133D54600087925F /* UIViewWrapUIScrollView.m */,
+			);
+			name = "Tabla con menú";
+			sourceTree = "<group>";
+		};
 		6346F80313271C7E008802EA /* Celdas */ = {
 			isa = PBXGroup;
 			children = (
@@ -1123,19 +1149,9 @@
 		63E016A7131D846E001928E4 /* Listado */ = {
 			isa = PBXGroup;
 			children = (
-				3AD03843133D54600087925F /* UIViewWrapUIScrollView.h */,
-				3AD03844133D54600087925F /* UIViewWrapUIScrollView.m */,
 				3A10016C131B2B0600717211 /* TSClipListadoViewController.h */,
 				3A10016D131B2B0600717211 /* TSClipListadoViewController.m */,
-				63B776EA1333D6B50024D77E /* TSClipListadoTableViewController.h */,
-				63B776EB1333D6B50024D77E /* TSClipListadoTableViewController.m */,
-				63B776EC1333D6B50024D77E /* TSClipListadoTableViewController.xib */,
-				63B776F413340ED80024D77E /* TSClipListadoMenuTableViewController.h */,
-				63B776F513340ED80024D77E /* TSClipListadoMenuTableViewController.m */,
-				63E4A8EC1325EDF300669E91 /* TSClipListadoMenuProgranasViewController.h */,
-				63E4A8ED1325EDF400669E91 /* TSClipListadoMenuProgranasViewController.m */,
-				6346F80313271C7E008802EA /* Celdas */,
-				6346F80413271CBD008802EA /* Pull-To-Refresh */,
+				6341D1D9133FFDCE00A0E3AE /* Tabla */,
 			);
 			name = Listado;
 			sourceTree = "<group>";

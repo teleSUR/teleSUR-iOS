@@ -90,6 +90,13 @@
     NSString *pais = [[self valueForKey:@"pais"] valueForKey:@"nombre"];
     NSString *fechaCompleta = [self obtenerTiempoDesdeParaEsteClip];
     
+    
+    if ([self esPrograma])
+    {
+        return [self obtenerFechaLargaParaEsteClip];
+    }
+    
+    
 	// Concatenar datos: ciudad (si la hay), país y fecha completa
 
 	if (![ciudad isKindOfClass:[NSNull class] ] && [ciudad length] > 0) [firma appendFormat:@"%@, ", ciudad];
@@ -99,6 +106,11 @@
     [firma appendFormat:@"%@", fechaCompleta];
     
 	return firma;
+}
+
+- (BOOL)esPrograma
+{
+    return [[[self valueForKey:@"tipo"] valueForKey:@"nombre"] isEqualToString:@"Programa completo"];
 }
 
 
@@ -160,6 +172,24 @@
     return [self obtenerFechaLargaParaEsteClip];
 	
 	
+}
+
+- (NSString *)obtenerDescripcion
+{
+    NSString *descripcion = @"";
+    
+    if ([[self valueForKey:@"descripcion"] isKindOfClass:[NSNull class]] ||
+        [[self valueForKey:@"descripcion"] isEqualToString:@""])
+    {
+        if (![[self valueForKey:@"programa"] isKindOfClass:[NSNull class]])
+            descripcion = [NSString stringWithFormat:@"%@", [[self valueForKey:@"programa"] valueForKey:@"descripcion"]];
+    }
+    else
+    {
+        descripcion = [self valueForKey:@"descripcion"];
+    }
+    
+    return descripcion;
 }
 
 

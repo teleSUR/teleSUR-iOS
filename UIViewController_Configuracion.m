@@ -27,7 +27,7 @@
 
 }
 
-- (void)mostrarLoadingViewConAnimacion: (BOOL)animacion
+- (void)mostrarLoadingViewConAnimacion:(BOOL)animacion
 {
     // Cargar NIB con vista para loading, asignarle un tag para hacer referenciar después
     UIView *vistaLoading = [[[NSBundle mainBundle] loadNibNamed:@"LoadingView" owner:self options:nil] lastObject];					
@@ -37,7 +37,11 @@
     [self.view setUserInteractionEnabled:NO];
     
     // Agregar como subvista
-    [self.view addSubview:vistaLoading];
+    if (![self.view viewWithTag:kLOADING_VIEW_TAG])
+    {
+        [self.view addSubview:vistaLoading];
+    }
+    
     if (!animacion)
     {
         [UIView beginAnimations:nil context:NULL];
