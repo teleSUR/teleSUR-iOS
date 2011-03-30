@@ -7,7 +7,7 @@
 //
 
 #import "TSMasTableViewController.h"
-
+#import "UIViewController_Configuracion.h"
 
 @implementation TSMasTableViewController
 
@@ -28,6 +28,7 @@
 - (void)didReceiveMemoryWarning
 {
     // Releases the view if it doesn't have a superview.
+
     [super didReceiveMemoryWarning];
     
     // Release any cached data, images, etc that aren't in use.
@@ -37,6 +38,7 @@
 
 - (void)viewDidLoad
 {
+    [self personalizarNavigationBar];    
     [super viewDidLoad];
 
     // Uncomment the following line to preserve selection between presentations.
@@ -80,19 +82,41 @@
 }
 
 #pragma mark - Table view data source
-
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    switch (section) {
+        case 0:
+            return @"Sobre teleSUR";
+            break;
+        case 1:
+            return @"teleSUR en";
+            break;
+        default:
+            break;
+    }
+}
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
+
     // Return the number of sections.
-    return 0;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+
+    switch (section) {
+        case 0:
+            return 2;
+            break;
+        case 1:
+            return 2;
+        default:
+            return 0; 
+            break;
+    }
+
+
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -102,6 +126,49 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        
+        
+        switch (indexPath.section) {
+            case 0: // Primera Seccion
+                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;                        
+                switch (indexPath.row) {
+                        
+                    case 0:
+                        cell.textLabel.text = @"Nosotros";
+                        cell.imageView.image = [UIImage imageNamed:@"IconoLogo.png"];                                                 
+
+                        break;
+                    case 1:
+                        cell.textLabel.text = @"Contacto";
+                        cell.imageView.image = [UIImage imageNamed:@"mail.png"];                                                 
+                    default:
+                        break;
+                }
+                
+                break;
+                
+            case 1: // Segunda Seccion
+                
+                switch (indexPath.row) {
+                    case 0:
+                        cell.textLabel.text = @"Facebook";
+                        cell.imageView.image = [UIImage imageNamed:@"facebook-logo.png"];
+                        break;
+                    case 1:
+                        cell.textLabel.text = @"Twitter";
+                        cell.imageView.image = [UIImage imageNamed:@"twitter-logo.png"]; 
+                        break;
+                    default:
+                        break;
+                }
+                
+                break;
+                
+            default:
+                
+                break;
+        }
+        
     }
     
     // Configure the cell...
@@ -153,13 +220,46 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     [detailViewController release];
-     */
+
+    switch (indexPath.section) {
+        case 0: // Primera Seccion
+            
+            switch (indexPath.row) {
+                case 0:
+                    
+                    break;
+                case 1:
+
+                    break;
+                default:
+                    break;
+            }
+            
+            break;
+            
+        case 1: // Segunda Seccion
+            
+            switch (indexPath.row) {
+                case 0:
+
+                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.facebook.com/teleSUR"]];
+                    break;
+                case 1:
+
+                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.twitter.com/teleSURtv"]];                    
+                    break;
+                default:
+                    break;
+            }
+            
+            break;
+            
+        default:
+            
+            break;
+    }
+
+    
 }
 
 @end
