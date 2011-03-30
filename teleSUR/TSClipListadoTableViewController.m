@@ -151,8 +151,8 @@
     // Establecer texto de etiquetas
     tituloLabel.text = [[self.clips objectAtIndex:indexPath.row] valueForKey:@"titulo"];
     duracionLabel.text = [[self.clips objectAtIndex:indexPath.row] valueForKey:@"duracion"];	
-    if ([[[[self.clips lastObject] valueForKey:@"tipo"] valueForKey:@"nombre"] isEqualToString:@"Programa completo"]) {
-        firmaLabel.text = [[self.clips objectAtIndex:indexPath.row] obtenerFechaLargaParaEsteClip];
+    if ([[self.clips lastObject] esPrograma]) {
+        firmaLabel.text = [[self.clips objectAtIndex:indexPath.row] obtenerFechaConDia];
     } else {
         firmaLabel.text = [[self.clips objectAtIndex:indexPath.row] obtenerTiempoDesdeParaEsteClip];
     }

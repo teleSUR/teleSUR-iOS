@@ -88,11 +88,11 @@
     // Obtener datos
 	NSString *ciudad = [self valueForKey:@"ciudad"];
     NSString *pais = [[self valueForKey:@"pais"] valueForKey:@"nombre"];
-    NSString *fechaCompleta = [self obtenerTiempoDesdeParaEsteClip];
+    NSString *fechaCompleta = [self obtenerFechaLargaParaEsteClip];
     
     if ([self esPrograma])
     {
-        return [self obtenerFechaLargaParaEsteClip];
+        return [self obtenerFechaConDia];
     }
     
     
@@ -122,16 +122,44 @@
 {	
         
 	NSDateFormatter *formater = [[NSDateFormatter alloc] init];
-
+    
+    NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+    
+    [formater setLocale:locale];
+    
 	[formater setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
 
+    NSLog(@"::::::%@", [self valueForKey:@"fecha"]);
+    
 	NSDate *date = [formater dateFromString:[NSString stringWithFormat:@"%@", [self valueForKey:@"fecha"]]];
     
-	[formater release];
-    
     NSLog(@"fechhhh: %@", date);
-	
+	[formater release];	
 	return date;
+}
+
+-(NSString *)obtenerFechaConDia
+{
+    NSMutableString *resultado = [[NSMutableString alloc] init];
+    
+    
+    
+    
+
+    NSDateFormatter *dateFormatterSemana = [[NSDateFormatter alloc] init];    
+    [dateFormatterSemana setDateFormat:@"EEEE, "];    
+    [resultado appendString: [dateFormatterSemana stringFromDate:[self obtenerNSDateParaEsteClip]]];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];        
+    
+    [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+    
+    [resultado appendString: [dateFormatter stringFromDate:[self obtenerNSDateParaEsteClip]]];
+    
+    [dateFormatter release];
+    
+    [dateFormatterSemana release];
+    return resultado;
 }
 
 

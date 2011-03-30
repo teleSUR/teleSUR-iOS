@@ -11,6 +11,8 @@
 
 @interface NSDictionary (NSDictionary_Datos)
 
+-(NSString *)obtenerFechaConDia;
+
 - (NSString *)obtenerFirmaParaEsteClip;
 - (NSDate *)obtenerNSDateParaEsteClip;
 - (NSString *)obtenerFechaCompletaParaEsteClip;
