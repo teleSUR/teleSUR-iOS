@@ -129,11 +129,8 @@
     
 	[formater setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
 
-    NSLog(@"::::::%@", [self valueForKey:@"fecha"]);
-    
 	NSDate *date = [formater dateFromString:[NSString stringWithFormat:@"%@", [self valueForKey:@"fecha"]]];
     
-    NSLog(@"fechhhh: %@", date);
 	[formater release];	
 	return date;
 }
