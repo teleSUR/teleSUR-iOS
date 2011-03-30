@@ -90,7 +90,6 @@
     NSString *pais = [[self valueForKey:@"pais"] valueForKey:@"nombre"];
     NSString *fechaCompleta = [self obtenerTiempoDesdeParaEsteClip];
     
-    
     if ([self esPrograma])
     {
         return [self obtenerFechaLargaParaEsteClip];
@@ -110,7 +109,9 @@
 
 - (BOOL)esPrograma
 {
-    return [[[self valueForKey:@"tipo"] valueForKey:@"nombre"] isEqualToString:@"Programa completo"];
+    return ([[[self valueForKey:@"tipo"] valueForKey:@"nombre"] isEqualToString:@"Programa completo"]
+           || [[[self valueForKey:@"tipo"] valueForKey:@"nombre"] isEqualToString:@"Documental"]
+           || [[[self valueForKey:@"tipo"] valueForKey:@"nombre"] isEqualToString:@"Reportaje"]);
 }
 
 
@@ -119,12 +120,22 @@
 // que se espera tenga el formato: yyyy-MM-dd HH:mm:ss
 - (NSDate *)obtenerNSDateParaEsteClip
 {	
+    
+    NSString *format = [NSDateFormatter
+                        dateFormatFromTemplate:@"yyyy-MM-dd HH:mm:ss"
+                        options:0
+                        locale:[NSLocale currentLocale]];
+        
 	NSDateFormatter *formater = [[NSDateFormatter alloc] init];
-	[formater setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-	
-	NSDate *date = [formater dateFromString: [self valueForKey:@"fecha"]];
-	
+    NSLocale *locale = [[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"] autorelease];
+    [formater setLocale:locale];
+	[formater setDateFormat:format];
+    
+	NSDate *date = [formater dateFromString:[NSString stringWithFormat:@"%@", [self valueForKey:@"fecha"]]];
+    
 	[formater release];
+    
+    NSLog(@"fechhhh: %@", date);
 	
 	return date;
 }

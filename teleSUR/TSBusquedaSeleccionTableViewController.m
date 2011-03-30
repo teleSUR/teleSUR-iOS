@@ -9,11 +9,13 @@
 #import "TSBusquedaSeleccionTableViewController.h"
 #import "TSMultimediaData.h"
 #import "TSClipBusquedaViewController.h"
+#import "UIViewController_Configuracion.h"
 
 
 @implementation TSBusquedaSeleccionTableViewController
 
 @synthesize opciones, entidad, seleccion, controladorBusqueda, indicadorActividad;
+@synthesize indices;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -41,25 +43,30 @@
 
 - (void)viewDidLoad
 {
+    [self personalizarNavigationBar];
     // Indices:
-    indices = [[NSMutableArray alloc] init];
+    self.indices = [[NSMutableArray alloc] init];
     nombrePaises = [[NSMutableArray alloc] init];
     
-    if (!self.seleccion)
-        self.seleccion = [NSMutableArray array];
+    // Arreglo de elementos elegidos
+    if (!self.seleccion) self.seleccion = [NSMutableArray array];
     
+    // Obtener arreglo de opciones
     self.opciones = [NSMutableArray array];
     
-    if ([self.entidad isEqualToString:@"ubicacion"])
+    if ([self.entidad isEqualToString:@"ubicacion"]) // Si se trata de ubicación, obtener opciones de infoDictionary
     {
         self.opciones = [[[[NSBundle mainBundle] infoDictionary] valueForKey:@"Configuración"] valueForKey:@"Ubicaciones"];
     }
-    else
+    else // De otro modo obtener opciones de servicio web
     {
+        // Inicializar diccionario para filtrar resultado
         NSMutableDictionary *filtros = [NSMutableDictionary dictionary];
         if ([self.entidad isEqualToString:@"pais"])
         {
-            [filtros setObject:[self.controladorBusqueda.selecciones valueForKey:@"ubicacion"] forKey:@"ubicacion"];
+            // Filtrar sólo 
+            if ([self.controladorBusqueda.selecciones valueForKey:@"ubicacion"])
+                [filtros setObject:[self.controladorBusqueda.selecciones valueForKey:@"ubicacion"] forKey:@"ubicacion"];
         }
         
         self.indicadorActividad = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(150.0, 174.0, 20, 20)];
@@ -95,10 +102,14 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated
-{
+{    
+    if ([self.entidad isEqualToString:@"ubicacion"] && ![[self.controladorBusqueda.selecciones valueForKey:@"ubicacion"] isEqual:self.seleccion])
+    {
+        [self.controladorBusqueda.selecciones setObject:[NSMutableArray array] forKey:@"pais"];
+    }
+    
     
     [self.controladorBusqueda.selecciones setValue:self.seleccion forKey:self.entidad];
-    
     
     [self.controladorBusqueda.tableView reloadData];
     
@@ -113,7 +124,7 @@
         
         if (section != 0) {
             
-            return [indices objectAtIndex:section-1];
+            return [self.indices objectAtIndex:section-1];
         } else return @"";
         
     }
@@ -123,7 +134,7 @@
 
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
 {
-    if ([self.entidad isEqualToString:@"pais"]) return indices;
+    if ([self.entidad isEqualToString:@"pais"]) return self.indices;
     else return nil;
     
     
@@ -141,7 +152,7 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    if ([self.entidad isEqualToString:@"pais"]) return [indices count]+1;
+    if ([self.entidad isEqualToString:@"pais"]) return [self.indices count]+1;
     else return 2;
 }
 
@@ -153,7 +164,7 @@
     if ([self.entidad isEqualToString:@"pais"]) {
         
         //---get the letter in each section; e.g., A, B, C, etc.---
-        NSString *alphabet = [indices objectAtIndex:section-1];
+        NSString *alphabet = [self.indices objectAtIndex:section-1];
         
         //---get all states beginning with the letter---
         NSPredicate *predicate = 
@@ -166,12 +177,12 @@
     
     else return [self.opciones count];
 }
-
+/*
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return indexPath.section > 0 ? 38.0 : 40.0;
 }
-
+*/
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
@@ -182,6 +193,7 @@
         
     }
     
+    // Para sección "Todos"
     if (indexPath.section == 0)
     {
         cell.textLabel.text = NSLocalizedString(@"Todos", @"Todos");
@@ -194,7 +206,7 @@
     if ([self.entidad isEqualToString:@"pais"]) {
         
         //---get the letter in the current section---
-        NSString *alphabet = [indices objectAtIndex:[indexPath section]-1];
+        NSString *alphabet = [self.indices objectAtIndex:[indexPath section]-1];
         
         //---get all states beginning with the letter---
         NSPredicate *predicate = 
@@ -209,25 +221,22 @@
         cell.textLabel.text = [[[content objectAtIndex:indexPath.section] objectForKey:@"rowValues"]
                            objectAtIndex:indexPath.row];*/
     }
-    else {
+    else
+    {
         cell.textLabel.text = [[self.opciones objectAtIndex:indexPath.row] valueForKey:@"nombre"];    
-        
-        if ([self.seleccion containsObject: [[self.opciones objectAtIndex:indexPath.row] valueForKey:@"slug"]] ) {
-            cell.accessoryType = UITableViewCellAccessoryCheckmark;
-            
-        } else {
-            cell.accessoryType = UITableViewCellAccessoryNone;        
-        }
-        
     }
     
-    
-    
-
-    
+    if ([self.seleccion containsObject: [[self.opciones objectAtIndex:[self indexPathAbsolutoDesdeIndexPath:indexPath].row] valueForKey:@"slug"]] )
+    {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    }
+    else
+    {
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
     
     // Configure the cell...
-    
+
     return cell;
 }
 
@@ -276,7 +285,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0)
+    if (indexPath.section == 0) // Celda "Todos"
     {
         [self.seleccion removeAllObjects];
         [[self.tableView cellForRowAtIndexPath:indexPath] setAccessoryType:UITableViewCellAccessoryCheckmark];
@@ -288,22 +297,24 @@
     }
     else
     {
-        // Navigation logic may go here. Create and push another view controller.
-        if ([self.seleccion containsObject: [[self.opciones objectAtIndex:indexPath.row] valueForKey:@"slug"]])
+        if ([self.seleccion containsObject: [[self.opciones objectAtIndex:[[self indexPathAbsolutoDesdeIndexPath:indexPath] row]] valueForKey:@"slug"]]) // Elemento dentro de la selección
         {
-            [self.seleccion removeObject:[[self.opciones objectAtIndex:indexPath.row] valueForKey:@"slug"]];
+            [self.seleccion removeObject:[(NSDictionary *)[self.opciones objectAtIndex:[[self indexPathAbsolutoDesdeIndexPath:indexPath] row]] valueForKey:@"slug"]];
             [[self.tableView cellForRowAtIndexPath:indexPath] setAccessoryType:UITableViewCellAccessoryNone];   
             
+            // Ningún elemento seleccionado
             if ([self.seleccion count] == 0)
                 [[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]] setAccessoryType:UITableViewCellAccessoryCheckmark];
         }
-        else
+        else // Elemento no está seleccionado
         {
-            [self.seleccion addObject:[[self.opciones objectAtIndex:indexPath.row] valueForKey:@"slug"]];
+            [self.seleccion addObject:[[self.opciones objectAtIndex:[[self indexPathAbsolutoDesdeIndexPath:indexPath] row]] valueForKey:@"slug"]];
+            NSLog(@"%@", [[self.opciones objectAtIndex:[[self indexPathAbsolutoDesdeIndexPath:indexPath] row]] valueForKey:@"slug"]);
             [[self.tableView cellForRowAtIndexPath:indexPath] setAccessoryType:UITableViewCellAccessoryCheckmark];    
             
             [[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]] setAccessoryType:UITableViewCellAccessoryNone];
             
+            // Todos seleccionados, sólo marcar celda para "Todos"
             if ([self.seleccion count] == [self.opciones count]) {
                 [[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]] setAccessoryType:UITableViewCellAccessoryCheckmark];
                 [self.seleccion removeAllObjects];
@@ -314,6 +325,26 @@
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+- (NSIndexPath *)indexPathAbsolutoDesdeIndexPath:(NSIndexPath *)indexPath
+{
+    if ([self.entidad isEqualToString:@"pais"])
+    {
+        int suma=0;
+        
+        for (int i =1; i<indexPath.section; i++)
+        {
+            suma += [self tableView:self.tableView numberOfRowsInSection:i];
+        }
+        
+        suma += indexPath.row;
+        
+        return [NSIndexPath indexPathForRow:suma inSection:1];
+        
+        
+        
+    }
+    else return indexPath;
+}
 
 #pragma mark -
 #pragma mark TSMultimediaDataDelegate
@@ -342,9 +373,9 @@
         NSString *uniChar = [NSString stringWithFormat:@"%C", alphabet];
         
         //---add each letter to the index array---
-        if (![indices containsObject:uniChar])
+        if (![self.indices containsObject:uniChar])
         {            
-            [indices addObject:uniChar];
+            [self.indices addObject:uniChar];
         }        
     }
 

@@ -38,10 +38,6 @@ extern NSString* const TSEntidadClip;
 @property (nonatomic, retain) NSMutableArray *arregloClipsAsyncImageViews;
 @property (nonatomic, retain) NSMutableDictionary *diccionarioConfiguracionFiltros;
 
-
-// Init
-- (void)configurarConEntidad:(NSString *)entidad yFiltros:(NSDictionary *)diccionario;
-
 // Operaciones
 - (void)cargarClips;
 

@@ -15,7 +15,6 @@
 
 - (void)construirMenu 
 {
-
     // Retirar todos los botones del men√∫, si es que hay
     for (UIButton *boton in self.menuScrollView.subviews) [boton removeFromSuperview];
     
@@ -59,10 +58,27 @@
 }
 
 
+- (void)configurarDiccionarioConfiguracionFiltrosParaSlug:(NSString *)slug
+{
+    if ([slug isEqualToString:@"documental"] || [slug isEqualToString:@"reportaje"])
+    {
+        [self.diccionarioConfiguracionFiltros removeObjectForKey:self.entidadMenu];
+        [self.diccionarioConfiguracionFiltros setValue:slug forKey:@"tipo"];
+    }
+    else
+    {
+        [self.diccionarioConfiguracionFiltros setValue:@"programa" forKey:@"tipo"];
+        [self.diccionarioConfiguracionFiltros setValue:([slug isEqualToString:@"todos"] ? nil : slug) forKey:self.entidadMenu];
+    }
+}
+
+
+
 
 - (void)viewDidLoad
 {
     // Configurar para mostrar programas
+    self.conFiltroTodos = NO;
     self.entidadMenu = @"programa";
     self.diccionarioConfiguracionFiltros = [NSMutableDictionary dictionaryWithObject:@"programa" forKey:@"tipo"];
     
@@ -130,7 +146,7 @@
     
     // Mostrar imagen en vez de nombre
     NSArray *arreglo = [NSArray arrayWithObjects:boton, filtro, nil]; 
-    NSOperationQueue *queue = [NSOperationQueue new];
+    NSOperationQueue *queue = [NSOperationQueue mainQueue];
     NSInvocationOperation *operation = [[NSInvocationOperation alloc]  
                                         initWithTarget:self
                                         selector:@selector(cargarImagen:)
@@ -152,9 +168,16 @@
     UIButton *boton = (UIButton *)[arregloBotonFiltro objectAtIndex:0];
     NSDictionary *filtro = (NSDictionary *)[arregloBotonFiltro objectAtIndex:1];
     
-    NSString *url = [filtro valueForKey:@"imagen_url"];
-    if (![url isEqual:[NSNull null]])
-        [boton setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:url]]] forState:UIControlStateNormal];
+    // Buscar imagen en sistema de archivos, si no se encuentra descargarla
+    UIImage *programaImage = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png", [filtro valueForKey:@"slug"]]];
+    if (!programaImage)
+    {
+        NSString *url = [filtro valueForKey:@"imagen_url"];
+        if (![url isEqual:[NSNull null]])
+            programaImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:url]]];
+    }
+
+    [boton setImage:programaImage forState:UIControlStateNormal];
 }
 
 
@@ -166,6 +189,25 @@
     else
         return [super nombreNibParaIndexPath:indexPath];
 }
+
+
+- (void)TSMultimediaData:(TSMultimediaData *)data entidadesRecibidas:(NSArray *)array paraEntidad:(NSString *)entidad
+{
+    if (entidad != TSEntidadClip)
+    {
+        self.filtros = [NSMutableArray arrayWithArray:array];
+        [self.filtros addObjectsFromArray:[[[[NSBundle mainBundle] infoDictionary] valueForKey:@"Configuración"] valueForKey:@"Filtros Extra Menú Programas"]];
+        
+        [self construirMenu]; 
+    }
+    else
+    {
+        [super TSMultimediaData:data entidadesRecibidas:array paraEntidad:entidad];
+    }
+    
+    //[self ocultarLoadingViewConAnimacion:YES];
+}
+
 
 #pragma - Scroll
 /*

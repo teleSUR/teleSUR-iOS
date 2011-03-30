@@ -216,9 +216,6 @@ NSInteger const TSMargenMenu = 12;
     // Deifnir área de scroll
     [self.menuScrollView setContentSize: CGSizeMake(offsetX, self.menuScrollView.frame.size.height)];
     
-    // Ajustes para Scroll personalizado
-//    [self.menuScrollView setPagingEnabled:NO];
-    
     // Fingir presionar el botón del clip seleccionado
     [self filtroSeleccionadoConBoton:[[self.menuScrollView subviews] objectAtIndex:self.indiceDeFiltroSeleccionado]];
 }
@@ -258,10 +255,10 @@ NSInteger const TSMargenMenu = 12;
     if (self.indiceDeFiltroSeleccionado != indice)
     {
         // Configurar nuevo diccionario de filtros, no filtrar si se us— bot—n "todos"
-        [self.diccionarioConfiguracionFiltros setValue:([slug isEqualToString:@"todos"] ? nil : slug) forKey:self.entidadMenu];
+        [self configurarDiccionarioConfiguracionFiltrosParaSlug:slug];
         
         // Reinicializar datos, con misma entidad de menœ pero nuevo diccionario de confgiruaci—n de filtros 
-        [self configurarConEntidad:self.entidadMenu yFiltros:self.diccionarioConfiguracionFiltros];
+        //[self configurarConEntidad:self.entidadMenu yFiltros:self.diccionarioConfiguracionFiltros];
         
         // Actualizamos el boton que debe "seleccionarse"
         self.indiceDeFiltroSeleccionado = indice;
@@ -270,6 +267,13 @@ NSInteger const TSMargenMenu = 12;
         [self cargarClips];
     }
 }   
+
+- (void)configurarDiccionarioConfiguracionFiltrosParaSlug:(NSString *)slug
+{ 
+    [self.diccionarioConfiguracionFiltros setValue:([slug isEqualToString:@"todos"] ? nil : slug) forKey:self.entidadMenu];
+}
+
+
 
 
 
@@ -297,7 +301,7 @@ NSInteger const TSMargenMenu = 12;
         }
         else
         {
-            self.filtros = array;
+            self.filtros = [NSMutableArray arrayWithArray:array];
         }
         
         // Reconstruir menú con nuevos fitros

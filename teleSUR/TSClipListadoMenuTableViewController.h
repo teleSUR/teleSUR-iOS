@@ -13,26 +13,32 @@ extern const NSInteger TSMargenMenu;
 
 @interface TSClipListadoMenuTableViewController : TSClipListadoTableViewController {
     
-    BOOL conFilltroTodos;
+    // Vista para scroll
     UIScrollView *menuScrollView;
     
-	NSString *entidadMenu;
+    // Arreglo de elementos para el menú
+    NSMutableArray *filtros;
+    
+    // Configuración del menú
+    NSString *entidadMenu;
+    BOOL conFilltroTodos;
+	
+    // Auxiliares
     int indiceDeFiltroSeleccionado;
     NSString *slugDeFiltroSeleccionado;
-    
 }
+
+@property (nonatomic, retain) IBOutlet UIScrollView *menuScrollView;
+@property (nonatomic, retain) NSMutableArray *filtros;
+@property (nonatomic, retain) NSString *entidadMenu;
+@property (nonatomic, assign) BOOL conFiltroTodos;
+@property (nonatomic, assign) int indiceDeFiltroSeleccionado;
+@property (nonatomic, retain) NSString *slugDeFiltroSeleccionado;
 
 - (void)cargarFiltros;
 - (void)construirMenu;
 - (UIButton *)botonParaFiltro:(NSDictionary *)filtro;
 - (void)filtroSeleccionadoConBoton: (UIButton *)boton;
-
-
-@property (nonatomic, retain) IBOutlet UIScrollView *menuScrollView;
-@property (nonatomic, retain) NSString *entidadMenu;
-@property (nonatomic, retain) NSArray *filtros;
-@property (nonatomic, assign) BOOL conFiltroTodos;
-@property (nonatomic, assign) int indiceDeFiltroSeleccionado;
-@property (nonatomic, retain) NSString *slugDeFiltroSeleccionado;
+- (void)configurarDiccionarioConfiguracionFiltrosParaSlug:(NSString *)slug;
 
 @end

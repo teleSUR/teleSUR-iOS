@@ -30,6 +30,21 @@
 	<string>1.0</string>
 	<key>Configuración</key>
 	<dict>
+		<key>Filtros Extra Menú Programas</key>
+		<array>
+			<dict>
+				<key>nombre</key>
+				<string>Reportajes teleSUR</string>
+				<key>slug</key>
+				<string>reportaje</string>
+			</dict>
+			<dict>
+				<key>nombre</key>
+				<string>Documentales</string>
+				<key>slug</key>
+				<string>documental</string>
+			</dict>
+		</array>
 		<key>API URL Base</key>
 		<string>http://multimedia.telesurtv.net</string>
 		<key>Código de idioma</key>

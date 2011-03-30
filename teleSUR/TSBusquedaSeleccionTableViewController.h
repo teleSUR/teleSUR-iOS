@@ -35,4 +35,8 @@
 @property (nonatomic, retain) NSMutableArray *seleccion;
 @property (nonatomic, retain) NSMutableArray *indices;
 
+
+- (NSIndexPath *)indexPathAbsolutoDesdeIndexPath:(NSIndexPath *)indexPath;
+
+
 @end

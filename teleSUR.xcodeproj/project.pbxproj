@@ -115,6 +115,16 @@
 		63099F5113199FCA00D15603 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63099F5013199FCA00D15603 /* Security.framework */; };
 		63099F5C1319A23000D15603 /* TSMultimediaData.m in Sources */ = {isa = PBXBuildFile; fileRef = 63099F5A1319A23000D15603 /* TSMultimediaData.m */; };
 		631B622D133C950000E42342 /* Sample.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 631B622C133C950000E42342 /* Sample.mp4 */; };
+		631E16721341401F006067BC /* agenda-abierta.png in Resources */ = {isa = PBXBuildFile; fileRef = 631E16691341401F006067BC /* agenda-abierta.png */; };
+		631E16731341401F006067BC /* deportes-telesur.png in Resources */ = {isa = PBXBuildFile; fileRef = 631E166A1341401F006067BC /* deportes-telesur.png */; };
+		631E16741341401F006067BC /* dossier.png in Resources */ = {isa = PBXBuildFile; fileRef = 631E166B1341401F006067BC /* dossier.png */; };
+		631E16751341401F006067BC /* impacto-economico.png in Resources */ = {isa = PBXBuildFile; fileRef = 631E166C1341401F006067BC /* impacto-economico.png */; };
+		631E16761341401F006067BC /* mesa-redonda-internacional.png in Resources */ = {isa = PBXBuildFile; fileRef = 631E166D1341401F006067BC /* mesa-redonda-internacional.png */; };
+		631E16781341401F006067BC /* reportaje.png in Resources */ = {isa = PBXBuildFile; fileRef = 631E166F1341401F006067BC /* reportaje.png */; };
+		631E16791341401F006067BC /* telesur-noticias.png in Resources */ = {isa = PBXBuildFile; fileRef = 631E16701341401F006067BC /* telesur-noticias.png */; };
+		631E167A1341401F006067BC /* vidas.png in Resources */ = {isa = PBXBuildFile; fileRef = 631E16711341401F006067BC /* vidas.png */; };
+		631E167C1341403B006067BC /* documental.png in Resources */ = {isa = PBXBuildFile; fileRef = 631E167B1341403B006067BC /* documental.png */; };
+		631E167E134141C0006067BC /* realidades.png in Resources */ = {isa = PBXBuildFile; fileRef = 631E167D134141C0006067BC /* realidades.png */; };
 		632FE555131F582B007B7167 /* IconoLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 632FE554131F582B007B7167 /* IconoLogo.png */; };
 		632FE558131F5E6D007B7167 /* SinImagen.png in Resources */ = {isa = PBXBuildFile; fileRef = 632FE557131F5E6D007B7167 /* SinImagen.png */; };
 		6341A7D5132056A2008FFD9D /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6341A7D4132056A2008FFD9D /* EGORefreshTableHeaderView.m */; };
@@ -369,6 +379,16 @@
 		63099F5A1319A23000D15603 /* TSMultimediaData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSMultimediaData.m; sourceTree = "<group>"; };
 		63099F5B1319A23000D15603 /* TSMultimediaDataDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSMultimediaDataDelegate.h; sourceTree = "<group>"; };
 		631B622C133C950000E42342 /* Sample.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Sample.mp4; sourceTree = "<group>"; };
+		631E16691341401F006067BC /* agenda-abierta.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "agenda-abierta.png"; sourceTree = "<group>"; };
+		631E166A1341401F006067BC /* deportes-telesur.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "deportes-telesur.png"; sourceTree = "<group>"; };
+		631E166B1341401F006067BC /* dossier.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dossier.png; sourceTree = "<group>"; };
+		631E166C1341401F006067BC /* impacto-economico.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "impacto-economico.png"; sourceTree = "<group>"; };
+		631E166D1341401F006067BC /* mesa-redonda-internacional.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mesa-redonda-internacional.png"; sourceTree = "<group>"; };
+		631E166F1341401F006067BC /* reportaje.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reportaje.png; sourceTree = "<group>"; };
+		631E16701341401F006067BC /* telesur-noticias.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "telesur-noticias.png"; sourceTree = "<group>"; };
+		631E16711341401F006067BC /* vidas.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vidas.png; sourceTree = "<group>"; };
+		631E167B1341403B006067BC /* documental.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = documental.png; sourceTree = "<group>"; };
+		631E167D134141C0006067BC /* realidades.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = realidades.png; sourceTree = "<group>"; };
 		632FE554131F582B007B7167 /* IconoLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IconoLogo.png; sourceTree = "<group>"; };
 		632FE557131F5E6D007B7167 /* SinImagen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SinImagen.png; sourceTree = "<group>"; };
 		6341A7D3132056A2008FFD9D /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
@@ -1034,6 +1054,23 @@
 			name = VIstas;
 			sourceTree = "<group>";
 		};
+		631E166813413F31006067BC /* Iconos Programas */ = {
+			isa = PBXGroup;
+			children = (
+				631E167D134141C0006067BC /* realidades.png */,
+				631E167B1341403B006067BC /* documental.png */,
+				631E16691341401F006067BC /* agenda-abierta.png */,
+				631E166A1341401F006067BC /* deportes-telesur.png */,
+				631E166B1341401F006067BC /* dossier.png */,
+				631E166C1341401F006067BC /* impacto-economico.png */,
+				631E166D1341401F006067BC /* mesa-redonda-internacional.png */,
+				631E166F1341401F006067BC /* reportaje.png */,
+				631E16701341401F006067BC /* telesur-noticias.png */,
+				631E16711341401F006067BC /* vidas.png */,
+			);
+			name = "Iconos Programas";
+			sourceTree = "<group>";
+		};
 		6341D1D9133FFDCE00A0E3AE /* Tabla */ = {
 			isa = PBXGroup;
 			children = (
@@ -1086,6 +1123,7 @@
 		634D9EEE131F4AFC005B46FE /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				631E166813413F31006067BC /* Iconos Programas */,
 				6374D2A21338242B0089F46D /* BarraAzul.png */,
 				6374D2A0133823D70089F46D /* BarraRoja.png */,
 				6374D29A13380BAB0089F46D /* Fondo2.png */,
@@ -1283,6 +1321,16 @@
 				3A4A242C1337CB540093F5E1 /* TSSeleccionIdioma.xib in Resources */,
 				C470FBC5133988E5007BEC50 /* Localizable.strings in Resources */,
 				631B622D133C950000E42342 /* Sample.mp4 in Resources */,
+				631E16721341401F006067BC /* agenda-abierta.png in Resources */,
+				631E16731341401F006067BC /* deportes-telesur.png in Resources */,
+				631E16741341401F006067BC /* dossier.png in Resources */,
+				631E16751341401F006067BC /* impacto-economico.png in Resources */,
+				631E16761341401F006067BC /* mesa-redonda-internacional.png in Resources */,
+				631E16781341401F006067BC /* reportaje.png in Resources */,
+				631E16791341401F006067BC /* telesur-noticias.png in Resources */,
+				631E167A1341401F006067BC /* vidas.png in Resources */,
+				631E167C1341403B006067BC /* documental.png in Resources */,
+				631E167E134141C0006067BC /* realidades.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1498,7 +1546,7 @@
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.2.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1513,7 +1561,7 @@
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.2.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1530,7 +1578,7 @@
 				GCC_PREFIX_HEADER = "teleSUR/teleSUR-Prefix.pch";
 				INFOPLIST_FILE = "teleSUR/teleSUR-Info.plist";
 				INSTALL_PATH = "$(LOCAL_APPS_DIR)";
-				IPHONEOS_DEPLOYMENT_TARGET = 3.2.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Vendor/Google Analyics SDK/Library\"",
@@ -1549,7 +1597,7 @@
 				GCC_PREFIX_HEADER = "teleSUR/teleSUR-Prefix.pch";
 				INFOPLIST_FILE = "teleSUR/teleSUR-Info.plist";
 				INSTALL_PATH = "$(LOCAL_APPS_DIR)";
-				IPHONEOS_DEPLOYMENT_TARGET = 3.2.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Vendor/Google Analyics SDK/Library\"",
