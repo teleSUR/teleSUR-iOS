@@ -14,6 +14,7 @@
 		3A236262131C8BD700A941E2 /* NSDictionary_Datos.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A236261131C8BD700A941E2 /* NSDictionary_Datos.m */; };
 		3A4A242B1337CB540093F5E1 /* TSSeleccionIdioma.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A4A24291337CB540093F5E1 /* TSSeleccionIdioma.m */; };
 		3A4A242C1337CB540093F5E1 /* TSSeleccionIdioma.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A4A242A1337CB540093F5E1 /* TSSeleccionIdioma.xib */; };
+		3AA331821343DD8500D01F9F /* TSMasTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA331811343DD8500D01F9F /* TSMasTableViewController.m */; };
 		3ACA5FB7133011AB00DB9402 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3ACA5FB6133011AB00DB9402 /* Settings.bundle */; };
 		3ACA5FC0133019A100DB9402 /* UIViewController_Preferencias.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACA5FBF133019A100DB9402 /* UIViewController_Preferencias.m */; };
 		3ACA5FCA1330237E00DB9402 /* TSBusquedaSeleccionFechaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACA5FC81330237800DB9402 /* TSBusquedaSeleccionFechaViewController.m */; };
@@ -190,6 +191,8 @@
 		3A4A24281337CB540093F5E1 /* TSSeleccionIdioma.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSSeleccionIdioma.h; sourceTree = "<group>"; };
 		3A4A24291337CB540093F5E1 /* TSSeleccionIdioma.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSSeleccionIdioma.m; sourceTree = "<group>"; };
 		3A4A242A1337CB540093F5E1 /* TSSeleccionIdioma.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TSSeleccionIdioma.xib; sourceTree = "<group>"; };
+		3AA331801343DD8500D01F9F /* TSMasTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSMasTableViewController.h; sourceTree = "<group>"; };
+		3AA331811343DD8500D01F9F /* TSMasTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSMasTableViewController.m; sourceTree = "<group>"; };
 		3ACA5FB6133011AB00DB9402 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		3ACA5FBE133019A100DB9402 /* UIViewController_Preferencias.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewController_Preferencias.h; sourceTree = "<group>"; };
 		3ACA5FBF133019A100DB9402 /* UIViewController_Preferencias.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewController_Preferencias.m; sourceTree = "<group>"; };
@@ -490,6 +493,15 @@
 				3ACA5FBF133019A100DB9402 /* UIViewController_Preferencias.m */,
 			);
 			name = Extensiones;
+			sourceTree = "<group>";
+		};
+		3AA3317E1343DD4600D01F9F /* Más */ = {
+			isa = PBXGroup;
+			children = (
+				3AA331801343DD8500D01F9F /* TSMasTableViewController.h */,
+				3AA331811343DD8500D01F9F /* TSMasTableViewController.m */,
+			);
+			name = "Más";
 			sourceTree = "<group>";
 		};
 		3ACA5FB41330118D00DB9402 /* Preferencias */ = {
@@ -1174,6 +1186,7 @@
 				63B776F01333D84B0024D77E /* TSClipPlayerViewController.h */,
 				63B776F11333D84B0024D77E /* TSClipPlayerViewController.m */,
 				3A1001F0131B354300717211 /* LoadingView.xib */,
+				3AA3317E1343DD4600D01F9F /* Más */,
 				63E016A7131D846E001928E4 /* Listado */,
 				63E016A8131D8481001928E4 /* Detalles */,
 				6354893B1327F875000B2971 /* Búsqueda */,
@@ -1456,6 +1469,7 @@
 				63B776F713340ED90024D77E /* TSClipListadoMenuTableViewController.m in Sources */,
 				3A4A242B1337CB540093F5E1 /* TSSeleccionIdioma.m in Sources */,
 				3AD03845133D54600087925F /* UIViewWrapUIScrollView.m in Sources */,
+				3AA331821343DD8500D01F9F /* TSMasTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
