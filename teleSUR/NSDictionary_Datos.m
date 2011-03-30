@@ -120,17 +120,11 @@
 // que se espera tenga el formato: yyyy-MM-dd HH:mm:ss
 - (NSDate *)obtenerNSDateParaEsteClip
 {	
-    
-    NSString *format = [NSDateFormatter
-                        dateFormatFromTemplate:@"yyyy-MM-dd HH:mm:ss"
-                        options:0
-                        locale:[NSLocale currentLocale]];
         
 	NSDateFormatter *formater = [[NSDateFormatter alloc] init];
-    NSLocale *locale = [[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"] autorelease];
-    [formater setLocale:locale];
-	[formater setDateFormat:format];
-    
+
+	[formater setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+
 	NSDate *date = [formater dateFromString:[NSString stringWithFormat:@"%@", [self valueForKey:@"fecha"]]];
     
 	[formater release];
