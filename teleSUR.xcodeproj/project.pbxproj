@@ -164,7 +164,6 @@
 		63EDAB521323316500496B83 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 63EDAB511323316500496B83 /* libsqlite3.0.dylib */; };
 		63FB4EF6132ECE980027E304 /* TSBusquedaSeleccionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63FB4EF5132ECE980027E304 /* TSBusquedaSeleccionTableViewController.m */; };
 		C470FBC5133988E5007BEC50 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C470FBC7133988E5007BEC50 /* Localizable.strings */; };
-		C4F400321325281D00239C39 /* ClipGrandeTableCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4F400311325281D00239C39 /* ClipGrandeTableCellView.xib */; };
 		C4FEABE51324BF57003B6509 /* libGoogleAnalytics_NoThumb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C4FEABE41324BF57003B6509 /* libGoogleAnalytics_NoThumb.a */; };
 		C4FEABFF1324C25E003B6509 /* VerMasClipsTableCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4FEABFE1324C25E003B6509 /* VerMasClipsTableCellView.xib */; };
 /* End PBXBuildFile section */
@@ -441,7 +440,6 @@
 		63FB4EF4132ECE980027E304 /* TSBusquedaSeleccionTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSBusquedaSeleccionTableViewController.h; sourceTree = "<group>"; };
 		63FB4EF5132ECE980027E304 /* TSBusquedaSeleccionTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSBusquedaSeleccionTableViewController.m; sourceTree = "<group>"; };
 		C470FBC913398904007BEC50 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
-		C4F400311325281D00239C39 /* ClipGrandeTableCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClipGrandeTableCellView.xib; sourceTree = "<group>"; };
 		C4FEABE41324BF57003B6509 /* libGoogleAnalytics_NoThumb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalytics_NoThumb.a; sourceTree = "<group>"; };
 		C4FEABFE1324C25E003B6509 /* VerMasClipsTableCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VerMasClipsTableCellView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1101,7 +1099,6 @@
 			isa = PBXGroup;
 			children = (
 				3A2360B5131C4B7200A941E2 /* ClipEstandarTableCellView.xib */,
-				C4F400311325281D00239C39 /* ClipGrandeTableCellView.xib */,
 				C4FEABFE1324C25E003B6509 /* VerMasClipsTableCellView.xib */,
 				63E4A8EF1326045100669E91 /* ProgramaTableCellView.xib */,
 			);
@@ -1301,7 +1298,6 @@
 				6341A7E613205B92008FFD9D /* psst2.wav in Resources */,
 				6341A7E8132073AB008FFD9D /* blueArrow.png in Resources */,
 				C4FEABFF1324C25E003B6509 /* VerMasClipsTableCellView.xib in Resources */,
-				C4F400321325281D00239C39 /* ClipGrandeTableCellView.xib in Resources */,
 				63E4A8F01326045100669E91 /* ProgramaTableCellView.xib in Resources */,
 				3ACA5FB7133011AB00DB9402 /* Settings.bundle in Resources */,
 				3ACA5FCB1330237E00DB9402 /* TSBusquedaSeleccionFechaViewController.xib in Resources */,

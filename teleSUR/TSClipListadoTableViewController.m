@@ -39,6 +39,7 @@
 - (void)dealloc
 {
     self.tableViewController = nil;
+    self.indexPathSeleccionado = nil;
     
     [super dealloc];
 }
@@ -56,7 +57,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     [self.view addSubview:self.tableViewController.tableView];
     self.tableViewController.tableView.scrollsToTop = YES;
 }
@@ -261,10 +261,6 @@
     {
         return @"VerMasClipsTableCellView";
     }
-    //else if (indexPath.row == 0)
-    //{
-    //    return @"ClipGrandeTableCellView";
-    //}
     else
     {
         return @"ClipEstandarTableCellView";
@@ -280,7 +276,7 @@
 {
     // Se va a actualizar la lista, re-inicializar configuración
     //////[self configurarConEntidad:self.entidadMenu yFiltros:self.diccionarioConfiguracionFiltros];
-    
+    self.rangoUltimo = NSMakeRange(1, TSNumeroClipsPorPagina);
     
     [self cargarClips];
 }

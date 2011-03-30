@@ -2,13 +2,13 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="7.10">
 	<data>
 		<int key="IBDocument.SystemTarget">1056</int>
-		<string key="IBDocument.SystemVersion">10J567</string>
-		<string key="IBDocument.InterfaceBuilderVersion">1305</string>
+		<string key="IBDocument.SystemVersion">10J869</string>
+		<string key="IBDocument.InterfaceBuilderVersion">1306</string>
 		<string key="IBDocument.AppKitVersion">1038.35</string>
-		<string key="IBDocument.HIToolboxVersion">462.00</string>
+		<string key="IBDocument.HIToolboxVersion">461.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">300</string>
+			<string key="NS.object.0">301</string>
 		</object>
 		<object class="NSArray" key="IBDocument.IntegratedClassDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -104,6 +104,7 @@
 					<object class="NSMutableArray" key="IBUIViewControllers">
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="IBUIViewController" id="451831101">
+							<bool key="IBUIAutoresizesArchivedViewToFullSize">NO</bool>
 							<string key="IBUITitle">Programas</string>
 							<object class="IBUINavigationItem" key="IBUINavigationItem" id="908520338">
 								<string key="IBUITitle">Programas</string>
@@ -152,6 +153,7 @@
 						<object class="NSMutableArray" key="IBUIViewControllers">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<object class="IBUIViewController" id="733969507">
+								<bool key="IBUIAutoresizesArchivedViewToFullSize">NO</bool>
 								<string key="IBUITitle">Noticias</string>
 								<object class="IBUINavigationItem" key="IBUINavigationItem" id="115139759">
 									<string key="IBUITitle">Noticias</string>
@@ -198,6 +200,7 @@
 						<object class="NSMutableArray" key="IBUIViewControllers">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<object class="IBUIViewController" id="613724971">
+								<bool key="IBUIAutoresizesArchivedViewToFullSize">NO</bool>
 								<string key="IBUITitle">Entrevistas</string>
 								<object class="IBUINavigationItem" key="IBUINavigationItem" id="562499247">
 									<string key="IBUITitle">Entrevistas</string>
@@ -709,6 +712,6 @@ AAMAAAABAAEAAAFTAAMAAAAEAAACAgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 				<string>{41, 30}</string>
 			</object>
 		</object>
-		<string key="IBCocoaTouchPluginVersion">300</string>
+		<string key="IBCocoaTouchPluginVersion">301</string>
 	</data>
 </archive>

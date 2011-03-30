@@ -42,6 +42,9 @@
 - (void)viewDidLoad
 {
     [self personalizarNavigationBar];
+    
+    self.navigationItem.title = @"Búsqueda";
+    
     // Cargar arreglo de configuración
     self.configuracionSeccionesBusqueda = [[[[NSBundle mainBundle] infoDictionary] objectForKey:@"Configuración"] objectForKey:@"Secciones de Búsqueda"];
     
