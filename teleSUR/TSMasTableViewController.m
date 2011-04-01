@@ -8,6 +8,7 @@
 
 #import "TSMasTableViewController.h"
 #import "UIViewController_Configuracion.h"
+#import "TSMasHTMLViewController.h"
 
 @implementation TSMasTableViewController
 
@@ -40,7 +41,8 @@
 {
     [self personalizarNavigationBar];    
     [super viewDidLoad];
-
+    
+    self.navigationController.title = @"Más";
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -134,12 +136,12 @@
                 switch (indexPath.row) {
                         
                     case 0:
-                        cell.textLabel.text = @"Nosotros";
+                        cell.textLabel.text = @"¿Quiénes somos?";
                         cell.imageView.image = [UIImage imageNamed:@"IconoLogo.png"];                                                 
 
                         break;
                     case 1:
-                        cell.textLabel.text = @"Contacto";
+                        cell.textLabel.text = @"Contáctenos";
                         cell.imageView.image = [UIImage imageNamed:@"mail.png"];                                                 
                     default:
                         break;
@@ -223,17 +225,29 @@
 
     switch (indexPath.section) {
         case 0: // Primera Seccion
+            ;
+            NSString *nombreHTML;
             
-            switch (indexPath.row) {
+            switch (indexPath.row)
+            {
                 case 0:
                     
+                    nombreHTML = @"TSQuienesSomos";
+                    
                     break;
+                    
                 case 1:
+                    
+                    nombreHTML = @"TSContacto";
 
                     break;
-                default:
-                    break;
             }
+            
+            
+            TSMasHTMLViewController *htmlController = [[TSMasHTMLViewController alloc] init];
+            htmlController.nombreHTML = nombreHTML;
+            [self.navigationController pushViewController:htmlController animated:YES];
+            [htmlController release];
             
             break;
             

@@ -158,6 +158,11 @@
 		63965B551337614C0020F6C5 /* Programas-icono.png in Resources */ = {isa = PBXBuildFile; fileRef = 63965B511337614C0020F6C5 /* Programas-icono.png */; };
 		63965B561337614C0020F6C5 /* SinImagen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 63965B521337614C0020F6C5 /* SinImagen@2x.png */; };
 		63965B591337646B0020F6C5 /* Fondo1.png in Resources */ = {isa = PBXBuildFile; fileRef = 63965B581337646B0020F6C5 /* Fondo1.png */; };
+		63B1CCFD1343F4D100EFDFB6 /* TSContacto.html in Resources */ = {isa = PBXBuildFile; fileRef = 63B1CCF91343F4D100EFDFB6 /* TSContacto.html */; };
+		63B1CCFE1343F4D100EFDFB6 /* TSMasHTMLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63B1CCFB1343F4D100EFDFB6 /* TSMasHTMLViewController.m */; };
+		63B1CCFF1343F4D100EFDFB6 /* TSMasHTMLViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63B1CCFC1343F4D100EFDFB6 /* TSMasHTMLViewController.xib */; };
+		63B1CD011343F4DA00EFDFB6 /* TSQuienesSomos.html in Resources */ = {isa = PBXBuildFile; fileRef = 63B1CD001343F4DA00EFDFB6 /* TSQuienesSomos.html */; };
+		63B1CD031343FDE400EFDFB6 /* iconoMas.png in Resources */ = {isa = PBXBuildFile; fileRef = 63B1CD021343FDE400EFDFB6 /* iconoMas.png */; };
 		63B776ED1333D6B50024D77E /* TSClipListadoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63B776EB1333D6B50024D77E /* TSClipListadoTableViewController.m */; };
 		63B776EE1333D6B50024D77E /* TSClipListadoTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63B776EC1333D6B50024D77E /* TSClipListadoTableViewController.xib */; };
 		63B776F21333D84B0024D77E /* TSClipPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63B776F11333D84B0024D77E /* TSClipPlayerViewController.m */; };
@@ -434,6 +439,12 @@
 		63965B511337614C0020F6C5 /* Programas-icono.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Programas-icono.png"; sourceTree = "<group>"; };
 		63965B521337614C0020F6C5 /* SinImagen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SinImagen@2x.png"; sourceTree = "<group>"; };
 		63965B581337646B0020F6C5 /* Fondo1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Fondo1.png; sourceTree = "<group>"; };
+		63B1CCF91343F4D100EFDFB6 /* TSContacto.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = TSContacto.html; sourceTree = "<group>"; };
+		63B1CCFA1343F4D100EFDFB6 /* TSMasHTMLViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSMasHTMLViewController.h; sourceTree = "<group>"; };
+		63B1CCFB1343F4D100EFDFB6 /* TSMasHTMLViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSMasHTMLViewController.m; sourceTree = "<group>"; };
+		63B1CCFC1343F4D100EFDFB6 /* TSMasHTMLViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TSMasHTMLViewController.xib; sourceTree = "<group>"; };
+		63B1CD001343F4DA00EFDFB6 /* TSQuienesSomos.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = TSQuienesSomos.html; sourceTree = "<group>"; };
+		63B1CD021343FDE400EFDFB6 /* iconoMas.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconoMas.png; sourceTree = "<group>"; };
 		63B776EA1333D6B50024D77E /* TSClipListadoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSClipListadoTableViewController.h; sourceTree = "<group>"; };
 		63B776EB1333D6B50024D77E /* TSClipListadoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSClipListadoTableViewController.m; sourceTree = "<group>"; };
 		63B776EC1333D6B50024D77E /* TSClipListadoTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TSClipListadoTableViewController.xib; sourceTree = "<group>"; };
@@ -512,6 +523,11 @@
 			children = (
 				3AA331801343DD8500D01F9F /* TSMasTableViewController.h */,
 				3AA331811343DD8500D01F9F /* TSMasTableViewController.m */,
+				63B1CCFA1343F4D100EFDFB6 /* TSMasHTMLViewController.h */,
+				63B1CCFB1343F4D100EFDFB6 /* TSMasHTMLViewController.m */,
+				63B1CCFC1343F4D100EFDFB6 /* TSMasHTMLViewController.xib */,
+				63B1CD001343F4DA00EFDFB6 /* TSQuienesSomos.html */,
+				63B1CCF91343F4D100EFDFB6 /* TSContacto.html */,
 			);
 			name = "Más";
 			sourceTree = "<group>";
@@ -1157,6 +1173,7 @@
 		634D9EEE131F4AFC005B46FE /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				63B1CD021343FDE400EFDFB6 /* iconoMas.png */,
 				3AC5F0F31343E49A00359A61 /* Iconos Tablas Mas */,
 				631E166813413F31006067BC /* Iconos Programas */,
 				6374D2A21338242B0089F46D /* BarraAzul.png */,
@@ -1212,10 +1229,10 @@
 				63B776F01333D84B0024D77E /* TSClipPlayerViewController.h */,
 				63B776F11333D84B0024D77E /* TSClipPlayerViewController.m */,
 				3A1001F0131B354300717211 /* LoadingView.xib */,
-				3AA3317E1343DD4600D01F9F /* Más */,
 				63E016A7131D846E001928E4 /* Listado */,
 				63E016A8131D8481001928E4 /* Detalles */,
 				6354893B1327F875000B2971 /* Búsqueda */,
+				3AA3317E1343DD4600D01F9F /* Más */,
 			);
 			name = Vistas;
 			sourceTree = "<group>";
@@ -1372,6 +1389,10 @@
 				3AC5F1001343E99900359A61 /* facebook-logo.png in Resources */,
 				3AC5F1011343E99900359A61 /* mail.png in Resources */,
 				3AC5F1021343E99900359A61 /* twitter-logo.png in Resources */,
+				63B1CCFD1343F4D100EFDFB6 /* TSContacto.html in Resources */,
+				63B1CCFF1343F4D100EFDFB6 /* TSMasHTMLViewController.xib in Resources */,
+				63B1CD011343F4DA00EFDFB6 /* TSQuienesSomos.html in Resources */,
+				63B1CD031343FDE400EFDFB6 /* iconoMas.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1502,6 +1523,7 @@
 				3A4A242B1337CB540093F5E1 /* TSSeleccionIdioma.m in Sources */,
 				3AD03845133D54600087925F /* UIViewWrapUIScrollView.m in Sources */,
 				3AA331821343DD8500D01F9F /* TSMasTableViewController.m in Sources */,
+				63B1CCFE1343F4D100EFDFB6 /* TSMasHTMLViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
