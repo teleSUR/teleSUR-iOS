@@ -88,10 +88,10 @@
 {
     switch (section) {
         case 0:
-            return @"Sobre teleSUR";
+            return @"Acerca de teleSUR";
             break;
         case 1:
-            return @"teleSUR en";
+            return @"teleSUR en redes sociales";
             break;
         default:
             break;
