@@ -44,7 +44,7 @@
     
     self.navigationController.title = @"Más";
     // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    self.clearsSelectionOnViewWillAppear = YES;
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
@@ -112,7 +112,7 @@
             return 2;
             break;
         case 1:
-            return 2;
+            return 3;
         default:
             return 0; 
             break;
@@ -160,6 +160,9 @@
                         cell.textLabel.text = @"Twitter";
                         cell.imageView.image = [UIImage imageNamed:@"twitter-logo.png"]; 
                         break;
+                    case 2:
+                        cell.textLabel.text = @"YouTube";
+                        cell.imageView.image = [UIImage imageNamed:@"youtube-logo.png"]; 
                     default:
                         break;
                 }
@@ -262,10 +265,15 @@
 
                     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.twitter.com/teleSURtv"]];                    
                     break;
+                case 2:
+                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.youtube.com/user/telesurtv"]];                    
+                    break;
                 default:
                     break;
             }
             
+            
+            [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
             break;
             
         default:
