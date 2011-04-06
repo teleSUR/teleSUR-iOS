@@ -24,7 +24,7 @@
     unsigned char seleccion;
     
 }
-@property (nonatomic, assign) TSClipBusquedaViewController *controladorBusqueda;
+@property (nonatomic, retain) TSClipBusquedaViewController *controladorBusqueda;
 
 @property (nonatomic, retain) IBOutlet UIDatePicker *pickerFecha;
 @property (nonatomic, retain) IBOutlet UITableView *tableView;

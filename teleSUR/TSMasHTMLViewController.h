@@ -15,6 +15,6 @@
 }
 
 @property(nonatomic, retain) IBOutlet UIWebView *webView;
-@property(nonatomic, retain) IBOutlet NSString *nombreHTML;
+@property(nonatomic, retain) NSString *nombreHTML;
 
 @end

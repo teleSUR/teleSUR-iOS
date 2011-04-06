@@ -7,15 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TSClipBusquedaViewController.h"
 
 
 @interface TSBusquedaSeleccionTextoViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
     
-    UITextField *texto;
+    TSClipBusquedaViewController *controladorBusqueda;
+    UITextField *campoTexto;
     UITableView *tableView;
     
 }
 
+@property (nonatomic, retain) TSClipBusquedaViewController *controladorBusqueda;
 @property (nonatomic, retain) IBOutlet UITableView *tableView;
-@property (nonatomic, retain) UITextField *texto;
+@property (nonatomic, retain) UITextField *campoTexto;
 @end

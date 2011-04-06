@@ -8,11 +8,13 @@
 
 #import "TSBusquedaSeleccionFechaViewController.h"
 #import "TSClipBusquedaViewController.h"
+#import "UIViewController_Configuracion.h"
+
 
 @implementation TSBusquedaSeleccionFechaViewController
 
-@synthesize pickerFecha, tableView;
 
+@synthesize pickerFecha, tableView;
 @synthesize controladorBusqueda, fechaDesde, fechaHasta, seleccionTodos, seleccion;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -26,6 +28,12 @@
 
 - (void)dealloc
 {
+    self.pickerFecha = nil;
+    self.tableView = nil;
+    self.controladorBusqueda = nil;
+    self.fechaDesde = nil;
+    self.fechaHasta = nil;
+    
     [super dealloc];
 }
 
@@ -41,6 +49,7 @@
 
 - (void)viewDidLoad
 {
+    [self personalizarNavigationBar];
     
     self.seleccion = 1;
     self.fechaDesde = self.pickerFecha.date;
@@ -48,14 +57,11 @@
     [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
     
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -66,7 +72,9 @@
 
 -(void) viewWillDisappear:(BOOL)animated
 {
-//    [self.controladorBusqueda.selecciones setValue:self.seleccion forKey:self.entidad];
+    [self.controladorBusqueda.selecciones setValue:fechaDesde forKey:@"desde"];
+    [self.controladorBusqueda.selecciones setValue:fechaHasta forKey:@"hasta"];
+    
     [self.controladorBusqueda.tableView reloadData];
     
     [super viewWillDisappear:animated];

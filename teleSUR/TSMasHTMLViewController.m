@@ -37,9 +37,17 @@
     [self personalizarNavigationBar];
     [super viewDidLoad];
     
+    if (!self.nombreHTML)
+    {
+        NSLog(@"No se ha especificó nombre de archivo HTML a depslegar.");
+        return;
+    }
+    
+    // Cargar HTML en webView
     NSData *htmlData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:self.nombreHTML ofType:@"html"]];  
     [self.webView loadData:htmlData MIMEType:@"text/html" textEncodingName:@"UTF-8" baseURL:[NSURL URLWithString:nil]];
     
+    // Configurar webView
     self.webView.backgroundColor = [UIColor clearColor];
 }
 

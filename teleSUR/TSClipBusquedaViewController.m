@@ -116,22 +116,30 @@
     // Establecer texto de la celda
     cell.textLabel.text = NSLocalizedString([fila valueForKey:@"Nombre"], @"Búsqueda: Texto, Tipo, Sección, Tema, Región, País, Personajes, Corresponsal, Fecha");
     
-    // Establecer detalles de la celda 
-    switch ([seleccion count])
+    // Es texto?
+    if ([seleccion isKindOfClass:[NSString class]])
     {
-        case 0:
-            // Texto default para "Todos"
-            cell.detailTextLabel.text = [fila valueForKey:@"Todos"];
-            break;
-            
-        case 1:
-            // Sólo uno seleccionado, mostrar
-            cell.detailTextLabel.text = [seleccion objectAtIndex:0];
-            break;
-            
-        default:
-            // Más de uno seleccionado, mostrar número
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", [seleccion count]];
+        cell.detailTextLabel.text = (NSString *)seleccion;
+    }
+    else
+    {
+        // Establecer detalles de la celda 
+        switch ([seleccion count])
+        {
+            case 0:
+                // Texto default para "Todos"
+                cell.detailTextLabel.text = [fila valueForKey:@"Todos"];
+                break;
+                
+            case 1:
+                // Sólo uno seleccionado, mostrar
+                cell.detailTextLabel.text = [seleccion objectAtIndex:0];
+                break;
+                
+            default:
+                // Más de uno seleccionado, mostrar número
+                cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", [seleccion count]];
+        }
     }
     
     return cell;
@@ -147,12 +155,16 @@
     if ([entidad isEqualToString:@"fecha"])
     {
         TSBusquedaSeleccionFechaViewController *controladorSeleccionFecha = [[TSBusquedaSeleccionFechaViewController alloc] init];
+        controladorSeleccionFecha.fechaDesde = [self.selecciones valueForKey:@"desde"];
+        controladorSeleccionFecha.fechaHasta = [self.selecciones valueForKey:@"hasta"];
         [self.navigationController pushViewController:controladorSeleccionFecha animated:YES];
         [controladorSeleccionFecha release];
     }
     else if ([entidad isEqualToString:@"texto"])
     {
         TSBusquedaSeleccionTextoViewController *controladorSeleccionTexto = [[TSBusquedaSeleccionTextoViewController alloc] init];
+        controladorSeleccionTexto.controladorBusqueda = self;
+        controladorSeleccionTexto.campoTexto.text = [self.selecciones valueForKey:@"texto"];
         [self.navigationController pushViewController:controladorSeleccionTexto animated:YES];
         [controladorSeleccionTexto release];
     }

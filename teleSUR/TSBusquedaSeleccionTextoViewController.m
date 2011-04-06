@@ -7,63 +7,65 @@
 //
 
 #import "TSBusquedaSeleccionTextoViewController.h"
-
+#import "UIViewController_Configuracion.h"
 
 @implementation TSBusquedaSeleccionTextoViewController
 
-@synthesize tableView, texto;
+@synthesize controladorBusqueda, tableView, campoTexto;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (void)dealloc
 {
+    self.controladorBusqueda = nil;
+    self.tableView = nil;
+    self.campoTexto = nil;
+    
     [super dealloc];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
-}
 
 #pragma mark - View lifecycle
 
--(void) viewWillAppear:(BOOL)animated {
-    
-    [self.texto becomeFirstResponder];
-    
+
+-(void) viewWillAppear:(BOOL)animated
+{
+    [self.campoTexto becomeFirstResponder];
 }
+
+
+- (void)viewWillDisappear:(BOOL)animated
+{   
+    [self.controladorBusqueda.selecciones setValue:self.campoTexto.text forKey:@"texto"];
+    
+    [self.controladorBusqueda.tableView reloadData];
+    
+    [super viewWillDisappear:animated];
+}
+
 
 - (void)viewDidLoad
 {
-    self.texto = [[UITextField alloc] initWithFrame:CGRectMake(110, 12, 185, 30)];    
-    self.texto.textColor = [UIColor blackColor];
-    self.texto.clearButtonMode =UITextFieldViewModeAlways;
+    [self personalizarNavigationBar];
+    
+    self.campoTexto = [[UITextField alloc] initWithFrame:CGRectMake(110, 12, 185, 30)];    
+    self.campoTexto.textColor = [UIColor blackColor];
+    self.campoTexto.clearButtonMode =UITextFieldViewModeAlways;
+    
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
 }
 
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    return (interfaceOrientation == UIInterfaceOrientationPortrait ||
+            interfaceOrientation == UIInterfaceOrientationLandscapeLeft ||
+            interfaceOrientation == UIInterfaceOrientationLandscapeRight);
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -78,8 +80,8 @@
     }
 
 
-    [cell addSubview:self.texto];
-    cell.textLabel.text = NSLocalizedString(@"Cadena", @"Cadena");
+    [cell addSubview:self.campoTexto];
+    cell.textLabel.text = NSLocalizedString(@"Búsqueda", @"Búsqueda");
 
     return cell;
     
