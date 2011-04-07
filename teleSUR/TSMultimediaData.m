@@ -111,7 +111,7 @@
     else
     {
         NSLog(@"Error de conexión");
-		if ([delegate respondsToSelector:@selector(entidadesRecibidasConFalla:)])
+		if ([delegate respondsToSelector:@selector(enti:)])
         {
             NSError *error = [NSError errorWithDomain:@"TSMultimediaData" code:101 userInfo:[NSDictionary dictionary]];
 			[delegate performSelector:@selector(entidadesRecibidasConFalla:) withObject:error];
@@ -152,8 +152,8 @@
           [error localizedDescription],
           [[error userInfo] objectForKey:NSURLErrorFailingURLStringErrorKey]);
 	
-	if ([delegate respondsToSelector:@selector(entidadesRecibidasConFalla:)])
-		[delegate performSelector:@selector(entidadesRecibidasConFalla:) withObject:error];
+	if ([delegate respondsToSelector:@selector(TSMultimediaData:entidadesRecibidasConError:)])
+        [delegate TSMultimediaData:self entidadesRecibidasConError:error];
 }
 
 

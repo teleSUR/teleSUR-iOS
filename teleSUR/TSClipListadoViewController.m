@@ -161,6 +161,7 @@ NSString* const TSEntidadClip = @"clip";
     // Quitar vista de loading
     [self ocultarLoadingViewConAnimacion:YES];
     
+    
     // Liberar objeto de datos
     [data release];
 }

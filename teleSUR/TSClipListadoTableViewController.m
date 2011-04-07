@@ -20,6 +20,8 @@
 #define kFIRMA_LBAEL_TAG 4
 
 
+#define kLOADING_VIEW_TAG 100
+
 @implementation TSClipListadoTableViewController
 
 @synthesize tableViewController;
@@ -317,6 +319,18 @@
         [self.tableViewController setLastUpdate:[NSDate date]];
         [self.tableViewController dataSourceDidFinishLoadingNewData];
     }
+}
+
+-(void)TSMultimediaData:(TSMultimediaData *)data entidadesRecibidasConError:(id)error
+{
+    UIView *vistaLoading =  [self.view viewWithTag:kLOADING_VIEW_TAG];
+
+    vistaLoading.backgroundColor = [UIColor colorWithWhite:0.15 alpha:1.00];
+    
+    [(UIActivityIndicatorView *) [vistaLoading viewWithTag:9] stopAnimating];
+    [(UILabel *) [vistaLoading viewWithTag:10] setText:@"Error de Conexión"];
+    
+    
 }
 
 - (void)ocultarLoadingViewConAnimacion:(BOOL)animacion
