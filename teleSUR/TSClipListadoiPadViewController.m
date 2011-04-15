@@ -7,9 +7,13 @@
 //
 
 #import "TSClipListadoiPadViewController.h"
+#import "TSClipStrip.h"
+
 
 
 @implementation TSClipListadoiPadViewController
+
+@synthesize strips;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -37,12 +41,29 @@
 
 - (void)viewDidLoad
 {
+
+    self.strips = [[NSMutableArray alloc] init];
+
+    
+    
+    for (int i=0;i<kNumeroStrips; i++)
+    {
+        TSClipStrip *stripClips1 = [[TSClipStrip alloc] init];
+        
+        
+        [stripClips1 setFrame:CGRectMake(kMargenStrips, ((kMargenStrips)+kAlturaStrip)*i, self.view.frame.size.width-(kMargenStrips*2), kAlturaStrip)];
+        [self.view addSubview:stripClips1];    
+        
+        [stripClips1 release];
+    }
+    
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
 
 - (void)viewDidUnload
 {
+    [self.strips release];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;

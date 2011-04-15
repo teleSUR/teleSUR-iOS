@@ -15,6 +15,8 @@ extern NSString* const TSEntidadClip;
 
 @interface TSClipListadoViewController : UIViewController <TSMultimediaDataDelegate> {
     
+	id <NSObject, TSMultimediaDataDelegate>  delegate;    
+    
     // Arreglo de clips
     NSMutableArray *clips;
     
@@ -31,6 +33,8 @@ extern NSString* const TSEntidadClip;
 
 
 // Clips
+@property (nonatomic, assign) id <NSObject, TSMultimediaDataDelegate>  delegate;
+
 @property (nonatomic, retain) NSMutableArray *clips;
 @property (nonatomic, assign) NSRange rangoUltimo;
 @property (nonatomic, assign) int indiceDeClipSeleccionado;

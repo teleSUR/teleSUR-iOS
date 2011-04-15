@@ -29,6 +29,7 @@
 
 - (void)mostrarLoadingViewConAnimacion:(BOOL)animacion
 {
+    
     // Cargar NIB con vista para loading, asignarle un tag para hacer referenciar después
     UIView *vistaLoading = [[[NSBundle mainBundle] loadNibNamed:@"LoadingView" owner:self options:nil] lastObject];					
     
@@ -54,6 +55,7 @@
     {
         vistaLoading.alpha = kLOADING_TRANSPARENCIA;
     }
+     
 }
 
 - (void)ocultarLoadingViewConAnimacion: (BOOL)animacion

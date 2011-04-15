@@ -29,6 +29,7 @@ NSString* const TSEntidadClip = @"clip";
 @synthesize rangoUltimo, arregloClipsAsyncImageViews;
 @synthesize diccionarioConfiguracionFiltros, agregarAlFinal;
 
+@synthesize delegate;
 
 #pragma mark -
 #pragma mark Operaciones
@@ -45,7 +46,7 @@ NSString* const TSEntidadClip = @"clip";
 // Obtiene clips asincrónicamente, con base en propiedades del objeto
 - (void)cargarClips
 {
-    [self mostrarLoadingViewConAnimacion:YES];
+//    [self mostrarLoadingViewConAnimacion:YES];
     
 	TSMultimediaData *dataClips = [[TSMultimediaData alloc] init];
     [dataClips getDatosParaEntidad:TSEntidadClip // otros ejemplos: programa, pais, categoria
@@ -145,11 +146,19 @@ NSString* const TSEntidadClip = @"clip";
             self.arregloClipsAsyncImageViews = [NSMutableArray array];
         }
         
-        [self ocultarLoadingViewConAnimacion:YES];
+//        [self ocultarLoadingViewConAnimacion:YES];
     }
     
     // Liberar objeto de datos
     [data release];
+    
+    if ([delegate respondsToSelector:@selector(TSMultimediaData:entidadesRecibidas:paraEntidad:)])
+    {
+        [delegate TSMultimediaData:data entidadesRecibidas:array paraEntidad:entidad];
+    }
+    
+    return;
+
 }
 
 
@@ -159,7 +168,7 @@ NSString* const TSEntidadClip = @"clip";
 	NSLog(@"Error: %@", error);
     
     // Quitar vista de loading
-    [self ocultarLoadingViewConAnimacion:YES];
+//    [self ocultarLoadingViewConAnimacion:YES];
     
     
     // Liberar objeto de datos

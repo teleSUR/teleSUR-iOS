@@ -14,6 +14,8 @@
 		3A236262131C8BD700A941E2 /* NSDictionary_Datos.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A236261131C8BD700A941E2 /* NSDictionary_Datos.m */; };
 		3A4A242B1337CB540093F5E1 /* TSSeleccionIdioma.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A4A24291337CB540093F5E1 /* TSSeleccionIdioma.m */; };
 		3A4A242C1337CB540093F5E1 /* TSSeleccionIdioma.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A4A242A1337CB540093F5E1 /* TSSeleccionIdioma.xib */; };
+		3A4CD8781358F30000752C7D /* TSClipCellStripView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A4CD8771358F30000752C7D /* TSClipCellStripView.m */; };
+		3A4CD87B1358F3C900752C7D /* TSClipCellStripView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A4CD87A1358F3C800752C7D /* TSClipCellStripView.xib */; };
 		3AA331821343DD8500D01F9F /* TSMasTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA331811343DD8500D01F9F /* TSMasTableViewController.m */; };
 		3AC5F0F81343E4A800359A61 /* facebook-logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AC5F0F61343E4A800359A61 /* facebook-logo@2x.png */; };
 		3AC5F0FA1343E4FA00359A61 /* twitter-logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AC5F0F91343E4FA00359A61 /* twitter-logo@2x.png */; };
@@ -207,6 +209,9 @@
 		3A4A24281337CB540093F5E1 /* TSSeleccionIdioma.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSSeleccionIdioma.h; sourceTree = "<group>"; };
 		3A4A24291337CB540093F5E1 /* TSSeleccionIdioma.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSSeleccionIdioma.m; sourceTree = "<group>"; };
 		3A4A242A1337CB540093F5E1 /* TSSeleccionIdioma.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TSSeleccionIdioma.xib; sourceTree = "<group>"; };
+		3A4CD8761358F2FF00752C7D /* TSClipCellStripView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSClipCellStripView.h; sourceTree = "<group>"; };
+		3A4CD8771358F30000752C7D /* TSClipCellStripView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSClipCellStripView.m; sourceTree = "<group>"; };
+		3A4CD87A1358F3C800752C7D /* TSClipCellStripView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TSClipCellStripView.xib; sourceTree = "<group>"; };
 		3AA331801343DD8500D01F9F /* TSMasTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSMasTableViewController.h; sourceTree = "<group>"; };
 		3AA331811343DD8500D01F9F /* TSMasTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSMasTableViewController.m; sourceTree = "<group>"; };
 		3AC5F0F61343E4A800359A61 /* facebook-logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebook-logo@2x.png"; sourceTree = "<group>"; };
@@ -662,6 +667,9 @@
 				C4CF7C541357CA4700B89C13 /* TSClipListadoiPadView.xib */,
 				C4CF7C601357CB2F00B89C13 /* TSClipStrip.h */,
 				C4CF7C611357CB2F00B89C13 /* TSClipStrip.m */,
+				3A4CD8761358F2FF00752C7D /* TSClipCellStripView.h */,
+				3A4CD8771358F30000752C7D /* TSClipCellStripView.m */,
+				3A4CD87A1358F3C800752C7D /* TSClipCellStripView.xib */,
 			);
 			name = iPad;
 			sourceTree = "<group>";
@@ -1415,6 +1423,7 @@
 				C40D931B134A7B77003893DA /* youTube-logo@2x.png in Resources */,
 				C40D931C134A7B77003893DA /* youTube-logo.png in Resources */,
 				C4CF7C561357CA4700B89C13 /* TSClipListadoiPadView.xib in Resources */,
+				3A4CD87B1358F3C900752C7D /* TSClipCellStripView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1548,6 +1557,7 @@
 				63B1CCFE1343F4D100EFDFB6 /* TSMasHTMLViewController.m in Sources */,
 				C4CF7C551357CA4700B89C13 /* TSClipListadoiPadViewController.m in Sources */,
 				C4CF7C621357CB2F00B89C13 /* TSClipStrip.m in Sources */,
+				3A4CD8781358F30000752C7D /* TSClipCellStripView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

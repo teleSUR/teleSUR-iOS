@@ -7,33 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "TSMultimediaDataDelegate.h"
+
+@class TSClipListadoViewController;
 
 
-@interface TSClipStrip : UIScrollView {
+@interface TSClipStrip : UIScrollView <TSMultimediaDataDelegate> {
     
-    // Arreglo de clips
-    NSMutableArray *clips;
-    
-    // Banderas
-    BOOL agregarAlFinal;
-    
-    // Auxiliares
-    NSMutableDictionary *diccionarioConfiguracionFiltros;
-    NSRange rangoUltimo;
-    int indiceDeClipSeleccionado;
-    NSMutableArray *arregloClipsAsyncImageViews;    
+    TSClipListadoViewController *listado;
     
 }
 
-// Clips
-@property (nonatomic, retain) NSMutableArray *clips;
-@property (nonatomic, assign) NSRange rangoUltimo;
-@property (nonatomic, assign) int indiceDeClipSeleccionado;
-@property (nonatomic, assign) BOOL agregarAlFinal;
-@property (nonatomic, retain) NSMutableArray *arregloClipsAsyncImageViews;
-@property (nonatomic, retain) NSMutableDictionary *diccionarioConfiguracionFiltros;
-
-// Operaciones
-- (void)cargarClips;
+@property (nonatomic, assign) id <NSObject, TSMultimediaDataDelegate>  delegate;
+@property (nonatomic, retain) TSClipListadoViewController *listado;
 
 @end
