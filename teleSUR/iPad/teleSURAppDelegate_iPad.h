@@ -11,6 +11,10 @@
 
 @interface teleSURAppDelegate_iPad : teleSURAppDelegate {
     
+    UITabBarController *tabBarController;
+    
 }
+
+@property (nonatomic, retain) IBOutlet UITabBarController *tabBarController;
 
 @end

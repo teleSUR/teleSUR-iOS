@@ -10,6 +10,15 @@
 
 @implementation teleSURAppDelegate_iPad
 
+@synthesize tabBarController;
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    [self.window addSubview: self.tabBarController.view];
+     
+     
+}
+
 - (void)dealloc
 {
 	[super dealloc];

@@ -178,6 +178,9 @@
 		C40D931B134A7B77003893DA /* youTube-logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C40D9319134A7B77003893DA /* youTube-logo@2x.png */; };
 		C40D931C134A7B77003893DA /* youTube-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = C40D931A134A7B77003893DA /* youTube-logo.png */; };
 		C470FBC5133988E5007BEC50 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C470FBC7133988E5007BEC50 /* Localizable.strings */; };
+		C4CF7C551357CA4700B89C13 /* TSClipListadoiPadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4CF7C531357CA4700B89C13 /* TSClipListadoiPadViewController.m */; };
+		C4CF7C561357CA4700B89C13 /* TSClipListadoiPadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4CF7C541357CA4700B89C13 /* TSClipListadoiPadView.xib */; };
+		C4CF7C621357CB2F00B89C13 /* TSClipStrip.m in Sources */ = {isa = PBXBuildFile; fileRef = C4CF7C611357CB2F00B89C13 /* TSClipStrip.m */; };
 		C4FEABE51324BF57003B6509 /* libGoogleAnalytics_NoThumb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C4FEABE41324BF57003B6509 /* libGoogleAnalytics_NoThumb.a */; };
 		C4FEABFF1324C25E003B6509 /* VerMasClipsTableCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4FEABFE1324C25E003B6509 /* VerMasClipsTableCellView.xib */; };
 /* End PBXBuildFile section */
@@ -470,6 +473,11 @@
 		C40D9319134A7B77003893DA /* youTube-logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "youTube-logo@2x.png"; sourceTree = "<group>"; };
 		C40D931A134A7B77003893DA /* youTube-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "youTube-logo.png"; sourceTree = "<group>"; };
 		C470FBC913398904007BEC50 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		C4CF7C521357CA4700B89C13 /* TSClipListadoiPadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSClipListadoiPadViewController.h; sourceTree = "<group>"; };
+		C4CF7C531357CA4700B89C13 /* TSClipListadoiPadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSClipListadoiPadViewController.m; sourceTree = "<group>"; };
+		C4CF7C541357CA4700B89C13 /* TSClipListadoiPadView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TSClipListadoiPadView.xib; sourceTree = "<group>"; };
+		C4CF7C601357CB2F00B89C13 /* TSClipStrip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSClipStrip.h; sourceTree = "<group>"; };
+		C4CF7C611357CB2F00B89C13 /* TSClipStrip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSClipStrip.m; sourceTree = "<group>"; };
 		C4FEABE41324BF57003B6509 /* libGoogleAnalytics_NoThumb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalytics_NoThumb.a; sourceTree = "<group>"; };
 		C4FEABFE1324C25E003B6509 /* VerMasClipsTableCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VerMasClipsTableCellView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -649,6 +657,11 @@
 				63099E2113199D1800D15603 /* teleSURAppDelegate_iPad.m */,
 				63099E2313199D1800D15603 /* MainWindow_iPad.xib */,
 				63099F5E1319A25E00D15603 /* VIstas */,
+				C4CF7C521357CA4700B89C13 /* TSClipListadoiPadViewController.h */,
+				C4CF7C531357CA4700B89C13 /* TSClipListadoiPadViewController.m */,
+				C4CF7C541357CA4700B89C13 /* TSClipListadoiPadView.xib */,
+				C4CF7C601357CB2F00B89C13 /* TSClipStrip.h */,
+				C4CF7C611357CB2F00B89C13 /* TSClipStrip.m */,
 			);
 			name = iPad;
 			sourceTree = "<group>";
@@ -1401,6 +1414,7 @@
 				63B1CD031343FDE400EFDFB6 /* iconoMas.png in Resources */,
 				C40D931B134A7B77003893DA /* youTube-logo@2x.png in Resources */,
 				C40D931C134A7B77003893DA /* youTube-logo.png in Resources */,
+				C4CF7C561357CA4700B89C13 /* TSClipListadoiPadView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1532,6 +1546,8 @@
 				3AD03845133D54600087925F /* UIViewWrapUIScrollView.m in Sources */,
 				3AA331821343DD8500D01F9F /* TSMasTableViewController.m in Sources */,
 				63B1CCFE1343F4D100EFDFB6 /* TSMasHTMLViewController.m in Sources */,
+				C4CF7C551357CA4700B89C13 /* TSClipListadoiPadViewController.m in Sources */,
+				C4CF7C621357CB2F00B89C13 /* TSClipStrip.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
