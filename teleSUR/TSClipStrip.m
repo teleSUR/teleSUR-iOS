@@ -61,14 +61,11 @@
         AsynchronousImageView *imageView;
         if ((imageView = (AsynchronousImageView *)celdaClip.imagen ))
         {
-            NSLog(@"%@", [NSURL URLWithString:[unDiccionario valueForKey:@"thumbnail_grande"]]);
             imageView.url = [NSURL URLWithString:[unDiccionario valueForKey:@"thumbnail_grande"]];
             [imageView cargarImagenSiNecesario];
         }
-        celdaClip.imagen.image = imageView.image;
 
         // Actualizar offset
-        
         CGRect tempFrame = celdaClip.frame;
         tempFrame.origin.x = offsetX;
         celdaClip.frame = tempFrame;
@@ -78,10 +75,9 @@
         
         // Añadir botón a la jerarquón de vistas
         [self addSubview:celdaClip];
-        
     }
+    
     [self setContentSize: CGSizeMake([array count]*(220+10), kAlturaStrip)];
-    NSLog(@"RECIBIDASSSSSS");
 }
 
 
