@@ -7,17 +7,28 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TSMultimediaDataDelegate.h"
 
 #define kAlturaStrip 167
 #define kNumeroStrips 5
 #define kMargenStrips 10
 
-@interface TSClipListadoiPadViewController : UIViewController {
+@class TSClipCellStripView;
 
-    NSMutableArray *strips;
+@interface TSClipListadoiPadViewController : UIViewController <TSMultimediaDataDelegate> {
     
+    UIScrollView *scrollStrips;
+    TSClipCellStripView *vistaUltimoClip;
+    
+    NSMutableArray *strips;
+    NSMutableArray *tipos;
 }
 
+@property (nonatomic, retain) IBOutlet TSClipCellStripView *vistaUltimoClip;
+
+@property (nonatomic, retain) IBOutlet UIScrollView *scrollStrips;
+
 @property (nonatomic, retain) NSMutableArray *strips;
+@property (nonatomic, retain) NSMutableArray *tipos;
 
 @end

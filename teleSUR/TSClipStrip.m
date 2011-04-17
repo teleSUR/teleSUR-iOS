@@ -17,28 +17,28 @@
 
 @synthesize listado;
 
+@synthesize tipos;
 
 -(id) init
 {
     if ((self = [super init])) {
         
-
-
         self.showsHorizontalScrollIndicator = YES;
         self.scrollEnabled =YES;
         
-        
-        
-        self.listado = [[TSClipListadoViewController alloc] init];
-        [self.listado viewDidLoad];
-        [self.listado cargarClips];
-        self.listado.delegate = self;
+        self.listado = [[TSClipListadoViewController alloc] init];        
         
     }
     return self;
     
 }
 
+-(void) cargarClips
+{
+    [self.listado viewDidLoad];        
+    [self.listado cargarClips];
+    self.listado.delegate = self;
+}
 
 -(void)TSMultimediaData:(TSMultimediaData *)data entidadesRecibidas:(NSArray *)array paraEntidad:(NSString *)entidad
 {
@@ -76,7 +76,7 @@
         // Añadir botón a la jerarquón de vistas
         [self addSubview:celdaClip];
     }
-    
+
     [self setContentSize: CGSizeMake([array count]*(220+10), kAlturaStrip)];
 }
 
