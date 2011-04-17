@@ -11,6 +11,7 @@
 #import "TSMultimediaDataDelegate.h"
 #import "TSClipListadoiPadViewController.h"
 #import "TSClipCellStripView.h"
+#import "AsynchronousImageView.h"
 
 @implementation TSClipStrip
 
@@ -54,6 +55,18 @@
         
         celdaClip.titulo.text = [unDiccionario valueForKey:@"titulo"];
         celdaClip.tiempo.text = [unDiccionario valueForKey:@"duracion"];
+        
+        // Imagen
+        
+        AsynchronousImageView *imageView;
+        if ((imageView = (AsynchronousImageView *)celdaClip.imagen ))
+        {
+            NSLog(@"%@", [NSURL URLWithString:[unDiccionario valueForKey:@"thumbnail_grande"]]);
+            imageView.url = [NSURL URLWithString:[unDiccionario valueForKey:@"thumbnail_grande"]];
+            [imageView cargarImagenSiNecesario];
+        }
+        celdaClip.imagen.image = imageView.image;
+
         // Actualizar offset
         
         CGRect tempFrame = celdaClip.frame;

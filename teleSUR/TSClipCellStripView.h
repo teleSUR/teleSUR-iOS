@@ -12,12 +12,12 @@
 
 @interface TSClipCellStripView : UIView {
 
-    UIImageView *imagen;
+    AsynchronousImageView *imagen;
     UILabel *titulo;
     UILabel *tiempo;
     UILabel *firma;
 }
-@property (nonatomic, retain) IBOutlet UIImageView *imagen;
+@property (nonatomic, retain) IBOutlet AsynchronousImageView *imagen;
 
 @property (nonatomic, retain) IBOutlet UILabel *titulo;
 @property (nonatomic, retain) IBOutlet UILabel *tiempo;
