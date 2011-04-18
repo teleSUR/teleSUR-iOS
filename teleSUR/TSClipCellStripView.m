@@ -8,10 +8,13 @@
 
 #import "TSClipCellStripView.h"
 #import "AsynchronousImageView.h"
+#import "TSClipDetallesViewController.h"
 
 @implementation TSClipCellStripView
 
 @synthesize  imagen, titulo, firma, tiempo;
+
+@synthesize controlador;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -30,6 +33,8 @@
     // Drawing code
 }
 */
+
+
 
 - (void)dealloc
 {

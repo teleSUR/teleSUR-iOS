@@ -31,4 +31,6 @@
 @property (nonatomic, retain) NSMutableArray *strips;
 @property (nonatomic, retain) NSMutableArray *tipos;
 
+-(IBAction) mostrarVideo;
+
 @end

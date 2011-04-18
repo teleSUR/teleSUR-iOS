@@ -149,12 +149,26 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "teleSUR/TSClipListadoiPadViewController.m"
-         timestampString = "324767311.885767"
+         timestampString = "324857286.451401"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "56"
-         endingLineNumber = "56"
+         startingLineNumber = "57"
+         endingLineNumber = "57"
          landmarkName = "-viewDidLoad"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "teleSUR/TSClipListadoiPadViewController.m"
+         timestampString = "324858587.436329"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "93"
+         endingLineNumber = "93"
+         landmarkName = "-mostrarVideo"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

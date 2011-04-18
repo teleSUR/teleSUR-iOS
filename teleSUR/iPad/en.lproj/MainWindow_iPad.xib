@@ -61,6 +61,9 @@
 			</object>
 			<object class="IBUITabBarController" id="80163594">
 				<object class="IBUISimulatedTabBarMetrics" key="IBUISimulatedBottomBarMetrics"/>
+				<object class="IBUISimulatedNavigationBarMetrics" key="IBUISimulatedTopBarMetrics">
+					<bool key="IBUIPrompted">NO</bool>
+				</object>
 				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics">
 					<int key="IBUIStatusBarStyle">2</int>
 				</object>
@@ -70,21 +73,22 @@
 				</object>
 				<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 				<bool key="IBUIHorizontal">NO</bool>
+				<object class="IBUIViewController" key="IBUISelectedViewController" id="762933120">
+					<object class="IBUITabBarItem" key="IBUITabBarItem" id="261032">
+						<string key="IBUITitle">Noticias</string>
+						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+					</object>
+					<reference key="IBUIParentViewController" ref="80163594"/>
+					<object class="IBUISimulatedOrientationMetrics" key="IBUISimulatedOrientationMetrics">
+						<int key="IBUIInterfaceOrientation">1</int>
+						<int key="interfaceOrientation">1</int>
+					</object>
+					<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+					<bool key="IBUIHorizontal">NO</bool>
+				</object>
 				<object class="NSMutableArray" key="IBUIViewControllers">
 					<bool key="EncodedWithXMLCoder">YES</bool>
-					<object class="IBUIViewController" id="762933120">
-						<object class="IBUITabBarItem" key="IBUITabBarItem" id="261032">
-							<string key="IBUITitle">Item 1</string>
-							<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-						</object>
-						<reference key="IBUIParentViewController" ref="80163594"/>
-						<object class="IBUISimulatedOrientationMetrics" key="IBUISimulatedOrientationMetrics">
-							<int key="IBUIInterfaceOrientation">1</int>
-							<int key="interfaceOrientation">1</int>
-						</object>
-						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-						<bool key="IBUIHorizontal">NO</bool>
-					</object>
+					<reference ref="762933120"/>
 				</object>
 				<object class="IBUITabBar" key="IBUITabBar" id="1014477806">
 					<reference key="NSNextResponder"/>
@@ -173,6 +177,7 @@
 							<reference ref="762933120"/>
 						</object>
 						<reference key="parent" ref="0"/>
+						<string key="objectName">Tab Bar Controller</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">13</int>
@@ -187,6 +192,7 @@
 							<reference ref="261032"/>
 						</object>
 						<reference key="parent" ref="80163594"/>
+						<string key="objectName">Clip Listadoi Pad View Controller - Noticias</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">17</int>

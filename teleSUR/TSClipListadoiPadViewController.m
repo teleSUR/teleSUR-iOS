@@ -12,6 +12,7 @@
 #import "TSMultimediaDataDelegate.h"
 #import "TSClipCellStripView.h"
 #import "AsynchronousImageView.h"
+#import "TSClipDetallesViewController.h"
 
 @implementation TSClipListadoiPadViewController
 
@@ -77,13 +78,25 @@
         [stripClips1 setFrame:CGRectMake(kMargenStrips, ((kMargenStrips)+kAlturaStrip)*i, self.view.frame.size.width-(kMargenStrips*2), kAlturaStrip)];
         [stripClips1 setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
         [self.scrollStrips addSubview:stripClips1];    
-        
+        [self.strips addObject:stripClips1];
         [stripClips1 release];
     }
-    
+
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
+
+-(IBAction) mostrarVideo
+{
+    TSClipDetallesViewController *detalleView = [[TSClipDetallesViewController alloc] initWithClip:[[[[self.strips objectAtIndex:0] listado] clips] objectAtIndex:4]];
+    
+    detalleView.modalPresentationStyle = UIModalPresentationFormSheet;
+    
+    [self presentModalViewController:detalleView animated:YES  ];
+    
+    [detalleView release];
+}
+
 
 - (void)viewDidUnload
 {

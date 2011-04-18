@@ -16,11 +16,18 @@
     UILabel *titulo;
     UILabel *tiempo;
     UILabel *firma;
+    
+    
+    UIViewController *controlador;
 }
+
+@property (nonatomic, retain) UIViewController *controlador;
+
 @property (nonatomic, retain) IBOutlet AsynchronousImageView *imagen;
 
 @property (nonatomic, retain) IBOutlet UILabel *titulo;
 @property (nonatomic, retain) IBOutlet UILabel *tiempo;
 @property (nonatomic, retain) IBOutlet UILabel *firma;
+
 
 @end
