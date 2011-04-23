@@ -77,7 +77,7 @@ NSString* const TSEntidadClip = @"clip";
         self.rangoUltimo = NSMakeRange(1, TSNumeroClipsPorPagina);
     }
     
-    if ([self numeroDeIdioma] == 0)
+    if ([self numeroDeIdioma] == 0 && [[UIDevice currentDevice].model isEqualToString:@"iPhone"])
     {
         TSSeleccionIdioma *vistaSeleccionIdioma = [[TSSeleccionIdioma alloc] init];
         vistaSeleccionIdioma.vistaListado = self;

@@ -14,6 +14,7 @@
 #define kMargenStrips 10
 
 @class TSClipCellStripView;
+@class  TSClipListadoViewController;
 
 @interface TSClipListadoiPadViewController : UIViewController <TSMultimediaDataDelegate> {
     
@@ -22,7 +23,11 @@
     
     NSMutableArray *strips;
     NSMutableArray *tipos;
+    
+    TSClipListadoViewController *listadoVideoUnico;
 }
+
+@property (nonatomic, retain) TSClipListadoViewController *listadoVideoUnico;
 
 @property (nonatomic, retain) IBOutlet TSClipCellStripView *vistaUltimoClip;
 
@@ -31,6 +36,8 @@
 @property (nonatomic, retain) NSMutableArray *strips;
 @property (nonatomic, retain) NSMutableArray *tipos;
 
--(IBAction) mostrarVideo;
+-(void) retirarModalView;
+
+-(IBAction) mostrarVideo: (id) sender;
 
 @end

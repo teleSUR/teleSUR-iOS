@@ -70,6 +70,7 @@
                               constrainedToSize:maximumLabelSize 
                                   lineBreakMode:etiquetaDescripcion.lineBreakMode];
     self.descripcionCell.frame = CGRectMake(self.descripcionCell.frame.origin.x, self.descripcionCell.frame.origin.y, self.descripcionCell.frame.size.width, expectedLabelSize.height+15);
+    self.descripcionCell.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     etiquetaDescripcion.frame = CGRectMake(etiquetaDescripcion.frame.origin.x, etiquetaDescripcion.frame.origin.y, etiquetaDescripcion.frame.size.width, expectedLabelSize.height);
     
     // Deshabilitar Pull-to-reload

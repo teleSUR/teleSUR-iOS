@@ -14,10 +14,18 @@
 
 @interface TSClipStrip : UIScrollView <TSMultimediaDataDelegate> {
     
+    char posicion;    
+    
+    NSString *nombreCategoria;
+    
     TSClipListadoViewController *listado;
     NSMutableArray *tipos;
     
 }
+
+@property (nonatomic, retain) NSString *nombreCategoria;
+
+@property (nonatomic, assign) char posicion;
 
 @property (nonatomic, assign) id <NSObject, TSMultimediaDataDelegate>  delegate;
 @property (nonatomic, retain) TSClipListadoViewController *listado;

@@ -13,6 +13,7 @@
 #import "TSClipCellStripView.h"
 #import "AsynchronousImageView.h"
 #import "TSClipDetallesViewController.h"
+#import "TSClipStrip.h"
 
 @implementation TSClipListadoiPadViewController
 
@@ -20,6 +21,8 @@
 @synthesize tipos;
 @synthesize  scrollStrips;
 @synthesize vistaUltimoClip;
+
+@synthesize listadoVideoUnico;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -58,11 +61,15 @@
     
     
     
-    TSClipListadoViewController *listado = [[TSClipListadoViewController alloc] init];        
+    self.listadoVideoUnico = [[TSClipListadoViewController alloc] init];        
     
-    [listado viewDidLoad];
-    [listado cargarClips];
-    listado.delegate = self;
+    
+
+    [self.listadoVideoUnico viewDidLoad];
+    self.listadoVideoUnico.rangoUltimo = NSMakeRange(0, 1);    
+    [self.listadoVideoUnico cargarClips];
+    
+    self.listadoVideoUnico.delegate = self;
     
     
     
@@ -72,11 +79,18 @@
     
     for (int i=0;i<[self.tipos count]; i++)
     {
+
+        
+        
+        
         TSClipStrip *stripClips1 = [[TSClipStrip alloc] init];
+        stripClips1.nombreCategoria = [self.tipos objectAtIndex:i];
         stripClips1.listado.diccionarioConfiguracionFiltros = [NSDictionary dictionaryWithObject:[self.tipos objectAtIndex:i] forKey:@"categoria"];
+        stripClips1.posicion = i;
         [stripClips1 cargarClips];
         [stripClips1 setFrame:CGRectMake(kMargenStrips, ((kMargenStrips)+kAlturaStrip)*i, self.view.frame.size.width-(kMargenStrips*2), kAlturaStrip)];
         [stripClips1 setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
+        
         [self.scrollStrips addSubview:stripClips1];    
         [self.strips addObject:stripClips1];
         [stripClips1 release];
@@ -86,13 +100,43 @@
     // Do any additional setup after loading the view from its nib.
 }
 
--(IBAction) mostrarVideo
+-(void) retirarModalView 
 {
-    TSClipDetallesViewController *detalleView = [[TSClipDetallesViewController alloc] initWithClip:[[[[self.strips objectAtIndex:0] listado] clips] objectAtIndex:4]];
+    [self dismissModalViewControllerAnimated:YES];
+}
+
+-(IBAction) mostrarVideoDeControlador
+{
+    
+    
+    TSClipDetallesViewController *detalleView = [[TSClipDetallesViewController alloc] initWithClip:[[self.listadoVideoUnico clips] lastObject]];
     
     detalleView.modalPresentationStyle = UIModalPresentationFormSheet;
     
     [self presentModalViewController:detalleView animated:YES  ];
+    
+    [detalleView release];
+
+    
+}
+-(IBAction) mostrarVideo: (UIButton *) sender
+{
+    UINavigationController *controlNavegacion = [[UINavigationController alloc] init];
+    
+    UIBarButtonItem *botonSalir = [[UIBarButtonItem alloc] initWithTitle:@"Cerrar" style:UIBarButtonItemStyleBordered target:self action:@selector(retirarModalView)];
+    
+    TSClipCellStripView *celda =  [sender superview];
+    
+    TSClipStrip *strip = [celda superview];
+    
+    TSClipDetallesViewController *detalleView = [[TSClipDetallesViewController alloc] initWithClip:[[[[self.strips objectAtIndex:strip.posicion] listado] clips] objectAtIndex:celda.posicion]];
+    controlNavegacion.modalPresentationStyle = UIModalPresentationFormSheet;
+    
+    detalleView.navigationItem.leftBarButtonItem = botonSalir;    
+    
+    [controlNavegacion pushViewController:detalleView animated:NO];
+    
+    [self presentModalViewController:controlNavegacion animated:YES  ];
     
     [detalleView release];
 }
@@ -112,7 +156,7 @@
 	return YES;
 }
 
--(void)TSMultimediaData:(TSMultimediaData *)data entidadesRecibidas:(NSArray *)array paraEntidad:(NSString *)entidad
+-(void)TSMultimediaData:(TSMultimediaData *)data  entidadesRecibidas:(NSArray *)array paraEntidad:(NSString *)entidad
 {
     NSDictionary *unDiccionario = [array lastObject];
     

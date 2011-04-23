@@ -12,6 +12,8 @@
 
 @interface TSClipCellStripView : UIView {
 
+    char posicion;
+    
     AsynchronousImageView *imagen;
     UILabel *titulo;
     UILabel *tiempo;
@@ -20,6 +22,8 @@
     
     UIViewController *controlador;
 }
+
+@property (nonatomic, assign) char posicion;
 
 @property (nonatomic, retain) UIViewController *controlador;
 

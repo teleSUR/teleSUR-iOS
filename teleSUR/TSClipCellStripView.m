@@ -16,6 +16,8 @@
 
 @synthesize controlador;
 
+@synthesize posicion;
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];

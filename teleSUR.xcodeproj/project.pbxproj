@@ -32,6 +32,7 @@
 		3AD81911131EF7B40006C5A0 /* NSDate_Utilidad.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD81910131EF7B40006C5A0 /* NSDate_Utilidad.m */; };
 		3AE0BCE71331110000E41F85 /* TSBusquedaSeleccionTextoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AE0BCE51331110000E41F85 /* TSBusquedaSeleccionTextoViewController.m */; };
 		3AE0BCE81331110000E41F85 /* TSBusquedaSeleccionTextoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AE0BCE61331110000E41F85 /* TSBusquedaSeleccionTextoViewController.xib */; };
+		3AF6F16A1361087D00373218 /* TSClipCategoriaView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AF6F1691361087B00373218 /* TSClipCategoriaView.xib */; };
 		63099E0713199D1800D15603 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63099E0613199D1800D15603 /* UIKit.framework */; };
 		63099E0913199D1800D15603 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63099E0813199D1800D15603 /* Foundation.framework */; };
 		63099E0B13199D1800D15603 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63099E0A13199D1800D15603 /* CoreGraphics.framework */; };
@@ -235,6 +236,7 @@
 		3AE0BCE41331110000E41F85 /* TSBusquedaSeleccionTextoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSBusquedaSeleccionTextoViewController.h; sourceTree = "<group>"; };
 		3AE0BCE51331110000E41F85 /* TSBusquedaSeleccionTextoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSBusquedaSeleccionTextoViewController.m; sourceTree = "<group>"; };
 		3AE0BCE61331110000E41F85 /* TSBusquedaSeleccionTextoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TSBusquedaSeleccionTextoViewController.xib; sourceTree = "<group>"; };
+		3AF6F1691361087B00373218 /* TSClipCategoriaView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TSClipCategoriaView.xib; sourceTree = "<group>"; };
 		63099E0213199D1800D15603 /* teleSUR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = teleSUR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63099E0613199D1800D15603 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		63099E0813199D1800D15603 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -667,6 +669,7 @@
 				C4CF7C521357CA4700B89C13 /* TSClipListadoiPadViewController.h */,
 				C4CF7C531357CA4700B89C13 /* TSClipListadoiPadViewController.m */,
 				C4CF7C541357CA4700B89C13 /* TSClipListadoiPadView.xib */,
+				3AF6F1691361087B00373218 /* TSClipCategoriaView.xib */,
 				C4CF7C601357CB2F00B89C13 /* TSClipStrip.h */,
 				C4CF7C611357CB2F00B89C13 /* TSClipStrip.m */,
 				3A4CD8761358F2FF00752C7D /* TSClipCellStripView.h */,
@@ -1428,6 +1431,7 @@
 				C4CF7C561357CA4700B89C13 /* TSClipListadoiPadView.xib in Resources */,
 				3A4CD87B1358F3C900752C7D /* TSClipCellStripView.xib in Resources */,
 				3A75D0F4135B8995000CB25E /* TSClipCellStripBigView.xib in Resources */,
+				3AF6F16A1361087D00373218 /* TSClipCategoriaView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
