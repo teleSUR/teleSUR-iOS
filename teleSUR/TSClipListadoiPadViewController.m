@@ -65,7 +65,7 @@
     
     
 
-    [self.listadoVideoUnico viewDidLoad];
+    [self.listadoVideoUnico prepararListado];
     self.listadoVideoUnico.rangoUltimo = NSMakeRange(0, 1);    
     [self.listadoVideoUnico cargarClips];
     

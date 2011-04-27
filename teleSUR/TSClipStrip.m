@@ -39,7 +39,7 @@
 
 -(void) cargarClips
 {
-    [self.listado viewDidLoad];        
+    [self.listado prepararListado];        
     [self.listado cargarClips];
     self.listado.delegate = self;
 }

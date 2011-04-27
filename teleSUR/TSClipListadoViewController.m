@@ -59,14 +59,8 @@ NSString* const TSEntidadClip = @"clip";
 #pragma mark -
 #pragma mark View lifecycle
 
-- (void)viewDidLoad
+- (void) prepararListado
 {
-    // Personalizar
-    [self personalizarNavigationBar];
-    
-    // Mostrar vista de loading
-    //[self mostrarLoadingViewConAnimacion:YES];
-    
     // Inicializar datos
     self.clips = [NSMutableArray array];
     self.indiceDeClipSeleccionado = -1;
@@ -86,6 +80,16 @@ NSString* const TSEntidadClip = @"clip";
         
         return;
     }
+
+    
+}
+
+- (void)viewDidLoad
+{
+    [self prepararListado];
+    // Personalizar
+    [self personalizarNavigationBar];
+        
     
     // Cargar datos
     [self cargarClips];

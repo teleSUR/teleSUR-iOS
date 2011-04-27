@@ -17,6 +17,11 @@
 		3A4CD8781358F30000752C7D /* TSClipCellStripView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A4CD8771358F30000752C7D /* TSClipCellStripView.m */; };
 		3A4CD87B1358F3C900752C7D /* TSClipCellStripView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A4CD87A1358F3C800752C7D /* TSClipCellStripView.xib */; };
 		3A75D0F4135B8995000CB25E /* TSClipCellStripBigView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A75D0F3135B8994000CB25E /* TSClipCellStripBigView.xib */; };
+		3A98B50A13663C730083373D /* TSMapaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A98B50913663C730083373D /* TSMapaViewController.xib */; };
+		3A98B50E13663D8E0083373D /* TSMapaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A98B50D13663D8E0083373D /* TSMapaViewController.m */; };
+		3A98B51013663EC20083373D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A98B50F13663EC20083373D /* CoreLocation.framework */; };
+		3A98B51813663F600083373D /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A98B51713663F600083373D /* MapKit.framework */; };
+		3A98B521136645D90083373D /* TSAnotacionEnMapa.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A98B520136645D70083373D /* TSAnotacionEnMapa.m */; };
 		3AA331821343DD8500D01F9F /* TSMasTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA331811343DD8500D01F9F /* TSMasTableViewController.m */; };
 		3AC5F0F81343E4A800359A61 /* facebook-logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AC5F0F61343E4A800359A61 /* facebook-logo@2x.png */; };
 		3AC5F0FA1343E4FA00359A61 /* twitter-logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AC5F0F91343E4FA00359A61 /* twitter-logo@2x.png */; };
@@ -215,6 +220,13 @@
 		3A4CD8771358F30000752C7D /* TSClipCellStripView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSClipCellStripView.m; sourceTree = "<group>"; };
 		3A4CD87A1358F3C800752C7D /* TSClipCellStripView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TSClipCellStripView.xib; sourceTree = "<group>"; };
 		3A75D0F3135B8994000CB25E /* TSClipCellStripBigView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TSClipCellStripBigView.xib; sourceTree = "<group>"; };
+		3A98B50913663C730083373D /* TSMapaViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TSMapaViewController.xib; sourceTree = "<group>"; };
+		3A98B50C13663D8E0083373D /* TSMapaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSMapaViewController.h; sourceTree = "<group>"; };
+		3A98B50D13663D8E0083373D /* TSMapaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSMapaViewController.m; sourceTree = "<group>"; };
+		3A98B50F13663EC20083373D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		3A98B51713663F600083373D /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		3A98B51F136645D50083373D /* TSAnotacionEnMapa.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSAnotacionEnMapa.h; sourceTree = "<group>"; };
+		3A98B520136645D70083373D /* TSAnotacionEnMapa.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSAnotacionEnMapa.m; sourceTree = "<group>"; };
 		3AA331801343DD8500D01F9F /* TSMasTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSMasTableViewController.h; sourceTree = "<group>"; };
 		3AA331811343DD8500D01F9F /* TSMasTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSMasTableViewController.m; sourceTree = "<group>"; };
 		3AC5F0F61343E4A800359A61 /* facebook-logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebook-logo@2x.png"; sourceTree = "<group>"; };
@@ -496,6 +508,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A98B51813663F600083373D /* MapKit.framework in Frameworks */,
+				3A98B51013663EC20083373D /* CoreLocation.framework in Frameworks */,
 				63EDAB521323316500496B83 /* libsqlite3.0.dylib in Frameworks */,
 				63EDAB5013232F8200496B83 /* CFNetwork.framework in Frameworks */,
 				6341A7E013205A01008FFD9D /* AudioToolbox.framework in Frameworks */,
@@ -579,6 +593,7 @@
 		63099DF713199D1800D15603 = {
 			isa = PBXGroup;
 			children = (
+				3A98B51713663F600083373D /* MapKit.framework */,
 				631B622C133C950000E42342 /* Sample.mp4 */,
 				634D9EF1131F4B1F005B46FE /* Icono.png */,
 				63E01696131B883D001928E4 /* Default.png */,
@@ -604,6 +619,7 @@
 			isa = PBXGroup;
 			children = (
 				63EDAB511323316500496B83 /* libsqlite3.0.dylib */,
+				3A98B50F13663EC20083373D /* CoreLocation.framework */,
 				63EDAB4F13232F8200496B83 /* CFNetwork.framework */,
 				6341A7DF13205A01008FFD9D /* AudioToolbox.framework */,
 				6341A7DD13205992008FFD9D /* QuartzCore.framework */,
@@ -676,6 +692,11 @@
 				3A4CD8771358F30000752C7D /* TSClipCellStripView.m */,
 				3A4CD87A1358F3C800752C7D /* TSClipCellStripView.xib */,
 				3A75D0F3135B8994000CB25E /* TSClipCellStripBigView.xib */,
+				3A98B50913663C730083373D /* TSMapaViewController.xib */,
+				3A98B50C13663D8E0083373D /* TSMapaViewController.h */,
+				3A98B50D13663D8E0083373D /* TSMapaViewController.m */,
+				3A98B51F136645D50083373D /* TSAnotacionEnMapa.h */,
+				3A98B520136645D70083373D /* TSAnotacionEnMapa.m */,
 			);
 			name = iPad;
 			sourceTree = "<group>";
@@ -1432,6 +1453,7 @@
 				3A4CD87B1358F3C900752C7D /* TSClipCellStripView.xib in Resources */,
 				3A75D0F4135B8995000CB25E /* TSClipCellStripBigView.xib in Resources */,
 				3AF6F16A1361087D00373218 /* TSClipCategoriaView.xib in Resources */,
+				3A98B50A13663C730083373D /* TSMapaViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1566,6 +1588,8 @@
 				C4CF7C551357CA4700B89C13 /* TSClipListadoiPadViewController.m in Sources */,
 				C4CF7C621357CB2F00B89C13 /* TSClipStrip.m in Sources */,
 				3A4CD8781358F30000752C7D /* TSClipCellStripView.m in Sources */,
+				3A98B50E13663D8E0083373D /* TSMapaViewController.m in Sources */,
+				3A98B521136645D90083373D /* TSAnotacionEnMapa.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

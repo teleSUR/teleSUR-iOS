@@ -43,6 +43,9 @@ extern NSString* const TSEntidadClip;
 @property (nonatomic, retain) NSMutableDictionary *diccionarioConfiguracionFiltros;
 
 // Operaciones
+
+- (void) prepararListado;
+
 - (void)cargarClips;
 
 @end
