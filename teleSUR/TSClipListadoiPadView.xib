@@ -57,7 +57,6 @@
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-						<bool key="IBUIBounces">NO</bool>
 					</object>
 					<object class="IBUIView" id="713041808">
 						<reference key="NSNextResponder" ref="766721923"/>

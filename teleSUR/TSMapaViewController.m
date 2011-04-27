@@ -10,10 +10,15 @@
 #import "TSClipListadoViewController.h"
 #import "TSMultimediaDataDelegate.h"
 #import "TSAnotacionEnMapa.h"
+#import <CoreLocation/CoreLocation.h>
+#import <MapKit/MapKit.h>
+#import "TSClipDetallesViewController.h"
+#import "TSClipStrip.h"
 
 @implementation TSMapaViewController
 
 @synthesize vistaMapa, listado, anotacionesDelMapa;
+@synthesize noticiaSeleccionada;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -54,7 +59,7 @@
 {
     self.listado = [[TSClipListadoViewController alloc] init];        
     [self.listado prepararListado];
-    self.listado.rangoUltimo = NSMakeRange(1, 30);
+
     [self.listado cargarClips];
     
     self.listado.delegate = self;
@@ -74,38 +79,63 @@
     // Return YES for supported orientations
     return YES;
 }
-
-#pragma - MKMapViewDelegate
-/*
-- (MKAnnotationView *) mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
+-(void) retirarModalView 
 {
-    
-    if ([annotation isKindOfClass:[MKUserLocation class]]) return nil;
-	/*
-    // Handle any custom annotations.
-    if ([annotation isKindOfClass:[TSAnotacionEnMapa class]])
-    {
-        // Try to dequeue an existing pin view first.
-        MKPinAnnotationView *pinView = (MKPinAnnotationView*)[mapView
-                                                              dequeueReusableAnnotationViewWithIdentifier:@"CustomPinAnnotation"];
-		
-        if (!pinView)
-        {
-            // If an existing pin view was not available, create one
-			pinView = [[[MKPinAnnotationView alloc] initWithAnnotation:annotation
-													   reuseIdentifier:@"CustomPinAnnotation"];
-                       
-        }
+    [self dismissModalViewControllerAnimated:YES];
+}
+-(void) reproducirVideo: (TSAnotacionEnMapa *) anotacion 
 
+{
+    TSAnotacionEnMapa *seleccion = [[self.vistaMapa selectedAnnotations] objectAtIndex:0];
     
+    UINavigationController *controlNavegacion = [[UINavigationController alloc] init];
+    
+    UIBarButtonItem *botonSalir = [[UIBarButtonItem alloc] initWithTitle:@"Cerrar" style:UIBarButtonItemStyleBordered target:self action:@selector(retirarModalView)];
+        
+    TSClipDetallesViewController *detalleView = [[TSClipDetallesViewController alloc] initWithClip:seleccion.noticia];
+    controlNavegacion.modalPresentationStyle = UIModalPresentationFormSheet;
+    
+    detalleView.navigationItem.leftBarButtonItem = botonSalir;    
+    controlNavegacion.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    [controlNavegacion pushViewController:detalleView animated:NO];
+    
+    [self presentModalViewController:controlNavegacion animated:YES  ];
+    
+    [detalleView release];
 }
 
-*/
+#pragma - MKMapViewDelegate
+
+- (MKAnnotationView *) mapView: (MKMapView *) mapView viewForAnnotation: (id<MKAnnotation>) annotation
+{
+    if ([annotation isKindOfClass:[MKUserLocation class]]) return nil;
+    MKPinAnnotationView *pin = (MKPinAnnotationView *) [self.vistaMapa dequeueReusableAnnotationViewWithIdentifier: @"asdf"];
+    if (pin == nil)
+    {
+        pin = [[[MKPinAnnotationView alloc] initWithAnnotation: annotation reuseIdentifier: @"asdf"] autorelease];
+        UIButton* rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+        [rightButton addTarget:self
+                        action:@selector(reproducirVideo:)
+              forControlEvents:UIControlEventTouchUpInside];
+        pin.rightCalloutAccessoryView = rightButton;
+        
+    }
+    else
+    {
+        pin.annotation = annotation;
+    }
+    pin.canShowCallout = YES;
+    pin.pinColor = MKPinAnnotationColorRed;
+    pin.animatesDrop = YES;
+    return pin;
+}
+
 
 #pragma - TSMultimediaDataDelegate
 
 -(void)TSMultimediaData:(TSMultimediaData *)data entidadesRecibidas:(NSArray *)array paraEntidad:(NSString *)entidad
 {
+    TSAnotacionEnMapa *anotacionFinal;
     NSLog(@"Mapa");
     for (NSDictionary *unDiccionario in array)
     {
@@ -113,11 +143,12 @@
         
         
         [self.vistaMapa addAnnotation:anotacion];
-        
+        anotacionFinal = anotacion;
         [anotacion release];
         
         
     }
+    [self.vistaMapa selectAnnotation:anotacionFinal animated:NO];
 
     
 }

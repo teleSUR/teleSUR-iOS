@@ -119,6 +119,7 @@
 
     
 }
+
 -(IBAction) mostrarVideo: (UIButton *) sender
 {
     UINavigationController *controlNavegacion = [[UINavigationController alloc] init];

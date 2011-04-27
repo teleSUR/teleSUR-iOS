@@ -12,6 +12,7 @@
 #import "TSMultimediaDataDelegate.h"
 
 @class TSClipListadoViewController;
+@class TSAnotacionEnMapa;
 
 @interface TSMapaViewController : UIViewController <TSMultimediaDataDelegate, MKMapViewDelegate> {
     
@@ -19,10 +20,17 @@
     
     MKMapView *vistaMapa;
     TSClipListadoViewController *listado;    
+    NSDictionary *noticiaSeleccionada;
     
 }
+
+@property (nonatomic, retain) NSDictionary *noticiaSeleccionada;
 @property (nonatomic, retain) NSMutableArray *anotacionesDelMapa;
 @property (nonatomic, retain) TSClipListadoViewController *listado;
 @property (nonatomic, retain) IBOutlet MKMapView *vistaMapa;
+
+
+-(void) reproducirVideo: (TSAnotacionEnMapa *) anotacion;
+
 
 @end
