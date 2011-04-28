@@ -29,6 +29,7 @@
 #import "SHK.h"
 #import "SHKSharer.h"
 #import "SHKCustomShareMenuCell.h"
+#import "UIViewController_Configuracion.h"
 
 @implementation SHKShareMenu
 
@@ -73,6 +74,12 @@
 	
 	// Remove the SHK view wrapper from the window
 	[[SHK currentHelper] viewWasDismissed];
+}
+
+-(void)viewDidLoad {
+    [self personalizarNavigationBar];
+    
+    [super viewDidLoad];
 }
 
 

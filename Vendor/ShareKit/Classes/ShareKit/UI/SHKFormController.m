@@ -28,6 +28,7 @@
 #import "SHK.h"
 #import "SHKCustomFormController.h"
 #import "SHKCustomFormFieldCell.h"
+#import "UIViewController_Configuracion.h"
 
 
 @implementation SHKFormController
@@ -133,6 +134,8 @@
 - (void)viewDidLoad
 {
 	[super viewDidLoad];
+    
+    [self personalizarNavigationBar];
 	
 	if (SHKFormBgColorRed != -1)		
 		self.tableView.backgroundColor = [UIColor colorWithRed:SHKFormBgColorRed/255 green:SHKFormBgColorGreen/255 blue:SHKFormBgColorBlue/255 alpha:1];
