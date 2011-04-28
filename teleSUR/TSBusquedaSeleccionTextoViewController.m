@@ -47,9 +47,10 @@
 {
     [self personalizarNavigationBar];
     
-    self.campoTexto = [[UITextField alloc] initWithFrame:CGRectMake(110, 12, 185, 30)];    
+    self.campoTexto = [[UITextField alloc] initWithFrame:CGRectMake(110, 12, 185, 30)];   
+    self.campoTexto.delegate = self;
     self.campoTexto.textColor = [UIColor blackColor];
-    self.campoTexto.clearButtonMode =UITextFieldViewModeAlways;
+    self.campoTexto.clearButtonMode = UITextFieldViewModeAlways;
     
     [super viewDidLoad];
 }
@@ -85,6 +86,17 @@
 
     return cell;
     
+}
+
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    if ([string isEqualToString:@"\n"]) {
+        [self.navigationController popViewControllerAnimated:YES];
+        return NO;
+    }
+    
+    return YES;
 }
 
 

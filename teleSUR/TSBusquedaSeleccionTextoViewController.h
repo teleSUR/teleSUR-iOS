@@ -10,7 +10,7 @@
 #import "TSClipBusquedaViewController.h"
 
 
-@interface TSBusquedaSeleccionTextoViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
+@interface TSBusquedaSeleccionTextoViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate> {
     
     TSClipBusquedaViewController *controladorBusqueda;
     UITextField *campoTexto;
