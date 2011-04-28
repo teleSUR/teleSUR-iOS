@@ -65,9 +65,20 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    // Registrar notificación para recargar tabla después de regresar del background
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(cargarClips)
+                                                 name: UIApplicationDidBecomeActiveNotification
+                                               object:nil];
+
     // Si ya había un clip seleccionado, asegurar que esté marcado 
     if (self.indexPathSeleccionado && animated)
         [self.tableViewController.tableView selectRowAtIndexPath:self.indexPathSeleccionado animated:NO scrollPosition:UITableViewScrollPositionNone];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)viewDidAppear:(BOOL)animated

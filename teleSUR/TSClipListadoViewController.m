@@ -55,10 +55,6 @@ NSString* const TSEntidadClip = @"clip";
                        conDelegate:self];
 }
 
-
-#pragma mark -
-#pragma mark View lifecycle
-
 - (void) prepararListado
 {
     // Inicializar datos
@@ -80,9 +76,11 @@ NSString* const TSEntidadClip = @"clip";
         
         return;
     }
-
-    
 }
+
+
+#pragma mark -
+#pragma mark View lifecycle
 
 - (void)viewDidLoad
 {
