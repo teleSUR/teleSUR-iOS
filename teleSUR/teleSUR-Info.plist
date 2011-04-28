@@ -13,9 +13,11 @@
 	<key>CFBundleIconFiles</key>
 	<array>
 		<string>Icono.png</string>
+		<string>Icon.png</string>
+		<string>Icon@2x.png</string>
 	</array>
 	<key>CFBundleIdentifier</key>
-	<string>8JBXRZA9CK.teleSUR</string>
+	<string>teleSUR</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -204,7 +206,7 @@
 	<key>NSMainNibFile</key>
 	<string>MainWindow_iPhone</string>
 	<key>NSMainNibFile~ipad</key>
-	<string>MainWindow_iPad</string>
+	<string>MainWindow_iPhone</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
