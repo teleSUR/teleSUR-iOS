@@ -145,21 +145,6 @@
 				<key>Header</key>
 				<string>Personas</string>
 			</dict>
-			<dict>
-				<key>Filas</key>
-				<array>
-					<dict>
-						<key>Cualquier fecha</key>
-						<string></string>
-						<key>Entidad</key>
-						<string>fecha</string>
-						<key>Nombre</key>
-						<string>Fecha</string>
-					</dict>
-				</array>
-				<key>Header</key>
-				<string>Fecha</string>
-			</dict>
 		</array>
 		<key>Ubicaciones</key>
 		<array>
