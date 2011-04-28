@@ -15,7 +15,7 @@
 		<string>Icono.png</string>
 	</array>
 	<key>CFBundleIdentifier</key>
-	<string>teleSUR.${PRODUCT_NAME:rfc1034identifier}</string>
+	<string>8JBXRZA9CK.teleSUR</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -23,13 +23,17 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>0.9</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1.0</string>
+	<string>0.9</string>
 	<key>Configuración</key>
 	<dict>
+		<key>API URL Base</key>
+		<string>http://multimedia.telesurtv.net</string>
+		<key>Código de idioma</key>
+		<string>es</string>
 		<key>Filtros Extra Menú Programas</key>
 		<array>
 			<dict>
@@ -45,10 +49,6 @@
 				<string>documental</string>
 			</dict>
 		</array>
-		<key>API URL Base</key>
-		<string>http://multimedia.telesurtv.net</string>
-		<key>Código de idioma</key>
-		<string>es</string>
 		<key>Secciones de Búsqueda</key>
 		<array>
 			<dict>
