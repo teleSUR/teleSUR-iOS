@@ -73,14 +73,6 @@
 				<array>
 					<dict>
 						<key>Entidad</key>
-						<string>tipo_clip</string>
-						<key>Nombre</key>
-						<string>Tipo</string>
-						<key>Todos</key>
-						<string>Cualquiera</string>
-					</dict>
-					<dict>
-						<key>Entidad</key>
 						<string>categoria</string>
 						<key>Nombre</key>
 						<string>Sección</string>
