@@ -48,7 +48,8 @@
     // Cargar arreglo de configuración
     self.configuracionSeccionesBusqueda = [[[[NSBundle mainBundle] infoDictionary] objectForKey:@"Configuración"] objectForKey:@"Secciones de Búsqueda"];
     
-    self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Fondo2.png"]];
+    //self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Fondo2.png"]];
+    self.tableView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     
     // Inicializar diccionario para selecciones
     self.selecciones = [NSMutableDictionary dictionary];

@@ -88,7 +88,8 @@
     UIView *vistaFondo = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, kMENU_ALTURA +(kMENU_ALTURA/2))] autorelease];
 
     // Configurar menuScrollView
-    vistaFondo.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Fondo1.png"]];    
+    //vistaFondo.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Fondo1.png"]];    
+    vistaFondo.backgroundColor = [UIColor groupTableViewBackgroundColor];
     [self.view addSubview:vistaFondo];
     
     

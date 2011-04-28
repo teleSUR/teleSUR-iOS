@@ -60,7 +60,9 @@
     
     self.omitirVerMas = YES;
     self.agregarAlFinal = YES;
-    self.tableViewController.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Fondo2.png"]];
+    
+    //self.tableViewController.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Fondo2.png"]];
+    self.tableViewController.tableView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     
     // Ajustar tamanno de celda para descripción
     UILabel *etiquetaDescripcion = (UILabel *)[self.descripcionCell viewWithTag:5];

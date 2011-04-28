@@ -24,7 +24,8 @@
     if ((self = [super initWithFrame:frame]))
 	{
         // Color de fondo
-		self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Fondo2.png"]];
+		//self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Fondo2.png"]];
+        self.backgroundColor = [UIColor groupTableViewBackgroundColor];
         
 		lastUpdatedLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, frame.size.height - 30.0f, 320.0f, 20.0f)];
 		lastUpdatedLabel.font = [UIFont systemFontOfSize:12.0f];
