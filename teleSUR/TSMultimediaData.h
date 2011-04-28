@@ -21,6 +21,8 @@
 @property (nonatomic, retain) NSString *entidadString;
 
 - (void)getDatosParaEntidad:(NSString *)entidad conFiltros:(NSDictionary *)filtros enRango:(NSRange)rango conDelegate:(id)datosDelegate;
+- (NSString *)urlEncode:(NSString *)string;
+
 
 @end
 

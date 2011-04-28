@@ -6,7 +6,9 @@
 //  Copyright 2011 teleSUR. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
 #import "TSMultimediaData.h"
+
 #include "NSDictionary_JSONExtensions.h"
 #include "TSMultimediaDataDelegate.h"
 #include "UIViewController_Preferencias.h"
@@ -39,7 +41,7 @@
 	if ([entidad isEqualToString:@"clip"])
     {
         // Buscar nombres de parámetros reconocidos y agregarlos al arreglo de parámetros GET
-        NSArray *params = [NSArray arrayWithObjects:@"desde", @"hasta", @"categoria", @"programa", @"tipo", @"pais", @"tema", @"corresponsal", @"personaje", @"ubicacion", @"relacionados", nil];
+        NSArray *params = [NSArray arrayWithObjects:@"desde", @"hasta", @"categoria", @"programa", @"tipo", @"pais", @"tema", @"corresponsal", @"personaje", @"ubicacion", @"relacionados", @"texto", nil];
         
         for (NSString *param in params)
             if ((currentFiltro = [filtros objectForKey:param]))
@@ -82,8 +84,6 @@
 		}
 		return;
 	}
-    
-    NSLog(@"GET: %@", parametrosGET);
 	
 	// cualquier entidad puede ser paginada
     if (rango.length)
@@ -91,9 +91,16 @@
         [parametrosGET addObject:[NSString stringWithFormat:@"primero=%d", rango.location]];
         [parametrosGET addObject:[NSString stringWithFormat:@"ultimo=%d", rango.location + rango.length - 1]];
     }
+    
+    NSMutableArray *parametrosGETSeguros = [NSMutableArray arrayWithCapacity:[parametrosGET count]];
+    for (NSString *param in parametrosGET)
+    {
+        [parametrosGETSeguros addObject:[self urlEncode:param]];
+    }
+    NSLog(@"GET: %@", parametrosGETSeguros);
 	
 	// construir quierystring, URL, consulta y conexión
-	NSString *queryString = [parametrosGET componentsJoinedByString:@"&"];
+	NSString *queryString = [parametrosGETSeguros componentsJoinedByString:@"&"];
 	
 	NSURL *multimediaAPIRequestURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@api/%@?%@", urlBase, langCode, entidad, queryString]];
 	NSLog(@"URL a consultar: %@", multimediaAPIRequestURL);
@@ -119,6 +126,15 @@
 	}
 }
 
+// Codifica parámetros para URL
+- (NSString *)urlEncode:(NSString *)string
+{
+	return (NSString *)CFURLCreateStringByAddingPercentEscapes(NULL,
+                                                               (CFStringRef)string,
+                                                               NULL,
+                                                               (CFStringRef)@"!*'\"();:@&+$,/?%#[]% ",
+                                                               CFStringConvertNSStringEncodingToEncoding(NSUTF8StringEncoding));
+}
 
 
 #pragma mark -
