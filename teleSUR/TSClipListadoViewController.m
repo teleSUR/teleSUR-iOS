@@ -46,7 +46,7 @@ NSString* const TSEntidadClip = @"clip";
 // Obtiene clips asincrónicamente, con base en propiedades del objeto
 - (void)cargarClips
 {
-//    [self mostrarLoadingViewConAnimacion:YES];
+    [self mostrarLoadingViewConAnimacion:YES];
     
 	TSMultimediaData *dataClips = [[TSMultimediaData alloc] init];
     [dataClips getDatosParaEntidad:TSEntidadClip // otros ejemplos: programa, pais, categoria
@@ -150,7 +150,7 @@ NSString* const TSEntidadClip = @"clip";
             self.arregloClipsAsyncImageViews = [NSMutableArray array];
         }
         
-//        [self ocultarLoadingViewConAnimacion:YES];
+        [self ocultarLoadingViewConAnimacion:YES];
     }
     
     // Liberar objeto de datos
@@ -172,7 +172,7 @@ NSString* const TSEntidadClip = @"clip";
 	NSLog(@"Error: %@", error);
     
     // Quitar vista de loading
-//    [self ocultarLoadingViewConAnimacion:YES];
+    [self ocultarLoadingViewConAnimacion:YES];
     
     
     // Liberar objeto de datos

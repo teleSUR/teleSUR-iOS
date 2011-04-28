@@ -38,6 +38,8 @@
 		3AE0BCE71331110000E41F85 /* TSBusquedaSeleccionTextoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AE0BCE51331110000E41F85 /* TSBusquedaSeleccionTextoViewController.m */; };
 		3AE0BCE81331110000E41F85 /* TSBusquedaSeleccionTextoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AE0BCE61331110000E41F85 /* TSBusquedaSeleccionTextoViewController.xib */; };
 		3AF6F16A1361087D00373218 /* TSClipCategoriaView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AF6F1691361087B00373218 /* TSClipCategoriaView.xib */; };
+		63001C57136922BF00F1C9F2 /* youtube-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 63001C55136922BF00F1C9F2 /* youtube-logo.png */; };
+		63001C58136922BF00F1C9F2 /* youtube-logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 63001C56136922BF00F1C9F2 /* youtube-logo@2x.png */; };
 		63099E0713199D1800D15603 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63099E0613199D1800D15603 /* UIKit.framework */; };
 		63099E0913199D1800D15603 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63099E0813199D1800D15603 /* Foundation.framework */; };
 		63099E0B13199D1800D15603 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63099E0A13199D1800D15603 /* CoreGraphics.framework */; };
@@ -184,8 +186,6 @@
 		63EDAB5013232F8200496B83 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63EDAB4F13232F8200496B83 /* CFNetwork.framework */; };
 		63EDAB521323316500496B83 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 63EDAB511323316500496B83 /* libsqlite3.0.dylib */; };
 		63FB4EF6132ECE980027E304 /* TSBusquedaSeleccionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63FB4EF5132ECE980027E304 /* TSBusquedaSeleccionTableViewController.m */; };
-		C40D931B134A7B77003893DA /* youTube-logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C40D9319134A7B77003893DA /* youTube-logo@2x.png */; };
-		C40D931C134A7B77003893DA /* youTube-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = C40D931A134A7B77003893DA /* youTube-logo.png */; };
 		C470FBC5133988E5007BEC50 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C470FBC7133988E5007BEC50 /* Localizable.strings */; };
 		C4CF7C551357CA4700B89C13 /* TSClipListadoiPadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4CF7C531357CA4700B89C13 /* TSClipListadoiPadViewController.m */; };
 		C4CF7C561357CA4700B89C13 /* TSClipListadoiPadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4CF7C541357CA4700B89C13 /* TSClipListadoiPadView.xib */; };
@@ -249,6 +249,8 @@
 		3AE0BCE51331110000E41F85 /* TSBusquedaSeleccionTextoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSBusquedaSeleccionTextoViewController.m; sourceTree = "<group>"; };
 		3AE0BCE61331110000E41F85 /* TSBusquedaSeleccionTextoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TSBusquedaSeleccionTextoViewController.xib; sourceTree = "<group>"; };
 		3AF6F1691361087B00373218 /* TSClipCategoriaView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TSClipCategoriaView.xib; sourceTree = "<group>"; };
+		63001C55136922BF00F1C9F2 /* youtube-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "youtube-logo.png"; sourceTree = "<group>"; };
+		63001C56136922BF00F1C9F2 /* youtube-logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "youtube-logo@2x.png"; sourceTree = "<group>"; };
 		63099E0213199D1800D15603 /* teleSUR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = teleSUR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63099E0613199D1800D15603 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		63099E0813199D1800D15603 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -491,8 +493,6 @@
 		63EDAB511323316500496B83 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		63FB4EF4132ECE980027E304 /* TSBusquedaSeleccionTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSBusquedaSeleccionTableViewController.h; sourceTree = "<group>"; };
 		63FB4EF5132ECE980027E304 /* TSBusquedaSeleccionTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSBusquedaSeleccionTableViewController.m; sourceTree = "<group>"; };
-		C40D9319134A7B77003893DA /* youTube-logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "youTube-logo@2x.png"; sourceTree = "<group>"; };
-		C40D931A134A7B77003893DA /* youTube-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "youTube-logo.png"; sourceTree = "<group>"; };
 		C470FBC913398904007BEC50 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C4CF7C521357CA4700B89C13 /* TSClipListadoiPadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSClipListadoiPadViewController.h; sourceTree = "<group>"; };
 		C4CF7C531357CA4700B89C13 /* TSClipListadoiPadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSClipListadoiPadViewController.m; sourceTree = "<group>"; };
@@ -570,9 +570,9 @@
 		3AC5F0F31343E49A00359A61 /* Iconos Tablas Mas */ = {
 			isa = PBXGroup;
 			children = (
+				63001C55136922BF00F1C9F2 /* youtube-logo.png */,
+				63001C56136922BF00F1C9F2 /* youtube-logo@2x.png */,
 				3AC5F0FD1343E99800359A61 /* facebook-logo.png */,
-				C40D9319134A7B77003893DA /* youTube-logo@2x.png */,
-				C40D931A134A7B77003893DA /* youTube-logo.png */,
 				3AC5F0FE1343E99800359A61 /* mail.png */,
 				3AC5F0FF1343E99900359A61 /* twitter-logo.png */,
 				3AC5F0F91343E4FA00359A61 /* twitter-logo@2x.png */,
@@ -1447,13 +1447,13 @@
 				63B1CCFF1343F4D100EFDFB6 /* TSMasHTMLViewController.xib in Resources */,
 				63B1CD011343F4DA00EFDFB6 /* TSQuienesSomos.html in Resources */,
 				63B1CD031343FDE400EFDFB6 /* iconoMas.png in Resources */,
-				C40D931B134A7B77003893DA /* youTube-logo@2x.png in Resources */,
-				C40D931C134A7B77003893DA /* youTube-logo.png in Resources */,
 				C4CF7C561357CA4700B89C13 /* TSClipListadoiPadView.xib in Resources */,
 				3A4CD87B1358F3C900752C7D /* TSClipCellStripView.xib in Resources */,
 				3A75D0F4135B8995000CB25E /* TSClipCellStripBigView.xib in Resources */,
 				3AF6F16A1361087D00373218 /* TSClipCategoriaView.xib in Resources */,
 				3A98B50A13663C730083373D /* TSMapaViewController.xib in Resources */,
+				63001C57136922BF00F1C9F2 /* youtube-logo.png in Resources */,
+				63001C58136922BF00F1C9F2 /* youtube-logo@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1669,14 +1669,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: David Regla (3R5KW8Z3EC)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: David Regla (3R5KW8Z3EC)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
+				PROVISIONING_PROFILE = "299C0F54-58DB-4C5E-B163-6A6FD8C3B0B2";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "299C0F54-58DB-4C5E-B163-6A6FD8C3B0B2";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1686,13 +1689,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: David Regla (3R5KW8Z3EC)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: David Regla (3R5KW8Z3EC)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "299C0F54-58DB-4C5E-B163-6A6FD8C3B0B2";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "299C0F54-58DB-4C5E-B163-6A6FD8C3B0B2";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1708,7 +1714,7 @@
 				GCC_PREFIX_HEADER = "teleSUR/teleSUR-Prefix.pch";
 				INFOPLIST_FILE = "teleSUR/teleSUR-Info.plist";
 				INSTALL_PATH = "$(LOCAL_APPS_DIR)";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Vendor/Google Analyics SDK/Library\"",
@@ -1727,7 +1733,7 @@
 				GCC_PREFIX_HEADER = "teleSUR/teleSUR-Prefix.pch";
 				INFOPLIST_FILE = "teleSUR/teleSUR-Info.plist";
 				INSTALL_PATH = "$(LOCAL_APPS_DIR)";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Vendor/Google Analyics SDK/Library\"",

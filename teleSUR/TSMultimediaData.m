@@ -111,10 +111,10 @@
     else
     {
         NSLog(@"Error de conexión");
-		if ([delegate respondsToSelector:@selector(enti:)])
+		if ([delegate respondsToSelector:@selector(entidadesRecibidasConError:)])
         {
             NSError *error = [NSError errorWithDomain:@"TSMultimediaData" code:101 userInfo:[NSDictionary dictionary]];
-			[delegate performSelector:@selector(entidadesRecibidasConFalla:) withObject:error];
+			[delegate performSelector:@selector(entidadesRecibidasConError:) withObject:error];
 		}
 	}
 }

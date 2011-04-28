@@ -261,15 +261,16 @@
 
                     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.facebook.com/teleSUR"]];
                     break;
+                    
                 case 1:
 
                     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.twitter.com/teleSURtv"]];                    
                     break;
+                    
                 case 2:
                     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.youtube.com/user/telesurtv"]];                    
                     break;
-                default:
-                    break;
+                    
             }
             
             
