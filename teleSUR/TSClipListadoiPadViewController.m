@@ -25,7 +25,7 @@
 
 @synthesize listadoVideoUnico;
 
-@synthesize botonBusqueda, controlPopOver;
+@synthesize botonBusqueda, controlPopOver, switchVideoEnVivo;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -133,6 +133,25 @@
 -(void) retirarModalView 
 {
     [self dismissModalViewControllerAnimated:YES];
+}
+
+-(IBAction) mostrarVideoTiempoReal: (id) sender
+{
+
+    if (self.switchVideoEnVivo.state == 0) {
+    NSString *moviePath = @"http://streaming.tlsur.net:1935/live/vivo.stream/playlist.m3u8";
+    NSURL *movieURL = [NSURL URLWithString:moviePath];
+    
+    MPMoviePlayerController *player = [[MPMoviePlayerController alloc] initWithContentURL:movieURL];
+    player.view.frame = CGRectMake(0.0, 44.0, 1024, 704);
+    [self.view addSubview:player.view];
+    [player play];
+    } else
+    {
+//        [self.view 
+    }
+    
+
 }
 
 -(IBAction) mostrarVideoDeControlador

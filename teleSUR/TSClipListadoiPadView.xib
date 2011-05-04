@@ -12,12 +12,13 @@
 		</object>
 		<object class="NSArray" key="IBDocument.IntegratedClassDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
+			<string>IBProxyObject</string>
+			<string>IBUIBarButtonItem</string>
+			<string>IBUISwitch</string>
 			<string>IBUINavigationBar</string>
 			<string>IBUINavigationItem</string>
-			<string>IBUIBarButtonItem</string>
-			<string>IBUIView</string>
 			<string>IBUIScrollView</string>
-			<string>IBProxyObject</string>
+			<string>IBUIView</string>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -51,7 +52,7 @@
 						<string key="NSFrame">{{0, 400}, {1024, 348}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="713041808"/>
+						<reference key="NSNextKeyView"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC4yMDAwMDAwMDMgMC4yMDAwMDAwMDMgMC4yMDAwMDAwMDMAA</bytes>
@@ -66,6 +67,7 @@
 						<string key="NSFrame">{{174, 40}, {384, 325}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="972277892"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MSAwAA</bytes>
@@ -78,9 +80,25 @@
 					<object class="IBUINavigationBar" id="570499027">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">290</int>
+						<object class="NSMutableArray" key="NSSubviews">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBUISwitch" id="242271258">
+								<reference key="NSNextResponder" ref="570499027"/>
+								<int key="NSvFlags">292</int>
+								<string key="NSFrame">{{923, 8}, {94, 27}}</string>
+								<reference key="NSSuperview" ref="570499027"/>
+								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="713041808"/>
+								<bool key="IBUIOpaque">NO</bool>
+								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+								<int key="IBUIContentHorizontalAlignment">0</int>
+								<int key="IBUIContentVerticalAlignment">0</int>
+							</object>
+						</object>
 						<string key="NSFrameSize">{1024, 44}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="242271258"/>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<object class="NSColor" key="IBUITintColor">
 							<int key="NSColorSpace">1</int>
@@ -91,12 +109,17 @@
 							<object class="IBUINavigationItem" id="345331484">
 								<reference key="IBUINavigationBar" ref="570499027"/>
 								<string key="IBUITitle">Noticias</string>
-								<object class="IBUIBarButtonItem" key="IBUILeftBarButtonItem" id="848705952">
+								<object class="IBUIBarButtonItem" key="IBUILeftBarButtonItem" id="702155750">
 									<string key="IBUITitle">Item</string>
 									<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 									<int key="IBUIStyle">1</int>
 									<reference key="IBUINavigationItem" ref="345331484"/>
 									<int key="IBUISystemItemIdentifier">12</int>
+								</object>
+								<object class="IBUIBarButtonItem" key="IBUIRightBarButtonItem" id="1009974054">
+									<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+									<reference key="IBUICustomView" ref="242271258"/>
+									<reference key="IBUINavigationItem" ref="345331484"/>
 								</object>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 							</object>
@@ -106,7 +129,7 @@
 				<string key="NSFrame">{{0, 20}, {1024, 748}}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView" ref="972277892"/>
+				<reference key="NSNextKeyView" ref="570499027"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">1</int>
 					<bytes key="NSRGB">MSAxIDEAA</bytes>
@@ -153,17 +176,34 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">botonBusqueda</string>
 						<reference key="source" ref="841351856"/>
-						<reference key="destination" ref="848705952"/>
+						<reference key="destination" ref="702155750"/>
 					</object>
 					<int key="connectionID">13</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">mostrarBusqueda:</string>
-						<reference key="source" ref="848705952"/>
+						<reference key="source" ref="702155750"/>
 						<reference key="destination" ref="841351856"/>
 					</object>
 					<int key="connectionID">14</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">mostrarVideoTiempoReal:</string>
+						<reference key="source" ref="242271258"/>
+						<reference key="destination" ref="841351856"/>
+						<int key="IBEventType">13</int>
+					</object>
+					<int key="connectionID">19</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">switchVideoEnVivo</string>
+						<reference key="source" ref="841351856"/>
+						<reference key="destination" ref="242271258"/>
+					</object>
+					<int key="connectionID">21</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -205,6 +245,9 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">8</int>
 						<reference key="object" ref="713041808"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+						</object>
 						<reference key="parent" ref="766721923"/>
 					</object>
 					<object class="IBObjectRecord">
@@ -221,14 +264,29 @@
 						<reference key="object" ref="345331484"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="848705952"/>
+							<reference ref="702155750"/>
+							<reference ref="1009974054"/>
 						</object>
 						<reference key="parent" ref="570499027"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">12</int>
-						<reference key="object" ref="848705952"/>
+						<reference key="object" ref="702155750"/>
 						<reference key="parent" ref="345331484"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">16</int>
+						<reference key="object" ref="1009974054"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="242271258"/>
+						</object>
+						<reference key="parent" ref="345331484"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">15</int>
+						<reference key="object" ref="242271258"/>
+						<reference key="parent" ref="1009974054"/>
 					</object>
 				</object>
 			</object>
@@ -241,6 +299,7 @@
 					<string>10.IBPluginDependency</string>
 					<string>11.IBPluginDependency</string>
 					<string>12.IBPluginDependency</string>
+					<string>15.IBPluginDependency</string>
 					<string>2.IBEditorWindowLastContentRect</string>
 					<string>2.IBPluginDependency</string>
 					<string>6.IBPluginDependency</string>
@@ -251,6 +310,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>TSClipListadoiPadViewController</string>
 					<string>UIResponder</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -273,7 +333,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">14</int>
+			<int key="maxID">21</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -349,9 +409,11 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>mostrarBusqueda:</string>
 							<string>mostrarVideo:</string>
+							<string>mostrarVideoTiempoReal:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 						</object>
@@ -362,6 +424,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>mostrarBusqueda:</string>
 							<string>mostrarVideo:</string>
+							<string>mostrarVideoTiempoReal:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -373,6 +436,10 @@
 								<string key="name">mostrarVideo:</string>
 								<string key="candidateClassName">id</string>
 							</object>
+							<object class="IBActionInfo">
+								<string key="name">mostrarVideoTiempoReal:</string>
+								<string key="candidateClassName">id</string>
+							</object>
 						</object>
 					</object>
 					<object class="NSMutableDictionary" key="outlets">
@@ -381,12 +448,14 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>botonBusqueda</string>
 							<string>scrollStrips</string>
+							<string>switchVideoEnVivo</string>
 							<string>vistaUltimoClip</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>UIBarButtonItem</string>
 							<string>UIScrollView</string>
+							<string>UISwitch</string>
 							<string>TSClipCellStripView</string>
 						</object>
 					</object>
@@ -396,6 +465,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>botonBusqueda</string>
 							<string>scrollStrips</string>
+							<string>switchVideoEnVivo</string>
 							<string>vistaUltimoClip</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
@@ -407,6 +477,10 @@
 							<object class="IBToOneOutletInfo">
 								<string key="name">scrollStrips</string>
 								<string key="candidateClassName">UIScrollView</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">switchVideoEnVivo</string>
+								<string key="candidateClassName">UISwitch</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">vistaUltimoClip</string>

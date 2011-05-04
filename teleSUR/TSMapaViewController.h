@@ -21,14 +21,17 @@
     MKMapView *vistaMapa;
     TSClipListadoViewController *listado;    
     NSDictionary *noticiaSeleccionada;
+    UISegmentedControl *controlSegmentadoTitulo;
     
 }
-
+@property (nonatomic, retain) IBOutlet UISegmentedControl *controlSegmentadoTitulo;
 @property (nonatomic, retain) NSDictionary *noticiaSeleccionada;
 @property (nonatomic, retain) NSMutableArray *anotacionesDelMapa;
 @property (nonatomic, retain) TSClipListadoViewController *listado;
 @property (nonatomic, retain) IBOutlet MKMapView *vistaMapa;
 
+
+-(IBAction) recargarPines: (id) sender;
 
 -(void) reproducirVideo: (TSAnotacionEnMapa *) anotacion;
 

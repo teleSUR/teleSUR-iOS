@@ -19,6 +19,8 @@
 
 @synthesize vistaMapa, listado, anotacionesDelMapa;
 @synthesize noticiaSeleccionada;
+@synthesize controlSegmentadoTitulo;
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -33,6 +35,7 @@
 
 - (void)dealloc
 {
+    [controlSegmentadoTitulo release];
     [super dealloc];
 }
 
@@ -69,9 +72,28 @@
 
 - (void)viewDidUnload
 {
+    [controlSegmentadoTitulo release];
+    controlSegmentadoTitulo = nil;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+}
+
+-(IBAction) recargarPines: (id) sender
+{
+    [self.vistaMapa removeAnnotations:self.vistaMapa.annotations];
+    
+    if (self.controlSegmentadoTitulo.selectedSegmentIndex==0)
+    {
+        self.listado.diccionarioConfiguracionFiltros = NULL;
+    } else
+    {
+
+        self.listado.diccionarioConfiguracionFiltros = [NSDictionary dictionaryWithObject:@"cultura" forKey:@"categoria"];
+    }
+    
+    [self.listado cargarClips];
+    
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -79,10 +101,12 @@
     // Return YES for supported orientations
     return YES;
 }
+
 -(void) retirarModalView 
 {
     [self dismissModalViewControllerAnimated:YES];
 }
+
 -(void) reproducirVideo: (TSAnotacionEnMapa *) anotacion 
 
 {
@@ -125,7 +149,14 @@
         pin.annotation = annotation;
     }
     pin.canShowCallout = YES;
-    pin.pinColor = MKPinAnnotationColorRed;
+    
+    if (self.controlSegmentadoTitulo.selectedSegmentIndex==0){
+        pin.pinColor = MKPinAnnotationColorRed;
+    } else 
+    {
+        pin.pinColor = MKPinAnnotationColorPurple;
+    }
+    
     pin.animatesDrop = YES;
     return pin;
 }
@@ -136,7 +167,9 @@
 -(void)TSMultimediaData:(TSMultimediaData *)data entidadesRecibidas:(NSArray *)array paraEntidad:(NSString *)entidad
 {
     TSAnotacionEnMapa *anotacionFinal;
+    
     NSLog(@"Mapa");
+    
     for (NSDictionary *unDiccionario in array)
     {
         TSAnotacionEnMapa *anotacion = [[TSAnotacionEnMapa alloc] initWithDiccionarioNoticia:unDiccionario];
