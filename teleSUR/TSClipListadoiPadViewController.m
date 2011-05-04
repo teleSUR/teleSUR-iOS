@@ -14,6 +14,7 @@
 #import "AsynchronousImageView.h"
 #import "TSClipDetallesViewController.h"
 #import "TSClipStrip.h"
+#import "TSClipBusquedaViewController.h"
 
 @implementation TSClipListadoiPadViewController
 
@@ -23,6 +24,8 @@
 @synthesize vistaUltimoClip;
 
 @synthesize listadoVideoUnico;
+
+@synthesize botonBusqueda, controlPopOver;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -44,6 +47,33 @@
     [super didReceiveMemoryWarning];
     
     // Release any cached data, images, etc that aren't in use.
+}
+
+-(IBAction) mostrarBusqueda: (id) sender
+{
+    if([self.controlPopOver isPopoverVisible])
+    {
+        //close the popover view if toolbar button was touched
+        //again and popover is already visible
+        //Thanks to @chrisonhismac
+        
+        [self.controlPopOver dismissPopoverAnimated:YES];
+        return;
+    }
+
+    
+    UINavigationController *controlNavegacion = [[UINavigationController alloc] init];
+    
+    TSClipBusquedaViewController *busquedaView = [[TSClipBusquedaViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    
+    [controlNavegacion pushViewController:busquedaView animated:NO];
+    
+    self.controlPopOver = [[UIPopoverController alloc] initWithContentViewController:controlNavegacion];
+    
+    [controlPopOver presentPopoverFromBarButtonItem:self.botonBusqueda permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+    
+    [busquedaView release];
+
 }
 
 #pragma mark - View lifecycle
