@@ -78,6 +78,24 @@
     return clasificador;
 }
 
+- (int)duracionEnSegundos
+{
+    NSArray *partes = [[self valueForKey:@"duracion"] componentsSeparatedByString: @":"];
+    
+    if (partes && [partes count] == 3)
+    {
+        return ([[partes objectAtIndex:0] intValue]*60*60) +
+               ([[partes objectAtIndex:1] intValue]*60) +
+               ([[partes objectAtIndex:2] intValue]*0);
+    }
+    else
+    {
+        NSLog(@"Formato de duración no reconocido: %@", [self valueForKey:@"duracion"]);
+        
+        return 0;
+    }
+}
+
 
 // Obtener NSString con firma de clip con el formato: [ciudad, ]país | fecha_completa
 - (NSString *)obtenerFirmaParaEsteClip

@@ -14,6 +14,7 @@
     PullToRefreshTableViewController *tableViewController;
     
     BOOL omitirVerMas;
+    BOOL actualizarAlMostrarVista;
     
     // Auxiliares
     CGFloat celdaEstandarHeight;
@@ -31,6 +32,7 @@
 @property (nonatomic, retain) IBOutlet PullToRefreshTableViewController *tableViewController;
 
 @property (nonatomic, assign) BOOL omitirVerMas;
+@property (nonatomic, assign) BOOL actualizarAlMostrarVista;
 
 @property (nonatomic, retain) NSIndexPath *indexPathSeleccionado;
 

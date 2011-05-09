@@ -14,6 +14,7 @@
 #import "SHK.h"
 #import "GANTracker.h"
 #import "TSClipPlayerViewController.h"
+#import "teleSURAppDelegate.h"
 
 // TODO: Integrar estas constantes mejor a configuración, quizá plist principal
 // Orden de secciones
@@ -78,11 +79,18 @@
     // Deshabilitar Pull-to-reload
     self.tableViewController.refreshDisabled = YES;
     [self.tableViewController.refreshHeaderView removeFromSuperview];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(marcarPadreParaRecargar)
+                                                 name: UIApplicationDidBecomeActiveNotification
+                                               object:nil];
 }
 
 
 - (void)viewDidUnload
 {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
     [super viewDidUnload];
     
     self.clip = nil;
@@ -308,7 +316,9 @@
             botonCompartir.frame = CGRectMake(30, 10, 120, 35);
             [container addSubview:botonCompartir];
             
-            if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum([[NSBundle mainBundle] pathForResource:@"Sample" ofType:@"mp4"]))
+            teleSURAppDelegate *appDelegate = (teleSURAppDelegate *)[[UIApplication sharedApplication] delegate];
+            
+            if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum([[NSBundle mainBundle] pathForResource:@"Sample" ofType:@"mp4"]) && !appDelegate.conexionLimitada)
             {
                 const SEL descargarSelector = @selector(botonDescargarPresionado:);
                 UIButton *botonDescargar = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -520,6 +530,16 @@
     }
 }
 
+
+- (void)marcarPadreParaRecargar
+{
+    for (id controller in [self.navigationController viewControllers])
+    {
+        if ([controller isKindOfClass:[TSClipListadoTableViewController class]])
+            [controller setActualizarAlMostrarVista:YES];
+    }
+   // NSLog(@"aaaa: %@", padre.actualizarAlMostrarVista);
+}
 
 - (void)playerFinalizado:(NSNotification *)notification
 {

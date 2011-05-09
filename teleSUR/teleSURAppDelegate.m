@@ -11,15 +11,26 @@
 #import "GANTracker.h"
 #import "TSSeleccionIdioma.h"
 #import "UIViewController_Preferencias.h"
+#import "Reachability.h"
 
 @implementation teleSURAppDelegate
 
 
 @synthesize window=_window;
+@synthesize conexionLimitada;
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    // COnexi—n
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkNetworkStatus:) name:kReachabilityChangedNotification object:nil];
+    
+    // Checar si hay ruta hacia el sitio
+    hostReachable = [[Reachability reachabilityWithHostName: @"multimedia.telesurtv.net"] retain];
+    [hostReachable startNotifier];
+    
+    
+    
     [[GANTracker sharedTracker] startTrackerWithAccountID:@"UA-11834651-1"
                                            dispatchPeriod:60
                                                  delegate:nil];
@@ -80,12 +91,38 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
-    /*
-     Called when the application is about to terminate.
-     Save data if appropriate.
-     See also applicationDidEnterBackground:.
-     */
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
+
+
+- (void) checkNetworkStatus:(NSNotification *)notice
+{
+    // Ejecutado cuando cambia el estado de la red
+    
+    NetworkStatus hostStatus = [hostReachable currentReachabilityStatus];
+    switch (hostStatus)
+    {
+        case NotReachable:
+        {
+            
+        }
+            
+        case ReachableViaWiFi:
+        {
+            self.conexionLimitada = NO;
+            
+            break;
+            
+        }
+        case ReachableViaWWAN:
+        {
+            self.conexionLimitada = YES;
+            
+            break;
+        }
+    }
+}
+
 
 - (void)dealloc
 {

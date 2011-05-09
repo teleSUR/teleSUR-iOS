@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import <MediaPlayer/MediaPlayer.h>
 
-
 @interface TSClipPlayerViewController : MPMoviePlayerViewController {
     
     NSDictionary *clip;
