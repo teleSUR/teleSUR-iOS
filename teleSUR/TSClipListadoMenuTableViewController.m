@@ -149,6 +149,7 @@ NSInteger const TSMargenMenu = 12;
     
     // Configurar label de botón
     boton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:12.0];
+
     boton.titleLabel.backgroundColor = [UIColor clearColor];
     
     // Configurar colores para denotar un boton seleccionado

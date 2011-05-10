@@ -14,6 +14,7 @@
 #import "AsynchronousImageView.h"
 #import "TSClipDetallesViewController.h"
 #import "TSClipStrip.h"
+#import "TSTeleStrip.h"
 
 @implementation TSClipListadoiPadViewController
 
@@ -59,7 +60,10 @@
     [self.vistaUltimoClip addSubview:[nibViews lastObject]];
     self.vistaUltimoClip = [nibViews lastObject];
     
-    
+    TSTeleStrip *vistaTeleStrip = (TSTeleStrip *) [[[NSBundle mainBundle] loadNibNamed:@"TSTeleStrip" owner:self options:nil] lastObject];
+    [vistaTeleStrip obtenerDatosParaTeleStrip];
+     
+    [[self.view viewWithTag:99] addSubview:vistaTeleStrip];
     
     self.listadoVideoUnico = [[TSClipListadoViewController alloc] init];        
     
