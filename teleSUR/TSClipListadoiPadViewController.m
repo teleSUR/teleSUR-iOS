@@ -14,7 +14,11 @@
 #import "AsynchronousImageView.h"
 #import "TSClipDetallesViewController.h"
 #import "TSClipStrip.h"
+<<<<<<< HEAD
 #import "TSTeleStrip.h"
+=======
+#import "TSClipBusquedaViewController.h"
+>>>>>>> e1944401b72502b942b3fbacf41ce63947502c85
 
 @implementation TSClipListadoiPadViewController
 
@@ -24,6 +28,8 @@
 @synthesize vistaUltimoClip;
 
 @synthesize listadoVideoUnico;
+
+@synthesize botonBusqueda, controlPopOver, switchVideoEnVivo;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -45,6 +51,33 @@
     [super didReceiveMemoryWarning];
     
     // Release any cached data, images, etc that aren't in use.
+}
+
+-(IBAction) mostrarBusqueda: (id) sender
+{
+    if([self.controlPopOver isPopoverVisible])
+    {
+        //close the popover view if toolbar button was touched
+        //again and popover is already visible
+        //Thanks to @chrisonhismac
+        
+        [self.controlPopOver dismissPopoverAnimated:YES];
+        return;
+    }
+
+    
+    UINavigationController *controlNavegacion = [[UINavigationController alloc] init];
+    
+    TSClipBusquedaViewController *busquedaView = [[TSClipBusquedaViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    
+    [controlNavegacion pushViewController:busquedaView animated:NO];
+    
+    self.controlPopOver = [[UIPopoverController alloc] initWithContentViewController:controlNavegacion];
+    
+    [controlPopOver presentPopoverFromBarButtonItem:self.botonBusqueda permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+    
+    [busquedaView release];
+
 }
 
 #pragma mark - View lifecycle
@@ -107,6 +140,25 @@
 -(void) retirarModalView 
 {
     [self dismissModalViewControllerAnimated:YES];
+}
+
+-(IBAction) mostrarVideoTiempoReal: (id) sender
+{
+
+    if (self.switchVideoEnVivo.state == 0) {
+    NSString *moviePath = @"http://streaming.tlsur.net:1935/live/vivo.stream/playlist.m3u8";
+    NSURL *movieURL = [NSURL URLWithString:moviePath];
+    
+    MPMoviePlayerController *player = [[MPMoviePlayerController alloc] initWithContentURL:movieURL];
+    player.view.frame = CGRectMake(0.0, 44.0, 1024, 704);
+    [self.view addSubview:player.view];
+    [player play];
+    } else
+    {
+//        [self.view 
+    }
+    
+
 }
 
 -(IBAction) mostrarVideoDeControlador

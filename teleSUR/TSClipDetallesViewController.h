@@ -28,6 +28,8 @@
 - (void)botonCompartirPresionado:(UIButton *)boton;
 - (void)botonDescargarPresionado:(UIButton *)boton;
 
+- (void)marcarPadreParaRecargar;
+
 // Celdas
 @property (nonatomic, retain) IBOutlet UITableViewCell *tituloCell;
 @property (nonatomic, retain) IBOutlet UITableViewCell *firmaCell;

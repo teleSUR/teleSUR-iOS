@@ -47,10 +47,12 @@
 {
     [self personalizarNavigationBar];
     
-    self.campoTexto = [[UITextField alloc] initWithFrame:CGRectMake(110, 12, 185, 30)];   
+    self.campoTexto = [[UITextField alloc] initWithFrame:CGRectMake(110, 12, 185, 25)];   
     self.campoTexto.delegate = self;
     self.campoTexto.textColor = [UIColor blackColor];
     self.campoTexto.clearButtonMode = UITextFieldViewModeAlways;
+    
+    self.campoTexto.text = [self.controladorBusqueda.selecciones objectForKey:@"texto"];
     
     [super viewDidLoad];
 }

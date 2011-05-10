@@ -9,7 +9,8 @@
 #import "TSClipPlayerViewController.h"
 #import <MediaPlayer/MediaPlayer.h>
 #import "GANTracker.h"
-
+#import "teleSURAppDelegate.h"
+#import "NSDictionary_Datos.m"
 
 @implementation TSClipPlayerViewController
 
@@ -17,11 +18,29 @@
 
 - (id)initConClip:(NSDictionary *)diccionarioClip
 {
-    self = [super initWithContentURL:[NSURL URLWithString:[diccionarioClip valueForKey:@"archivo_url"]]];
+    teleSURAppDelegate *appDelegate = (teleSURAppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    NSString *clipURL = [diccionarioClip valueForKey:@"archivo_url"];
+    
+    if (appDelegate.conexionLimitada && [diccionarioClip duracionEnSegundos] > 600)
+    {
+        clipURL = [NSString stringWithFormat:@"%@?end=590", clipURL];
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Conexión limitada"
+                                                       message:@"Actualmente estás conectado a Internet a través de la red celular, para ver el video completo conéctate a una red Wi-Fi"
+                                                       delegate:self
+                                             cancelButtonTitle:@"Aceptar"
+                                             otherButtonTitles:nil, nil];
+        [alert show];
+                                            
+    }
+                         
+    self = [super initWithContentURL:[NSURL URLWithString:clipURL]];
     if (self) {
         self.clip = diccionarioClip;
     }
     return self;
+    
 }
 
 - (void)viewDidLoad
@@ -30,8 +49,9 @@
 }
 
 
+
 - (void)playEnViewController:(UIViewController *)viewController finalizarConSelector:(SEL)selector registrandoAccion:(BOOL)registrar
-{
+{   
     [viewController presentMoviePlayerViewControllerAnimated:self];
     [self.moviePlayer play];
     

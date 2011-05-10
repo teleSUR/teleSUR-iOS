@@ -21,6 +21,8 @@
 
 - (NSString *)obtenerDescripcion;
 
+- (int)duracionEnSegundos;
+
 - (BOOL)esPrograma;
 
 // Clasificadores

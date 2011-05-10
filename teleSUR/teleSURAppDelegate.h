@@ -8,10 +8,22 @@
 
 #import <UIKit/UIKit.h>
 
-@interface teleSURAppDelegate : NSObject <UIApplicationDelegate> {
+@class Reachability;
 
+@interface teleSURAppDelegate : NSObject <UIApplicationDelegate> {
+    
+    Reachability *internetReachable;
+    Reachability *hostReachable;
+    
+    BOOL conexionLimitada;
+    
 }
 
+// Conexi—n
+- (void) checkNetworkStatus:(NSNotification *)notice;
+
 @property (nonatomic, retain) IBOutlet UIWindow *window;
+@property (nonatomic, assign) BOOL conexionLimitada;
+
 
 @end

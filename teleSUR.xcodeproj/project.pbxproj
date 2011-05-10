@@ -497,6 +497,7 @@
 		63E4A8EC1325EDF300669E91 /* TSClipListadoMenuProgranasViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSClipListadoMenuProgranasViewController.h; sourceTree = "<group>"; };
 		63E4A8ED1325EDF400669E91 /* TSClipListadoMenuProgranasViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSClipListadoMenuProgranasViewController.m; sourceTree = "<group>"; };
 		63E4A8EF1326045100669E91 /* ProgramaTableCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProgramaTableCellView.xib; sourceTree = "<group>"; };
+		63EA93E21372169D005F67EF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		63EDAB4C13232F4D00496B83 /* GANTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GANTracker.h; sourceTree = "<group>"; };
 		63EDAB4F13232F8200496B83 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		63EDAB511323316500496B83 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
@@ -517,6 +518,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63099F4F13199FC500D15603 /* SystemConfiguration.framework in Frameworks */,
 				3A98B51813663F600083373D /* MapKit.framework in Frameworks */,
 				3A98B51013663EC20083373D /* CoreLocation.framework in Frameworks */,
 				63EDAB521323316500496B83 /* libsqlite3.0.dylib in Frameworks */,
@@ -525,7 +527,6 @@
 				6341A7DE13205992008FFD9D /* QuartzCore.framework in Frameworks */,
 				635C6D65131DDA850017CD5F /* MediaPlayer.framework in Frameworks */,
 				63099F5113199FCA00D15603 /* Security.framework in Frameworks */,
-				63099F4F13199FC500D15603 /* SystemConfiguration.framework in Frameworks */,
 				63099F4D13199FC000D15603 /* MessageUI.framework in Frameworks */,
 				63099E0713199D1800D15603 /* UIKit.framework in Frameworks */,
 				63099E0913199D1800D15603 /* Foundation.framework in Frameworks */,
@@ -604,7 +605,6 @@
 			children = (
 				63D801CB136A161500FC065A /* Default@2x.png */,
 				63D801CC136A161500FC065A /* Icon@2x.png */,
-				3A98B51713663F600083373D /* MapKit.framework */,
 				631B622C133C950000E42342 /* Sample.mp4 */,
 				634D9EF1131F4B1F005B46FE /* Icon.png */,
 				63E01696131B883D001928E4 /* Default.png */,
@@ -629,6 +629,8 @@
 		63099E0513199D1800D15603 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				63EA93E21372169D005F67EF /* SystemConfiguration.framework */,
+				3A98B51713663F600083373D /* MapKit.framework */,
 				63EDAB511323316500496B83 /* libsqlite3.0.dylib */,
 				3A98B50F13663EC20083373D /* CoreLocation.framework */,
 				63EDAB4F13232F8200496B83 /* CFNetwork.framework */,
@@ -1695,7 +1697,7 @@
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
@@ -1713,7 +1715,7 @@
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";

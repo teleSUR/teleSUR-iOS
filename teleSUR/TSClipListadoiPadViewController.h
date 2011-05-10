@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "TSMultimediaDataDelegate.h"
+#import "MediaPlayer/MediaPlayer.h"
 
 #define kAlturaStrip 167
 #define kNumeroStrips 5
@@ -24,8 +25,22 @@
     NSMutableArray *strips;
     NSMutableArray *tipos;
     
+    UIBarButtonItem *botonBusqueda;
+    
+    UIPopoverController *controlPopOver;
+    
     TSClipListadoViewController *listadoVideoUnico;
+    
+    UISwitch *switchVideoEnVivo;
+    
+    
 }
+
+@property (nonatomic, retain) IBOutlet UISwitch *switchVideoEnVivo;
+
+@property (nonatomic, retain) UIPopoverController *controlPopOver;
+
+@property (nonatomic, retain) IBOutlet UIBarButtonItem *botonBusqueda;
 
 @property (nonatomic, retain) TSClipListadoViewController *listadoVideoUnico;
 
@@ -37,6 +52,10 @@
 @property (nonatomic, retain) NSMutableArray *tipos;
 
 -(void) retirarModalView;
+
+-(IBAction) mostrarVideoTiempoReal: (id) sender;
+
+-(IBAction) mostrarBusqueda: (id) sender;
 
 -(IBAction) mostrarVideo: (id) sender;
 

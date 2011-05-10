@@ -25,7 +25,7 @@
 @implementation TSClipListadoTableViewController
 
 @synthesize tableViewController;
-@synthesize omitirVerMas;
+@synthesize omitirVerMas, actualizarAlMostrarVista;
 @synthesize indexPathSeleccionado;
 
 
@@ -86,6 +86,12 @@
     // Si ya había un clip seleccionado, desmarcarlo con animación
     if (self.indexPathSeleccionado && animated)
         [self.tableViewController.tableView deselectRowAtIndexPath:self.indexPathSeleccionado animated:animated];
+    
+    if (self.actualizarAlMostrarVista)
+    {
+        [self cargarClips];
+        self.actualizarAlMostrarVista = NO;
+    }
 }
 
 
