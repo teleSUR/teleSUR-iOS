@@ -33,6 +33,7 @@
     
     UISwitch *switchVideoEnVivo;
     
+    MPMoviePlayerController *vistaReproduccionVideoTiempoReal;
     
 }
 
@@ -50,6 +51,8 @@
 
 @property (nonatomic, retain) NSMutableArray *strips;
 @property (nonatomic, retain) NSMutableArray *tipos;
+
+@property (nonatomic, retain) MPMoviePlayerController *vistaReproduccionVideoTiempoReal;
 
 -(void) retirarModalView;
 

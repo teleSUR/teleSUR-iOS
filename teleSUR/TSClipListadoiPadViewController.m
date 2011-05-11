@@ -14,11 +14,8 @@
 #import "AsynchronousImageView.h"
 #import "TSClipDetallesViewController.h"
 #import "TSClipStrip.h"
-<<<<<<< HEAD
 #import "TSTeleStrip.h"
-=======
 #import "TSClipBusquedaViewController.h"
->>>>>>> e1944401b72502b942b3fbacf41ce63947502c85
 
 @implementation TSClipListadoiPadViewController
 
@@ -28,6 +25,8 @@
 @synthesize vistaUltimoClip;
 
 @synthesize listadoVideoUnico;
+
+@synthesize vistaReproduccionVideoTiempoReal;
 
 @synthesize botonBusqueda, controlPopOver, switchVideoEnVivo;
 
@@ -145,17 +144,23 @@
 -(IBAction) mostrarVideoTiempoReal: (id) sender
 {
 
-    if (self.switchVideoEnVivo.state == 0) {
+    if (self.switchVideoEnVivo.on) {
     NSString *moviePath = @"http://streaming.tlsur.net:1935/live/vivo.stream/playlist.m3u8";
     NSURL *movieURL = [NSURL URLWithString:moviePath];
-    
-    MPMoviePlayerController *player = [[MPMoviePlayerController alloc] initWithContentURL:movieURL];
-    player.view.frame = CGRectMake(0.0, 44.0, 1024, 704);
-    [self.view addSubview:player.view];
-    [player play];
+        
+
+        self.vistaReproduccionVideoTiempoReal = [[MPMoviePlayerController alloc] initWithContentURL:movieURL];
+        self.vistaReproduccionVideoTiempoReal.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y+44, self.view.frame.size.width, self.view.frame.size.height-44);
+        [self.view addSubview:self.vistaReproduccionVideoTiempoReal.view];
+        [self.vistaReproduccionVideoTiempoReal play];
+        [self.vistaReproduccionVideoTiempoReal.view setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
+        
+
     } else
     {
-//        [self.view 
+        [self.vistaReproduccionVideoTiempoReal stop];
+        [self.vistaReproduccionVideoTiempoReal.view removeFromSuperview];
+        [self.vistaReproduccionVideoTiempoReal release];
     }
     
 
