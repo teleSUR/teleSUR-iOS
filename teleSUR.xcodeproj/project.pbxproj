@@ -1734,7 +1734,7 @@
 				GCC_PREFIX_HEADER = "teleSUR/teleSUR-Prefix.pch";
 				INFOPLIST_FILE = "teleSUR/teleSUR-Info.plist";
 				INSTALL_PATH = "$(LOCAL_APPS_DIR)";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Vendor/Google Analyics SDK/Library\"",
@@ -1754,7 +1754,7 @@
 				GCC_PREFIX_HEADER = "teleSUR/teleSUR-Prefix.pch";
 				INFOPLIST_FILE = "teleSUR/teleSUR-Info.plist";
 				INSTALL_PATH = "$(LOCAL_APPS_DIR)";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Vendor/Google Analyics SDK/Library\"",

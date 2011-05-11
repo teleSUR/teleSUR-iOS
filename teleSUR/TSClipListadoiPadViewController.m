@@ -16,6 +16,7 @@
 #import "TSClipStrip.h"
 #import "TSTeleStrip.h"
 #import "TSClipBusquedaViewController.h"
+#import "TSMasTableViewController.h"
 
 @implementation TSClipListadoiPadViewController
 
@@ -52,13 +53,35 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
+-(IBAction) mostrarAcercaDe: (UIButton *) sender
+{
+    if([self.controlPopOver isPopoverVisible])
+    {
+        
+        [self.controlPopOver dismissPopoverAnimated:YES];
+        return;
+    }
+    
+    
+    UINavigationController *controlNavegacion = [[UINavigationController alloc] init];
+    
+    TSMasTableViewController *busquedaView = [[TSMasTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    
+    [controlNavegacion pushViewController:busquedaView animated:NO];
+    
+    self.controlPopOver = [[UIPopoverController alloc] initWithContentViewController:controlNavegacion];
+    self.controlPopOver.popoverContentSize = CGSizeMake(320, 480);
+//    self.controlPopOver.
+//    [controlPopOver presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+    [controlPopOver presentPopoverFromRect:sender.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
+    
+    [busquedaView release];
+}
+
 -(IBAction) mostrarBusqueda: (id) sender
 {
     if([self.controlPopOver isPopoverVisible])
     {
-        //close the popover view if toolbar button was touched
-        //again and popover is already visible
-        //Thanks to @chrisonhismac
         
         [self.controlPopOver dismissPopoverAnimated:YES];
         return;
@@ -72,7 +95,7 @@
     [controlNavegacion pushViewController:busquedaView animated:NO];
     
     self.controlPopOver = [[UIPopoverController alloc] initWithContentViewController:controlNavegacion];
-    
+    self.controlPopOver.popoverContentSize = CGSizeMake(320, 520);    
     [controlPopOver presentPopoverFromBarButtonItem:self.botonBusqueda permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
     
     [busquedaView release];
