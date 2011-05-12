@@ -53,6 +53,13 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
+
+
+-(IBAction) mostrarDetallesDeNoticiaStrip: (UIButton *) sender
+{
+    
+}
+
 -(IBAction) mostrarAcercaDe: (UIButton *) sender
 {
     if([self.controlPopOver isPopoverVisible])

@@ -58,6 +58,8 @@
 
 -(void) retirarModalView;
 
+-(IBAction) mostrarDetallesDeNoticiaStrip: (UIButton *) sender;
+
 -(IBAction) mostrarAcercaDe: (id) sender;
 
 -(IBAction) mostrarVideoTiempoReal: (id) sender;

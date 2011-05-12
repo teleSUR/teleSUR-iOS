@@ -17,6 +17,9 @@
 @synthesize vistaMovimiento;
 @synthesize numeroCaracteres;
 @synthesize listado;
+@synthesize detenerAnimacion;
+@synthesize controlPopOver;
+
 
 -(void) obtenerDatosParaTeleStrip 
 {
@@ -38,6 +41,8 @@
 
 -(void) iniciarAnimacion 
 {
+
+    
     self.numeroCaracteres = 0;
     offsetX = 0 + 8;//TSMargenMenu;
     
@@ -46,37 +51,94 @@
     {
         self.numeroCaracteres += [(NSString *)[self.noticias objectAtIndex:i] length];
         
-        UILabel *unaNoticia = [[UILabel alloc] init];
-        unaNoticia.backgroundColor = [UIColor clearColor];
-        unaNoticia.textColor = [UIColor whiteColor];
+        UIButton *unaNoticia = [UIButton buttonWithType:UIButtonTypeCustom];
         
-        unaNoticia.font = [UIFont fontWithName:@"Helvetica-Bold" size:12.0];
-        unaNoticia.text = [self.noticias objectAtIndex:i];
-        CGSize labelSize = [unaNoticia.text sizeWithFont: unaNoticia.font];
+        unaNoticia.backgroundColor = [UIColor clearColor];
+        unaNoticia.titleLabel.textColor = [UIColor whiteColor];
+        
+        [unaNoticia addTarget:self action:@selector(detenerAnimacionNoticias:) forControlEvents:UIControlEventTouchDown];
+        [unaNoticia addTarget:self action:@selector(reanudarAnimacionNoticias:) forControlEvents:UIControlEventTouchUpInside];
+        unaNoticia.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:12.0];
+
+        [unaNoticia setTitle:[self.noticias objectAtIndex:i] forState:UIControlStateNormal];
+        CGSize labelSize = [unaNoticia.titleLabel.text sizeWithFont: unaNoticia.titleLabel.font];
         
         unaNoticia.frame = CGRectMake(offsetX, 11, labelSize.width, labelSize.height);        
         
         [self.vistaMovimiento addSubview:unaNoticia];
-        
+        self.vistaMovimiento.frame = CGRectMake(self.vistaInterior.frame.size.width, self.vistaMovimiento.frame.origin.y, offsetX, self.vistaMovimiento.frame.size.height);            
         // Actualizar offset
         offsetX += unaNoticia.frame.size.width + 8;
     }
     
-    [self animarNuevaNoticia];
+    NSTimer *timer1 = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(animarNuevaNoticiaDesdeInicio:) userInfo:nil repeats:YES];
+
+    
+    NSRunLoop *runLoop = [NSRunLoop currentRunLoop];
+	
+    [runLoop addTimer:timer1 forMode:NSDefaultRunLoopMode];
+
 }
 
--(void) animarNuevaNoticia
+-(IBAction) reanudarAnimacionNoticias: (id) sender 
 {
-    self.vistaMovimiento.frame = CGRectMake(self.vistaInterior.frame.size.width, self.vistaMovimiento.frame.origin.y, offsetX, self.vistaMovimiento.frame.size.height);    
+    self.detenerAnimacion = NO;
+    [controlPopOver dismissPopoverAnimated:YES];
+}
+         
+-(IBAction) detenerAnimacionNoticias: (id) sender
+{
+    UIButton *boton = (UIButton *) sender;
     
-    [UIView beginAnimations:@"mostrarTableView" context:nil];
-    [UIView setAnimationDelegate:self];
-    [UIView setAnimationDidStopSelector:@selector(animarNuevaNoticia)];
-    [UIView setAnimationDuration:kVelocidadMovimiento * self.numeroCaracteres];
-    [UIView setAnimationCurve:UIViewAnimationCurveLinear];
-    self.vistaMovimiento.frame = CGRectMake(-self.vistaMovimiento.frame.size.width, self.vistaMovimiento.frame.origin.y, offsetX, self.vistaMovimiento.frame.size.height);    
+    NSLog(@"%@", boton.titleLabel.text);
+    self.detenerAnimacion =YES;
     
-    [UIView commitAnimations];
+    UIViewController *view = [[UIViewController alloc] init];
+    
+    controlPopOver = [[UIPopoverController alloc] initWithContentViewController:view];
+    controlPopOver.popoverContentSize = CGSizeMake(320, 180);
+    CGRect rectanguloPosicional = CGRectMake(self.vistaMovimiento.frame.origin.x+boton.frame.origin.x, self.vistaMovimiento.frame.origin.y, boton.frame.size.width, boton.frame.size.height);
+    
+    NSLog(@"%f", self.vistaMovimiento.frame.origin.x);
+    
+    //    self.controlPopOver.
+    //    [controlPopOver presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+    [controlPopOver presentPopoverFromRect:rectanguloPosicional inView:self permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+    
+}
+
+-(void) animarNuevaNoticiaDesdeInicio: (BOOL) banderaInicio
+{
+    /*
+    if (!banderaInicio) 
+    {
+        self.vistaMovimiento.frame = CGRectMake(self.vistaInterior.frame.size.width, self.vistaMovimiento.frame.origin.y, offsetX, self.vistaMovimiento.frame.size.height);    
+    }*/
+  
+//    [UIView beginAnimations:@"mostrarTableView" context:nil];
+//    [UIView setAnimationDelegate:self];
+//    [UIView setAnimationDidStopSelector:@selector(animarNuevaNoticia)];
+//    [UIView setAnimationDuration:kVelocidadMovimiento * self.numeroCaracteres];
+//    [UIView setAnimationCurve:UIViewAnimationCurveLinear];
+    
+    
+    if (!self.detenerAnimacion) {
+        if (self.vistaMovimiento.frame.origin.x-1 >= -self.vistaMovimiento.frame.size.width)
+        {
+            float nuevaPosicionX = self.vistaMovimiento.frame.origin.x-1;
+            self.vistaMovimiento.frame = CGRectMake(nuevaPosicionX, self.vistaMovimiento.frame.origin.y, offsetX, self.vistaMovimiento.frame.size.height);        
+            
+        } else
+        {
+            [self animarNuevaNoticiaDesdeInicio:YES];
+        }
+    }
+    
+    
+//    self.vistaMovimiento.frame = CGRectMake(-self.vistaMovimiento.frame.size.width, self.vistaMovimiento.frame.origin.y, offsetX, self.vistaMovimiento.frame.size.height);    
+    
+//    [UIView commitAnimations];
+
 
 }
 
