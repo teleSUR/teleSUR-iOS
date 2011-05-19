@@ -18,6 +18,7 @@
 #import "TSClipBusquedaViewController.h"
 #import "TSMasTableViewController.h"
 
+
 @implementation TSClipListadoiPadViewController
 
 @synthesize strips;

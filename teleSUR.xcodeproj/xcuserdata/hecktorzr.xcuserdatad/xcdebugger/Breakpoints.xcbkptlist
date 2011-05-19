@@ -255,5 +255,17 @@
          landmarkName = "-animarNuevaNoticia"
          landmarkType = "5">
       </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "teleSUR/TSClipListadoiPadViewController.m"
+         timestampString = "327533739.824364"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "71"
+         endingLineNumber = "71">
+      </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>
