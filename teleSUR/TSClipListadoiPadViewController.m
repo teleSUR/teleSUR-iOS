@@ -17,7 +17,8 @@
 #import "TSTeleStrip.h"
 #import "TSClipBusquedaViewController.h"
 #import "TSMasTableViewController.h"
-
+#import "TSTabMenuiPad_UIViewController.h"
+#import "teleSuriPadTabMenu.h"
 
 @implementation TSClipListadoiPadViewController
 
@@ -25,7 +26,7 @@
 @synthesize tipos;
 @synthesize  scrollStrips;
 @synthesize vistaUltimoClip;
-
+@synthesize menu;
 @synthesize listadoVideoUnico;
 
 @synthesize vistaReproduccionVideoTiempoReal;
@@ -110,6 +111,12 @@
 
 }
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    [self.menu animarSelectorFondo];
+}
+
+
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
@@ -163,6 +170,7 @@
         [stripClips1 release];
     }
 
+    self.menu = [self cargarMenu];
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }

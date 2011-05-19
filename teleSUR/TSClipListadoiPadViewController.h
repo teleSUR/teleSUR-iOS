@@ -10,14 +10,19 @@
 #import "TSMultimediaDataDelegate.h"
 #import "MediaPlayer/MediaPlayer.h"
 
+
 #define kAlturaStrip 167
 #define kNumeroStrips 5
 #define kMargenStrips 10
 
+@class teleSuriPadTabMenu;
 @class TSClipCellStripView;
 @class  TSClipListadoViewController;
 
 @interface TSClipListadoiPadViewController : UIViewController <TSMultimediaDataDelegate> {
+    
+    teleSuriPadTabMenu *menu; 
+     
     
     UINavigationBar *barraNavegacion;
     
@@ -38,6 +43,8 @@
     MPMoviePlayerController *vistaReproduccionVideoTiempoReal;
     
 }
+
+@property (nonatomic, retain) teleSuriPadTabMenu *menu; 
 
 @property (nonatomic, retain) IBOutlet UISwitch *switchVideoEnVivo;
 

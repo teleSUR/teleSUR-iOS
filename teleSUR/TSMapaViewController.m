@@ -15,7 +15,8 @@
 #import "TSClipDetallesViewController.h"
 #import "TSClipStrip.h"
 #import "AsynchronousImageView.h"
-
+#import "TSTabMenuiPad_UIViewController.h"
+#import "teleSuriPadTabMenu.h"
 
 
 @implementation TSMapaViewController
@@ -69,6 +70,9 @@
     [self.listado cargarClips];
     
     self.listado.delegate = self;
+    
+    [self cargarMenu];
+    
     [super viewDidLoad];
 }
 

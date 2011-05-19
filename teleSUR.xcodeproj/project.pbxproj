@@ -190,6 +190,9 @@
 		63EDAB5013232F8200496B83 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63EDAB4F13232F8200496B83 /* CFNetwork.framework */; };
 		63EDAB521323316500496B83 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 63EDAB511323316500496B83 /* libsqlite3.0.dylib */; };
 		63FB4EF6132ECE980027E304 /* TSBusquedaSeleccionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63FB4EF5132ECE980027E304 /* TSBusquedaSeleccionTableViewController.m */; };
+		C4311E2E1385CD9500A28DBA /* teleSuriPadTabMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = C4311E2D1385CD9500A28DBA /* teleSuriPadTabMenu.m */; };
+		C4311E311385CDB200A28DBA /* teleSuriPadTabMenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4311E301385CDB200A28DBA /* teleSuriPadTabMenuView.xib */; };
+		C4311E341385D1D200A28DBA /* TSTabMenuiPad_UIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4311E331385D1D100A28DBA /* TSTabMenuiPad_UIViewController.m */; };
 		C470FBC5133988E5007BEC50 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C470FBC7133988E5007BEC50 /* Localizable.strings */; };
 		C4CF7C551357CA4700B89C13 /* TSClipListadoiPadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4CF7C531357CA4700B89C13 /* TSClipListadoiPadViewController.m */; };
 		C4CF7C561357CA4700B89C13 /* TSClipListadoiPadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4CF7C541357CA4700B89C13 /* TSClipListadoiPadView.xib */; };
@@ -503,6 +506,11 @@
 		63EDAB511323316500496B83 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		63FB4EF4132ECE980027E304 /* TSBusquedaSeleccionTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSBusquedaSeleccionTableViewController.h; sourceTree = "<group>"; };
 		63FB4EF5132ECE980027E304 /* TSBusquedaSeleccionTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSBusquedaSeleccionTableViewController.m; sourceTree = "<group>"; };
+		C4311E2C1385CD9500A28DBA /* teleSuriPadTabMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = teleSuriPadTabMenu.h; sourceTree = "<group>"; };
+		C4311E2D1385CD9500A28DBA /* teleSuriPadTabMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = teleSuriPadTabMenu.m; sourceTree = "<group>"; };
+		C4311E301385CDB200A28DBA /* teleSuriPadTabMenuView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = teleSuriPadTabMenuView.xib; sourceTree = "<group>"; };
+		C4311E321385D1D100A28DBA /* TSTabMenuiPad_UIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSTabMenuiPad_UIViewController.h; sourceTree = "<group>"; };
+		C4311E331385D1D100A28DBA /* TSTabMenuiPad_UIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSTabMenuiPad_UIViewController.m; sourceTree = "<group>"; };
 		C470FBC913398904007BEC50 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C4CF7C521357CA4700B89C13 /* TSClipListadoiPadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSClipListadoiPadViewController.h; sourceTree = "<group>"; };
 		C4CF7C531357CA4700B89C13 /* TSClipListadoiPadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSClipListadoiPadViewController.m; sourceTree = "<group>"; };
@@ -691,12 +699,17 @@
 		63099E1F13199D1800D15603 /* iPad */ = {
 			isa = PBXGroup;
 			children = (
+				C4311E2C1385CD9500A28DBA /* teleSuriPadTabMenu.h */,
+				C4311E2D1385CD9500A28DBA /* teleSuriPadTabMenu.m */,
+				C4311E301385CDB200A28DBA /* teleSuriPadTabMenuView.xib */,
 				63099E2013199D1800D15603 /* teleSURAppDelegate_iPad.h */,
 				63099E2113199D1800D15603 /* teleSURAppDelegate_iPad.m */,
 				63099E2313199D1800D15603 /* MainWindow_iPad.xib */,
 				63099F5E1319A25E00D15603 /* VIstas */,
 				C4CF7C521357CA4700B89C13 /* TSClipListadoiPadViewController.h */,
 				C4CF7C531357CA4700B89C13 /* TSClipListadoiPadViewController.m */,
+				C4311E321385D1D100A28DBA /* TSTabMenuiPad_UIViewController.h */,
+				C4311E331385D1D100A28DBA /* TSTabMenuiPad_UIViewController.m */,
 				C4CF7C541357CA4700B89C13 /* TSClipListadoiPadView.xib */,
 				3AF6F1691361087B00373218 /* TSClipCategoriaView.xib */,
 				C4CF7C601357CB2F00B89C13 /* TSClipStrip.h */,
@@ -1473,6 +1486,7 @@
 				63D801CD136A161500FC065A /* Default@2x.png in Resources */,
 				63D801CE136A161500FC065A /* Icon@2x.png in Resources */,
 				3A577626137898AD00A4EBCB /* TSTeleStrip.xib in Resources */,
+				C4311E311385CDB200A28DBA /* teleSuriPadTabMenuView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1610,6 +1624,8 @@
 				3A98B50E13663D8E0083373D /* TSMapaViewController.m in Sources */,
 				3A98B521136645D90083373D /* TSAnotacionEnMapa.m in Sources */,
 				3A577623137897AF00A4EBCB /* TSTeleStrip.m in Sources */,
+				C4311E2E1385CD9500A28DBA /* teleSuriPadTabMenu.m in Sources */,
+				C4311E341385D1D200A28DBA /* TSTabMenuiPad_UIViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

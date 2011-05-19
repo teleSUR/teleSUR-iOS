@@ -109,18 +109,7 @@
 
 -(void) animarNuevaNoticiaDesdeInicio: (BOOL) banderaInicio
 {
-    /*
-    if (!banderaInicio) 
-    {
-        self.vistaMovimiento.frame = CGRectMake(self.vistaInterior.frame.size.width, self.vistaMovimiento.frame.origin.y, offsetX, self.vistaMovimiento.frame.size.height);    
-    }*/
-  
-//    [UIView beginAnimations:@"mostrarTableView" context:nil];
-//    [UIView setAnimationDelegate:self];
-//    [UIView setAnimationDidStopSelector:@selector(animarNuevaNoticia)];
-//    [UIView setAnimationDuration:kVelocidadMovimiento * self.numeroCaracteres];
-//    [UIView setAnimationCurve:UIViewAnimationCurveLinear];
-    
+
     
     if (!self.detenerAnimacion) {
         if (self.vistaMovimiento.frame.origin.x-1 >= -self.vistaMovimiento.frame.size.width)
@@ -130,14 +119,11 @@
             
         } else
         {
+            self.vistaMovimiento.frame = CGRectMake(self.vistaInterior.frame.size.width, self.vistaMovimiento.frame.origin.y, offsetX, self.vistaMovimiento.frame.size.height);            
             [self animarNuevaNoticiaDesdeInicio:YES];
         }
     }
     
-    
-//    self.vistaMovimiento.frame = CGRectMake(-self.vistaMovimiento.frame.size.width, self.vistaMovimiento.frame.origin.y, offsetX, self.vistaMovimiento.frame.size.height);    
-    
-//    [UIView commitAnimations];
 
 
 }
