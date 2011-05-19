@@ -16,6 +16,8 @@
 #import "TSClipStrip.h"
 #import "TSTeleStrip.h"
 #import "TSClipBusquedaViewController.h"
+#import "TSMasTableViewController.h"
+
 
 @implementation TSClipListadoiPadViewController
 
@@ -25,6 +27,8 @@
 @synthesize vistaUltimoClip;
 
 @synthesize listadoVideoUnico;
+
+@synthesize vistaReproduccionVideoTiempoReal;
 
 @synthesize botonBusqueda, controlPopOver, switchVideoEnVivo;
 
@@ -50,13 +54,35 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
+-(IBAction) mostrarAcercaDe: (UIButton *) sender
+{
+    if([self.controlPopOver isPopoverVisible])
+    {
+        
+        [self.controlPopOver dismissPopoverAnimated:YES];
+        return;
+    }
+    
+    
+    UINavigationController *controlNavegacion = [[UINavigationController alloc] init];
+    
+    TSMasTableViewController *busquedaView = [[TSMasTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    
+    [controlNavegacion pushViewController:busquedaView animated:NO];
+    
+    self.controlPopOver = [[UIPopoverController alloc] initWithContentViewController:controlNavegacion];
+    self.controlPopOver.popoverContentSize = CGSizeMake(320, 480);
+//    self.controlPopOver.
+//    [controlPopOver presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+    [controlPopOver presentPopoverFromRect:sender.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
+    
+    [busquedaView release];
+}
+
 -(IBAction) mostrarBusqueda: (id) sender
 {
     if([self.controlPopOver isPopoverVisible])
     {
-        //close the popover view if toolbar button was touched
-        //again and popover is already visible
-        //Thanks to @chrisonhismac
         
         [self.controlPopOver dismissPopoverAnimated:YES];
         return;
@@ -70,7 +96,7 @@
     [controlNavegacion pushViewController:busquedaView animated:NO];
     
     self.controlPopOver = [[UIPopoverController alloc] initWithContentViewController:controlNavegacion];
-    
+    self.controlPopOver.popoverContentSize = CGSizeMake(320, 520);    
     [controlPopOver presentPopoverFromBarButtonItem:self.botonBusqueda permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
     
     [busquedaView release];
@@ -142,17 +168,23 @@
 -(IBAction) mostrarVideoTiempoReal: (id) sender
 {
 
-    if (self.switchVideoEnVivo.state == 0) {
+    if (self.switchVideoEnVivo.on) {
     NSString *moviePath = @"http://streaming.tlsur.net:1935/live/vivo.stream/playlist.m3u8";
     NSURL *movieURL = [NSURL URLWithString:moviePath];
-    
-    MPMoviePlayerController *player = [[MPMoviePlayerController alloc] initWithContentURL:movieURL];
-    player.view.frame = CGRectMake(0.0, 44.0, 1024, 704);
-    [self.view addSubview:player.view];
-    [player play];
+        
+
+        self.vistaReproduccionVideoTiempoReal = [[MPMoviePlayerController alloc] initWithContentURL:movieURL];
+        self.vistaReproduccionVideoTiempoReal.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y+44, self.view.frame.size.width, self.view.frame.size.height-44);
+        [self.view addSubview:self.vistaReproduccionVideoTiempoReal.view];
+        [self.vistaReproduccionVideoTiempoReal play];
+        [self.vistaReproduccionVideoTiempoReal.view setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
+        
+
     } else
     {
-//        [self.view 
+        [self.vistaReproduccionVideoTiempoReal stop];
+        [self.vistaReproduccionVideoTiempoReal.view removeFromSuperview];
+        [self.vistaReproduccionVideoTiempoReal release];
     }
     
 

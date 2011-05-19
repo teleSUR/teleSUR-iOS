@@ -36,7 +36,7 @@
 {
     [self personalizarNavigationBar];
     [super viewDidLoad];
-    
+    self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
     if (!self.nombreHTML)
     {
         NSLog(@"No se ha especificó nombre de archivo HTML a depslegar.");
@@ -46,7 +46,7 @@
     // Cargar HTML en webView
     NSData *htmlData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:self.nombreHTML ofType:@"html"]];  
     [self.webView loadData:htmlData MIMEType:@"text/html" textEncodingName:@"UTF-8" baseURL:[NSURL URLWithString:nil]];
-    
+//    self.webView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     // Configurar webView
     self.webView.backgroundColor = [UIColor clearColor];
 }

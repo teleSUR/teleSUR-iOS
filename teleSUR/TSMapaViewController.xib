@@ -112,7 +112,7 @@
 					<object class="IBMKMapView" id="827551184">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">274</int>
-						<string key="NSFrame">{{0, 44}, {768, 911}}</string>
+						<string key="NSFrame">{{0, 44}, {1024, 911}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
@@ -243,6 +243,7 @@
 						<int key="objectID">5</int>
 						<reference key="object" ref="827551184"/>
 						<reference key="parent" ref="191373211"/>
+						<string key="objectName">Map View</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">10</int>

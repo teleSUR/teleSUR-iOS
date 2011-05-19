@@ -14,6 +14,9 @@
 #import <MapKit/MapKit.h>
 #import "TSClipDetallesViewController.h"
 #import "TSClipStrip.h"
+#import "AsynchronousImageView.h"
+
+
 
 @implementation TSMapaViewController
 
@@ -136,12 +139,16 @@
     MKPinAnnotationView *pin = (MKPinAnnotationView *) [self.vistaMapa dequeueReusableAnnotationViewWithIdentifier: @"asdf"];
     if (pin == nil)
     {
-        pin = [[[MKPinAnnotationView alloc] initWithAnnotation: annotation reuseIdentifier: @"asdf"] autorelease];
+        pin = [[[MKPinAnnotationView alloc] initWithAnnotation: annotation reuseIdentifier: @"asdf"] autorelease]; 
+
+        
+        
         UIButton* rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
         [rightButton addTarget:self
                         action:@selector(reproducirVideo:)
               forControlEvents:UIControlEventTouchUpInside];
         pin.rightCalloutAccessoryView = rightButton;
+        
         
     }
     else
@@ -157,6 +164,20 @@
         pin.pinColor = MKPinAnnotationColorPurple;
     }
     
+    pin.leftCalloutAccessoryView = [[AsynchronousImageView alloc] init];    
+    pin.leftCalloutAccessoryView.frame = CGRectMake(0.0, 0.0, 40.0, 30.0);
+    AsynchronousImageView *imageView;
+    pin.leftCalloutAccessoryView.backgroundColor = [UIColor blueColor];		
+
+
+    
+    if ((imageView = (AsynchronousImageView *)pin.leftCalloutAccessoryView ))
+    {
+        imageView.url = [NSURL URLWithString:[[(TSAnotacionEnMapa *)annotation noticia] valueForKey:@"thumbnail_mediano"]];
+        imageView.image = [UIImage imageNamed:@"SinImagen.png"];
+        [imageView cargarImagenSiNecesario];
+    }
+
     pin.animatesDrop = YES;
     return pin;
 }

@@ -19,6 +19,8 @@
 
 @interface TSClipListadoiPadViewController : UIViewController <TSMultimediaDataDelegate> {
     
+    UINavigationBar *barraNavegacion;
+    
     UIScrollView *scrollStrips;
     TSClipCellStripView *vistaUltimoClip;
     
@@ -33,6 +35,7 @@
     
     UISwitch *switchVideoEnVivo;
     
+    MPMoviePlayerController *vistaReproduccionVideoTiempoReal;
     
 }
 
@@ -51,7 +54,11 @@
 @property (nonatomic, retain) NSMutableArray *strips;
 @property (nonatomic, retain) NSMutableArray *tipos;
 
+@property (nonatomic, retain) MPMoviePlayerController *vistaReproduccionVideoTiempoReal;
+
 -(void) retirarModalView;
+
+-(IBAction) mostrarAcercaDe: (id) sender;
 
 -(IBAction) mostrarVideoTiempoReal: (id) sender;
 
