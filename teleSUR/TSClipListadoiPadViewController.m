@@ -14,11 +14,8 @@
 #import "AsynchronousImageView.h"
 #import "TSClipDetallesViewController.h"
 #import "TSClipStrip.h"
-<<<<<<< HEAD
 #import "TSTeleStrip.h"
-=======
 #import "TSClipBusquedaViewController.h"
->>>>>>> e1944401b72502b942b3fbacf41ce63947502c85
 
 @implementation TSClipListadoiPadViewController
 
