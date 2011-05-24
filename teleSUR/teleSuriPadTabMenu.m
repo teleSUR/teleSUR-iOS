@@ -14,15 +14,31 @@
 
 
 @synthesize selectorFondo;
+@synthesize indiceAnterior;
+
+-(IBAction) colocarSelectorEnPosicionOriginal
+{
+    teleSURAppDelegate_iPad *delegado = (teleSURAppDelegate_iPad *)[[UIApplication sharedApplication] delegate];
+    
+    
+    CGRect frameAnteriorSelector = self.selectorFondo.frame;
+    frameAnteriorSelector.origin.x = 60 + 60 * delegado.tabBarController.selectedIndex;
+    self.selectorFondo.frame = frameAnteriorSelector;
+
+    
+    
+}
 
 -(void) animarSelectorFondo
 {
     [UIView beginAnimations:@"animarFondoSelector" context:nil];
+    [UIView setAnimationDelegate:self];
+    [UIView setAnimationDidStopSelector:@selector(accionCambiarTabSeleccionado)];
     
     teleSURAppDelegate_iPad *delegado = (teleSURAppDelegate_iPad *)[[UIApplication sharedApplication] delegate];
     
     CGRect frameAnteriorSelector = self.selectorFondo.frame;
-    frameAnteriorSelector.origin.x = 60 + 60 * delegado.tabBarController.selectedIndex;
+    frameAnteriorSelector.origin.x = 60 + 60 * self.indiceAnterior;
     self.selectorFondo.frame = frameAnteriorSelector;
     
     
@@ -32,9 +48,21 @@
 
 - (IBAction) cambiarAOtroTab: (UIButton *) sender
 {
-    teleSURAppDelegate_iPad *delegado = (teleSURAppDelegate_iPad *)[[UIApplication sharedApplication] delegate];
-    [delegado.tabBarController setSelectedIndex:sender.tag];
     
+    self.indiceAnterior = sender.tag;
+  
+    [self animarSelectorFondo];
+    
+
+
+    
+}
+
+-(IBAction) accionCambiarTabSeleccionado
+{
+    teleSURAppDelegate_iPad *delegado = (teleSURAppDelegate_iPad *)[[UIApplication sharedApplication] delegate];
+    
+    [delegado.tabBarController setSelectedIndex:self.indiceAnterior];
 }
 
 - (id)initWithFrame:(CGRect)frame

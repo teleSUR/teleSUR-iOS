@@ -11,14 +11,20 @@
 
 @interface teleSuriPadTabMenu : UIView {
     UIView *selectorFondo;
-    
-    
+    int indiceAnterior;
 }
 
+
+@property (nonatomic, assign) int indiceAnterior; 
 @property (nonatomic, retain) IBOutlet UIView *selectorFondo;
 
 -(void) animarSelectorFondo;
 
+-(IBAction) colocarSelectorEnPosicionOriginal;
+
 - (IBAction) cambiarAOtroTab: (id) sender;
+
+
+-(IBAction) accionCambiarTabSeleccionado;
 
 @end

@@ -25,6 +25,7 @@
 @synthesize noticiaSeleccionada;
 @synthesize controlSegmentadoTitulo;
 
+@synthesize menu;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -59,7 +60,10 @@
 {
 }
 */
-
+-(void)viewDidAppear:(BOOL)animated
+{
+    [self.menu colocarSelectorEnPosicionOriginal];
+}
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
@@ -71,7 +75,7 @@
     
     self.listado.delegate = self;
     
-    [self cargarMenu];
+    self.menu = [self cargarMenu];
     
     [super viewDidLoad];
 }

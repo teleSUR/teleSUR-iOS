@@ -16,6 +16,8 @@
 
 @interface TSMapaViewController : UIViewController <TSMultimediaDataDelegate, MKMapViewDelegate> {
     
+    UIView *menu;
+    
     NSMutableArray *anotacionesDelMapa;
     
     MKMapView *vistaMapa;
@@ -23,7 +25,10 @@
     NSDictionary *noticiaSeleccionada;
     UISegmentedControl *controlSegmentadoTitulo;
     
+    
 }
+
+@property (nonatomic, retain) UIView *menu;
 @property (nonatomic, retain) IBOutlet UISegmentedControl *controlSegmentadoTitulo;
 @property (nonatomic, retain) NSDictionary *noticiaSeleccionada;
 @property (nonatomic, retain) NSMutableArray *anotacionesDelMapa;

@@ -8,6 +8,8 @@
 
 #import "TSTeleStrip.h"
 #import "TSClipListadoViewController.h"
+#import "TSDescripcionNoticiaStrip.h"
+
 
 #define kVelocidadMovimiento 0.2
 
@@ -49,10 +51,10 @@
     // Recorrer filtros
     for (int i=0; i < [self.noticias count]; i++)
     {
-        self.numeroCaracteres += [(NSString *)[self.noticias objectAtIndex:i] length];
+        self.numeroCaracteres += [(NSString *)[[self.noticias objectAtIndex:i] valueForKey:@"titulo"] length];
         
         UIButton *unaNoticia = [UIButton buttonWithType:UIButtonTypeCustom];
-        
+        unaNoticia.tag = i;
         unaNoticia.backgroundColor = [UIColor clearColor];
         unaNoticia.titleLabel.textColor = [UIColor whiteColor];
         
@@ -60,7 +62,7 @@
         [unaNoticia addTarget:self action:@selector(reanudarAnimacionNoticias:) forControlEvents:UIControlEventTouchUpInside];
         unaNoticia.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:12.0];
 
-        [unaNoticia setTitle:[self.noticias objectAtIndex:i] forState:UIControlStateNormal];
+        [unaNoticia setTitle:[[self.noticias objectAtIndex:i] valueForKey:@"titulo"] forState:UIControlStateNormal];
         CGSize labelSize = [unaNoticia.titleLabel.text sizeWithFont: unaNoticia.titleLabel.font];
         
         unaNoticia.frame = CGRectMake(offsetX, 11, labelSize.width, labelSize.height);        
@@ -93,13 +95,18 @@
     NSLog(@"%@", boton.titleLabel.text);
     self.detenerAnimacion =YES;
     
-    UIViewController *view = [[UIViewController alloc] init];
+    TSDescripcionNoticiaStrip *vistaNoticia = [[TSDescripcionNoticiaStrip alloc] init];
     
-    controlPopOver = [[UIPopoverController alloc] initWithContentViewController:view];
+    
+    
+    
+    controlPopOver = [[UIPopoverController alloc] initWithContentViewController:vistaNoticia];
     controlPopOver.popoverContentSize = CGSizeMake(320, 180);
     CGRect rectanguloPosicional = CGRectMake(self.vistaMovimiento.frame.origin.x+boton.frame.origin.x, self.vistaMovimiento.frame.origin.y, boton.frame.size.width, boton.frame.size.height);
     
     NSLog(@"%f", self.vistaMovimiento.frame.origin.x);
+    vistaNoticia.titulo.text = [[noticias objectAtIndex: boton.tag] valueForKey:@"titulo"];
+    vistaNoticia.contenidoNoticia.text = [[noticias objectAtIndex: boton.tag] valueForKey:@"descripcion"];
     
     //    self.controlPopOver.
     //    [controlPopOver presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
@@ -159,11 +166,7 @@
 
 -(void)TSMultimediaData:(TSMultimediaData *)data entidadesRecibidas:(NSArray *)array paraEntidad:(NSString *)entidad
 {
-    for(NSDictionary *unDiccionario in array)
-    {
-        [self.noticias addObject: [NSString stringWithFormat:@"%@   |", [unDiccionario valueForKey:@"titulo"]]];
-
-    }
+    [self.noticias addObjectsFromArray:array];
     
     [self iniciarAnimacion];
 }

@@ -193,6 +193,10 @@
 		C4311E2E1385CD9500A28DBA /* teleSuriPadTabMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = C4311E2D1385CD9500A28DBA /* teleSuriPadTabMenu.m */; };
 		C4311E311385CDB200A28DBA /* teleSuriPadTabMenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4311E301385CDB200A28DBA /* teleSuriPadTabMenuView.xib */; };
 		C4311E341385D1D200A28DBA /* TSTabMenuiPad_UIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4311E331385D1D100A28DBA /* TSTabMenuiPad_UIViewController.m */; };
+		C4338E14138C01AD006FA7D2 /* icono-brujula.png in Resources */ = {isa = PBXBuildFile; fileRef = C4338E12138C01AD006FA7D2 /* icono-brujula.png */; };
+		C4338E15138C01AD006FA7D2 /* icono-periodico.png in Resources */ = {isa = PBXBuildFile; fileRef = C4338E13138C01AD006FA7D2 /* icono-periodico.png */; };
+		C4338E1E138C050A006FA7D2 /* TSDescripcionNoticiaStrip.m in Sources */ = {isa = PBXBuildFile; fileRef = C4338E1C138C0505006FA7D2 /* TSDescripcionNoticiaStrip.m */; };
+		C4338E1F138C050A006FA7D2 /* TSDescripcionNoticiaStrip.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4338E1D138C0507006FA7D2 /* TSDescripcionNoticiaStrip.xib */; };
 		C470FBC5133988E5007BEC50 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C470FBC7133988E5007BEC50 /* Localizable.strings */; };
 		C4CF7C551357CA4700B89C13 /* TSClipListadoiPadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4CF7C531357CA4700B89C13 /* TSClipListadoiPadViewController.m */; };
 		C4CF7C561357CA4700B89C13 /* TSClipListadoiPadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4CF7C541357CA4700B89C13 /* TSClipListadoiPadView.xib */; };
@@ -511,6 +515,11 @@
 		C4311E301385CDB200A28DBA /* teleSuriPadTabMenuView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = teleSuriPadTabMenuView.xib; sourceTree = "<group>"; };
 		C4311E321385D1D100A28DBA /* TSTabMenuiPad_UIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSTabMenuiPad_UIViewController.h; sourceTree = "<group>"; };
 		C4311E331385D1D100A28DBA /* TSTabMenuiPad_UIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSTabMenuiPad_UIViewController.m; sourceTree = "<group>"; };
+		C4338E12138C01AD006FA7D2 /* icono-brujula.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icono-brujula.png"; sourceTree = "<group>"; };
+		C4338E13138C01AD006FA7D2 /* icono-periodico.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icono-periodico.png"; sourceTree = "<group>"; };
+		C4338E1B138C0505006FA7D2 /* TSDescripcionNoticiaStrip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSDescripcionNoticiaStrip.h; sourceTree = "<group>"; };
+		C4338E1C138C0505006FA7D2 /* TSDescripcionNoticiaStrip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSDescripcionNoticiaStrip.m; sourceTree = "<group>"; };
+		C4338E1D138C0507006FA7D2 /* TSDescripcionNoticiaStrip.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TSDescripcionNoticiaStrip.xib; sourceTree = "<group>"; };
 		C470FBC913398904007BEC50 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C4CF7C521357CA4700B89C13 /* TSClipListadoiPadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSClipListadoiPadViewController.h; sourceTree = "<group>"; };
 		C4CF7C531357CA4700B89C13 /* TSClipListadoiPadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSClipListadoiPadViewController.m; sourceTree = "<group>"; };
@@ -702,6 +711,9 @@
 				C4311E2C1385CD9500A28DBA /* teleSuriPadTabMenu.h */,
 				C4311E2D1385CD9500A28DBA /* teleSuriPadTabMenu.m */,
 				C4311E301385CDB200A28DBA /* teleSuriPadTabMenuView.xib */,
+				C4338E1B138C0505006FA7D2 /* TSDescripcionNoticiaStrip.h */,
+				C4338E1C138C0505006FA7D2 /* TSDescripcionNoticiaStrip.m */,
+				C4338E1D138C0507006FA7D2 /* TSDescripcionNoticiaStrip.xib */,
 				63099E2013199D1800D15603 /* teleSURAppDelegate_iPad.h */,
 				63099E2113199D1800D15603 /* teleSURAppDelegate_iPad.m */,
 				63099E2313199D1800D15603 /* MainWindow_iPad.xib */,
@@ -1256,6 +1268,7 @@
 		634D9EEE131F4AFC005B46FE /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				C4338E10138C0197006FA7D2 /* Iconos TabBarMenu iPad */,
 				63B1CD021343FDE400EFDFB6 /* iconoMas.png */,
 				3AC5F0F31343E49A00359A61 /* Iconos Tablas Mas */,
 				631E166813413F31006067BC /* Iconos Programas */,
@@ -1349,6 +1362,15 @@
 			name = "Google Analytics";
 			path = "Vendor/Google Analyics SDK/Library";
 			sourceTree = SOURCE_ROOT;
+		};
+		C4338E10138C0197006FA7D2 /* Iconos TabBarMenu iPad */ = {
+			isa = PBXGroup;
+			children = (
+				C4338E12138C01AD006FA7D2 /* icono-brujula.png */,
+				C4338E13138C01AD006FA7D2 /* icono-periodico.png */,
+			);
+			name = "Iconos TabBarMenu iPad";
+			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
@@ -1487,6 +1509,9 @@
 				63D801CE136A161500FC065A /* Icon@2x.png in Resources */,
 				3A577626137898AD00A4EBCB /* TSTeleStrip.xib in Resources */,
 				C4311E311385CDB200A28DBA /* teleSuriPadTabMenuView.xib in Resources */,
+				C4338E14138C01AD006FA7D2 /* icono-brujula.png in Resources */,
+				C4338E15138C01AD006FA7D2 /* icono-periodico.png in Resources */,
+				C4338E1F138C050A006FA7D2 /* TSDescripcionNoticiaStrip.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1626,6 +1651,7 @@
 				3A577623137897AF00A4EBCB /* TSTeleStrip.m in Sources */,
 				C4311E2E1385CD9500A28DBA /* teleSuriPadTabMenu.m in Sources */,
 				C4311E341385D1D200A28DBA /* TSTabMenuiPad_UIViewController.m in Sources */,
+				C4338E1E138C050A006FA7D2 /* TSDescripcionNoticiaStrip.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

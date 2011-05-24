@@ -113,7 +113,7 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
-    [self.menu animarSelectorFondo];
+    [self.menu colocarSelectorEnPosicionOriginal];
 }
 
 
