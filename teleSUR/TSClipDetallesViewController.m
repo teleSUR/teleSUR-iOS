@@ -54,6 +54,8 @@
 
 - (void)viewDidLoad
 {
+    
+    
     self.diccionarioConfiguracionFiltros = [NSMutableDictionary dictionaryWithObject:[self.clip objectForKey:@"slug"] forKey:@"relacionados"];
     self.rangoUltimo = NSMakeRange(1, 5);
     

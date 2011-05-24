@@ -709,8 +709,8 @@
 			isa = PBXGroup;
 			children = (
 				C4311E2C1385CD9500A28DBA /* teleSuriPadTabMenu.h */,
-				C4311E2D1385CD9500A28DBA /* teleSuriPadTabMenu.m */,
 				C4311E301385CDB200A28DBA /* teleSuriPadTabMenuView.xib */,
+				C4311E2D1385CD9500A28DBA /* teleSuriPadTabMenu.m */,
 				C4338E1B138C0505006FA7D2 /* TSDescripcionNoticiaStrip.h */,
 				C4338E1C138C0505006FA7D2 /* TSDescripcionNoticiaStrip.m */,
 				C4338E1D138C0507006FA7D2 /* TSDescripcionNoticiaStrip.xib */,

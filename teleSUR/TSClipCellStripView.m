@@ -12,6 +12,8 @@
 
 @implementation TSClipCellStripView
 
+@synthesize descripcion;
+
 @synthesize  imagen, titulo, firma, tiempo;
 
 @synthesize controlador;

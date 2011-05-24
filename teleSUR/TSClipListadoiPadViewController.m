@@ -135,15 +135,7 @@
      
     [[self.view viewWithTag:99] addSubview:vistaTeleStrip];
     
-    self.listadoVideoUnico = [[TSClipListadoViewController alloc] init];        
-    
-    
 
-    [self.listadoVideoUnico prepararListado];
-    self.listadoVideoUnico.rangoUltimo = NSMakeRange(0, 1);    
-    [self.listadoVideoUnico cargarClips];
-    
-    self.listadoVideoUnico.delegate = self;
     
     
     
@@ -171,6 +163,18 @@
     }
 
     self.menu = [self cargarMenu];
+    
+    self.listadoVideoUnico = [[TSClipListadoViewController alloc] init];        
+    
+    
+    self.listadoVideoUnico.delegate = self;    
+    [self.listadoVideoUnico prepararListado];
+    
+    self.listadoVideoUnico.rangoUltimo = NSMakeRange(1, 1);    
+    [self.listadoVideoUnico cargarClips];
+    
+
+    
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
@@ -257,12 +261,17 @@
 	return YES;
 }
 
+
+
 -(void)TSMultimediaData:(TSMultimediaData *)data  entidadesRecibidas:(NSArray *)array paraEntidad:(NSString *)entidad
 {
+    NSLog(@"AAAAAAAAAAA");
+    
     NSDictionary *unDiccionario = [array lastObject];
     
     self.vistaUltimoClip.titulo.text = [unDiccionario valueForKey:@"titulo"];
     self.vistaUltimoClip.tiempo.text = [unDiccionario valueForKey:@"duracion"];
+    self.vistaUltimoClip.descripcion.text = [unDiccionario valueForKey:@"descripcion"];
     
     AsynchronousImageView *imageView;
     if ((imageView = (AsynchronousImageView *)self.vistaUltimoClip.imagen ))

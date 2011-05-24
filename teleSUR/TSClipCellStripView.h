@@ -18,10 +18,12 @@
     UILabel *titulo;
     UILabel *tiempo;
     UILabel *firma;
-    
+    UILabel *descripcion;
     
     UIViewController *controlador;
 }
+
+@property (nonatomic, retain) IBOutlet UILabel *descripcion;
 
 @property (nonatomic, assign) char posicion;
 
