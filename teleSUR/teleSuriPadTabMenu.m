@@ -16,6 +16,9 @@
 @synthesize selectorFondo;
 @synthesize indiceAnterior;
 
+@synthesize vistaReproduccionVideoTiempoReal;
+@synthesize switchEnVivo;
+
 -(IBAction) colocarSelectorEnPosicionOriginal
 {
     teleSURAppDelegate_iPad *delegado = (teleSURAppDelegate_iPad *)[[UIApplication sharedApplication] delegate];
@@ -63,6 +66,30 @@
     teleSURAppDelegate_iPad *delegado = (teleSURAppDelegate_iPad *)[[UIApplication sharedApplication] delegate];
     
     [delegado.tabBarController setSelectedIndex:self.indiceAnterior];
+}
+
+
+-(IBAction) reproducirVideoEnTiempoReal
+{
+    if (self.switchEnVivo.on) {
+        NSString *moviePath = @"http://streaming.tlsur.net:1935/live/vivo.stream/playlist.m3u8";
+        NSURL *movieURL = [NSURL URLWithString:moviePath];
+        
+        
+        self.vistaReproduccionVideoTiempoReal = [[MPMoviePlayerController alloc] initWithContentURL:movieURL];
+        self.vistaReproduccionVideoTiempoReal.view.frame = CGRectMake(0.0, self.frame.size.height, self.superview.frame.size.width, self.superview.superview.superview.frame.size.height);
+        [self.superview addSubview:self.vistaReproduccionVideoTiempoReal.view];
+        [self.vistaReproduccionVideoTiempoReal play];
+        [self.vistaReproduccionVideoTiempoReal.view setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
+        
+        
+    } else
+    {
+        [self.vistaReproduccionVideoTiempoReal stop];
+        [self.vistaReproduccionVideoTiempoReal.view removeFromSuperview];
+        [self.vistaReproduccionVideoTiempoReal release];
+    }
+
 }
 
 - (id)initWithFrame:(CGRect)frame

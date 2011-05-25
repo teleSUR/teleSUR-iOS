@@ -174,6 +174,29 @@
     [self.listadoVideoUnico cargarClips];
     
 
+    // Get the tabbar frame
+    
+    CGRect tabbarFrame = self.tabBarController.tabBar.frame;
+    
+    // Create a new rect, to store the size and position
+    CGRect previousTabbarFrame = CGRectMake(tabbarFrame.origin.x, tabbarFrame.origin.y, tabbarFrame.size.width, tabbarFrame.size.height);
+    
+    // Offset to move the tabbar, if we are going from/to fullscreen
+    int fullscreen = 1;
+    int offset = !fullscreen ? tabbarFrame.size.height : -1 * tabbarFrame.size.height;
+    
+    // Set tabbar Y position
+    int tabBarY = tabbarFrame.origin.y + offset;
+    tabbarFrame.origin.y = tabBarY;
+    
+    // Set the new tabbar frame
+    self.tabBarController.tabBar.frame = tabbarFrame;
+    
+    // Fade out the tabbar, if we are going to fullscreen. Otherwise, fade it in.
+    self.tabBarController.tabBar.alpha = fullscreen ? 0 : 1;
+    
+    
+    
     
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.

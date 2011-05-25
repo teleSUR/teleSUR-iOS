@@ -25,7 +25,11 @@
     NSMutableArray *noticias;
     UIView *vistaInterior;
     UIView *vistaMovimiento;
+    
+
+    
 }
+
 @property (nonatomic, retain) UIPopoverController*  controlPopOver;
 @property (nonatomic, assign) BOOL detenerAnimacion;
 @property (nonatomic, retain) TSClipListadoViewController *listado;

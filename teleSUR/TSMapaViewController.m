@@ -60,6 +60,11 @@
 {
 }
 */
+-(void)viewWillAppear:(BOOL)animated
+{
+
+}
+
 -(void)viewDidAppear:(BOOL)animated
 {
     [self.menu colocarSelectorEnPosicionOriginal];
@@ -68,6 +73,8 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
+    
+
     self.listado = [[TSClipListadoViewController alloc] init];        
     [self.listado prepararListado];
 
@@ -76,6 +83,12 @@
     self.listado.delegate = self;
     
     self.menu = [self cargarMenu];
+
+    
+    
+    
+    
+    
     
     [super viewDidLoad];
 }

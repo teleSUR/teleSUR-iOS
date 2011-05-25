@@ -708,8 +708,8 @@
 		63099E1F13199D1800D15603 /* iPad */ = {
 			isa = PBXGroup;
 			children = (
-				C4311E2C1385CD9500A28DBA /* teleSuriPadTabMenu.h */,
 				C4311E301385CDB200A28DBA /* teleSuriPadTabMenuView.xib */,
+				C4311E2C1385CD9500A28DBA /* teleSuriPadTabMenu.h */,
 				C4311E2D1385CD9500A28DBA /* teleSuriPadTabMenu.m */,
 				C4338E1B138C0505006FA7D2 /* TSDescripcionNoticiaStrip.h */,
 				C4338E1C138C0505006FA7D2 /* TSDescripcionNoticiaStrip.m */,

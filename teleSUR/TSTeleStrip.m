@@ -22,7 +22,6 @@
 @synthesize detenerAnimacion;
 @synthesize controlPopOver;
 
-
 -(void) obtenerDatosParaTeleStrip 
 {
     self.noticias = [[NSMutableArray alloc] init];    
@@ -110,7 +109,7 @@
     
     //    self.controlPopOver.
     //    [controlPopOver presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
-    [controlPopOver presentPopoverFromRect:rectanguloPosicional inView:self permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+    [controlPopOver presentPopoverFromRect:rectanguloPosicional inView:self permittedArrowDirections:UIPopoverArrowDirectionDown animated:YES];
     
 }
 
