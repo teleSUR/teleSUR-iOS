@@ -85,7 +85,7 @@
     self.menu = [self cargarMenu];
 
     
-    
+
     
     
     
@@ -237,6 +237,7 @@
     }
     [self.vistaMapa selectAnnotation:anotacionFinal animated:NO];
 
+//    [self.vistaMapa setCenterCoordinate:anotacionFinal.coordinate animated:YES];
     
 }
 

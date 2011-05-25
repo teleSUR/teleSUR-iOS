@@ -273,11 +273,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "teleSUR/TSClipListadoiPadViewController.m"
-         timestampString = "327973638.215501"
+         timestampString = "327982056.863102"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "295"
-         endingLineNumber = "295"
+         startingLineNumber = "303"
+         endingLineNumber = "303"
          landmarkName = "-TSMultimediaData:entidadesRecibidas:paraEntidad:"
          landmarkType = "5">
       </FileBreakpoint>

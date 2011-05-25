@@ -216,10 +216,13 @@
         
 
         self.vistaReproduccionVideoTiempoReal = [[MPMoviePlayerController alloc] initWithContentURL:movieURL];
+        [self.vistaReproduccionVideoTiempoReal.view setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight ];
         self.vistaReproduccionVideoTiempoReal.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y+44, self.view.frame.size.width, self.view.frame.size.height-44);
+        
         [self.view addSubview:self.vistaReproduccionVideoTiempoReal.view];
+        [self.vistaReproduccionVideoTiempoReal.view setAutoresizingMask:UIViewAutoresizingFlexibleWidth];        
         [self.vistaReproduccionVideoTiempoReal play];
-        [self.vistaReproduccionVideoTiempoReal.view setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
+
         
 
     } else
@@ -234,16 +237,21 @@
 
 -(IBAction) mostrarVideoDeControlador
 {
+    UINavigationController *controlNavegacion = [[UINavigationController alloc] init];
     
+    UIBarButtonItem *botonSalir = [[UIBarButtonItem alloc] initWithTitle:@"Cerrar" style:UIBarButtonItemStyleBordered target:self action:@selector(retirarModalView)];
     
     TSClipDetallesViewController *detalleView = [[TSClipDetallesViewController alloc] initWithClip:[[self.listadoVideoUnico clips] lastObject]];
+    controlNavegacion.modalPresentationStyle = UIModalPresentationFormSheet;
     
-    detalleView.modalPresentationStyle = UIModalPresentationFormSheet;
+    detalleView.navigationItem.leftBarButtonItem = botonSalir;    
     
-    [self presentModalViewController:detalleView animated:YES  ];
+    [controlNavegacion pushViewController:detalleView animated:NO];
+    
+    [self presentModalViewController:controlNavegacion animated:YES  ];
     
     [detalleView release];
-
+    
     
 }
 
