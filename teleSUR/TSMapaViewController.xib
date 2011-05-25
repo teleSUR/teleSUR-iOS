@@ -53,22 +53,24 @@
 							<object class="IBUISegmentedControl" id="568069960">
 								<reference key="NSNextResponder" ref="354965194"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{231, 7}, {307, 30}}</string>
+								<string key="NSFrame">{{174, 7}, {421, 30}}</string>
 								<reference key="NSSuperview" ref="354965194"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="148180287"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 								<int key="IBSegmentControlStyle">2</int>
-								<int key="IBNumberOfSegments">2</int>
+								<int key="IBNumberOfSegments">3</int>
 								<int key="IBSelectedSegmentIndex">0</int>
 								<object class="NSArray" key="IBSegmentTitles">
 									<bool key="EncodedWithXMLCoder">YES</bool>
 									<string>Noticias</string>
 									<string>Corresponsales</string>
+									<string>Entrevistas</string>
 								</object>
 								<object class="NSMutableArray" key="IBSegmentWidths">
 									<bool key="EncodedWithXMLCoder">YES</bool>
+									<real value="0.0"/>
 									<real value="0.0"/>
 									<real value="0.0"/>
 								</object>
@@ -76,15 +78,18 @@
 									<bool key="EncodedWithXMLCoder">YES</bool>
 									<boolean value="YES"/>
 									<boolean value="YES"/>
+									<boolean value="YES"/>
 								</object>
 								<object class="NSMutableArray" key="IBSegmentContentOffsets">
 									<bool key="EncodedWithXMLCoder">YES</bool>
+									<string>{0, 0}</string>
 									<string>{0, 0}</string>
 									<string>{0, 0}</string>
 								</object>
 								<object class="NSMutableArray" key="IBSegmentImages">
 									<bool key="EncodedWithXMLCoder">YES</bool>
 									<object class="NSNull" id="4"/>
+									<reference ref="4"/>
 									<reference ref="4"/>
 								</object>
 								<object class="NSColor" key="IBTintColor" id="463878018">
@@ -115,6 +120,7 @@
 						<string key="NSFrame">{{0, 102}, {1024, 902}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC4wNDU5MTgzNjczNSAwLjA0NTkxODM2NzM1IDAuMDQ1OTE4MzY3MzUAA</bytes>
@@ -280,6 +286,7 @@
 					<string>1.IBEditorWindowLastContentRect</string>
 					<string>1.IBPluginDependency</string>
 					<string>10.IBPluginDependency</string>
+					<string>10.IUISegmentedControlInspectorSelectedSegmentMetadataKey</string>
 					<string>13.CustomClassName</string>
 					<string>13.IBPluginDependency</string>
 					<string>3.IBPluginDependency</string>
@@ -293,6 +300,7 @@
 					<string>{{514, 109}, {768, 1024}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<integer value="2"/>
 					<string>teleSuriPadTabMenu</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>

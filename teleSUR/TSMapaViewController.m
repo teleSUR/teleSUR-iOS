@@ -111,10 +111,14 @@
     {
         // Sin filtrar, todo el contenido
         self.listado.diccionarioConfiguracionFiltros = [NSDictionary dictionaryWithObject:@"noticia" forKey:@"tipo"];
-    } else
+    } else if (self.controlSegmentadoTitulo.selectedSegmentIndex==1)
     {
         // Corresponsales
         self.listado.diccionarioConfiguracionFiltros = [NSDictionary dictionaryWithObject:@"no_es_nulo" forKey:@"corresponsal"];
+    }
+    else
+    {
+        self.listado.diccionarioConfiguracionFiltros = [NSDictionary dictionaryWithObject:@"entrevista" forKey:@"tipo"];
     }
     
     [self.listado cargarClips];
@@ -179,12 +183,19 @@
     }
     pin.canShowCallout = YES;
     
-    if (self.controlSegmentadoTitulo.selectedSegmentIndex==0){
+    if (self.controlSegmentadoTitulo.selectedSegmentIndex==0)
+    {
         pin.pinColor = MKPinAnnotationColorRed;
-    } else 
+    }
+    else if (self.controlSegmentadoTitulo.selectedSegmentIndex==1)
     {
         pin.pinColor = MKPinAnnotationColorPurple;
     }
+    else
+    {
+        pin.pinColor = MKPinAnnotationColorGreen;
+    }
+    
     
     pin.leftCalloutAccessoryView = [[AsynchronousImageView alloc] init];    
     pin.leftCalloutAccessoryView.frame = CGRectMake(0.0, 0.0, 40.0, 30.0);

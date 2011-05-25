@@ -57,8 +57,16 @@
 {
     NSDictionary *diccionarioPais = [self.noticia valueForKey:@"pais"];
     
+    NSDictionary *diccionarioCorresponsal = [self.noticia valueForKey:@"corresponsal"];
     
-    return [diccionarioPais valueForKey:@"nombre"];
+    if (diccionarioCorresponsal)
+    {
+        return [diccionarioCorresponsal valueForKey:@"nombre"];
+    }
+    else
+    {
+        return [diccionarioPais valueForKey:@"nombre"];
+    }
     
 }
 
