@@ -59,7 +59,7 @@
     
     NSDictionary *diccionarioCorresponsal = [self.noticia valueForKey:@"corresponsal"];
     
-    if (diccionarioCorresponsal)
+    if (![diccionarioCorresponsal isKindOfClass:[NSNull class]])
     {
         return [diccionarioCorresponsal valueForKey:@"nombre"];
     }
