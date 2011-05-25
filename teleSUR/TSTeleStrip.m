@@ -100,7 +100,7 @@
     
     
     controlPopOver = [[UIPopoverController alloc] initWithContentViewController:vistaNoticia];
-    controlPopOver.popoverContentSize = CGSizeMake(320, 180);
+    controlPopOver.popoverContentSize = CGSizeMake(320, 280);
     CGRect rectanguloPosicional = CGRectMake(self.vistaMovimiento.frame.origin.x+boton.frame.origin.x, self.vistaMovimiento.frame.origin.y, boton.frame.size.width, boton.frame.size.height);
     
     NSLog(@"%f", self.vistaMovimiento.frame.origin.x);
