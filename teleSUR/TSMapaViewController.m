@@ -96,11 +96,12 @@
     
     if (self.controlSegmentadoTitulo.selectedSegmentIndex==0)
     {
-        self.listado.diccionarioConfiguracionFiltros = NULL;
+        // Sin filtrar, todo el contenido
+        self.listado.diccionarioConfiguracionFiltros = [NSDictionary dictionaryWithObject:@"noticia" forKey:@"tipo"];
     } else
     {
-
-        self.listado.diccionarioConfiguracionFiltros = [NSDictionary dictionaryWithObject:@"cultura" forKey:@"categoria"];
+        // Corresponsales
+        self.listado.diccionarioConfiguracionFiltros = [NSDictionary dictionaryWithObject:@"no_es_nulo" forKey:@"corresponsal"];
     }
     
     [self.listado cargarClips];
