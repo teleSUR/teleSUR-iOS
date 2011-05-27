@@ -55,12 +55,14 @@
     [viewController presentMoviePlayerViewControllerAnimated:self];
     [self.moviePlayer play];
     
-    // Agregar observer al finalizar reproducción
-    [[NSNotificationCenter defaultCenter] 
-     addObserver:viewController
-     selector:selector                                                
-     name:MPMoviePlayerPlaybackDidFinishNotification
-     object:self.moviePlayer];
+    if (selector != nil) {
+        // Agregar observer al finalizar reproducción
+        [[NSNotificationCenter defaultCenter] 
+         addObserver:viewController
+         selector:selector                                                
+         name:MPMoviePlayerPlaybackDidFinishNotification
+         object:self.moviePlayer];
+    }
     
     // Enviar notificación a Google Analytics
     if (registrar)

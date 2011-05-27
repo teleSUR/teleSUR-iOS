@@ -61,6 +61,7 @@
     
     [super viewDidLoad];
     
+    self.navigationItem.rightBarButtonItem = nil;
     self.omitirVerMas = YES;
     self.agregarAlFinal = YES;
     

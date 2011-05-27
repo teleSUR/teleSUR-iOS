@@ -8,13 +8,39 @@
 
 #import "UIViewController_Configuracion.h"
 #import <UIKit/UIkit.h>
-
+#import "TSClipPlayerViewController.h"
 #define kLOADING_VIEW_TAG 100
 #define kLOADING_TRANSPARENCIA 0.70
 #define kLOADING_TIEMPO_ANIMACION 0.4
 
 
 @implementation UIViewController (UIViewController_Configuracion)
+
+
+-(void) presentarVideoEnVivo
+{
+    NSDictionary *elClip = [NSDictionary dictionaryWithObject:@"http://streaming.tlsur.net:1935/live/vivo.stream/playlist.m3u8" forKey:@"archivo_url"];
+    
+    ;// Crear y configurar player
+    TSClipPlayerViewController *playerController = [[TSClipPlayerViewController alloc] initConClip:elClip];
+    
+    // Reproducir video
+    [playerController playEnViewController:self
+                      finalizarConSelector:nil
+                         registrandoAccion:NO];
+    
+    NSLog(@"Y gana el pan. y aqui l otienen");
+}
+
+-(void) agregarBotonEnVivo
+{
+    UIBarButtonItem *botonEnVivo = [[UIBarButtonItem alloc] initWithTitle:@"En Vivo" style:UIBarButtonItemStyleBordered target:self action:@selector(presentarVideoEnVivo)];
+    
+    self.navigationItem.rightBarButtonItem = botonEnVivo;
+    
+    [botonEnVivo release];
+    
+}
 
 - (void)personalizarNavigationBar
 {

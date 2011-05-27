@@ -59,6 +59,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self agregarBotonEnVivo];
     [self.view addSubview:self.tableViewController.tableView];
     self.tableViewController.tableView.scrollsToTop = YES;
 }
@@ -114,6 +115,7 @@
 - (void)playerFinalizado:(NSNotification *)notification
 {
     // Crear y presentar vista de detalles para el video que acaba de finalizar (índice guardado en tag de view)
+    
     TSClipDetallesViewController *detalleView = [[TSClipDetallesViewController alloc] initWithClip:[self.clips objectAtIndex:self.indiceDeClipSeleccionado]];
     [self.navigationController pushViewController:detalleView animated:NO];
     [detalleView release];

@@ -11,6 +11,10 @@
 
 @interface UIViewController (UIViewController_Configuracion)
 
+-(void) presentarVideoEnVivo;
+
+-(void) agregarBotonEnVivo;
+
 - (void)personalizarNavigationBar;
 - (void)mostrarLoadingViewConAnimacion: (BOOL)animacion;
 - (void)ocultarLoadingViewConAnimacion: (BOOL)animacion;
