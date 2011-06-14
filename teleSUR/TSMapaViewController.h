@@ -11,6 +11,9 @@
 #import <MapKit/MapKit.h>
 #import "TSMultimediaDataDelegate.h"
 
+#import "MediaPlayer/MediaPlayer.h"
+
+
 @class TSClipListadoViewController;
 @class TSAnotacionEnMapa;
 
@@ -25,7 +28,7 @@
     NSDictionary *noticiaSeleccionada;
     UISegmentedControl *controlSegmentadoTitulo;
     
-    
+    MPMoviePlayerController *vistaReproduccionVideoTiempoReal;    
 }
 
 @property (nonatomic, retain) UIView *menu;
@@ -35,6 +38,11 @@
 @property (nonatomic, retain) TSClipListadoViewController *listado;
 @property (nonatomic, retain) IBOutlet MKMapView *vistaMapa;
 
+@property (nonatomic, retain) MPMoviePlayerController *vistaReproduccionVideoTiempoReal;
+
+
+
+-(void) reproducirVideoEnPantalla;
 
 -(IBAction) recargarPines: (id) sender;
 

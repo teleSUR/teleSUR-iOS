@@ -12,9 +12,10 @@
 		</object>
 		<object class="NSArray" key="IBDocument.IntegratedClassDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<string>IBProxyObject</string>
-			<string>IBUIView</string>
 			<string>IBUIButton</string>
+			<string>IBUIImageView</string>
+			<string>IBUIView</string>
+			<string>IBProxyObject</string>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -81,7 +82,7 @@
 						<string key="NSFrameSize">{120, 40}</string>
 						<reference key="NSSuperview" ref="1062224"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="571628368"/>
+						<reference key="NSNextKeyView"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC42IDAuMDM5MjE1Njg2MjcgMC4wMzEzNzI1NDkwMgA</bytes>
@@ -93,6 +94,20 @@
 						<int key="NSvFlags">290</int>
 						<object class="NSMutableArray" key="NSSubviews">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBUIImageView" id="176771351">
+								<reference key="NSNextResponder" ref="1029664778"/>
+								<int key="NSvFlags">292</int>
+								<string key="NSFrame">{{0, -12}, {648, 64}}</string>
+								<reference key="NSSuperview" ref="1029664778"/>
+								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="598320934"/>
+								<bool key="IBUIUserInteractionEnabled">NO</bool>
+								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+								<object class="NSCustomResource" key="IBUIImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">FONDO.png</string>
+								</object>
+							</object>
 							<object class="IBUIView" id="598320934">
 								<reference key="NSNextResponder" ref="1029664778"/>
 								<int key="NSvFlags">292</int>
@@ -114,7 +129,7 @@
 						<string key="NSFrame">{{120, 0}, {648, 40}}</string>
 						<reference key="NSSuperview" ref="1062224"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="598320934"/>
+						<reference key="NSNextKeyView" ref="176771351"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MSAwAA</bytes>
@@ -210,6 +225,7 @@
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="598320934"/>
+							<reference ref="176771351"/>
 						</object>
 						<reference key="parent" ref="1062224"/>
 						<string key="objectName">View</string>
@@ -217,12 +233,20 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">7</int>
 						<reference key="object" ref="598320934"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+						</object>
 						<reference key="parent" ref="1029664778"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">10</int>
 						<reference key="object" ref="571628368"/>
 						<reference key="parent" ref="1039693621"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">12</int>
+						<reference key="object" ref="176771351"/>
+						<reference key="parent" ref="1029664778"/>
 					</object>
 				</object>
 			</object>
@@ -233,6 +257,7 @@
 					<string>-1.CustomClassName</string>
 					<string>-2.CustomClassName</string>
 					<string>10.IBPluginDependency</string>
+					<string>12.IBPluginDependency</string>
 					<string>2.CustomClassName</string>
 					<string>2.IBPluginDependency</string>
 					<string>3.IBPluginDependency</string>
@@ -243,6 +268,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>TSClipListadoiPadViewController</string>
 					<string>UIResponder</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>TSTeleStrip</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -263,7 +289,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">11</int>
+			<int key="maxID">13</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -283,6 +309,7 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>descripcion</string>
 							<string>firma</string>
 							<string>imagen</string>
 							<string>tiempo</string>
@@ -290,6 +317,7 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>UILabel</string>
 							<string>UILabel</string>
 							<string>AsynchronousImageView</string>
 							<string>UILabel</string>
@@ -300,6 +328,7 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>descripcion</string>
 							<string>firma</string>
 							<string>imagen</string>
 							<string>tiempo</string>
@@ -307,6 +336,10 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBToOneOutletInfo">
+								<string key="name">descripcion</string>
+								<string key="candidateClassName">UILabel</string>
+							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">firma</string>
 								<string key="candidateClassName">UILabel</string>
@@ -339,6 +372,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>mostrarAcercaDe:</string>
 							<string>mostrarBusqueda:</string>
+							<string>mostrarDetallesDeNoticiaStrip:</string>
 							<string>mostrarVideo:</string>
 							<string>mostrarVideoTiempoReal:</string>
 						</object>
@@ -346,6 +380,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>id</string>
 							<string>id</string>
+							<string>UIButton</string>
 							<string>id</string>
 							<string>id</string>
 						</object>
@@ -356,6 +391,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>mostrarAcercaDe:</string>
 							<string>mostrarBusqueda:</string>
+							<string>mostrarDetallesDeNoticiaStrip:</string>
 							<string>mostrarVideo:</string>
 							<string>mostrarVideoTiempoReal:</string>
 						</object>
@@ -368,6 +404,10 @@
 							<object class="IBActionInfo">
 								<string key="name">mostrarBusqueda:</string>
 								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">mostrarDetallesDeNoticiaStrip:</string>
+								<string key="candidateClassName">UIButton</string>
 							</object>
 							<object class="IBActionInfo">
 								<string key="name">mostrarVideo:</string>
@@ -433,6 +473,38 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">TSTeleStrip</string>
 					<string key="superclassName">UIView</string>
+					<object class="NSMutableDictionary" key="actions">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>detenerAnimacionNoticias:</string>
+							<string>reanudarAnimacionNoticias:</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
+							<string>id</string>
+						</object>
+					</object>
+					<object class="NSMutableDictionary" key="actionInfosByName">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>detenerAnimacionNoticias:</string>
+							<string>reanudarAnimacionNoticias:</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBActionInfo">
+								<string key="name">detenerAnimacionNoticias:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">reanudarAnimacionNoticias:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+						</object>
+					</object>
 					<object class="NSMutableDictionary" key="outlets">
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
@@ -480,6 +552,10 @@
 		</object>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
+		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
+			<string key="NS.key.0">FONDO.png</string>
+			<string key="NS.object.0">{490, 13}</string>
+		</object>
 		<string key="IBCocoaTouchPluginVersion">300</string>
 	</data>
 </archive>

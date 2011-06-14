@@ -190,6 +190,11 @@
 		63EDAB5013232F8200496B83 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63EDAB4F13232F8200496B83 /* CFNetwork.framework */; };
 		63EDAB521323316500496B83 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 63EDAB511323316500496B83 /* libsqlite3.0.dylib */; };
 		63FB4EF6132ECE980027E304 /* TSBusquedaSeleccionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63FB4EF5132ECE980027E304 /* TSBusquedaSeleccionTableViewController.m */; };
+		C410D96213A80A780082EB73 /* BOTON.png in Resources */ = {isa = PBXBuildFile; fileRef = C410D96013A80A780082EB73 /* BOTON.png */; };
+		C410D96313A80A780082EB73 /* FONDO.png in Resources */ = {isa = PBXBuildFile; fileRef = C410D96113A80A780082EB73 /* FONDO.png */; };
+		C410D96513A80AB50082EB73 /* fondomenu copy.PNG in Resources */ = {isa = PBXBuildFile; fileRef = C410D96413A80AB50082EB73 /* fondomenu copy.PNG */; };
+		C410D96713A80B140082EB73 /* seleccion.png in Resources */ = {isa = PBXBuildFile; fileRef = C410D96613A80B140082EB73 /* seleccion.png */; };
+		C410D96913A80F080082EB73 /* DESTACADO.png in Resources */ = {isa = PBXBuildFile; fileRef = C410D96813A80F080082EB73 /* DESTACADO.png */; };
 		C4311E2E1385CD9500A28DBA /* teleSuriPadTabMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = C4311E2D1385CD9500A28DBA /* teleSuriPadTabMenu.m */; };
 		C4311E311385CDB200A28DBA /* teleSuriPadTabMenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4311E301385CDB200A28DBA /* teleSuriPadTabMenuView.xib */; };
 		C4311E341385D1D200A28DBA /* TSTabMenuiPad_UIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4311E331385D1D100A28DBA /* TSTabMenuiPad_UIViewController.m */; };
@@ -510,6 +515,11 @@
 		63EDAB511323316500496B83 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		63FB4EF4132ECE980027E304 /* TSBusquedaSeleccionTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSBusquedaSeleccionTableViewController.h; sourceTree = "<group>"; };
 		63FB4EF5132ECE980027E304 /* TSBusquedaSeleccionTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSBusquedaSeleccionTableViewController.m; sourceTree = "<group>"; };
+		C410D96013A80A780082EB73 /* BOTON.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BOTON.png; sourceTree = "<group>"; };
+		C410D96113A80A780082EB73 /* FONDO.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FONDO.png; sourceTree = "<group>"; };
+		C410D96413A80AB50082EB73 /* fondomenu copy.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fondomenu copy.PNG"; sourceTree = "<group>"; };
+		C410D96613A80B140082EB73 /* seleccion.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = seleccion.png; sourceTree = "<group>"; };
+		C410D96813A80F080082EB73 /* DESTACADO.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DESTACADO.png; sourceTree = "<group>"; };
 		C4311E2C1385CD9500A28DBA /* teleSuriPadTabMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = teleSuriPadTabMenu.h; sourceTree = "<group>"; };
 		C4311E2D1385CD9500A28DBA /* teleSuriPadTabMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = teleSuriPadTabMenu.m; sourceTree = "<group>"; };
 		C4311E301385CDB200A28DBA /* teleSuriPadTabMenuView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = teleSuriPadTabMenuView.xib; sourceTree = "<group>"; };
@@ -1268,6 +1278,7 @@
 		634D9EEE131F4AFC005B46FE /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				C410D95E13A80A6E0082EB73 /* iPad */,
 				C4338E10138C0197006FA7D2 /* Iconos TabBarMenu iPad */,
 				63B1CD021343FDE400EFDFB6 /* iconoMas.png */,
 				3AC5F0F31343E49A00359A61 /* Iconos Tablas Mas */,
@@ -1362,6 +1373,18 @@
 			name = "Google Analytics";
 			path = "Vendor/Google Analyics SDK/Library";
 			sourceTree = SOURCE_ROOT;
+		};
+		C410D95E13A80A6E0082EB73 /* iPad */ = {
+			isa = PBXGroup;
+			children = (
+				C410D96813A80F080082EB73 /* DESTACADO.png */,
+				C410D96613A80B140082EB73 /* seleccion.png */,
+				C410D96413A80AB50082EB73 /* fondomenu copy.PNG */,
+				C410D96013A80A780082EB73 /* BOTON.png */,
+				C410D96113A80A780082EB73 /* FONDO.png */,
+			);
+			name = iPad;
+			sourceTree = "<group>";
 		};
 		C4338E10138C0197006FA7D2 /* Iconos TabBarMenu iPad */ = {
 			isa = PBXGroup;
@@ -1512,6 +1535,11 @@
 				C4338E14138C01AD006FA7D2 /* icono-brujula.png in Resources */,
 				C4338E15138C01AD006FA7D2 /* icono-periodico.png in Resources */,
 				C4338E1F138C050A006FA7D2 /* TSDescripcionNoticiaStrip.xib in Resources */,
+				C410D96213A80A780082EB73 /* BOTON.png in Resources */,
+				C410D96313A80A780082EB73 /* FONDO.png in Resources */,
+				C410D96513A80AB50082EB73 /* fondomenu copy.PNG in Resources */,
+				C410D96713A80B140082EB73 /* seleccion.png in Resources */,
+				C410D96913A80F080082EB73 /* DESTACADO.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

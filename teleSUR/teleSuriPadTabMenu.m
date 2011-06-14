@@ -9,6 +9,8 @@
 #import "teleSuriPadTabMenu.h"
 #import "teleSURAppDelegate_iPad.h"
 
+#define kMargenIzquierdo 77
+#define kEspacioEntreMenu 75
 
 @implementation teleSuriPadTabMenu
 
@@ -25,7 +27,7 @@
     
     
     CGRect frameAnteriorSelector = self.selectorFondo.frame;
-    frameAnteriorSelector.origin.x = 60 + 60 * delegado.tabBarController.selectedIndex;
+    frameAnteriorSelector.origin.x = kMargenIzquierdo + kEspacioEntreMenu * delegado.tabBarController.selectedIndex;
     self.selectorFondo.frame = frameAnteriorSelector;
 
     
@@ -41,7 +43,7 @@
     teleSURAppDelegate_iPad *delegado = (teleSURAppDelegate_iPad *)[[UIApplication sharedApplication] delegate];
     
     CGRect frameAnteriorSelector = self.selectorFondo.frame;
-    frameAnteriorSelector.origin.x = 60 + 60 * self.indiceAnterior;
+    frameAnteriorSelector.origin.x = kMargenIzquierdo + kEspacioEntreMenu * self.indiceAnterior;
     self.selectorFondo.frame = frameAnteriorSelector;
     
     

@@ -17,7 +17,7 @@
 #import "AsynchronousImageView.h"
 #import "TSTabMenuiPad_UIViewController.h"
 #import "teleSuriPadTabMenu.h"
-
+#import "TSClipPlayerViewController.h"
 
 @implementation TSMapaViewController
 
@@ -26,6 +26,8 @@
 @synthesize controlSegmentadoTitulo;
 
 @synthesize menu;
+
+@synthesize vistaReproduccionVideoTiempoReal;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -131,6 +133,27 @@
     return YES;
 }
 
+-(void) reproducirVideoEnPantalla
+{
+    TSAnotacionEnMapa *seleccion = [[self.vistaMapa selectedAnnotations] objectAtIndex:0];
+    
+    TSClipPlayerViewController *playerController = [[TSClipPlayerViewController alloc] initConClip:seleccion.noticia];
+    
+    // Reproducir video
+    [playerController playEnViewController:self
+                      finalizarConSelector:@selector(playerFinalizado:)
+                         registrandoAccion:YES];
+    
+}
+
+- (void)playerFinalizado:(NSNotification *)notification
+{
+    // Si se terminó de reproducir el video principal, no crear vista de detalles, ya se está en ella
+ //   if (self.indexPathSeleccionado.section == kINFO_SECTION) return;
+    
+//    [super playerFinalizado:notification];
+}
+
 -(void) retirarModalView 
 {
     [self dismissModalViewControllerAnimated:YES];
@@ -196,19 +219,24 @@
         pin.pinColor = MKPinAnnotationColorGreen;
     }
     
+    pin.leftCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeCustom];
+    [(UIButton *)pin.leftCalloutAccessoryView addTarget:self 
+                                               action:@selector(reproducirVideoEnPantalla)
+                                     forControlEvents:UIControlEventTouchDown];                                    
+    pin.leftCalloutAccessoryView.frame = CGRectMake(0.0, 0.0, 40.0, 30.0);    
+                                    
     
-    pin.leftCalloutAccessoryView = [[AsynchronousImageView alloc] init];    
-    pin.leftCalloutAccessoryView.frame = CGRectMake(0.0, 0.0, 40.0, 30.0);
-    AsynchronousImageView *imageView;
-    pin.leftCalloutAccessoryView.backgroundColor = [UIColor blueColor];		
+    
+
+    AsynchronousImageView *imageView = [[AsynchronousImageView alloc] init];
 
 
-    
-    if ((imageView = (AsynchronousImageView *)pin.leftCalloutAccessoryView ))
+    if (imageView)
     {
         imageView.url = [NSURL URLWithString:[[(TSAnotacionEnMapa *)annotation noticia] valueForKey:@"thumbnail_mediano"]];
         imageView.image = [UIImage imageNamed:@"SinImagen.png"];
         [imageView cargarImagenSiNecesario];
+        [(UIButton *)pin.leftCalloutAccessoryView setImage:imageView.image forState:UIControlStateNormal];
     }
 
     pin.animatesDrop = YES;
