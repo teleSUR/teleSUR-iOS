@@ -11,9 +11,11 @@
 #import "MediaPlayer/MediaPlayer.h"
 
 
-#define kAlturaStrip 167
+#define kAlturaStrip 148
 #define kNumeroStrips 5
 #define kMargenStrips 10
+#define kMargenAltura 10
+
 
 @class teleSuriPadTabMenu;
 @class TSClipCellStripView;
@@ -43,6 +45,8 @@
     MPMoviePlayerController *vistaReproduccionVideoTiempoReal;
     
 }
+
+@property (nonatomic, retain) IBOutlet UINavigationBar *barraNavegacion;
 
 @property (nonatomic, retain) teleSuriPadTabMenu *menu; 
 

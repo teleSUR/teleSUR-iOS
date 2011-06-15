@@ -13,6 +13,8 @@
 #import "TSClipCellStripView.h"
 #import "AsynchronousImageView.h"
 
+#define kMargenPolaroidX 10
+
 @implementation TSClipStrip
 
 @synthesize listado;
@@ -46,7 +48,7 @@
 
 -(void)TSMultimediaData:(TSMultimediaData *)data entidadesRecibidas:(NSArray *)array paraEntidad:(NSString *)entidad
 {
-    int offsetX = 80 + 10;
+    int offsetX = 40 + kMargenPolaroidX;
     
     int anchoCelda;
     int i =0;
@@ -78,7 +80,7 @@
         celdaClip.frame = tempFrame;
         
         // Actualizar offset
-        offsetX += celdaClip.frame.size.width + 10;
+        offsetX += celdaClip.frame.size.width + kMargenPolaroidX;
         
         // Añadir botón a la jerarquón de vistas
         [self addSubview:celdaClip];
@@ -89,7 +91,7 @@
     vistaEtiquetaGigante.transform = CGAffineTransformMakeRotation(-M_PI/2);    
     CGRect frameHorizontal = vistaEtiquetaGigante.frame;
     
-    frameHorizontal.origin.x = 5;
+    frameHorizontal.origin.x = -1;
     frameHorizontal.origin.y = 1;
     
     vistaEtiquetaGigante.frame = frameHorizontal;
@@ -100,7 +102,7 @@
     [self addSubview:vistaEtiquetaGigante];
     
 
-    [self setContentSize: CGSizeMake(([array count]*(220+10))+80, kAlturaStrip)];
+    [self setContentSize: CGSizeMake(([array count]*(175+kMargenPolaroidX))+80, kAlturaStrip)];
 }
 
 

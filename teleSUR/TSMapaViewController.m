@@ -18,14 +18,16 @@
 #import "TSTabMenuiPad_UIViewController.h"
 #import "teleSuriPadTabMenu.h"
 #import "TSClipPlayerViewController.h"
+#import "AsynchronousImageViewButton.h"
 
 @implementation TSMapaViewController
 
 @synthesize vistaMapa, listado, anotacionesDelMapa;
 @synthesize noticiaSeleccionada;
 @synthesize controlSegmentadoTitulo;
-
 @synthesize menu;
+
+@synthesize barraNavegacion;
 
 @synthesize vistaReproduccionVideoTiempoReal;
 
@@ -86,7 +88,12 @@
     
     self.menu = [self cargarMenu];
 
+    // Poner imagen teleSur en la barra
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Header.png"]];
     
+    self.barraNavegacion.topItem.titleView = imageView;
+    
+    [imageView release];    
 
     
     
@@ -192,6 +199,9 @@
 
         
         
+        
+        
+        
         UIButton* rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
         [rightButton addTarget:self
                         action:@selector(reproducirVideo:)
@@ -218,6 +228,22 @@
     {
         pin.pinColor = MKPinAnnotationColorGreen;
     }
+    /*
+    pin.leftCalloutAccessoryView = [[AsynchronousImageViewButton alloc] init];    
+    pin.leftCalloutAccessoryView.frame = CGRectMake(0.0, 0.0, 40.0, 30.0);
+    AsynchronousImageViewButton *imageView;
+    pin.leftCalloutAccessoryView.backgroundColor = [UIColor blueColor];
+    
+    
+    if ((imageView = (AsynchronousImageViewButton *)pin.leftCalloutAccessoryView ))
+    {
+        imageView.delegado = self;
+        imageView.selector = @selector(reproducirVideoEnPantalla);    
+        imageView.url = [NSURL URLWithString:[[(TSAnotacionEnMapa *)annotation noticia] valueForKey:@"thumbnail_mediano"]];
+        imageView.image = [UIImage imageNamed:@"SinImagen.png"];
+        [imageView cargarImagenSiNecesario];
+    }
+    */
     
     pin.leftCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeCustom];
     [(UIButton *)pin.leftCalloutAccessoryView addTarget:self 
@@ -230,7 +256,7 @@
 
     AsynchronousImageView *imageView = [[AsynchronousImageView alloc] init];
 
-
+    
     if (imageView)
     {
         imageView.url = [NSURL URLWithString:[[(TSAnotacionEnMapa *)annotation noticia] valueForKey:@"thumbnail_mediano"]];
@@ -238,7 +264,7 @@
         [imageView cargarImagenSiNecesario];
         [(UIButton *)pin.leftCalloutAccessoryView setImage:imageView.image forState:UIControlStateNormal];
     }
-
+    
     pin.animatesDrop = YES;
     return pin;
 }

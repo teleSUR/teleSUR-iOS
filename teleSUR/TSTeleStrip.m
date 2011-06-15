@@ -64,7 +64,7 @@
         [unaNoticia setTitle:[[self.noticias objectAtIndex:i] valueForKey:@"titulo"] forState:UIControlStateNormal];
         CGSize labelSize = [unaNoticia.titleLabel.text sizeWithFont: unaNoticia.titleLabel.font];
         
-        unaNoticia.frame = CGRectMake(offsetX, 11, labelSize.width, labelSize.height);        
+        unaNoticia.frame = CGRectMake(offsetX, 4, labelSize.width, labelSize.height);        
         
         [self.vistaMovimiento addSubview:unaNoticia];
         self.vistaMovimiento.frame = CGRectMake(self.vistaInterior.frame.size.width, self.vistaMovimiento.frame.origin.y, offsetX, self.vistaMovimiento.frame.size.height);            

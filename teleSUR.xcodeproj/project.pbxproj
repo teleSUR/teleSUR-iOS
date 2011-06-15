@@ -25,6 +25,14 @@
 		3A98B51813663F600083373D /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A98B51713663F600083373D /* MapKit.framework */; };
 		3A98B521136645D90083373D /* TSAnotacionEnMapa.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A98B520136645D70083373D /* TSAnotacionEnMapa.m */; };
 		3AA331821343DD8500D01F9F /* TSMasTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA331811343DD8500D01F9F /* TSMasTableViewController.m */; };
+		3AC27CF713A8499B00BD39B2 /* buscar.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AC27CF013A8499B00BD39B2 /* buscar.png */; };
+		3AC27CF813A8499B00BD39B2 /* corresponsales.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AC27CF113A8499B00BD39B2 /* corresponsales.png */; };
+		3AC27CF913A8499B00BD39B2 /* especiales.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AC27CF213A8499B00BD39B2 /* especiales.png */; };
+		3AC27CFA13A8499B00BD39B2 /* mas.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AC27CF313A8499B00BD39B2 /* mas.png */; };
+		3AC27CFB13A8499B00BD39B2 /* noticias escritas.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AC27CF413A8499B00BD39B2 /* noticias escritas.png */; };
+		3AC27CFC13A8499B00BD39B2 /* noticias.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AC27CF513A8499B00BD39B2 /* noticias.png */; };
+		3AC27CFD13A8499B00BD39B2 /* programas.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AC27CF613A8499B00BD39B2 /* programas.png */; };
+		3AC27D0013A850B600BD39B2 /* AsynchronousImageViewButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC27CFF13A850B300BD39B2 /* AsynchronousImageViewButton.m */; };
 		3AC5F0F81343E4A800359A61 /* facebook-logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AC5F0F61343E4A800359A61 /* facebook-logo@2x.png */; };
 		3AC5F0FA1343E4FA00359A61 /* twitter-logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AC5F0F91343E4FA00359A61 /* twitter-logo@2x.png */; };
 		3AC5F0FC1343E5B200359A61 /* mail@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AC5F0FB1343E5B200359A61 /* mail@2x.png */; };
@@ -248,6 +256,15 @@
 		3A98B520136645D70083373D /* TSAnotacionEnMapa.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSAnotacionEnMapa.m; sourceTree = "<group>"; };
 		3AA331801343DD8500D01F9F /* TSMasTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSMasTableViewController.h; sourceTree = "<group>"; };
 		3AA331811343DD8500D01F9F /* TSMasTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSMasTableViewController.m; sourceTree = "<group>"; };
+		3AC27CF013A8499B00BD39B2 /* buscar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buscar.png; sourceTree = "<group>"; };
+		3AC27CF113A8499B00BD39B2 /* corresponsales.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = corresponsales.png; sourceTree = "<group>"; };
+		3AC27CF213A8499B00BD39B2 /* especiales.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = especiales.png; sourceTree = "<group>"; };
+		3AC27CF313A8499B00BD39B2 /* mas.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mas.png; sourceTree = "<group>"; };
+		3AC27CF413A8499B00BD39B2 /* noticias escritas.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "noticias escritas.png"; sourceTree = "<group>"; };
+		3AC27CF513A8499B00BD39B2 /* noticias.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noticias.png; sourceTree = "<group>"; };
+		3AC27CF613A8499B00BD39B2 /* programas.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = programas.png; sourceTree = "<group>"; };
+		3AC27CFE13A850B000BD39B2 /* AsynchronousImageViewButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsynchronousImageViewButton.h; sourceTree = "<group>"; };
+		3AC27CFF13A850B300BD39B2 /* AsynchronousImageViewButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsynchronousImageViewButton.m; sourceTree = "<group>"; };
 		3AC5F0F61343E4A800359A61 /* facebook-logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebook-logo@2x.png"; sourceTree = "<group>"; };
 		3AC5F0F91343E4FA00359A61 /* twitter-logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "twitter-logo@2x.png"; sourceTree = "<group>"; };
 		3AC5F0FB1343E5B200359A61 /* mail@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mail@2x.png"; sourceTree = "<group>"; };
@@ -582,6 +599,8 @@
 				3A1001A8131B30D600717211 /* UIViewController_Configuracion.m */,
 				63C7AEF8131DAF8F00BD7F64 /* AsynchronousImageView.h */,
 				63C7AEF9131DAF9000BD7F64 /* AsynchronousImageView.m */,
+				3AC27CFE13A850B000BD39B2 /* AsynchronousImageViewButton.h */,
+				3AC27CFF13A850B300BD39B2 /* AsynchronousImageViewButton.m */,
 				3AD8190F131EF7B40006C5A0 /* NSDate_Utilidad.h */,
 				3AD81910131EF7B40006C5A0 /* NSDate_Utilidad.m */,
 				3ACA5FBE133019A100DB9402 /* UIViewController_Preferencias.h */,
@@ -602,6 +621,20 @@
 				63B1CCF91343F4D100EFDFB6 /* TSContacto.html */,
 			);
 			name = "Más";
+			sourceTree = "<group>";
+		};
+		3AC27CEE13A8498C00BD39B2 /* Iconos iPad */ = {
+			isa = PBXGroup;
+			children = (
+				3AC27CF013A8499B00BD39B2 /* buscar.png */,
+				3AC27CF113A8499B00BD39B2 /* corresponsales.png */,
+				3AC27CF213A8499B00BD39B2 /* especiales.png */,
+				3AC27CF313A8499B00BD39B2 /* mas.png */,
+				3AC27CF413A8499B00BD39B2 /* noticias escritas.png */,
+				3AC27CF513A8499B00BD39B2 /* noticias.png */,
+				3AC27CF613A8499B00BD39B2 /* programas.png */,
+			);
+			name = "Iconos iPad";
 			sourceTree = "<group>";
 		};
 		3AC5F0F31343E49A00359A61 /* Iconos Tablas Mas */ = {
@@ -1278,6 +1311,7 @@
 		634D9EEE131F4AFC005B46FE /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				3AC27CEE13A8498C00BD39B2 /* Iconos iPad */,
 				C410D95E13A80A6E0082EB73 /* iPad */,
 				C4338E10138C0197006FA7D2 /* Iconos TabBarMenu iPad */,
 				63B1CD021343FDE400EFDFB6 /* iconoMas.png */,
@@ -1540,6 +1574,13 @@
 				C410D96513A80AB50082EB73 /* fondomenu copy.PNG in Resources */,
 				C410D96713A80B140082EB73 /* seleccion.png in Resources */,
 				C410D96913A80F080082EB73 /* DESTACADO.png in Resources */,
+				3AC27CF713A8499B00BD39B2 /* buscar.png in Resources */,
+				3AC27CF813A8499B00BD39B2 /* corresponsales.png in Resources */,
+				3AC27CF913A8499B00BD39B2 /* especiales.png in Resources */,
+				3AC27CFA13A8499B00BD39B2 /* mas.png in Resources */,
+				3AC27CFB13A8499B00BD39B2 /* noticias escritas.png in Resources */,
+				3AC27CFC13A8499B00BD39B2 /* noticias.png in Resources */,
+				3AC27CFD13A8499B00BD39B2 /* programas.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1680,6 +1721,7 @@
 				C4311E2E1385CD9500A28DBA /* teleSuriPadTabMenu.m in Sources */,
 				C4311E341385D1D200A28DBA /* TSTabMenuiPad_UIViewController.m in Sources */,
 				C4338E1E138C050A006FA7D2 /* TSDescripcionNoticiaStrip.m in Sources */,
+				3AC27D0013A850B600BD39B2 /* AsynchronousImageViewButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

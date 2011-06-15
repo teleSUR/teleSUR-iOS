@@ -19,6 +19,8 @@
 #import "TSMasTableViewController.h"
 #import "TSTabMenuiPad_UIViewController.h"
 #import "teleSuriPadTabMenu.h"
+#import "UIViewController_Configuracion.h"
+
 
 @implementation TSClipListadoiPadViewController
 
@@ -28,7 +30,7 @@
 @synthesize vistaUltimoClip;
 @synthesize menu;
 @synthesize listadoVideoUnico;
-
+@synthesize barraNavegacion;
 @synthesize vistaReproduccionVideoTiempoReal;
 
 @synthesize botonBusqueda, controlPopOver, switchVideoEnVivo;
@@ -91,7 +93,6 @@
 {
     if([self.controlPopOver isPopoverVisible])
     {
-        
         [self.controlPopOver dismissPopoverAnimated:YES];
         return;
     }
@@ -124,7 +125,7 @@
     
     self.strips = [[NSMutableArray alloc] init];
 
-    self.tipos = [NSMutableArray arrayWithObjects:@"politica", @"cultura", @"economia", @"ciencia", nil];
+    self.tipos = [NSMutableArray arrayWithObjects:@"politica", @"economia", @"deportes", @"cultura", @"ciencia", @"medio-ambiente", nil];
     
     NSArray* nibViews =  [[NSBundle mainBundle] loadNibNamed:@"TSClipCellStripBigView" owner:self options:nil];
     [self.vistaUltimoClip addSubview:[nibViews lastObject]];
@@ -134,9 +135,14 @@
     [vistaTeleStrip obtenerDatosParaTeleStrip];
      
     [[self.view viewWithTag:99] addSubview:vistaTeleStrip];
-    
 
     
+    // Poner imagen teleSur en la barra
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Header.png"]];
+    
+    self.barraNavegacion.topItem.titleView = imageView;
+    
+    [imageView release];
     
     
 
@@ -154,7 +160,7 @@
         stripClips1.listado.diccionarioConfiguracionFiltros = [NSDictionary dictionaryWithObject:[self.tipos objectAtIndex:i] forKey:@"categoria"];
         stripClips1.posicion = i;
         [stripClips1 cargarClips];
-        [stripClips1 setFrame:CGRectMake(kMargenStrips, ((kMargenStrips)+kAlturaStrip)*i, self.view.frame.size.width-(kMargenStrips*2), kAlturaStrip)];
+        [stripClips1 setFrame:CGRectMake(0, kMargenStrips + (kMargenStrips+kAlturaStrip)*i, self.view.frame.size.width/*-(kMargenStrips*2)*/, kAlturaStrip)];
         [stripClips1 setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
         
         [self.scrollStrips addSubview:stripClips1];    

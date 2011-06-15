@@ -28,8 +28,12 @@
     NSDictionary *noticiaSeleccionada;
     UISegmentedControl *controlSegmentadoTitulo;
     
+    UINavigationBar *barraNavegacion;
+    
     MPMoviePlayerController *vistaReproduccionVideoTiempoReal;    
 }
+
+@property (nonatomic, retain) IBOutlet UINavigationBar *barraNavegacion;
 
 @property (nonatomic, retain) UIView *menu;
 @property (nonatomic, retain) IBOutlet UISegmentedControl *controlSegmentadoTitulo;
