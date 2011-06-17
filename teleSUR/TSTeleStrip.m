@@ -59,12 +59,12 @@
         
         [unaNoticia addTarget:self action:@selector(detenerAnimacionNoticias:) forControlEvents:UIControlEventTouchDown];
         [unaNoticia addTarget:self action:@selector(reanudarAnimacionNoticias:) forControlEvents:UIControlEventTouchUpInside];
-        unaNoticia.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:12.0];
+        unaNoticia.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:14.0];
 
-        [unaNoticia setTitle:[[self.noticias objectAtIndex:i] valueForKey:@"titulo"] forState:UIControlStateNormal];
+        [unaNoticia setTitle: [NSString stringWithFormat:@"%@ |", [[self.noticias objectAtIndex:i] valueForKey:@"titulo"]] forState:UIControlStateNormal];
         CGSize labelSize = [unaNoticia.titleLabel.text sizeWithFont: unaNoticia.titleLabel.font];
         
-        unaNoticia.frame = CGRectMake(offsetX, 4, labelSize.width, labelSize.height);        
+        unaNoticia.frame = CGRectMake(offsetX, 7, labelSize.width, labelSize.height);        
         
         [self.vistaMovimiento addSubview:unaNoticia];
         self.vistaMovimiento.frame = CGRectMake(self.vistaInterior.frame.size.width, self.vistaMovimiento.frame.origin.y, offsetX, self.vistaMovimiento.frame.size.height);            
@@ -100,12 +100,16 @@
     
     
     controlPopOver = [[UIPopoverController alloc] initWithContentViewController:vistaNoticia];
-    controlPopOver.popoverContentSize = CGSizeMake(320, 280);
+
     CGRect rectanguloPosicional = CGRectMake(self.vistaMovimiento.frame.origin.x+boton.frame.origin.x, self.vistaMovimiento.frame.origin.y, boton.frame.size.width, boton.frame.size.height);
     
     NSLog(@"%f", self.vistaMovimiento.frame.origin.x);
     vistaNoticia.titulo.text = [[noticias objectAtIndex: boton.tag] valueForKey:@"titulo"];
     vistaNoticia.contenidoNoticia.text = [[noticias objectAtIndex: boton.tag] valueForKey:@"descripcion"];
+    
+    float nuevaAltura = [vistaNoticia ajustarTamanoTexto];
+    controlPopOver.popoverContentSize = CGSizeMake(320, nuevaAltura);    
+    
     
     //    self.controlPopOver.
     //    [controlPopOver presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];

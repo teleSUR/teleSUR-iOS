@@ -44,8 +44,10 @@
     
     MPMoviePlayerController *vistaReproduccionVideoTiempoReal;
     
+    UIView *vistaCargandoEnVivo;
+    
 }
-
+@property (nonatomic, retain) IBOutlet UIView *vistaCargandoEnVivo;
 @property (nonatomic, retain) IBOutlet UINavigationBar *barraNavegacion;
 
 @property (nonatomic, retain) teleSuriPadTabMenu *menu; 

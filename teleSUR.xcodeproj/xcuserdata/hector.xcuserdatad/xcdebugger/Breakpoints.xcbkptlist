@@ -163,11 +163,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "teleSUR/TSClipListadoiPadViewController.m"
-         timestampString = "327542019.941614"
+         timestampString = "330032112.048291"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "199"
-         endingLineNumber = "199"
+         startingLineNumber = "156"
+         endingLineNumber = "156"
          landmarkName = "-mostrarVideoTiempoReal:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -177,11 +177,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "teleSUR/TSClipListadoiPadViewController.m"
-         timestampString = "327542019.941614"
+         timestampString = "330032112.048291"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "187"
-         endingLineNumber = "187"
+         startingLineNumber = "144"
+         endingLineNumber = "144"
          landmarkName = "-mostrarVideoTiempoReal:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -191,11 +191,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "teleSUR/TSClipListadoiPadViewController.m"
-         timestampString = "327542019.941614"
+         timestampString = "330032112.048291"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "185"
-         endingLineNumber = "185"
+         startingLineNumber = "142"
+         endingLineNumber = "142"
          landmarkName = "-mostrarVideoTiempoReal:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -219,11 +219,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "teleSUR/TSTeleStrip.m"
-         timestampString = "327943985.210895"
+         timestampString = "330030886.610394"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "122"
-         endingLineNumber = "122"
+         startingLineNumber = "126"
+         endingLineNumber = "126"
          landmarkName = "-animarNuevaNoticiaDesdeInicio:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -233,11 +233,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "teleSUR/TSClipListadoiPadViewController.m"
-         timestampString = "327542035.234686"
+         timestampString = "330032112.048291"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "116"
-         endingLineNumber = "116"
+         startingLineNumber = "73"
+         endingLineNumber = "73"
          landmarkName = "-viewDidAppear:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -247,11 +247,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "teleSUR/teleSuriPadTabMenu.m"
-         timestampString = "329780336.707717"
+         timestampString = "330032112.048291"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "67"
-         endingLineNumber = "67"
+         startingLineNumber = "120"
+         endingLineNumber = "120"
          landmarkName = "-accionCambiarTabSeleccionado"
          landmarkType = "5">
       </FileBreakpoint>

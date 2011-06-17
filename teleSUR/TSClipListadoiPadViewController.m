@@ -20,7 +20,7 @@
 #import "TSTabMenuiPad_UIViewController.h"
 #import "teleSuriPadTabMenu.h"
 #import "UIViewController_Configuracion.h"
-
+#import "NSDictionary_Datos.h"
 
 @implementation TSClipListadoiPadViewController
 
@@ -32,6 +32,8 @@
 @synthesize listadoVideoUnico;
 @synthesize barraNavegacion;
 @synthesize vistaReproduccionVideoTiempoReal;
+
+@synthesize vistaCargandoEnVivo;
 
 @synthesize botonBusqueda, controlPopOver, switchVideoEnVivo;
 
@@ -64,53 +66,8 @@
     
 }
 
--(IBAction) mostrarAcercaDe: (UIButton *) sender
-{
-    if([self.controlPopOver isPopoverVisible])
-    {
-        
-        [self.controlPopOver dismissPopoverAnimated:YES];
-        return;
-    }
-    
-    
-    UINavigationController *controlNavegacion = [[UINavigationController alloc] init];
-    
-    TSMasTableViewController *busquedaView = [[TSMasTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
-    
-    [controlNavegacion pushViewController:busquedaView animated:NO];
-    
-    self.controlPopOver = [[UIPopoverController alloc] initWithContentViewController:controlNavegacion];
-    self.controlPopOver.popoverContentSize = CGSizeMake(320, 480);
-//    self.controlPopOver.
-//    [controlPopOver presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
-    [controlPopOver presentPopoverFromRect:sender.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
-    
-    [busquedaView release];
-}
 
--(IBAction) mostrarBusqueda: (id) sender
-{
-    if([self.controlPopOver isPopoverVisible])
-    {
-        [self.controlPopOver dismissPopoverAnimated:YES];
-        return;
-    }
 
-    
-    UINavigationController *controlNavegacion = [[UINavigationController alloc] init];
-    
-    TSClipBusquedaViewController *busquedaView = [[TSClipBusquedaViewController alloc] initWithStyle:UITableViewStyleGrouped];
-    
-    [controlNavegacion pushViewController:busquedaView animated:NO];
-    
-    self.controlPopOver = [[UIPopoverController alloc] initWithContentViewController:controlNavegacion];
-    self.controlPopOver.popoverContentSize = CGSizeMake(320, 520);    
-    [controlPopOver presentPopoverFromBarButtonItem:self.botonBusqueda permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
-    
-    [busquedaView release];
-
-}
 
 -(void)viewDidAppear:(BOOL)animated
 {
@@ -178,7 +135,7 @@
     
     self.listadoVideoUnico.rangoUltimo = NSMakeRange(1, 1);    
     [self.listadoVideoUnico cargarClips];
-    
+    [self.listadoVideoUnico.diccionarioConfiguracionFiltros setValue:@"noticia" forKey:@"tipo"];
 
     // Get the tabbar frame
     
@@ -217,8 +174,9 @@
 {
 
     if (self.switchVideoEnVivo.on) {
-    NSString *moviePath = @"http://streaming.tlsur.net:1935/live/vivo.stream/playlist.m3u8";
-    NSURL *movieURL = [NSURL URLWithString:moviePath];
+        self.vistaCargandoEnVivo.alpha = 1.0;
+        NSString *moviePath = @"http://streaming.tlsur.net:1935/live/vivo.stream/playlist.m3u8";
+        NSURL *movieURL = [NSURL URLWithString:moviePath];
         
 
         self.vistaReproduccionVideoTiempoReal = [[MPMoviePlayerController alloc] initWithContentURL:movieURL];
@@ -233,6 +191,7 @@
 
     } else
     {
+        self.vistaCargandoEnVivo.alpha = 0.0;        
         [self.vistaReproduccionVideoTiempoReal stop];
         [self.vistaReproduccionVideoTiempoReal.view removeFromSuperview];
         [self.vistaReproduccionVideoTiempoReal release];
@@ -309,6 +268,7 @@
     self.vistaUltimoClip.titulo.text = [unDiccionario valueForKey:@"titulo"];
     self.vistaUltimoClip.tiempo.text = [unDiccionario valueForKey:@"duracion"];
     self.vistaUltimoClip.descripcion.text = [unDiccionario valueForKey:@"descripcion"];
+    self.vistaUltimoClip.firma.text = [unDiccionario obtenerFirmaParaEsteClip];
     
     AsynchronousImageView *imageView;
     if ((imageView = (AsynchronousImageView *)self.vistaUltimoClip.imagen ))

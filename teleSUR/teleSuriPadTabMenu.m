@@ -8,18 +8,71 @@
 
 #import "teleSuriPadTabMenu.h"
 #import "teleSURAppDelegate_iPad.h"
+#import "TSClipBusquedaViewController.h"
+#import "TSMasTableViewController.h"
+
 
 #define kMargenIzquierdo 77
 #define kEspacioEntreMenu 75
 
 @implementation teleSuriPadTabMenu
 
+@synthesize controlPopMas, controlPopBusqueda;
 
 @synthesize selectorFondo;
 @synthesize indiceAnterior;
 
 @synthesize vistaReproduccionVideoTiempoReal;
 @synthesize switchEnVivo;
+
+-(IBAction) mostrarAcercaDe: (UIButton *) sender
+{
+    if([self.controlPopBusqueda isPopoverVisible])
+    {
+        
+        [self.controlPopBusqueda dismissPopoverAnimated:YES];
+        return;
+    }
+    
+    
+    UINavigationController *controlNavegacion = [[UINavigationController alloc] init];
+    
+    TSMasTableViewController *busquedaView = [[TSMasTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    
+    [controlNavegacion pushViewController:busquedaView animated:NO];
+    
+    self.controlPopBusqueda = [[UIPopoverController alloc] initWithContentViewController:controlNavegacion];
+    self.controlPopBusqueda.popoverContentSize = CGSizeMake(320, 480);
+    //    self.controlPopOver.
+    //    [controlPopOver presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+    [self.controlPopBusqueda presentPopoverFromRect:sender.frame inView:self permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+    
+    [busquedaView release];
+}
+
+-(IBAction) mostrarBusqueda: (UIButton *) sender
+{
+    if([self.controlPopBusqueda isPopoverVisible])
+    {
+        [self.controlPopBusqueda dismissPopoverAnimated:YES];
+        return;
+    }
+    
+    
+    UINavigationController *controlNavegacion = [[UINavigationController alloc] init];
+    
+    TSClipBusquedaViewController *busquedaView = [[TSClipBusquedaViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    
+    [controlNavegacion pushViewController:busquedaView animated:NO];
+    
+    self.controlPopBusqueda = [[UIPopoverController alloc] initWithContentViewController:controlNavegacion];
+    self.controlPopBusqueda.popoverContentSize = CGSizeMake(320, 520);    
+    [self.controlPopBusqueda presentPopoverFromRect:sender.frame inView:self permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+    
+    [busquedaView release];
+    
+}
+
 
 -(IBAction) colocarSelectorEnPosicionOriginal
 {

@@ -19,5 +19,6 @@
 @property (nonatomic, retain) IBOutlet UILabel *titulo;
 @property (nonatomic, retain) IBOutlet UILabel *contenidoNoticia;
 
+-(float) ajustarTamanoTexto;
 
 @end

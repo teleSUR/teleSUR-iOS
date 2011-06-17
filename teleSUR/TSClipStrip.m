@@ -102,7 +102,7 @@
     [self addSubview:vistaEtiquetaGigante];
     
 
-    [self setContentSize: CGSizeMake(([array count]*(175+kMargenPolaroidX))+80, kAlturaStrip)];
+    [self setContentSize: CGSizeMake(([array count]*(170+kMargenPolaroidX))+ 39 + kMargenPolaroidX, kAlturaStrip)];
 }
 
 

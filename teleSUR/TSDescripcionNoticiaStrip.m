@@ -35,6 +35,26 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
+-(float) ajustarTamanoTexto
+{
+    NSLog(@"%@", self.contenidoNoticia.text);
+    
+    CGSize maximumLabelSize = CGSizeMake(262,9999);
+    CGSize expectedLabelSize = [self.contenidoNoticia.text
+                                sizeWithFont:self.contenidoNoticia.font 
+                                constrainedToSize:maximumLabelSize 
+                                lineBreakMode:self.contenidoNoticia.lineBreakMode];
+    
+    NSLog(@"Expected Size: %f-%f",expectedLabelSize.width, expectedLabelSize.height );
+    
+//    self.descripcionCell.frame = CGRectMake(self.descripcionCell.frame.origin.x, self.descripcionCell.frame.origin.y, self.descripcionCell.frame.size.width, expectedLabelSize.height+15);
+//    self.descripcionCell.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    self.contenidoNoticia.frame = CGRectMake(self.contenidoNoticia.frame.origin.x, self.contenidoNoticia.frame.origin.y, self.contenidoNoticia.frame.size.width,expectedLabelSize.height);
+    
+    return self.contenidoNoticia.frame.size.height + self.titulo.frame.size.height + 16;// + 10;
+    
+}
+
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
