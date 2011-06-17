@@ -19,7 +19,7 @@
 #import "teleSuriPadTabMenu.h"
 #import "TSClipPlayerViewController.h"
 #import "AsynchronousImageViewButton.h"
-
+#import "AsynchronousButtonView.h"
 @implementation TSMapaViewController
 
 @synthesize vistaMapa, listado, anotacionesDelMapa;
@@ -228,13 +228,13 @@
     {
         pin.pinColor = MKPinAnnotationColorGreen;
     }
+    
+//    pin.leftCalloutAccessoryView = [[AsynchronousImageViewButton alloc] init];    
+//    pin.leftCalloutAccessoryView.frame = CGRectMake(0.0, 0.0, 40.0, 30.0);
+//    AsynchronousImageViewButton *imageView;
+//    pin.leftCalloutAccessoryView.backgroundColor = [UIColor blueColor];
+    
     /*
-    pin.leftCalloutAccessoryView = [[AsynchronousImageViewButton alloc] init];    
-    pin.leftCalloutAccessoryView.frame = CGRectMake(0.0, 0.0, 40.0, 30.0);
-    AsynchronousImageViewButton *imageView;
-    pin.leftCalloutAccessoryView.backgroundColor = [UIColor blueColor];
-    
-    
     if ((imageView = (AsynchronousImageViewButton *)pin.leftCalloutAccessoryView ))
     {
         imageView.delegado = self;
@@ -242,28 +242,28 @@
         imageView.url = [NSURL URLWithString:[[(TSAnotacionEnMapa *)annotation noticia] valueForKey:@"thumbnail_mediano"]];
         imageView.image = [UIImage imageNamed:@"SinImagen.png"];
         [imageView cargarImagenSiNecesario];
-    }
-    */
+    }*/
     
-    pin.leftCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeCustom];
-    [(UIButton *)pin.leftCalloutAccessoryView addTarget:self 
+    
+    AsynchronousButtonView *imageButtonView = [[AsynchronousButtonView alloc] init]; //[UIButton buttonWithType:UIButtonTypeCustom];
+    
+    [imageButtonView addTarget:self 
                                                action:@selector(reproducirVideoEnPantalla)
-                                     forControlEvents:UIControlEventTouchDown];                                    
-    pin.leftCalloutAccessoryView.frame = CGRectMake(0.0, 0.0, 40.0, 30.0);    
+                                     forControlEvents:UIControlEventTouchDown];
+    
+    imageButtonView.frame = CGRectMake(0.0, 0.0, 40.0, 30.0);    
                                     
-    
-    
 
-    AsynchronousImageView *imageView = [[AsynchronousImageView alloc] init];
 
-    
-    if (imageView)
+    if (imageButtonView)
     {
-        imageView.url = [NSURL URLWithString:[[(TSAnotacionEnMapa *)annotation noticia] valueForKey:@"thumbnail_mediano"]];
-        imageView.image = [UIImage imageNamed:@"SinImagen.png"];
-        [imageView cargarImagenSiNecesario];
-        [(UIButton *)pin.leftCalloutAccessoryView setImage:imageView.image forState:UIControlStateNormal];
+        imageButtonView.url = [NSURL URLWithString:[[(TSAnotacionEnMapa *)annotation noticia] valueForKey:@"thumbnail_mediano"]];
+        imageButtonView.imageView.image = [UIImage imageNamed:@"SinImagen.png"];
+        [imageButtonView cargarImagenSiNecesario];
+//        [(UIButton *)pin.leftCalloutAccessoryView setImage:imageButtonView.imageView.image forState:UIControlStateNormal];
     }
+//     = pin.leftCalloutAccessoryView;   
+    pin.leftCalloutAccessoryView = imageButtonView;
     
     pin.animatesDrop = YES;
     return pin;

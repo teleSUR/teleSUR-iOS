@@ -32,7 +32,6 @@
 		3AC27CFB13A8499B00BD39B2 /* noticias escritas.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AC27CF413A8499B00BD39B2 /* noticias escritas.png */; };
 		3AC27CFC13A8499B00BD39B2 /* noticias.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AC27CF513A8499B00BD39B2 /* noticias.png */; };
 		3AC27CFD13A8499B00BD39B2 /* programas.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AC27CF613A8499B00BD39B2 /* programas.png */; };
-		3AC27D0013A850B600BD39B2 /* AsynchronousImageViewButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC27CFF13A850B300BD39B2 /* AsynchronousImageViewButton.m */; };
 		3AC5F0F81343E4A800359A61 /* facebook-logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AC5F0F61343E4A800359A61 /* facebook-logo@2x.png */; };
 		3AC5F0FA1343E4FA00359A61 /* twitter-logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AC5F0F91343E4FA00359A61 /* twitter-logo@2x.png */; };
 		3AC5F0FC1343E5B200359A61 /* mail@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AC5F0FB1343E5B200359A61 /* mail@2x.png */; };
@@ -210,6 +209,7 @@
 		C4338E15138C01AD006FA7D2 /* icono-periodico.png in Resources */ = {isa = PBXBuildFile; fileRef = C4338E13138C01AD006FA7D2 /* icono-periodico.png */; };
 		C4338E1E138C050A006FA7D2 /* TSDescripcionNoticiaStrip.m in Sources */ = {isa = PBXBuildFile; fileRef = C4338E1C138C0505006FA7D2 /* TSDescripcionNoticiaStrip.m */; };
 		C4338E1F138C050A006FA7D2 /* TSDescripcionNoticiaStrip.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4338E1D138C0507006FA7D2 /* TSDescripcionNoticiaStrip.xib */; };
+		C4541FDF13AC0AF400C647B6 /* AsynchronousButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = C4541FDE13AC0AF400C647B6 /* AsynchronousButtonView.m */; };
 		C470FBC5133988E5007BEC50 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C470FBC7133988E5007BEC50 /* Localizable.strings */; };
 		C4CF7C551357CA4700B89C13 /* TSClipListadoiPadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4CF7C531357CA4700B89C13 /* TSClipListadoiPadViewController.m */; };
 		C4CF7C561357CA4700B89C13 /* TSClipListadoiPadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4CF7C541357CA4700B89C13 /* TSClipListadoiPadView.xib */; };
@@ -264,8 +264,6 @@
 		3AC27CF413A8499B00BD39B2 /* noticias escritas.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "noticias escritas.png"; sourceTree = "<group>"; };
 		3AC27CF513A8499B00BD39B2 /* noticias.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noticias.png; sourceTree = "<group>"; };
 		3AC27CF613A8499B00BD39B2 /* programas.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = programas.png; sourceTree = "<group>"; };
-		3AC27CFE13A850B000BD39B2 /* AsynchronousImageViewButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsynchronousImageViewButton.h; sourceTree = "<group>"; };
-		3AC27CFF13A850B300BD39B2 /* AsynchronousImageViewButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsynchronousImageViewButton.m; sourceTree = "<group>"; };
 		3AC5F0F61343E4A800359A61 /* facebook-logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebook-logo@2x.png"; sourceTree = "<group>"; };
 		3AC5F0F91343E4FA00359A61 /* twitter-logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "twitter-logo@2x.png"; sourceTree = "<group>"; };
 		3AC5F0FB1343E5B200359A61 /* mail@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mail@2x.png"; sourceTree = "<group>"; };
@@ -548,6 +546,8 @@
 		C4338E1B138C0505006FA7D2 /* TSDescripcionNoticiaStrip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSDescripcionNoticiaStrip.h; sourceTree = "<group>"; };
 		C4338E1C138C0505006FA7D2 /* TSDescripcionNoticiaStrip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSDescripcionNoticiaStrip.m; sourceTree = "<group>"; };
 		C4338E1D138C0507006FA7D2 /* TSDescripcionNoticiaStrip.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TSDescripcionNoticiaStrip.xib; sourceTree = "<group>"; };
+		C4541FDD13AC0AF400C647B6 /* AsynchronousButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsynchronousButtonView.h; sourceTree = "<group>"; };
+		C4541FDE13AC0AF400C647B6 /* AsynchronousButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsynchronousButtonView.m; sourceTree = "<group>"; };
 		C470FBC913398904007BEC50 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C4CF7C521357CA4700B89C13 /* TSClipListadoiPadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSClipListadoiPadViewController.h; sourceTree = "<group>"; };
 		C4CF7C531357CA4700B89C13 /* TSClipListadoiPadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSClipListadoiPadViewController.m; sourceTree = "<group>"; };
@@ -601,12 +601,12 @@
 				3A1001A8131B30D600717211 /* UIViewController_Configuracion.m */,
 				63C7AEF8131DAF8F00BD7F64 /* AsynchronousImageView.h */,
 				63C7AEF9131DAF9000BD7F64 /* AsynchronousImageView.m */,
-				3AC27CFE13A850B000BD39B2 /* AsynchronousImageViewButton.h */,
-				3AC27CFF13A850B300BD39B2 /* AsynchronousImageViewButton.m */,
 				3AD8190F131EF7B40006C5A0 /* NSDate_Utilidad.h */,
 				3AD81910131EF7B40006C5A0 /* NSDate_Utilidad.m */,
 				3ACA5FBE133019A100DB9402 /* UIViewController_Preferencias.h */,
 				3ACA5FBF133019A100DB9402 /* UIViewController_Preferencias.m */,
+				C4541FDD13AC0AF400C647B6 /* AsynchronousButtonView.h */,
+				C4541FDE13AC0AF400C647B6 /* AsynchronousButtonView.m */,
 			);
 			name = Extensiones;
 			sourceTree = "<group>";
@@ -1725,7 +1725,7 @@
 				C4311E2E1385CD9500A28DBA /* teleSuriPadTabMenu.m in Sources */,
 				C4311E341385D1D200A28DBA /* TSTabMenuiPad_UIViewController.m in Sources */,
 				C4338E1E138C050A006FA7D2 /* TSDescripcionNoticiaStrip.m in Sources */,
-				3AC27D0013A850B600BD39B2 /* AsynchronousImageViewButton.m in Sources */,
+				C4541FDF13AC0AF400C647B6 /* AsynchronousButtonView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
