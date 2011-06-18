@@ -18,7 +18,6 @@
 #import "TSTabMenuiPad_UIViewController.h"
 #import "teleSuriPadTabMenu.h"
 #import "TSClipPlayerViewController.h"
-#import "AsynchronousImageViewButton.h"
 #import "AsynchronousButtonView.h"
 @implementation TSMapaViewController
 

@@ -2,10 +2,10 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="7.10">
 	<data>
 		<int key="IBDocument.SystemTarget">1056</int>
-		<string key="IBDocument.SystemVersion">10J567</string>
+		<string key="IBDocument.SystemVersion">10J869</string>
 		<string key="IBDocument.InterfaceBuilderVersion">1306</string>
 		<string key="IBDocument.AppKitVersion">1038.35</string>
-		<string key="IBDocument.HIToolboxVersion">462.00</string>
+		<string key="IBDocument.HIToolboxVersion">461.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			<string key="NS.object.0">301</string>
@@ -71,7 +71,7 @@
 					<object class="IBMKMapView" id="827551184">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">274</int>
-						<string key="NSFrame">{{0, 102}, {1024, 902}}</string>
+						<string key="NSFrame">{{0, 102}, {768, 858}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="852368095"/>
@@ -263,9 +263,9 @@
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="354965194"/>
-							<reference ref="827551184"/>
 							<reference ref="148180287"/>
 							<reference ref="852368095"/>
+							<reference ref="827551184"/>
 						</object>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">View</string>
@@ -469,6 +469,8 @@
 							<string>accionCambiarTabSeleccionado</string>
 							<string>cambiarAOtroTab:</string>
 							<string>colocarSelectorEnPosicionOriginal</string>
+							<string>mostrarAcercaDe:</string>
+							<string>mostrarBusqueda:</string>
 							<string>reproducirVideoEnTiempoReal</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
@@ -476,6 +478,8 @@
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
+							<string>UIButton</string>
+							<string>UIButton</string>
 							<string>id</string>
 						</object>
 					</object>
@@ -486,6 +490,8 @@
 							<string>accionCambiarTabSeleccionado</string>
 							<string>cambiarAOtroTab:</string>
 							<string>colocarSelectorEnPosicionOriginal</string>
+							<string>mostrarAcercaDe:</string>
+							<string>mostrarBusqueda:</string>
 							<string>reproducirVideoEnTiempoReal</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
@@ -501,6 +507,14 @@
 							<object class="IBActionInfo">
 								<string key="name">colocarSelectorEnPosicionOriginal</string>
 								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">mostrarAcercaDe:</string>
+								<string key="candidateClassName">UIButton</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">mostrarBusqueda:</string>
+								<string key="candidateClassName">UIButton</string>
 							</object>
 							<object class="IBActionInfo">
 								<string key="name">reproducirVideoEnTiempoReal</string>

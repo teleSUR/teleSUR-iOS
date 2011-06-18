@@ -87,6 +87,8 @@
         i++;
     }
     
+
+    
     UIView *vistaEtiquetaGigante =  [[[NSBundle mainBundle] loadNibNamed:@"TSClipCategoriaView" owner:self options:nil] lastObject];
     vistaEtiquetaGigante.transform = CGAffineTransformMakeRotation(-M_PI/2);    
     CGRect frameHorizontal = vistaEtiquetaGigante.frame;
@@ -96,8 +98,12 @@
     
     vistaEtiquetaGigante.frame = frameHorizontal;
     
+    // Poner etiqueta de la izquierda:
     
-    [(UILabel *)[vistaEtiquetaGigante viewWithTag:1] setText:self.nombreCategoria];
+    if ([array count] != 0) [(UILabel *)[vistaEtiquetaGigante viewWithTag:1] setText: [[[array lastObject] valueForKey:@"categoria"] valueForKey:@"nombre"] ];
+    
+    
+//    [(UILabel *)[vistaEtiquetaGigante viewWithTag:1] setText:self.nombreCategoria];
     
     [self addSubview:vistaEtiquetaGigante];
     

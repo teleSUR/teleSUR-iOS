@@ -1,0 +1,163 @@
+// !$*UTF8*$!
+{
+	3A4A24281337CB540093F5E1 /* TSSeleccionIdioma.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {764, 448}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 336}";
+		};
+	};
+	3A4A24291337CB540093F5E1 /* TSSeleccionIdioma.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {652, 2112}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 331}";
+		};
+	};
+	63099DF913199D1800D15603 /* Project object */ = {
+		activeBuildConfigurationName = Debug;
+		activeExecutable = 631DFBF2133D9F1300CC919E /* teleSUR */;
+		activeSDKPreference = iphonesimulator4.2;
+		activeTarget = 63099E0113199D1800D15603 /* teleSUR */;
+		codeSenseManager = 631DFC21133D9F1A00CC919E /* Code sense */;
+		executables = (
+			631DFBF2133D9F1300CC919E /* teleSUR */,
+		);
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					895,
+					20,
+					48,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 327639285;
+			PBXWorkspaceStateSaveDate = 327639285;
+		};
+		perUserProjectItems = {
+			63C587541387610C00B597A9 /* PBXBookmark */ = 63C587541387610C00B597A9 /* PBXBookmark */;
+			63C58764138B698900B597A9 /* PBXTextBookmark */ = 63C58764138B698900B597A9 /* PBXTextBookmark */;
+			63E00DC9137B79CF0059C2EC /* PBXTextBookmark */ = 63E00DC9137B79CF0059C2EC /* PBXTextBookmark */;
+		};
+		sourceControlManager = 631DFC20133D9F1A00CC919E /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	63099E0113199D1800D15603 /* teleSUR */ = {
+		activeExec = 0;
+		executables = (
+			631DFBF2133D9F1300CC919E /* teleSUR */,
+		);
+	};
+	63099E0E13199D1800D15603 /* teleSUR-Info.plist */ = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{32, 4}, {1888, 1036}}";
+		};
+	};
+	63099E1A13199D1800D15603 /* teleSURAppDelegate_iPhone.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {876, 656}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 307}";
+		};
+	};
+	63099E2013199D1800D15603 /* teleSURAppDelegate_iPad.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1073, 619}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 402}";
+		};
+	};
+	63099E2113199D1800D15603 /* teleSURAppDelegate_iPad.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {876, 448}}";
+			sepNavSelRange = "{440, 0}";
+			sepNavVisRange = "{370, 117}";
+		};
+	};
+	63099E2A13199D1800D15603 /* teleSURTests */ = {
+		activeExec = 0;
+	};
+	631DFBF2133D9F1300CC919E /* teleSUR */ = {
+		isa = PBXExecutable;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		breakpointsEnabled = 0;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		dataTipCustomDataFormattersEnabled = 1;
+		dataTipShowTypeColumn = 1;
+		dataTipSortType = 0;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		dylibVariantSuffix = "";
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = teleSUR;
+		savedGlobals = {
+		};
+		showTypeColumn = 0;
+		sourceDirectories = (
+		);
+		startupPath = "<<ProjectDirectory>>";
+	};
+	631DFC20133D9F1A00CC919E /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+			repositoryNamesForRoots = {
+				"" = "";
+			};
+		};
+	};
+	631DFC21133D9F1A00CC919E /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	63C587541387610C00B597A9 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 63099E2013199D1800D15603 /* teleSURAppDelegate_iPad.h */;
+	};
+	63C58764138B698900B597A9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 63099E2013199D1800D15603 /* teleSURAppDelegate_iPad.h */;
+		name = "teleSURAppDelegate_iPad.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 402;
+		vrLoc = 0;
+	};
+	63E00DC9137B79CF0059C2EC /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		comments = "Control reaches end of non-void function";
+		fRef = 63099E2113199D1800D15603 /* teleSURAppDelegate_iPad.m */;
+		rLen = 1;
+		rLoc = 19;
+		rType = 1;
+	};
+}
