@@ -10,9 +10,14 @@
 #import <Mapkit/Mapkit.h>
 
 @interface TSAnotacionEnMapa : NSObject  <MKAnnotation> {
+    
+    BOOL sinCoordenadas;
+    
     NSDictionary *noticia;
     CLLocationCoordinate2D coordinate;
 }
+
+@property (nonatomic, assign) BOOL sinCoordenadas;
 
 @property (nonatomic, retain) NSDictionary *noticia;
 @property (nonatomic, assign) CLLocationCoordinate2D coordinate;

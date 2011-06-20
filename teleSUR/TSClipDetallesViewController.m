@@ -87,6 +87,8 @@
                                              selector:@selector(marcarPadreParaRecargar)
                                                  name: UIApplicationDidBecomeActiveNotification
                                                object:nil];
+    
+    
 }
 
 

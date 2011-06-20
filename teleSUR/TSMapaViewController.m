@@ -19,6 +19,9 @@
 #import "teleSuriPadTabMenu.h"
 #import "TSClipPlayerViewController.h"
 #import "AsynchronousButtonView.h"
+#import "TSAnotacionEnMapa.h"
+
+
 @implementation TSMapaViewController
 
 @synthesize vistaMapa, listado, anotacionesDelMapa;
@@ -179,7 +182,16 @@
     
     detalleView.navigationItem.leftBarButtonItem = botonSalir;    
     controlNavegacion.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    
+
+    
     [controlNavegacion pushViewController:detalleView animated:NO];
+    /*
+    CGSize tamanioMasGrande = CGSizeMake(detalleView.view.frame.size.width, detalleView.view.frame.size.height + 104);
+    controlNavegacion.contentSizeForViewInPopover = tamanioMasGrande;
+    detalleView.contentSizeForViewInPopover = tamanioMasGrande;
+    controlNavegacion.contentSizeForViewInPopover = tamanioMasGrande;
+    */
     
     [self presentModalViewController:controlNavegacion animated:YES  ];
     
@@ -192,6 +204,8 @@
 {
     if ([annotation isKindOfClass:[MKUserLocation class]]) return nil;
     MKPinAnnotationView *pin = (MKPinAnnotationView *) [self.vistaMapa dequeueReusableAnnotationViewWithIdentifier: @"asdf"];
+    
+    
     if (pin == nil)
     {
         pin = [[[MKPinAnnotationView alloc] initWithAnnotation: annotation reuseIdentifier: @"asdf"] autorelease]; 
@@ -227,7 +241,7 @@
     {
         pin.pinColor = MKPinAnnotationColorGreen;
     }
-    
+
 //    pin.leftCalloutAccessoryView = [[AsynchronousImageViewButton alloc] init];    
 //    pin.leftCalloutAccessoryView.frame = CGRectMake(0.0, 0.0, 40.0, 30.0);
 //    AsynchronousImageViewButton *imageView;
@@ -281,8 +295,9 @@
     {
         TSAnotacionEnMapa *anotacion = [[TSAnotacionEnMapa alloc] initWithDiccionarioNoticia:unDiccionario];
         
+        if (anotacion.sinCoordenadas == NO) [self.vistaMapa addAnnotation:anotacion];
+        NSLog(@"Locacion: %f, %f", anotacion.coordinate.latitude, anotacion.coordinate.longitude);    
         
-        [self.vistaMapa addAnnotation:anotacion];
         anotacionFinal = anotacion;
         [anotacion release];
         

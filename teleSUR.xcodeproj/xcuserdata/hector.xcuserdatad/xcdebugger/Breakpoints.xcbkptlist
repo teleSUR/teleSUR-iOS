@@ -261,12 +261,26 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "teleSUR/TSMapaViewController.m"
-         timestampString = "330042730.275976"
+         timestampString = "330234867.154664"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "256"
-         endingLineNumber = "256"
+         startingLineNumber = "270"
+         endingLineNumber = "270"
          landmarkName = "-mapView:viewForAnnotation:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "teleSUR/TSMapaViewController.m"
+         timestampString = "330234867.154664"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "299"
+         endingLineNumber = "299"
+         landmarkName = "-TSMultimediaData:entidadesRecibidas:paraEntidad:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

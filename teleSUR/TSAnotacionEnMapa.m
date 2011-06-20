@@ -14,10 +14,13 @@
 
 @synthesize coordinate, noticia;
 
+@synthesize sinCoordenadas;
+
 -(id) initWithDiccionarioNoticia: (NSDictionary *) unDiccionario
 {
     if ((self = [super init]))
     {
+        
         self.noticia = unDiccionario;
         
         NSDictionary *diccionarioPais = [self.noticia valueForKey:@"pais"];
@@ -27,6 +30,7 @@
         
         
         if ([diccionarioPais valueForKey:@"geotag"] != [NSNull null]) {
+            self.sinCoordenadas = NO;
             arregloCoordenadas = [(NSString *)[diccionarioPais valueForKey:@"geotag"] componentsSeparatedByString:@","];
             if ([arregloCoordenadas count] > 1) {
                 
@@ -38,6 +42,10 @@
                 NSLog(@"----%@, %@", [arregloCoordenadas objectAtIndex:1], [arregloCoordenadas objectAtIndex:0]);
                 NSLog(@"----%f, %f", coordinate.longitude, coordinate.latitude);
             }
+        } else
+        {
+            self.sinCoordenadas = YES;
+            NSLog(@"Sin ubicacion");
         }
 //        self.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
 
