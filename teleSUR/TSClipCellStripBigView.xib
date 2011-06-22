@@ -72,6 +72,35 @@
 							<string key="NSResourceName">SinImagen.png</string>
 						</object>
 					</object>
+					<object class="IBUIButton" id="887701644">
+						<reference key="NSNextResponder" ref="88351796"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{366, 34}, {382, 54}}</string>
+						<reference key="NSSuperview" ref="88351796"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="62452790"/>
+						<bool key="IBUIOpaque">NO</bool>
+						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<int key="IBUIContentHorizontalAlignment">0</int>
+						<int key="IBUIContentVerticalAlignment">0</int>
+						<object class="NSFont" key="IBUIFont" id="466125927">
+							<string key="NSName">Helvetica-Bold</string>
+							<double key="NSSize">15</double>
+							<int key="NSfFlags">16</int>
+						</object>
+						<object class="NSColor" key="IBUIHighlightedTitleColor" id="460283622">
+							<int key="NSColorSpace">3</int>
+							<bytes key="NSWhite">MQA</bytes>
+						</object>
+						<object class="NSColor" key="IBUINormalTitleColor">
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
+						</object>
+						<object class="NSColor" key="IBUINormalTitleShadowColor" id="141272794">
+							<int key="NSColorSpace">3</int>
+							<bytes key="NSWhite">MC41AA</bytes>
+						</object>
+					</object>
 					<object class="IBUILabel" id="476711531">
 						<reference key="NSNextResponder" ref="88351796"/>
 						<int key="NSvFlags">294</int>
@@ -88,7 +117,7 @@
 						<int key="IBUIContentMode">7</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<string key="IBUIText"/>
+						<string key="IBUIText">aLALALALALALALALALALALLALALALALALALALA</string>
 						<object class="NSFont" key="IBUIFont">
 							<string key="NSName">Helvetica-Bold</string>
 							<double key="NSSize">23</double>
@@ -142,23 +171,13 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<object class="NSFont" key="IBUIFont">
-							<string key="NSName">Helvetica-Bold</string>
-							<double key="NSSize">15</double>
-							<int key="NSfFlags">16</int>
-						</object>
-						<object class="NSColor" key="IBUIHighlightedTitleColor">
-							<int key="NSColorSpace">3</int>
-							<bytes key="NSWhite">MQA</bytes>
-						</object>
+						<reference key="IBUIFont" ref="466125927"/>
+						<reference key="IBUIHighlightedTitleColor" ref="460283622"/>
 						<object class="NSColor" key="IBUINormalTitleColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 						</object>
-						<object class="NSColor" key="IBUINormalTitleShadowColor">
-							<int key="NSColorSpace">3</int>
-							<bytes key="NSWhite">MC41AA</bytes>
-						</object>
+						<reference key="IBUINormalTitleShadowColor" ref="141272794"/>
 					</object>
 					<object class="IBUILabel" id="955177031">
 						<reference key="NSNextResponder" ref="88351796"/>
@@ -166,7 +185,7 @@
 						<string key="NSFrame">{{290, 14}, {63, 21}}</string>
 						<reference key="NSSuperview" ref="88351796"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="62452790"/>
+						<reference key="NSNextKeyView" ref="887701644"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC4wOTgwMzkyMTcyOSAwLjA5ODAzOTIxNzI5IDAuMDk4MDM5MjE3MjkgMAA</bytes>
@@ -325,6 +344,7 @@
 							<reference ref="525537124"/>
 							<reference ref="955177031"/>
 							<reference ref="62452790"/>
+							<reference ref="887701644"/>
 						</object>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">Clip Cell Strip View</string>
@@ -365,6 +385,12 @@
 						<reference key="object" ref="476711531"/>
 						<reference key="parent" ref="88351796"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">21</int>
+						<reference key="object" ref="887701644"/>
+						<reference key="parent" ref="88351796"/>
+						<string key="objectName">Button</string>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -378,6 +404,7 @@
 					<string>19.IBPluginDependency</string>
 					<string>2.CustomClassName</string>
 					<string>2.IBPluginDependency</string>
+					<string>21.IBPluginDependency</string>
 					<string>4.IBPluginDependency</string>
 					<string>5.CustomClassName</string>
 					<string>5.IBPluginDependency</string>
@@ -391,6 +418,7 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>TSClipCellStripView</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>AsynchronousImageView</string>
@@ -410,7 +438,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">20</int>
+			<int key="maxID">22</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -549,6 +577,7 @@
 							<string>scrollStrips</string>
 							<string>switchVideoEnVivo</string>
 							<string>vistaCargandoEnVivo</string>
+							<string>vistaTwitter</string>
 							<string>vistaUltimoClip</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
@@ -557,6 +586,7 @@
 							<string>UIBarButtonItem</string>
 							<string>UIScrollView</string>
 							<string>UISwitch</string>
+							<string>UIView</string>
 							<string>UIView</string>
 							<string>TSClipCellStripView</string>
 						</object>
@@ -570,6 +600,7 @@
 							<string>scrollStrips</string>
 							<string>switchVideoEnVivo</string>
 							<string>vistaCargandoEnVivo</string>
+							<string>vistaTwitter</string>
 							<string>vistaUltimoClip</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
@@ -592,6 +623,10 @@
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">vistaCargandoEnVivo</string>
+								<string key="candidateClassName">UIView</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">vistaTwitter</string>
 								<string key="candidateClassName">UIView</string>
 							</object>
 							<object class="IBToOneOutletInfo">

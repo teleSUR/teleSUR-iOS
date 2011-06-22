@@ -28,10 +28,13 @@
 
 @implementation TSMapaViewController
 
+@synthesize vistaCargandoEnVivo;
 @synthesize vistaMapa, listado, anotacionesDelMapa;
 @synthesize noticiaSeleccionada;
 @synthesize controlSegmentadoTitulo;
 @synthesize menu;
+
+@synthesize switchVideoEnVivo;
 
 @synthesize contenedorTwitter;
 
@@ -118,6 +121,36 @@
     
     
     [super viewDidLoad];
+}
+
+-(IBAction) mostrarVideoTiempoReal: (id) sender
+{
+    
+    if (self.switchVideoEnVivo.on) {
+        self.vistaCargandoEnVivo.alpha = 1.0;
+        NSString *moviePath = @"http://streaming.tlsur.net:1935/live/vivo.stream/playlist.m3u8";
+        NSURL *movieURL = [NSURL URLWithString:moviePath];
+        
+        
+        self.vistaReproduccionVideoTiempoReal = [[MPMoviePlayerController alloc] initWithContentURL:movieURL];
+        [self.vistaReproduccionVideoTiempoReal.view setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight ];
+        self.vistaReproduccionVideoTiempoReal.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y+44, self.view.frame.size.width, self.view.frame.size.height-44);
+        
+        [self.view addSubview:self.vistaReproduccionVideoTiempoReal.view];
+        [self.vistaReproduccionVideoTiempoReal.view setAutoresizingMask:UIViewAutoresizingFlexibleWidth];        
+        [self.vistaReproduccionVideoTiempoReal play];
+        
+        
+        
+    } else
+    {
+        self.vistaCargandoEnVivo.alpha = 0.0;        
+        [self.vistaReproduccionVideoTiempoReal stop];
+        [self.vistaReproduccionVideoTiempoReal.view removeFromSuperview];
+        [self.vistaReproduccionVideoTiempoReal release];
+    }
+    
+    
 }
 
 

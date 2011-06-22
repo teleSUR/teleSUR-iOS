@@ -12,7 +12,7 @@
 #import "TSMasTableViewController.h"
 
 
-#define kMargenIzquierdo 77
+#define kMargenIzquierdo 1
 #define kEspacioEntreMenu 75
 
 @implementation teleSuriPadTabMenu

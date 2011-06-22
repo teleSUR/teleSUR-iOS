@@ -20,6 +20,10 @@
 
 
 @interface TSMapaViewController : UIViewController <TSMultimediaDataDelegate, MKMapViewDelegate, DataDescargableDelegate> {
+
+    
+    UISwitch *switchVideoEnVivo;
+    
     
     UIView *contenedorTwitter;
     
@@ -37,7 +41,17 @@
     UINavigationBar *barraNavegacion;
     
     MPMoviePlayerController *vistaReproduccionVideoTiempoReal;    
+    
+    UIView *vistaCargandoEnVivo;
+
 }
+
+@property (nonatomic, retain) IBOutlet UIView *vistaCargandoEnVivo;
+
+
+@property (nonatomic, retain) MPMoviePlayerController *vistaReproduccionVideoTiempoReal;
+
+@property (nonatomic, retain) IBOutlet UISwitch *switchVideoEnVivo;
 @property (nonatomic, retain) IBOutlet UIView *contenedorTwitter;
 @property (nonatomic, retain) IBOutlet TwitterSobreMapa *vistaTwitter;    
 
@@ -50,8 +64,8 @@
 @property (nonatomic, retain) TSClipListadoViewController *listado;
 @property (nonatomic, retain) IBOutlet MKMapView *vistaMapa;
 
-@property (nonatomic, retain) MPMoviePlayerController *vistaReproduccionVideoTiempoReal;
 
+-(IBAction) mostrarVideoTiempoReal: (id) sender;
 
 -(void) ocultarTwitter;
 
