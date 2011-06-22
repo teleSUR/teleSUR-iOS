@@ -42,6 +42,12 @@
 	connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
 }
 
+-(void) reset
+{
+    self.image = [UIImage imageNamed:@"SinImagen.png"];
+    data = nil;
+}
+
 #pragma mark -
 #pragma mark NSURLConnection
 

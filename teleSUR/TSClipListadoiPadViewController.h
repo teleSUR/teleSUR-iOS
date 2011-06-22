@@ -25,6 +25,7 @@
     
     teleSuriPadTabMenu *menu; 
      
+
     
     UINavigationBar *barraNavegacion;
     
@@ -47,6 +48,9 @@
     UIView *vistaCargandoEnVivo;
     
 }
+
+@property (nonatomic, retain) IBOutlet UIView *vistaTwitter; 
+
 @property (nonatomic, retain) IBOutlet UIView *vistaCargandoEnVivo;
 @property (nonatomic, retain) IBOutlet UINavigationBar *barraNavegacion;
 

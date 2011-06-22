@@ -23,7 +23,7 @@
 
 - (void)cargarImagenSiNecesario;
 - (void)loadImageFromURLString:(NSString *)theUrlString;
-
+-(void) reset;
 
 @property (nonatomic, retain) NSURL *url;
 @property (nonatomic, assign) BOOL imagenCargada;

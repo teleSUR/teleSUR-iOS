@@ -12,12 +12,18 @@
 #import "TSMultimediaDataDelegate.h"
 
 #import "MediaPlayer/MediaPlayer.h"
-
+#import "DataDescargable.h"
 
 @class TSClipListadoViewController;
 @class TSAnotacionEnMapa;
+@class TwitterSobreMapa;
 
-@interface TSMapaViewController : UIViewController <TSMultimediaDataDelegate, MKMapViewDelegate> {
+
+@interface TSMapaViewController : UIViewController <TSMultimediaDataDelegate, MKMapViewDelegate, DataDescargableDelegate> {
+    
+    UIView *contenedorTwitter;
+    
+    TwitterSobreMapa *vistaTwitter;    
     
     UIView *menu;
     
@@ -32,6 +38,8 @@
     
     MPMoviePlayerController *vistaReproduccionVideoTiempoReal;    
 }
+@property (nonatomic, retain) IBOutlet UIView *contenedorTwitter;
+@property (nonatomic, retain) IBOutlet TwitterSobreMapa *vistaTwitter;    
 
 @property (nonatomic, retain) IBOutlet UINavigationBar *barraNavegacion;
 
@@ -45,6 +53,9 @@
 @property (nonatomic, retain) MPMoviePlayerController *vistaReproduccionVideoTiempoReal;
 
 
+-(void) ocultarTwitter;
+
+-(void) mostrarTwitterDelUsuario: (NSString *) nombreUsuarioTwitter;
 
 -(void) reproducirVideoEnPantalla;
 

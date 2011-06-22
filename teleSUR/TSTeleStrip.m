@@ -59,6 +59,7 @@
         
         [unaNoticia addTarget:self action:@selector(detenerAnimacionNoticias:) forControlEvents:UIControlEventTouchDown];
         [unaNoticia addTarget:self action:@selector(reanudarAnimacionNoticias:) forControlEvents:UIControlEventTouchUpInside];
+        [unaNoticia addTarget:self action:@selector(reanudarAnimacionNoticias:) forControlEvents:UIControlEventTouchDragOutside];        
         unaNoticia.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:14.0];
 
         [unaNoticia setTitle: [NSString stringWithFormat:@"%@ |", [[self.noticias objectAtIndex:i] valueForKey:@"titulo"]] forState:UIControlStateNormal];

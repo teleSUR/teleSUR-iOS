@@ -33,6 +33,8 @@
 @synthesize barraNavegacion;
 @synthesize vistaReproduccionVideoTiempoReal;
 
+@synthesize vistaTwitter;
+
 @synthesize vistaCargandoEnVivo;
 
 @synthesize botonBusqueda, controlPopOver, switchVideoEnVivo;
@@ -158,7 +160,7 @@
     // Fade out the tabbar, if we are going to fullscreen. Otherwise, fade it in.
     self.tabBarController.tabBar.alpha = fullscreen ? 0 : 1;
     
-    
+
     
     
     [super viewDidLoad];

@@ -214,6 +214,10 @@
 		C4CF7C551357CA4700B89C13 /* TSClipListadoiPadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4CF7C531357CA4700B89C13 /* TSClipListadoiPadViewController.m */; };
 		C4CF7C561357CA4700B89C13 /* TSClipListadoiPadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4CF7C541357CA4700B89C13 /* TSClipListadoiPadView.xib */; };
 		C4CF7C621357CB2F00B89C13 /* TSClipStrip.m in Sources */ = {isa = PBXBuildFile; fileRef = C4CF7C611357CB2F00B89C13 /* TSClipStrip.m */; };
+		C4E4D06813B14D6700872CAC /* TwitterSobreMapa.m in Sources */ = {isa = PBXBuildFile; fileRef = C4E4D06713B14D6700872CAC /* TwitterSobreMapa.m */; };
+		C4E4D06B13B14D7D00872CAC /* TwitterSobreMapa.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4E4D06A13B14D7D00872CAC /* TwitterSobreMapa.xib */; };
+		C4E4D07613B170C600872CAC /* DataDescargable.m in Sources */ = {isa = PBXBuildFile; fileRef = C4E4D07513B170C400872CAC /* DataDescargable.m */; };
+		C4E4D08913B1743700872CAC /* XMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = C4E4D08813B1743500872CAC /* XMLParser.m */; };
 		C4F71F5A13ABBE1C006E1D9D /* Play-icon2.png in Resources */ = {isa = PBXBuildFile; fileRef = C4F71F5913ABBE1C006E1D9D /* Play-icon2.png */; };
 		C4FEABE51324BF57003B6509 /* libGoogleAnalytics_NoThumb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C4FEABE41324BF57003B6509 /* libGoogleAnalytics_NoThumb.a */; };
 		C4FEABFF1324C25E003B6509 /* VerMasClipsTableCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4FEABFE1324C25E003B6509 /* VerMasClipsTableCellView.xib */; };
@@ -554,6 +558,13 @@
 		C4CF7C541357CA4700B89C13 /* TSClipListadoiPadView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TSClipListadoiPadView.xib; sourceTree = "<group>"; };
 		C4CF7C601357CB2F00B89C13 /* TSClipStrip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSClipStrip.h; sourceTree = "<group>"; };
 		C4CF7C611357CB2F00B89C13 /* TSClipStrip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSClipStrip.m; sourceTree = "<group>"; };
+		C4E4D06613B14D6700872CAC /* TwitterSobreMapa.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwitterSobreMapa.h; sourceTree = "<group>"; };
+		C4E4D06713B14D6700872CAC /* TwitterSobreMapa.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwitterSobreMapa.m; sourceTree = "<group>"; };
+		C4E4D06A13B14D7D00872CAC /* TwitterSobreMapa.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TwitterSobreMapa.xib; sourceTree = "<group>"; };
+		C4E4D07413B170C300872CAC /* DataDescargable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataDescargable.h; sourceTree = "<group>"; };
+		C4E4D07513B170C400872CAC /* DataDescargable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataDescargable.m; sourceTree = "<group>"; };
+		C4E4D08713B1743300872CAC /* XMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLParser.h; sourceTree = "<group>"; };
+		C4E4D08813B1743500872CAC /* XMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParser.m; sourceTree = "<group>"; };
 		C4F71F5913ABBE1C006E1D9D /* Play-icon2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Play-icon2.png"; sourceTree = "<group>"; };
 		C4FEABE41324BF57003B6509 /* libGoogleAnalytics_NoThumb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalytics_NoThumb.a; sourceTree = "<group>"; };
 		C4FEABFE1324C25E003B6509 /* VerMasClipsTableCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VerMasClipsTableCellView.xib; sourceTree = "<group>"; };
@@ -783,6 +794,13 @@
 				3A577625137898AD00A4EBCB /* TSTeleStrip.xib */,
 				3A577621137897AE00A4EBCB /* TSTeleStrip.h */,
 				3A577622137897AE00A4EBCB /* TSTeleStrip.m */,
+				C4E4D06A13B14D7D00872CAC /* TwitterSobreMapa.xib */,
+				C4E4D06613B14D6700872CAC /* TwitterSobreMapa.h */,
+				C4E4D06713B14D6700872CAC /* TwitterSobreMapa.m */,
+				C4E4D07413B170C300872CAC /* DataDescargable.h */,
+				C4E4D07513B170C400872CAC /* DataDescargable.m */,
+				C4E4D08713B1743300872CAC /* XMLParser.h */,
+				C4E4D08813B1743500872CAC /* XMLParser.m */,
 			);
 			name = iPad;
 			sourceTree = "<group>";
@@ -1585,6 +1603,7 @@
 				3AC27CFC13A8499B00BD39B2 /* noticias.png in Resources */,
 				3AC27CFD13A8499B00BD39B2 /* programas.png in Resources */,
 				C4F71F5A13ABBE1C006E1D9D /* Play-icon2.png in Resources */,
+				C4E4D06B13B14D7D00872CAC /* TwitterSobreMapa.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1726,6 +1745,9 @@
 				C4311E341385D1D200A28DBA /* TSTabMenuiPad_UIViewController.m in Sources */,
 				C4338E1E138C050A006FA7D2 /* TSDescripcionNoticiaStrip.m in Sources */,
 				C4541FDF13AC0AF400C647B6 /* AsynchronousButtonView.m in Sources */,
+				C4E4D06813B14D6700872CAC /* TwitterSobreMapa.m in Sources */,
+				C4E4D07613B170C600872CAC /* DataDescargable.m in Sources */,
+				C4E4D08913B1743700872CAC /* XMLParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

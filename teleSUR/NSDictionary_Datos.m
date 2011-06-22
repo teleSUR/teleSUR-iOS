@@ -150,6 +150,7 @@
 	NSDate *date = [formater dateFromString:[NSString stringWithFormat:@"%@", [self valueForKey:@"fecha"]]];
     
 	[formater release];	
+
 	return date;
 }
 

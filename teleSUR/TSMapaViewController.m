@@ -20,6 +20,10 @@
 #import "TSClipPlayerViewController.h"
 #import "AsynchronousButtonView.h"
 #import "TSAnotacionEnMapa.h"
+#import "TwitterSobreMapa.h"
+#import "DataDescargable.h"
+#import "XMLParser.h"
+#import "NSDate_Utilidad.h"
 
 
 @implementation TSMapaViewController
@@ -28,6 +32,10 @@
 @synthesize noticiaSeleccionada;
 @synthesize controlSegmentadoTitulo;
 @synthesize menu;
+
+@synthesize contenedorTwitter;
+
+@synthesize vistaTwitter;
 
 @synthesize barraNavegacion;
 
@@ -95,6 +103,14 @@
     
     self.barraNavegacion.topItem.titleView = imageView;
     
+    NSArray* nibViewsTwitter =  [[NSBundle mainBundle] loadNibNamed:@"TwitterSobreMapa" owner:self options:nil];
+    self.vistaTwitter = [nibViewsTwitter lastObject];    
+    [self.contenedorTwitter addSubview:self.vistaTwitter];
+
+
+    
+    
+    
     [imageView release];    
 
     
@@ -113,6 +129,45 @@
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
+
+-(void) ocultarTwitter
+{
+    [UIView beginAnimations:nil context:NULL];
+	[UIView setAnimationDuration:0.7];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+    self.contenedorTwitter.alpha = 0.0;
+    
+    
+	[UIView commitAnimations];
+    
+}
+
+
+
+-(void) mostrarTwitterDelUsuario: (NSString *) nombreUsuarioTwitter
+{
+    self.vistaTwitter.labelNombreTwitter.text = [NSString stringWithFormat:@"@%@", nombreUsuarioTwitter];
+    [self.vistaTwitter.imagenTwitter reset];
+    self.vistaTwitter.imagenTwitter.url = [NSString stringWithFormat:@"https://api.twitter.com/1/users/profile_image/%@?size=bigger", nombreUsuarioTwitter];
+    [self.vistaTwitter.imagenTwitter cargarImagenSiNecesario];
+    
+    DataDescargable *twitterFeed = [[DataDescargable alloc] initWithURL: [NSString stringWithFormat: @"http://twitter.com/statuses/user_timeline/%@.rss?count=1",nombreUsuarioTwitter] 
+                                                            andDelegate:self];
+    
+	[twitterFeed data];
+	
+	[twitterFeed release];
+    
+    [UIView beginAnimations:nil context:NULL];
+	[UIView setAnimationDuration:0.7];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+    self.contenedorTwitter.alpha = 1.0;
+    
+    
+	[UIView commitAnimations];
+	
+}
+
 
 -(IBAction) recargarPines: (id) sender
 {
@@ -186,19 +241,55 @@
 
     
     [controlNavegacion pushViewController:detalleView animated:NO];
-    /*
-    CGSize tamanioMasGrande = CGSizeMake(detalleView.view.frame.size.width, detalleView.view.frame.size.height + 104);
-    controlNavegacion.contentSizeForViewInPopover = tamanioMasGrande;
-    detalleView.contentSizeForViewInPopover = tamanioMasGrande;
-    controlNavegacion.contentSizeForViewInPopover = tamanioMasGrande;
-    */
+
     
     [self presentModalViewController:controlNavegacion animated:YES  ];
     
     [detalleView release];
 }
-
 #pragma - MKMapViewDelegate
+
+- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
+{
+   // Corresponsales    
+    if (self.controlSegmentadoTitulo.selectedSegmentIndex==1)
+    {
+        
+        NSString *usuarioTwitter = /*@"hecktorzr";*/ [[[(TSAnotacionEnMapa *)view.annotation noticia] valueForKey:@"corresponsal"] valueForKey:@"twitter"];
+        
+        if (![usuarioTwitter isKindOfClass:[NSNull class]])
+        {
+            
+            if ( [usuarioTwitter isEqualToString:@""])
+            {
+//                usuarioTwitter = @"hecktorzr";
+                [self ocultarTwitter];            
+                NSLog(@"Twitter: Sin Tuirer");
+                
+            } else 
+            {
+                [self mostrarTwitterDelUsuario:usuarioTwitter];
+            }
+        }
+        else
+        {
+            [self ocultarTwitter];
+        }
+        
+        
+     
+    }
+}
+
+-(void) mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view
+{
+    NSLog(@"Seleccionadas: %d", [mapView.selectedAnnotations count]);
+    
+    if ([mapView.selectedAnnotations count] == 0) 
+    {
+        [self ocultarTwitter];
+    }
+}
 
 - (MKAnnotationView *) mapView: (MKMapView *) mapView viewForAnnotation: (id<MKAnnotation>) annotation
 {
@@ -242,21 +333,6 @@
         pin.pinColor = MKPinAnnotationColorGreen;
     }
 
-//    pin.leftCalloutAccessoryView = [[AsynchronousImageViewButton alloc] init];    
-//    pin.leftCalloutAccessoryView.frame = CGRectMake(0.0, 0.0, 40.0, 30.0);
-//    AsynchronousImageViewButton *imageView;
-//    pin.leftCalloutAccessoryView.backgroundColor = [UIColor blueColor];
-    
-    /*
-    if ((imageView = (AsynchronousImageViewButton *)pin.leftCalloutAccessoryView ))
-    {
-        imageView.delegado = self;
-        imageView.selector = @selector(reproducirVideoEnPantalla);    
-        imageView.url = [NSURL URLWithString:[[(TSAnotacionEnMapa *)annotation noticia] valueForKey:@"thumbnail_mediano"]];
-        imageView.image = [UIImage imageNamed:@"SinImagen.png"];
-        [imageView cargarImagenSiNecesario];
-    }*/
-    
     
     AsynchronousButtonView *imageButtonView = [[AsynchronousButtonView alloc] init]; //[UIButton buttonWithType:UIButtonTypeCustom];
     
@@ -273,9 +349,8 @@
         imageButtonView.url = [NSURL URLWithString:[[(TSAnotacionEnMapa *)annotation noticia] valueForKey:@"thumbnail_mediano"]];
         imageButtonView.imageView.image = [UIImage imageNamed:@"SinImagen.png"];
         [imageButtonView cargarImagenSiNecesario];
-//        [(UIButton *)pin.leftCalloutAccessoryView setImage:imageButtonView.imageView.image forState:UIControlStateNormal];
+
     }
-//     = pin.leftCalloutAccessoryView;   
     pin.leftCalloutAccessoryView = imageButtonView;
     
     pin.animatesDrop = YES;
@@ -303,7 +378,8 @@
         
         
     }
-    [self.vistaMapa selectAnnotation:anotacionFinal animated:NO];
+    
+    [self.vistaMapa selectAnnotation:[[self.vistaMapa annotations] lastObject] animated:NO];
 
 //    [self.vistaMapa setCenterCoordinate:anotacionFinal.coordinate animated:YES];
     
@@ -312,6 +388,44 @@
 -(void)TSMultimediaData:(TSMultimediaData *)data entidadesRecibidasConError:(id)error
 {
     
+}
+
+#pragma mark -
+#pragma mark DataDescargable Delegate:
+
+// Termino exitosamente la descarga de un archivo
+
+- (void)downloadDidFinishDownloading: (DataDescargable *)download {
+    
+    
+	
+	// Parsear DATA
+	
+	NSString *xmlFile = [[NSString alloc] initWithData:download.data encoding:NSASCIIStringEncoding];
+	
+	// Parsing de Archivo
+	XMLParser *parser = [[XMLParser alloc] init];
+	[parser parseXMLFile:xmlFile];
+	
+	if (parser.error)
+    {
+        NSLog(@"Error al hacer el parsing");
+	}
+    
+    self.vistaTwitter.labelTwit.text = parser.ultimoTwit;
+    self.vistaTwitter.labelFechaTwit.text = [parser.fechaTwit enTimerContraAhora];
+	
+	[xmlFile release];	
+	[parser release];
+}
+
+
+// Se presento un error de conexion en la descarga.
+
+- (void)download:(DataDescargable *)download didFailWithError:(NSError *)error
+{
+	
+	
 }
 
 @end
