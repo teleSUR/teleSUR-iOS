@@ -62,7 +62,7 @@
 // Constantes a buscar durante el Parsing del archivo XML
 static NSString *kName_date =               @"pubDate";
 static NSString *kName_item =               @"item";
-static NSString *kName_title =				@"title";
+static NSString *kName_title =				@"description";
 
 
 

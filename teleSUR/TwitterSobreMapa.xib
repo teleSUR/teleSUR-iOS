@@ -86,10 +86,9 @@
 					<object class="IBUILabel" id="261248417">
 						<reference key="NSNextResponder" ref="116364905"/>
 						<int key="NSvFlags">294</int>
-						<string key="NSFrame">{{88, 57}, {660, 25}}</string>
+						<string key="NSFrame">{{89, 44}, {654, 36}}</string>
 						<reference key="NSSuperview" ref="116364905"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<int key="IBUIContentMode">7</int>
@@ -105,12 +104,12 @@
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">1</int>
 						<float key="IBUIMinimumFontSize">10</float>
-						<int key="IBUINumberOfLines">0</int>
+						<int key="IBUINumberOfLines">2</int>
 					</object>
 					<object class="IBUILabel" id="275291639">
 						<reference key="NSNextResponder" ref="116364905"/>
 						<int key="NSvFlags">294</int>
-						<string key="NSFrame">{{88, 28}, {645, 25}}</string>
+						<string key="NSFrame">{{88, 27}, {660, 15}}</string>
 						<reference key="NSSuperview" ref="116364905"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="261248417"/>
@@ -125,7 +124,10 @@
 							<double key="NSSize">12</double>
 							<int key="NSfFlags">16</int>
 						</object>
-						<reference key="IBUITextColor" ref="484084447"/>
+						<object class="NSColor" key="IBUITextColor">
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MC44MDAwMDAwMTE5IDAuODAwMDAwMDExOSAwLjgwMDAwMDAxMTkAA</bytes>
+						</object>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">1</int>
 						<float key="IBUIMinimumFontSize">10</float>
@@ -206,8 +208,8 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="376920131"/>
 							<reference ref="451609403"/>
-							<reference ref="261248417"/>
 							<reference ref="275291639"/>
+							<reference ref="261248417"/>
 						</object>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">Twitter Sobre Mapa</string>

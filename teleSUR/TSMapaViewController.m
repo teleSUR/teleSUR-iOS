@@ -445,7 +445,7 @@
         NSLog(@"Error al hacer el parsing");
 	}
     
-    self.vistaTwitter.labelTwit.text = parser.ultimoTwit;
+    self.vistaTwitter.labelTwit.text = [parser.ultimoTwit substringFromIndex:[self.vistaTwitter.labelNombreTwitter.text length]+ 1] ;
     self.vistaTwitter.labelFechaTwit.text = [parser.fechaTwit enTimerContraAhora];
 	
 	[xmlFile release];	
