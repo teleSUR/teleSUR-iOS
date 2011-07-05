@@ -28,10 +28,21 @@
         NSLog(@"Clase %@-%@", [diccionarioPais valueForKey:@"geotag"],[[diccionarioPais valueForKey:@"geotag"] class] );
         NSArray *arregloCoordenadas;
         
+        NSString *coord;
+        if ([self.noticia valueForKey:@"geoinfo"] != [NSNull null])
+        {
+            coord = [self.noticia valueForKey:@"geoinfo"];
+        }
+        else if ([diccionarioPais valueForKey:@"geotag"] != [NSNull null])
+        {
+            coord = [diccionarioPais valueForKey:@"geotag"];
+        }
         
-        if ([diccionarioPais valueForKey:@"geotag"] != [NSNull null]) {
+        if (coord) {
             self.sinCoordenadas = NO;
-            arregloCoordenadas = [(NSString *)[diccionarioPais valueForKey:@"geotag"] componentsSeparatedByString:@","];
+            
+            arregloCoordenadas = [(NSString *)coord componentsSeparatedByString:@","];
+            //arregloCoordenadas = [(NSString *)[diccionarioPais valueForKey:@"geotag"] componentsSeparatedByString:@","];
             if ([arregloCoordenadas count] > 1) {
                 
                 double latitud2 = atof([(NSString *) [arregloCoordenadas objectAtIndex:0] UTF8String]);
@@ -67,15 +78,26 @@
     
     NSDictionary *diccionarioCorresponsal = [self.noticia valueForKey:@"corresponsal"];
     
-    if (![diccionarioCorresponsal isKindOfClass:[NSNull class]])
+
+    NSString *lugar;
+    if (![[self.noticia valueForKey:@"ciudad"] isKindOfClass:[NSNull class]] && ! [[[self.noticia valueForKey:@"ciudad"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] isEqualToString:@""])
     {
-        return [diccionarioCorresponsal valueForKey:@"nombre"];
+        lugar = [NSString stringWithFormat:@"%@, %@", [self.noticia valueForKey:@"ciudad"], [diccionarioPais valueForKey:@"nombre"]];
     }
     else
     {
-        return [diccionarioPais valueForKey:@"nombre"];
+        lugar = [diccionarioPais valueForKey:@"nombre"];
     }
     
+    
+    if (![diccionarioCorresponsal isKindOfClass:[NSNull class]])
+    {   
+        return [NSString stringWithFormat:@"%@: %@", [diccionarioCorresponsal valueForKey:@"nombre"], lugar];
+    }
+    else
+    {
+        return lugar;
+    }
 }
 
 

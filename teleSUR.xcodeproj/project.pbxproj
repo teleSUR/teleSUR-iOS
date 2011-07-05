@@ -193,6 +193,10 @@
 		63E01697131B883D001928E4 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 63E01696131B883D001928E4 /* Default.png */; };
 		63E4A8EE1325EDF600669E91 /* TSClipListadoMenuProgranasViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E4A8ED1325EDF400669E91 /* TSClipListadoMenuProgranasViewController.m */; };
 		63E4A8F01326045100669E91 /* ProgramaTableCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63E4A8EF1326045100669E91 /* ProgramaTableCellView.xib */; };
+		63E71EC113C284DE00EC46D0 /* TSLargoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E71EBF13C284DE00EC46D0 /* TSLargoViewController.m */; };
+		63E71EC213C284DE00EC46D0 /* TSLargoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63E71EC013C284DE00EC46D0 /* TSLargoViewController.xib */; };
+		63E71EC613C294A900EC46D0 /* TSIpadMenuProgramas.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E71EC413C294A800EC46D0 /* TSIpadMenuProgramas.m */; };
+		63E71EC713C294A900EC46D0 /* TSIpadMenuProgramas.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63E71EC513C294A800EC46D0 /* TSIpadMenuProgramas.xib */; };
 		63EDAB5013232F8200496B83 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63EDAB4F13232F8200496B83 /* CFNetwork.framework */; };
 		63EDAB521323316500496B83 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 63EDAB511323316500496B83 /* libsqlite3.0.dylib */; };
 		63FB4EF6132ECE980027E304 /* TSBusquedaSeleccionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63FB4EF5132ECE980027E304 /* TSBusquedaSeleccionTableViewController.m */; };
@@ -533,6 +537,12 @@
 		63E4A8EC1325EDF300669E91 /* TSClipListadoMenuProgranasViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSClipListadoMenuProgranasViewController.h; sourceTree = "<group>"; };
 		63E4A8ED1325EDF400669E91 /* TSClipListadoMenuProgranasViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSClipListadoMenuProgranasViewController.m; sourceTree = "<group>"; };
 		63E4A8EF1326045100669E91 /* ProgramaTableCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProgramaTableCellView.xib; sourceTree = "<group>"; };
+		63E71EBE13C284DE00EC46D0 /* TSLargoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSLargoViewController.h; sourceTree = "<group>"; };
+		63E71EBF13C284DE00EC46D0 /* TSLargoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSLargoViewController.m; sourceTree = "<group>"; };
+		63E71EC013C284DE00EC46D0 /* TSLargoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TSLargoViewController.xib; sourceTree = "<group>"; };
+		63E71EC313C294A800EC46D0 /* TSIpadMenuProgramas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSIpadMenuProgramas.h; sourceTree = "<group>"; };
+		63E71EC413C294A800EC46D0 /* TSIpadMenuProgramas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSIpadMenuProgramas.m; sourceTree = "<group>"; };
+		63E71EC513C294A800EC46D0 /* TSIpadMenuProgramas.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TSIpadMenuProgramas.xib; sourceTree = "<group>"; };
 		63EA93E21372169D005F67EF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		63EDAB4C13232F4D00496B83 /* GANTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GANTracker.h; sourceTree = "<group>"; };
 		63EDAB4F13232F8200496B83 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -779,6 +789,9 @@
 				C4338E1B138C0505006FA7D2 /* TSDescripcionNoticiaStrip.h */,
 				C4338E1C138C0505006FA7D2 /* TSDescripcionNoticiaStrip.m */,
 				C4338E1D138C0507006FA7D2 /* TSDescripcionNoticiaStrip.xib */,
+				63E71EBE13C284DE00EC46D0 /* TSLargoViewController.h */,
+				63E71EBF13C284DE00EC46D0 /* TSLargoViewController.m */,
+				63E71EC013C284DE00EC46D0 /* TSLargoViewController.xib */,
 				63099E2013199D1800D15603 /* teleSURAppDelegate_iPad.h */,
 				63099E2113199D1800D15603 /* teleSURAppDelegate_iPad.m */,
 				63099E2313199D1800D15603 /* MainWindow_iPad.xib */,
@@ -810,6 +823,9 @@
 				C4E4D07513B170C400872CAC /* DataDescargable.m */,
 				C4E4D08713B1743300872CAC /* XMLParser.h */,
 				C4E4D08813B1743500872CAC /* XMLParser.m */,
+				63E71EC313C294A800EC46D0 /* TSIpadMenuProgramas.h */,
+				63E71EC413C294A800EC46D0 /* TSIpadMenuProgramas.m */,
+				63E71EC513C294A800EC46D0 /* TSIpadMenuProgramas.xib */,
 			);
 			name = iPad;
 			sourceTree = "<group>";
@@ -1624,6 +1640,8 @@
 				C42DCC2213B2A74A00F6F499 /* buscar.png in Resources */,
 				C42DCC2413B2A75E00F6F499 /* masicono.png in Resources */,
 				C42DCC2613B2A82300F6F499 /* especialesicono.png in Resources */,
+				63E71EC213C284DE00EC46D0 /* TSLargoViewController.xib in Resources */,
+				63E71EC713C294A900EC46D0 /* TSIpadMenuProgramas.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1768,6 +1786,8 @@
 				C4E4D06813B14D6700872CAC /* TwitterSobreMapa.m in Sources */,
 				C4E4D07613B170C600872CAC /* DataDescargable.m in Sources */,
 				C4E4D08913B1743700872CAC /* XMLParser.m in Sources */,
+				63E71EC113C284DE00EC46D0 /* TSLargoViewController.m in Sources */,
+				63E71EC613C294A900EC46D0 /* TSIpadMenuProgramas.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
