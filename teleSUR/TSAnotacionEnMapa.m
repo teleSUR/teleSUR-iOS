@@ -29,9 +29,10 @@
         NSArray *arregloCoordenadas;
         
         NSString *coord;
-        if ([self.noticia valueForKey:@"geoinfo"] != [NSNull null])
+        if ([self.noticia valueForKey:@"geotag"] != [NSNull null] &&
+            [self.noticia valueForKey:@"geotag"] != @"")
         {
-            coord = [self.noticia valueForKey:@"geoinfo"];
+            coord = [self.noticia valueForKey:@"geotag"];
         }
         else if ([diccionarioPais valueForKey:@"geotag"] != [NSNull null])
         {

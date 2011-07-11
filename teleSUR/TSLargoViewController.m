@@ -99,7 +99,7 @@
     CGRect frame = CGRectMake(0, 100, 768, 160);
     self.listado.view.frame = frame;
     self.listado.view.backgroundColor = [UIColor clearColor];
-    self.listado.menuScrollView.pagingEnabled = NO;
+    self.listado.menuScrollView.frame = frame;
     
     [self.view addSubview:self.listado.view];
     
