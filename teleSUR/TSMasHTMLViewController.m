@@ -36,7 +36,14 @@
 {
     [self personalizarNavigationBar];
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+       self.view.backgroundColor = [UIColor whiteColor];
+    } else {
+       self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    }
+        
+        
     if (!self.nombreHTML)
     {
         NSLog(@"No se ha especificó nombre de archivo HTML a depslegar.");
@@ -48,7 +55,13 @@
     [self.webView loadData:htmlData MIMEType:@"text/html" textEncodingName:@"UTF-8" baseURL:[NSURL URLWithString:nil]];
 //    self.webView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     // Configurar webView
-    self.webView.backgroundColor = [UIColor clearColor];
+    //self.webView.backgroundColor = [UIColor clearColor];
+    [self.webView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
+}
+
+- (void) viewDidAppear:(BOOL)animated
+{
+    
 }
 
 - (void)viewDidUnload

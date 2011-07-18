@@ -13,6 +13,7 @@
 
 #import "MediaPlayer/MediaPlayer.h"
 #import "DataDescargable.h"
+#import "teleSuriPadTabMenu.h"
 
 @class TSClipListadoViewController;
 @class TSAnotacionEnMapa;
@@ -29,7 +30,8 @@
     
     TwitterSobreMapa *vistaTwitter;    
     
-    UIView *menu;
+    
+    teleSuriPadTabMenu *menu;
     
     NSMutableArray *anotacionesDelMapa;
     
@@ -57,7 +59,7 @@
 
 @property (nonatomic, retain) IBOutlet UINavigationBar *barraNavegacion;
 
-@property (nonatomic, retain) UIView *menu;
+@property (nonatomic, retain) teleSuriPadTabMenu *menu;
 @property (nonatomic, retain) IBOutlet UISegmentedControl *controlSegmentadoTitulo;
 @property (nonatomic, retain) NSDictionary *noticiaSeleccionada;
 @property (nonatomic, retain) NSMutableArray *anotacionesDelMapa;

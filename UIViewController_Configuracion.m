@@ -19,7 +19,8 @@
 
 -(void) presentarVideoEnVivo
 {
-    NSDictionary *elClip = [NSDictionary dictionaryWithObject:@"http://streaming.tlsur.net:1935/live/vivo.stream/playlist.m3u8" forKey:@"archivo_url"];
+    NSString *moviePath = [[[[NSBundle mainBundle] infoDictionary] valueForKey:@"Configuración"] valueForKey:(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? @"Streaming URL Alta" : @"Streaming URL Media"];
+    NSDictionary *elClip = [NSDictionary dictionaryWithObject:moviePath forKey:@"archivo_url"];
     
     ;// Crear y configurar player
     TSClipPlayerViewController *playerController = [[TSClipPlayerViewController alloc] initConClip:elClip];
@@ -28,8 +29,6 @@
     [playerController playEnViewController:self
                       finalizarConSelector:nil
                          registrandoAccion:NO];
-    
-    NSLog(@"Y gana el pan. y aqui l otienen");
 }
 
 -(void) agregarBotonEnVivo

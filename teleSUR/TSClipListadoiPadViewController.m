@@ -81,7 +81,6 @@
 
 - (void)viewDidLoad
 {
-    
     self.strips = [[NSMutableArray alloc] init];
 
     self.tipos = [NSMutableArray arrayWithObjects:@"politica", @"economia", @"deportes", @"cultura", @"ciencia", @"medio-ambiente", nil];
@@ -109,14 +108,10 @@
     [self.scrollStrips setContentSize:CGSizeMake(self.view.frame.size.width, [self.tipos count]*(kMargenStrips+kAlturaStrip))];
     
     for (int i=0;i<[self.tipos count]; i++)
-    {
-
-        
-        
-        
+    {        
         TSClipStrip *stripClips1 = [[TSClipStrip alloc] init];
         stripClips1.nombreCategoria = [self.tipos objectAtIndex:i];
-        stripClips1.listado.diccionarioConfiguracionFiltros = [NSDictionary dictionaryWithObject:[self.tipos objectAtIndex:i] forKey:@"categoria"];
+        stripClips1.listado.diccionarioConfiguracionFiltros = [NSDictionary dictionaryWithObjectsAndKeys:[self.tipos objectAtIndex:i], @"categoria", @"noticia", @"tipo", nil];
         stripClips1.posicion = i;
         [stripClips1 cargarClips];
         [stripClips1 setFrame:CGRectMake(0, kMargenStrips + (kMargenStrips+kAlturaStrip)*i, self.view.frame.size.width/*-(kMargenStrips*2)*/, kAlturaStrip)];
@@ -130,14 +125,13 @@
     self.menu = [self cargarMenu];
     
     self.listadoVideoUnico = [[TSClipListadoViewController alloc] init];        
-    
+    self.listadoVideoUnico.diccionarioConfiguracionFiltros = [NSDictionary dictionaryWithObject:@"noticia" forKey:@"tipo"];
     
     self.listadoVideoUnico.delegate = self;    
     [self.listadoVideoUnico prepararListado];
     
     self.listadoVideoUnico.rangoUltimo = NSMakeRange(1, 1);    
     [self.listadoVideoUnico cargarClips];
-    [self.listadoVideoUnico.diccionarioConfiguracionFiltros setValue:@"noticia" forKey:@"tipo"];
 
     // Get the tabbar frame
     
@@ -167,20 +161,20 @@
     // Do any additional setup after loading the view from its nib.
 }
 
--(void) retirarModalView 
+- (void)retirarModalView 
 {
     [self dismissModalViewControllerAnimated:YES];
 }
 
--(IBAction) mostrarVideoTiempoReal: (id) sender
+- (IBAction)mostrarVideoTiempoReal:(id)sender
 {
 
-    if (self.switchVideoEnVivo.on) {
+    if (self.switchVideoEnVivo.on)
+    {
         self.vistaCargandoEnVivo.alpha = 1.0;
-        NSString *moviePath = @"http://streaming.tlsur.net:1935/live/vivo.stream/playlist.m3u8";
+        NSString *moviePath = [[[[NSBundle mainBundle] infoDictionary] valueForKey:@"Configuración"] valueForKey:(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? @"Streaming URL Alta" : @"Streaming URL Media"];
         NSURL *movieURL = [NSURL URLWithString:moviePath];
         
-
         self.vistaReproduccionVideoTiempoReal = [[MPMoviePlayerController alloc] initWithContentURL:movieURL];
         [self.vistaReproduccionVideoTiempoReal.view setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight ];
         self.vistaReproduccionVideoTiempoReal.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y+44, self.view.frame.size.width, self.view.frame.size.height-44);
@@ -188,21 +182,17 @@
         [self.view addSubview:self.vistaReproduccionVideoTiempoReal.view];
         [self.vistaReproduccionVideoTiempoReal.view setAutoresizingMask:UIViewAutoresizingFlexibleWidth];        
         [self.vistaReproduccionVideoTiempoReal play];
-
-        
-
-    } else
+    }
+    else
     {
         self.vistaCargandoEnVivo.alpha = 0.0;        
         [self.vistaReproduccionVideoTiempoReal stop];
         [self.vistaReproduccionVideoTiempoReal.view removeFromSuperview];
         [self.vistaReproduccionVideoTiempoReal release];
     }
-    
-
 }
 
--(IBAction) mostrarVideoDeControlador
+- (IBAction)mostrarVideoDeControlador
 {
     UINavigationController *controlNavegacion = [[UINavigationController alloc] init];
     
@@ -214,22 +204,20 @@
     detalleView.navigationItem.leftBarButtonItem = botonSalir;    
     
     [controlNavegacion pushViewController:detalleView animated:NO];
-    
+
     [self presentModalViewController:controlNavegacion animated:YES  ];
     
     [detalleView release];
-    
-    
+    [controlNavegacion release];
 }
 
--(IBAction) mostrarVideo: (UIButton *) sender
+- (IBAction)mostrarVideo:(UIButton *)sender
 {
     UINavigationController *controlNavegacion = [[UINavigationController alloc] init];
     
     UIBarButtonItem *botonSalir = [[UIBarButtonItem alloc] initWithTitle:@"Cerrar" style:UIBarButtonItemStyleBordered target:self action:@selector(retirarModalView)];
     
     TSClipCellStripView *celda =  [sender superview];
-    
     TSClipStrip *strip = [celda superview];
     
     TSClipDetallesViewController *detalleView = [[TSClipDetallesViewController alloc] initWithClip:[[[[self.strips objectAtIndex:strip.posicion] listado] clips] objectAtIndex:celda.posicion]];
@@ -242,6 +230,7 @@
     [self presentModalViewController:controlNavegacion animated:YES  ];
     
     [detalleView release];
+    [controlNavegacion release];
 }
 
 
@@ -262,9 +251,7 @@
 
 
 -(void)TSMultimediaData:(TSMultimediaData *)data  entidadesRecibidas:(NSArray *)array paraEntidad:(NSString *)entidad
-{
-    NSLog(@"AAAAAAAAAAA");
-    
+{    
     NSDictionary *unDiccionario = [array lastObject];
     
     self.vistaUltimoClip.titulo.text = [unDiccionario valueForKey:@"titulo"];
@@ -275,7 +262,7 @@
     AsynchronousImageView *imageView;
     if ((imageView = (AsynchronousImageView *)self.vistaUltimoClip.imagen ))
     {
-        imageView.url = [NSURL URLWithString:[unDiccionario valueForKey:@"thumbnail_grande"]];
+        imageView.url = [NSURL URLWithString:[unDiccionario valueForKey:@"thumbnail_mediano"]];
         [imageView cargarImagenSiNecesario];
     }
 }

@@ -70,7 +70,7 @@
         AsynchronousImageView *imageView;
         if ((imageView = (AsynchronousImageView *)celdaClip.imagen ))
         {
-            imageView.url = [NSURL URLWithString:[unDiccionario valueForKey:@"thumbnail_grande"]];
+            imageView.url = [NSURL URLWithString:[unDiccionario valueForKey:@"thumbnail_pequeno"]];
             [imageView cargarImagenSiNecesario];
         }
 

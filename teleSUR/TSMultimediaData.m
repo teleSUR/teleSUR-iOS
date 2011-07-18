@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "TSMultimediaData.h"
 
-#include "NSDictionary_JSONExtensions.h"
+//#include "NSDictionary_JSONExtensions.h"
 #include "TSMultimediaDataDelegate.h"
 #include "UIViewController_Preferencias.h"
 
@@ -41,7 +41,7 @@
 	if ([entidad isEqualToString:@"clip"])
     {
         // Buscar nombres de parámetros reconocidos y agregarlos al arreglo de parámetros GET
-        NSArray *params = [NSArray arrayWithObjects:@"desde", @"hasta", @"categoria", @"programa", @"tipo", @"pais", @"tema", @"corresponsal", @"personaje", @"ubicacion", @"relacionados", @"texto", nil];
+        NSArray *params = [NSArray arrayWithObjects:@"desde", @"hasta", @"categoria", @"programa", @"geotag", @"tipo", @"pais", @"tema", @"corresponsal", @"personaje", @"ubicacion", @"relacionados", @"texto", nil];
         
         for (NSString *param in params)
             if ((currentFiltro = [filtros objectForKey:param]))
@@ -103,7 +103,7 @@
 	NSString *queryString = [parametrosGETSeguros componentsJoinedByString:@"&"];
 	
 	NSURL *multimediaAPIRequestURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@api/%@?%@", urlBase, langCode, entidad, queryString]];
-	//NSLog(@"URL a consultar: %@", multimediaAPIRequestURL);
+	NSLog(@"URL a consultar: %@", multimediaAPIRequestURL);
 	
 	NSURLRequest *apiRequest=[NSURLRequest requestWithURL:multimediaAPIRequestURL
 											  cachePolicy:NSURLRequestReloadIgnoringLocalCacheData

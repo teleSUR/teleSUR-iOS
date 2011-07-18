@@ -48,9 +48,8 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.anotacionesDelMapa = [[NSMutableArray alloc] init];
-
         // Custom initialization
+        self.anotacionesDelMapa = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -71,17 +70,6 @@
 
 #pragma mark - View lifecycle
 
-/*
-// Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView
-{
-}
-*/
--(void)viewWillAppear:(BOOL)animated
-{
-
-}
-
 -(void)viewDidAppear:(BOOL)animated
 {
     [self.menu colocarSelectorEnPosicionOriginal];
@@ -90,9 +78,9 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
+    self.listado = [[TSClipListadoViewController alloc] init];       
+    self.listado.diccionarioConfiguracionFiltros = [NSDictionary dictionaryWithObjectsAndKeys:@"noticia", @"tipo", @"notnull", @"geotag", nil];
     
-
-    self.listado = [[TSClipListadoViewController alloc] init];        
     [self.listado prepararListado];
 
     [self.listado cargarClips];
@@ -103,34 +91,24 @@
 
     // Poner imagen teleSur en la barra
     UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Header.png"]];
-    
     self.barraNavegacion.topItem.titleView = imageView;
+    [imageView release];
     
     NSArray* nibViewsTwitter =  [[NSBundle mainBundle] loadNibNamed:@"TwitterSobreMapa" owner:self options:nil];
     self.vistaTwitter = [nibViewsTwitter lastObject];    
     [self.contenedorTwitter addSubview:self.vistaTwitter];
-
-
-    
-    
-    
-    [imageView release];    
-
-    
-    
-    
     
     [super viewDidLoad];
 }
 
--(IBAction) mostrarVideoTiempoReal: (id) sender
+- (IBAction)mostrarVideoTiempoReal:(id)sender
 {
-    
-    if (self.switchVideoEnVivo.on) {
+    NSLog(@"Tiempo real");
+    if (self.switchVideoEnVivo.on)
+    {
         self.vistaCargandoEnVivo.alpha = 1.0;
-        NSString *moviePath = @"http://streaming.tlsur.net:1935/live/vivo.stream/playlist.m3u8";
+        NSString *moviePath = [[[[NSBundle mainBundle] infoDictionary] valueForKey:@"Configuración"] valueForKey:(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? @"Streaming URL Alta" : @"Streaming URL Media"];
         NSURL *movieURL = [NSURL URLWithString:moviePath];
-        
         
         self.vistaReproduccionVideoTiempoReal = [[MPMoviePlayerController alloc] initWithContentURL:movieURL];
         [self.vistaReproduccionVideoTiempoReal.view setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight ];
@@ -140,9 +118,8 @@
         [self.vistaReproduccionVideoTiempoReal.view setAutoresizingMask:UIViewAutoresizingFlexibleWidth];        
         [self.vistaReproduccionVideoTiempoReal play];
         
-        
-        
-    } else
+    }
+    else
     {
         self.vistaCargandoEnVivo.alpha = 0.0;        
         [self.vistaReproduccionVideoTiempoReal stop];
@@ -170,9 +147,7 @@
     [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
     self.contenedorTwitter.alpha = 0.0;
     
-    
 	[UIView commitAnimations];
-    
 }
 
 
@@ -188,7 +163,7 @@
                                                             andDelegate:self];
     
 	[twitterFeed data];
-	
+    
 	[twitterFeed release];
     
     [UIView beginAnimations:nil context:NULL];
@@ -196,28 +171,29 @@
     [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
     self.contenedorTwitter.alpha = 1.0;
     
-    
 	[UIView commitAnimations];
-	
 }
 
 
--(IBAction) recargarPines: (id) sender
+- (IBAction)recargarPines:(id)sender
 {
-    [self.vistaMapa removeAnnotations:self.vistaMapa.annotations];
+    [self.vistaMapa removeAnnotations:self.vistaMapa.annotations];   
     
-    if (self.controlSegmentadoTitulo.selectedSegmentIndex==0)
+    switch (self.controlSegmentadoTitulo.selectedSegmentIndex)
     {
-        // Sin filtrar, todo el contenido
-        self.listado.diccionarioConfiguracionFiltros = [NSDictionary dictionaryWithObject:@"noticia" forKey:@"tipo"];
-    } else if (self.controlSegmentadoTitulo.selectedSegmentIndex==1)
-    {
-        // Corresponsales
-        self.listado.diccionarioConfiguracionFiltros = [NSDictionary dictionaryWithObject:@"no_es_nulo" forKey:@"corresponsal"];
-    }
-    else
-    {
-        self.listado.diccionarioConfiguracionFiltros = [NSDictionary dictionaryWithObject:@"entrevista" forKey:@"tipo"];
+        case 0:
+            // Noticias
+            self.listado.diccionarioConfiguracionFiltros = [NSDictionary dictionaryWithObjectsAndKeys:@"noticia", @"tipo", @"notnull", @"geotag", nil];
+            break;
+            
+        case 1:
+            // Corresponsales
+            self.listado.diccionarioConfiguracionFiltros = [NSDictionary dictionaryWithObjectsAndKeys:@"noticia", @"tipo", @"notnull", @"geotag", @"notnull", @"corresponsal", nil];
+            break;
+        
+        case 2:
+            // Entrevistas
+            self.listado.diccionarioConfiguracionFiltros = [NSDictionary dictionaryWithObjectsAndKeys:@"entrevista", @"tipo", @"notnull", @"geotag", nil];
     }
     
     [self.listado cargarClips];
@@ -230,7 +206,7 @@
     return YES;
 }
 
--(void) reproducirVideoEnPantalla
+- (void)reproducirVideoEnPantalla
 {
     TSAnotacionEnMapa *seleccion = [[self.vistaMapa selectedAnnotations] objectAtIndex:0];
     
@@ -251,13 +227,12 @@
 //    [super playerFinalizado:notification];
 }
 
--(void) retirarModalView 
+- (void)retirarModalView 
 {
     [self dismissModalViewControllerAnimated:YES];
 }
 
--(void) reproducirVideo: (TSAnotacionEnMapa *) anotacion 
-
+- (void)reproducirVideo: (TSAnotacionEnMapa *)anotacion
 {
     TSAnotacionEnMapa *seleccion = [[self.vistaMapa selectedAnnotations] objectAtIndex:0];
     
@@ -271,53 +246,36 @@
     detalleView.navigationItem.leftBarButtonItem = botonSalir;    
     controlNavegacion.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     
-
-    
     [controlNavegacion pushViewController:detalleView animated:NO];
-
     
-    [self presentModalViewController:controlNavegacion animated:YES  ];
+    [self presentModalViewController:controlNavegacion animated:YES];
     
     [detalleView release];
 }
+
+
 #pragma - MKMapViewDelegate
 
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
 {
    // Corresponsales    
-    if (self.controlSegmentadoTitulo.selectedSegmentIndex==1)
+    if (self.controlSegmentadoTitulo.selectedSegmentIndex == 1 && [view.annotation respondsToSelector:@selector(noticia)])
     {
+        NSString *usuarioTwitter = [[[(TSAnotacionEnMapa *)view.annotation noticia] valueForKey:@"corresponsal"] valueForKey:@"twitter"];
         
-        NSString *usuarioTwitter = /*@"hecktorzr";*/ [[[(TSAnotacionEnMapa *)view.annotation noticia] valueForKey:@"corresponsal"] valueForKey:@"twitter"];
-        
-        if (![usuarioTwitter isKindOfClass:[NSNull class]])
+        if (![usuarioTwitter isKindOfClass:[NSNull class]] && ![usuarioTwitter isEqualToString:@""])
         {
-            
-            if ( [usuarioTwitter isEqualToString:@""])
-            {
-//                usuarioTwitter = @"hecktorzr";
-                [self ocultarTwitter];            
-                NSLog(@"Twitter: Sin Tuirer");
-                
-            } else 
-            {
-                [self mostrarTwitterDelUsuario:usuarioTwitter];
-            }
+            [self mostrarTwitterDelUsuario:usuarioTwitter];
         }
         else
         {
             [self ocultarTwitter];
         }
-        
-        
-     
     }
 }
 
 -(void) mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view
-{
-    NSLog(@"Seleccionadas: %d", [mapView.selectedAnnotations count]);
-    
+{   
     if ([mapView.selectedAnnotations count] == 0) 
     {
         [self ocultarTwitter];
@@ -326,26 +284,20 @@
 
 - (MKAnnotationView *) mapView: (MKMapView *) mapView viewForAnnotation: (id<MKAnnotation>) annotation
 {
-    if ([annotation isKindOfClass:[MKUserLocation class]]) return nil;
-    MKPinAnnotationView *pin = (MKPinAnnotationView *) [self.vistaMapa dequeueReusableAnnotationViewWithIdentifier: @"asdf"];
+    if ([annotation isKindOfClass:[MKUserLocation class]])
+        return nil;
     
+    MKPinAnnotationView *pin = (MKPinAnnotationView *) [self.vistaMapa dequeueReusableAnnotationViewWithIdentifier: @"pin"];
     
     if (pin == nil)
     {
-        pin = [[[MKPinAnnotationView alloc] initWithAnnotation: annotation reuseIdentifier: @"asdf"] autorelease]; 
-
-        
-        
-        
-        
+        pin = [[[MKPinAnnotationView alloc] initWithAnnotation: annotation reuseIdentifier: @"pin"] autorelease]; 
         
         UIButton* rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
         [rightButton addTarget:self
                         action:@selector(reproducirVideo:)
               forControlEvents:UIControlEventTouchUpInside];
         pin.rightCalloutAccessoryView = rightButton;
-        
-        
     }
     else
     {
@@ -353,36 +305,33 @@
     }
     pin.canShowCallout = YES;
     
-    if (self.controlSegmentadoTitulo.selectedSegmentIndex==0)
-    {
-        pin.pinColor = MKPinAnnotationColorRed;
+    
+    switch (self.controlSegmentadoTitulo.selectedSegmentIndex) {
+        case 0:
+            pin.pinColor = MKPinAnnotationColorRed;
+            break;
+            
+        case 1:
+            pin.pinColor = MKPinAnnotationColorPurple;
+            break;
+            
+        case 2:
+            pin.pinColor = MKPinAnnotationColorGreen;
     }
-    else if (self.controlSegmentadoTitulo.selectedSegmentIndex==1)
-    {
-        pin.pinColor = MKPinAnnotationColorPurple;
-    }
-    else
-    {
-        pin.pinColor = MKPinAnnotationColorGreen;
-    }
-
     
     AsynchronousButtonView *imageButtonView = [[AsynchronousButtonView alloc] init]; //[UIButton buttonWithType:UIButtonTypeCustom];
     
     [imageButtonView addTarget:self 
-                                               action:@selector(reproducirVideoEnPantalla)
-                                     forControlEvents:UIControlEventTouchDown];
+                        action:@selector(reproducirVideoEnPantalla)
+              forControlEvents:UIControlEventTouchDown];
     
     imageButtonView.frame = CGRectMake(0.0, 0.0, 40.0, 30.0);    
-                                    
-
-
+    
     if (imageButtonView)
     {
-        imageButtonView.url = [NSURL URLWithString:[[(TSAnotacionEnMapa *)annotation noticia] valueForKey:@"thumbnail_mediano"]];
+        imageButtonView.url = [NSURL URLWithString:[[(TSAnotacionEnMapa *)annotation noticia] valueForKey:@"thumbnail_pequeno"]];
         imageButtonView.imageView.image = [UIImage imageNamed:@"SinImagen.png"];
         [imageButtonView cargarImagenSiNecesario];
-
     }
     pin.leftCalloutAccessoryView = imageButtonView;
     
@@ -397,24 +346,19 @@
 {
     TSAnotacionEnMapa *anotacionFinal;
     
-    NSLog(@"Mapa");
-    
     for (NSDictionary *unDiccionario in array)
     {
         TSAnotacionEnMapa *anotacion = [[TSAnotacionEnMapa alloc] initWithDiccionarioNoticia:unDiccionario];
         
-        if (anotacion.sinCoordenadas == NO) [self.vistaMapa addAnnotation:anotacion];
-        NSLog(@"Locacion: %f, %f", anotacion.coordinate.latitude, anotacion.coordinate.longitude);    
+        if (anotacion.sinCoordenadas == NO)
+            [self.vistaMapa addAnnotation:anotacion];
         
         anotacionFinal = anotacion;
         [anotacion release];
-        
-        
     }
     
     [self.vistaMapa selectAnnotation:[[self.vistaMapa annotations] lastObject] animated:NO];
-
-//    [self.vistaMapa setCenterCoordinate:anotacionFinal.coordinate animated:YES];
+//    [self.vistaMapa setCenterCoordinate:anotacionFinal.coordinate animated:NO];
     
 }
 
@@ -428,12 +372,8 @@
 
 // Termino exitosamente la descarga de un archivo
 
-- (void)downloadDidFinishDownloading: (DataDescargable *)download {
-    
-    
-	
+- (void)downloadDidFinishDownloading: (DataDescargable *)download {	
 	// Parsear DATA
-	
 	NSString *xmlFile = [[NSString alloc] initWithData:download.data encoding:NSASCIIStringEncoding];
 	
 	// Parsing de Archivo

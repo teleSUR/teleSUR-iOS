@@ -20,26 +20,13 @@
 {
     if ((self = [super init]))
     {
-        
         self.noticia = unDiccionario;
         
-        NSDictionary *diccionarioPais = [self.noticia valueForKey:@"pais"];
-        NSLog(@"%@", diccionarioPais);
-        NSLog(@"Clase %@-%@", [diccionarioPais valueForKey:@"geotag"],[[diccionarioPais valueForKey:@"geotag"] class] );
-        NSArray *arregloCoordenadas;
+        NSString *coord = [self.noticia valueForKey:@"geotag"];
         
-        NSString *coord;
-        if ([self.noticia valueForKey:@"geotag"] != [NSNull null] &&
-            [self.noticia valueForKey:@"geotag"] != @"")
+        if (![coord isKindOfClass:[NSNull class]] && ![coord isEqualToString:@""])
         {
-            coord = [self.noticia valueForKey:@"geotag"];
-        }
-        else if ([diccionarioPais valueForKey:@"geotag"] != [NSNull null])
-        {
-            coord = [diccionarioPais valueForKey:@"geotag"];
-        }
-        
-        if (coord) {
+            NSArray *arregloCoordenadas;
             self.sinCoordenadas = NO;
             
             arregloCoordenadas = [(NSString *)coord componentsSeparatedByString:@","];
@@ -51,18 +38,16 @@
 
                 coordinate.longitude = longitud2;
                 coordinate.latitude = latitud2;         
-                NSLog(@"----%@, %@", [arregloCoordenadas objectAtIndex:1], [arregloCoordenadas objectAtIndex:0]);
-                NSLog(@"----%f, %f", coordinate.longitude, coordinate.latitude);
+                //NSLog(@"----%@, %@", [arregloCoordenadas objectAtIndex:1], [arregloCoordenadas objectAtIndex:0]);
+                //NSLog(@"----%f, %f", coordinate.longitude, coordinate.latitude);
             }
-        } else
+        }
+        else
         {
             self.sinCoordenadas = YES;
-            NSLog(@"Sin ubicacion");
+            NSLog(@"Sin geotag!");
         }
 //        self.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-
-        
-        
     }
     return self;
 }

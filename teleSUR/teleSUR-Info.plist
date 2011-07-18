@@ -16,6 +16,8 @@
 	<array>
 		<string>Icon.png</string>
 		<string>Icon@2x.png</string>
+		<string>IconIpad.png</string>
+		<string>IconIpad.png</string>
 	</array>
 	<key>CFBundleIdentifier</key>
 	<string>teleSUR</string>
@@ -26,13 +28,13 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.9</string>
+	<string>1.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleURLTypes</key>
 	<array/>
 	<key>CFBundleVersion</key>
-	<string>0.9</string>
+	<string>1.0</string>
 	<key>Configuración</key>
 	<dict>
 		<key>API URL Base</key>
@@ -141,6 +143,10 @@
 				<string>Personas</string>
 			</dict>
 		</array>
+		<key>Streaming URL Alta</key>
+		<string>http://streaming.tlsur.net:1935/live/alta.stream/playlist.m3u8</string>
+		<key>Streaming URL Media</key>
+		<string>http://streaming.tlsur.net:1935/live/media.stream/playlist.m3u8</string>
 		<key>Ubicaciones</key>
 		<array>
 			<dict>

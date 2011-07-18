@@ -39,6 +39,8 @@
     
     TSMasTableViewController *busquedaView = [[TSMasTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
     
+    [busquedaView.view setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
+    
     [controlNavegacion pushViewController:busquedaView animated:NO];
     
     self.controlPopBusqueda = [[UIPopoverController alloc] initWithContentViewController:controlNavegacion];
@@ -127,7 +129,7 @@
 -(IBAction) reproducirVideoEnTiempoReal
 {
     if (self.switchEnVivo.on) {
-        NSString *moviePath = @"http://streaming.tlsur.net:1935/live/vivo.stream/playlist.m3u8";
+        NSString *moviePath = [[[[NSBundle mainBundle] infoDictionary] valueForKey:@"Configuración"] valueForKey:(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? @"Streaming URL Alta" : @"Streaming URL Media"];
         NSURL *movieURL = [NSURL URLWithString:moviePath];
         
         
@@ -169,5 +171,6 @@
 {
     [super dealloc];
 }
+
 
 @end

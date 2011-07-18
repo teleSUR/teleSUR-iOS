@@ -25,25 +25,17 @@
 -(void) obtenerDatosParaTeleStrip 
 {
     self.noticias = [[NSMutableArray alloc] init];    
-    self.listado = [[TSClipListadoViewController alloc] init];        
-    
-    
+    self.listado = [[TSClipListadoViewController alloc] init];
     
     [self.listado prepararListado];
 
     [self.listado cargarClips];
     
     self.listado.delegate = self;
-
-    
-    
-
 }
 
--(void) iniciarAnimacion 
+- (void)iniciarAnimacion 
 {
-
-    
     self.numeroCaracteres = 0;
     offsetX = 0 + 8;//TSMargenMenu;
     
@@ -79,26 +71,22 @@
     NSRunLoop *runLoop = [NSRunLoop currentRunLoop];
 	
     [runLoop addTimer:timer1 forMode:NSDefaultRunLoopMode];
-
 }
 
--(IBAction) reanudarAnimacionNoticias: (id) sender 
+- (IBAction)reanudarAnimacionNoticias: (id)sender 
 {
     self.detenerAnimacion = NO;
     [controlPopOver dismissPopoverAnimated:YES];
 }
          
--(IBAction) detenerAnimacionNoticias: (id) sender
+- (IBAction)detenerAnimacionNoticias: (id)sender
 {
-    UIButton *boton = (UIButton *) sender;
+    UIButton *boton = (UIButton *)sender;
     
-    NSLog(@"%@", boton.titleLabel.text);
+    //NSLog(@"%@", boton.titleLabel.text);
     self.detenerAnimacion =YES;
     
     TSDescripcionNoticiaStrip *vistaNoticia = [[TSDescripcionNoticiaStrip alloc] init];
-    
-    
-    
     
     controlPopOver = [[UIPopoverController alloc] initWithContentViewController:vistaNoticia];
 
@@ -109,8 +97,7 @@
     vistaNoticia.contenidoNoticia.text = [[noticias objectAtIndex: boton.tag] valueForKey:@"descripcion"];
     
     float nuevaAltura = [vistaNoticia ajustarTamanoTexto];
-    controlPopOver.popoverContentSize = CGSizeMake(320, nuevaAltura);    
-    
+    controlPopOver.popoverContentSize = CGSizeMake(320, nuevaAltura);
     
     //    self.controlPopOver.
     //    [controlPopOver presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];

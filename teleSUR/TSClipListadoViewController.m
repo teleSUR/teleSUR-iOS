@@ -18,7 +18,7 @@
 #import "TSSeleccionIdioma.h"
 
 
-NSInteger const TSNumeroClipsPorPagina = 30;
+NSInteger const TSNumeroClipsPorPagina = 10;
 NSString* const TSEntidadClip = @"clip";
 
 
@@ -47,7 +47,9 @@ NSString* const TSEntidadClip = @"clip";
 
 - (void)cargarClips
 {
-//    [self mostrarLoadingViewConAnimacion:YES];
+    if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad) {
+        [self mostrarLoadingViewConAnimacion:YES];
+    }
     
 	TSMultimediaData *dataClips = [[TSMultimediaData alloc] init];
     [dataClips getDatosParaEntidad:TSEntidadClip // otros ejemplos: programa, pais, categoria
@@ -149,7 +151,9 @@ NSString* const TSEntidadClip = @"clip";
             self.arregloClipsAsyncImageViews = [NSMutableArray array];
         }
         
-//        [self ocultarLoadingViewConAnimacion:YES];
+        if(UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad) {
+            [self ocultarLoadingViewConAnimacion:YES];
+        }
     }
     
     // Liberar objeto de datos
