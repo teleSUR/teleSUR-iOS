@@ -86,7 +86,7 @@
 					<object class="IBUIButton" id="688357316">
 						<reference key="NSNextResponder" ref="201516900"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{79, 7.5}, {68, 46}}</string>
+						<string key="NSFrame">{{73.3757, 1}, {78.1019, 60}}</string>
 						<reference key="NSSuperview" ref="201516900"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="204213682"/>
@@ -114,7 +114,7 @@
 						</object>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">corresponsalesicono.png</string>
+							<string key="NSResourceName">corresponsales.png</string>
 						</object>
 					</object>
 					<object class="IBUIButton" id="1039899230">
@@ -159,7 +159,7 @@
 							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 						</object>
 						<reference key="IBUINormalTitleShadowColor" ref="86011379"/>
-						<object class="NSCustomResource" key="IBUINormalImage" id="210016777">
+						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">programas.png</string>
 						</object>
@@ -167,9 +167,10 @@
 					<object class="IBUIButton" id="500481813">
 						<reference key="NSNextResponder" ref="201516900"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{301, 0}, {79, 69}}</string>
+						<string key="NSFrame">{{302, -1}, {76.1661, 62}}</string>
 						<reference key="NSSuperview" ref="201516900"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="944223814"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<int key="IBUITag">4</int>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -182,15 +183,18 @@
 							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 						</object>
 						<reference key="IBUINormalTitleShadowColor" ref="86011379"/>
-						<reference key="IBUINormalImage" ref="210016777"/>
+						<object class="NSCustomResource" key="IBUINormalImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">reportajesicono.png</string>
+						</object>
 					</object>
 					<object class="IBUIButton" id="472360433">
 						<reference key="NSNextResponder" ref="201516900"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{225, 0}, {79, 69}}</string>
+						<string key="NSFrame">{{226, -1}, {73.9412, 62}}</string>
 						<reference key="NSSuperview" ref="201516900"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="944223814"/>
+						<reference key="NSNextKeyView" ref="500481813"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<int key="IBUITag">3</int>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -205,7 +209,7 @@
 						<reference key="IBUINormalTitleShadowColor" ref="86011379"/>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">especialesicono.png</string>
+							<string key="NSResourceName">documentalesicon.png</string>
 						</object>
 					</object>
 					<object class="IBUIButton" id="944223814">
@@ -238,6 +242,7 @@
 						<string key="NSFrame">{{450, -5}, {80, 69}}</string>
 						<reference key="NSSuperview" ref="201516900"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<int key="IBUITag">1</int>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -605,22 +610,24 @@
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>backmenu.png</string>
 				<string>buscar.png</string>
-				<string>corresponsalesicono.png</string>
-				<string>especialesicono.png</string>
+				<string>corresponsales.png</string>
+				<string>documentalesicon.png</string>
 				<string>masicono.png</string>
 				<string>noticiasicono.png</string>
 				<string>programas.png</string>
+				<string>reportajesicono.png</string>
 				<string>seleccion.png</string>
 			</object>
 			<object class="NSMutableArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>{1026, 69}</string>
 				<string>{75, 69}</string>
-				<string>{96, 69}</string>
+				<string>{80, 56}</string>
 				<string>{79, 69}</string>
 				<string>{80, 69}</string>
 				<string>{69, 69}</string>
-				<string>{48, 33}</string>
+				<string>{75, 60}</string>
+				<string>{79, 69}</string>
 				<string>{48, 33}</string>
 			</object>
 		</object>

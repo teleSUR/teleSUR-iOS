@@ -79,7 +79,7 @@
 - (void)viewDidLoad
 {
     self.listado = [[TSClipListadoViewController alloc] init];       
-    self.listado.diccionarioConfiguracionFiltros = [NSDictionary dictionaryWithObjectsAndKeys:@"noticia", @"tipo", @"notnull", @"geotag", nil];
+    self.listado.diccionarioConfiguracionFiltros = [NSDictionary dictionaryWithObjectsAndKeys:@"noticia", @"tipo", @"notnull", @"geotag", @"notnull", @"corresponsal", nil];
     
     [self.listado prepararListado];
 

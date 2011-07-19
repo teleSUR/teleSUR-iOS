@@ -123,7 +123,7 @@ var iniciar = function(tipo) {
 			}
 			
 			
-			var imgsrc = (tipo == 'programas') ? 'http://media.tlsur.net/{programa__imagen}' : '{tipo__nombre}.png';
+			var imgsrc = (tipo == 'programas') ? 'http://media.tlsur.net/{programa__imagen}' : (tipo == 'documentales') ? 'documental.png' : 'reportaje.png';
 			var titulo = (tipo == 'programas') ? '{programa__nombre}' : '{titulo}';
 			var desc   = (tipo == 'programas') ? '{programa__descripcion}' : '{descripcion}';
 			var video_detail = new Ext.Panel ({
@@ -134,7 +134,7 @@ var iniciar = function(tipo) {
 				id: 'videodetail',
 				style: 'padding-left:30px;',
 				tpl: '<div>\
-					<h1 style="line-height:70px;font-size:20px;font-weight:bold;"><img style="vertical-align:middle;" src="'+imgsrc+'" height="70" /> '+titulo+'</h1>\
+					<h1 style="line-height:70px;font-size:20px;font-weight:bold;"><img style="vertical-align:middle;" src="'+imgsrc+'" width="120" /> '+titulo+'</h1>\
 						<h3>{fecha_semana} | {duracion}</h3>\
 						<div style="margin-top:1em;height:254px;width:452px;background:#333333;">\
 						    <video id="video" style="margin:0;padding:0;" height="254" width="452" src="{archivo_url}" poster="{thumbnail_mediano}" controls />\

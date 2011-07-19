@@ -203,6 +203,8 @@
 		63F0ED9413CD399A005AEEF3 /* Documental.png in Resources */ = {isa = PBXBuildFile; fileRef = 63F0ED9213CD399A005AEEF3 /* Documental.png */; };
 		63F0ED9513CD399A005AEEF3 /* Reportaje.png in Resources */ = {isa = PBXBuildFile; fileRef = 63F0ED9313CD399A005AEEF3 /* Reportaje.png */; };
 		63F0ED9713CD41A2005AEEF3 /* noticias-telesur.png in Resources */ = {isa = PBXBuildFile; fileRef = 63F0ED9613CD41A2005AEEF3 /* noticias-telesur.png */; };
+		63F6AC3613D4F5CB00068866 /* documentalesicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 63F6AC3513D4F5CB00068866 /* documentalesicon.png */; };
+		63F6AC3813D4F79400068866 /* reportajesicono.png in Resources */ = {isa = PBXBuildFile; fileRef = 63F6AC3713D4F79400068866 /* reportajesicono.png */; };
 		63FB4EF6132ECE980027E304 /* TSBusquedaSeleccionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63FB4EF5132ECE980027E304 /* TSBusquedaSeleccionTableViewController.m */; };
 		63FCB60513CB8445006CA291 /* Programas.html in Resources */ = {isa = PBXBuildFile; fileRef = 63FCB60413CB8445006CA291 /* Programas.html */; };
 		63FCB60913CB8554006CA291 /* TSSenchaLargoProgramasViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63FCB60713CB8554006CA291 /* TSSenchaLargoProgramasViewController.m */; };
@@ -949,6 +951,8 @@
 		63F0ED9213CD399A005AEEF3 /* Documental.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Documental.png; sourceTree = "<group>"; };
 		63F0ED9313CD399A005AEEF3 /* Reportaje.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Reportaje.png; sourceTree = "<group>"; };
 		63F0ED9613CD41A2005AEEF3 /* noticias-telesur.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "noticias-telesur.png"; sourceTree = "<group>"; };
+		63F6AC3513D4F5CB00068866 /* documentalesicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = documentalesicon.png; sourceTree = "<group>"; };
+		63F6AC3713D4F79400068866 /* reportajesicono.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reportajesicono.png; sourceTree = "<group>"; };
 		63FB4EF4132ECE980027E304 /* TSBusquedaSeleccionTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSBusquedaSeleccionTableViewController.h; sourceTree = "<group>"; };
 		63FB4EF5132ECE980027E304 /* TSBusquedaSeleccionTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSBusquedaSeleccionTableViewController.m; sourceTree = "<group>"; };
 		63FCB60413CB8445006CA291 /* Programas.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Programas.html; sourceTree = "<group>"; };
@@ -1457,6 +1461,8 @@
 		3AC27CEE13A8498C00BD39B2 /* Iconos iPad */ = {
 			isa = PBXGroup;
 			children = (
+				63F6AC3713D4F79400068866 /* reportajesicono.png */,
+				63F6AC3513D4F5CB00068866 /* documentalesicon.png */,
 				3AC27CF113A8499B00BD39B2 /* corresponsales.png */,
 				3AC27CF213A8499B00BD39B2 /* especiales.png */,
 				3AC27CF313A8499B00BD39B2 /* mas.png */,
@@ -1495,12 +1501,12 @@
 			children = (
 				63835B2F13D4E82200BF8301 /* Default-Landscape~ipad.png */,
 				63835B2D13D4E66500BF8301 /* Default-Portrait~ipad.png */,
-				63835B2B13D4E64800BF8301 /* IconIpad.png */,
 				63E01696131B883D001928E4 /* Default.png */,
 				63D801CB136A161500FC065A /* Default@2x.png */,
 				631B622C133C950000E42342 /* Sample.mp4 */,
 				634D9EF1131F4B1F005B46FE /* Icon.png */,
 				63D801CC136A161500FC065A /* Icon@2x.png */,
+				63835B2B13D4E64800BF8301 /* IconIpad.png */,
 				C470FBC7133988E5007BEC50 /* Localizable.strings */,
 				63099E0C13199D1800D15603 /* teleSUR */,
 				63099E3113199D1800D15603 /* teleSURTests */,
@@ -3407,6 +3413,8 @@
 				63835B2C13D4E64900BF8301 /* IconIpad.png in Resources */,
 				63835B2E13D4E66500BF8301 /* Default-Portrait~ipad.png in Resources */,
 				63835B3013D4E82300BF8301 /* Default-Landscape~ipad.png in Resources */,
+				63F6AC3613D4F5CB00068866 /* documentalesicon.png in Resources */,
+				63F6AC3813D4F79400068866 /* reportajesicono.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
