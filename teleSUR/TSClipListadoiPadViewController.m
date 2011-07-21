@@ -161,6 +161,25 @@
     // Do any additional setup after loading the view from its nib.
 }
 
+
+- (void)recargar
+{
+    [self.listadoVideoUnico cargarClips];
+    
+    [self.scrollStrips setContentOffset:CGPointMake(0, 0) animated:YES];
+    
+    for (TSClipStrip *strip in self.strips)
+    {
+        [strip setContentOffset:CGPointMake(0, 0) animated:YES];
+    }
+    
+    for (TSClipStrip *strip in self.strips)
+    {
+        [strip cargarClips];
+    }
+            
+}
+
 - (void)retirarModalView 
 {
     [self dismissModalViewControllerAnimated:YES];

@@ -41,6 +41,9 @@
 
 -(void) cargarClips
 {
+    for (UIView *view in self.subviews)
+        [view removeFromSuperview];
+    
     [self.listado prepararListado];        
     [self.listado cargarClips];
     self.listado.delegate = self;
@@ -48,6 +51,7 @@
 
 -(void)TSMultimediaData:(TSMultimediaData *)data entidadesRecibidas:(NSArray *)array paraEntidad:(NSString *)entidad
 {
+    NSLog(@"recibbooo");
     int offsetX = 40 + kMargenPolaroidX;
     
     int anchoCelda;

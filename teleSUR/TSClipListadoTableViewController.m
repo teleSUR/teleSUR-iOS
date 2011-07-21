@@ -59,7 +59,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self agregarBotonEnVivo];
+    
+    if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad) {
+        [self agregarBotonEnVivo];
+    }
     [self.view addSubview:self.tableViewController.tableView];
     self.tableViewController.tableView.scrollsToTop = YES;
 }

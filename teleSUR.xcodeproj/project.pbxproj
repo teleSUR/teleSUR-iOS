@@ -172,6 +172,8 @@
 		6374D29F13380BAB0089F46D /* Header@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6374D29C13380BAB0089F46D /* Header@2x.png */; };
 		6374D2A1133823D70089F46D /* BarraRoja.png in Resources */ = {isa = PBXBuildFile; fileRef = 6374D2A0133823D70089F46D /* BarraRoja.png */; };
 		6374D2A31338242B0089F46D /* BarraAzul.png in Resources */ = {isa = PBXBuildFile; fileRef = 6374D2A21338242B0089F46D /* BarraAzul.png */; };
+		6382D03013D7B644005204F7 /* reload.png in Resources */ = {isa = PBXBuildFile; fileRef = 6382D02F13D7B644005204F7 /* reload.png */; };
+		6382D03213D7CE39005204F7 /* DESTACADO_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 6382D03113D7CE38005204F7 /* DESTACADO_2.png */; };
 		63835B2913D3F37200BF8301 /* TSIpadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63835B2713D3F37200BF8301 /* TSIpadViewController.m */; };
 		63835B2A13D3F37200BF8301 /* TSIpadViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63835B2813D3F37200BF8301 /* TSIpadViewController.xib */; };
 		63835B2C13D4E64900BF8301 /* IconIpad.png in Resources */ = {isa = PBXBuildFile; fileRef = 63835B2B13D4E64800BF8301 /* IconIpad.png */; };
@@ -910,6 +912,8 @@
 		6374D29C13380BAB0089F46D /* Header@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Header@2x.png"; sourceTree = "<group>"; };
 		6374D2A0133823D70089F46D /* BarraRoja.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BarraRoja.png; sourceTree = "<group>"; };
 		6374D2A21338242B0089F46D /* BarraAzul.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BarraAzul.png; sourceTree = "<group>"; };
+		6382D02F13D7B644005204F7 /* reload.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reload.png; sourceTree = "<group>"; };
+		6382D03113D7CE38005204F7 /* DESTACADO_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DESTACADO_2.png; sourceTree = "<group>"; };
 		63835B2613D3F37200BF8301 /* TSIpadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSIpadViewController.h; sourceTree = "<group>"; };
 		63835B2713D3F37200BF8301 /* TSIpadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSIpadViewController.m; sourceTree = "<group>"; };
 		63835B2813D3F37200BF8301 /* TSIpadViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TSIpadViewController.xib; sourceTree = "<group>"; };
@@ -1590,6 +1594,7 @@
 		63099E1F13199D1800D15603 /* iPad */ = {
 			isa = PBXGroup;
 			children = (
+				6382D02F13D7B644005204F7 /* reload.png */,
 				63835B2613D3F37200BF8301 /* TSIpadViewController.h */,
 				63835B2713D3F37200BF8301 /* TSIpadViewController.m */,
 				63835B2813D3F37200BF8301 /* TSIpadViewController.xib */,
@@ -2829,6 +2834,7 @@
 		C410D95E13A80A6E0082EB73 /* iPad */ = {
 			isa = PBXGroup;
 			children = (
+				6382D03113D7CE38005204F7 /* DESTACADO_2.png */,
 				C42DCC2513B2A82300F6F499 /* especialesicono.png */,
 				C42DCC1F13B2A6E000F6F499 /* noticiasicono.png */,
 				C42DCC1D13B2A6D100F6F499 /* corresponsalesicono.png */,
@@ -3415,6 +3421,8 @@
 				63835B3013D4E82300BF8301 /* Default-Landscape~ipad.png in Resources */,
 				63F6AC3613D4F5CB00068866 /* documentalesicon.png in Resources */,
 				63F6AC3813D4F79400068866 /* reportajesicono.png in Resources */,
+				6382D03013D7B644005204F7 /* reload.png in Resources */,
+				6382D03213D7CE39005204F7 /* DESTACADO_2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

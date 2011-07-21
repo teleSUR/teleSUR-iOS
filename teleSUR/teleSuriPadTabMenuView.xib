@@ -242,7 +242,7 @@
 						<string key="NSFrame">{{450, -5}, {80, 69}}</string>
 						<reference key="NSSuperview" ref="201516900"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
+						<reference key="NSNextKeyView" ref="507088512"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<int key="IBUITag">1</int>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -258,6 +258,30 @@
 						<object class="NSCustomResource" key="IBUINormalBackgroundImage">
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">masicono.png</string>
+						</object>
+					</object>
+					<object class="IBUIButton" id="507088512">
+						<reference key="NSNextResponder" ref="201516900"/>
+						<int key="NSvFlags">289</int>
+						<string key="NSFrame">{{709, 10}, {41, 41}}</string>
+						<reference key="NSSuperview" ref="201516900"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
+						<bool key="IBUIOpaque">NO</bool>
+						<int key="IBUITag">1</int>
+						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+						<int key="IBUIContentHorizontalAlignment">0</int>
+						<int key="IBUIContentVerticalAlignment">0</int>
+						<reference key="IBUIFont" ref="775915461"/>
+						<reference key="IBUIHighlightedTitleColor" ref="634938023"/>
+						<object class="NSColor" key="IBUINormalTitleColor">
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
+						</object>
+						<reference key="IBUINormalTitleShadowColor" ref="86011379"/>
+						<object class="NSCustomResource" key="IBUINormalBackgroundImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">reload.png</string>
 						</object>
 					</object>
 				</object>
@@ -347,6 +371,15 @@
 					</object>
 					<int key="connectionID">40</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">recargar</string>
+						<reference key="source" ref="507088512"/>
+						<reference key="destination" ref="201516900"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">43</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -383,6 +416,7 @@
 							<reference ref="570209971"/>
 							<reference ref="472360433"/>
 							<reference ref="500481813"/>
+							<reference ref="507088512"/>
 						</object>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">View</string>
@@ -440,6 +474,11 @@
 						<reference key="object" ref="500481813"/>
 						<reference key="parent" ref="201516900"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">41</int>
+						<reference key="object" ref="507088512"/>
+						<reference key="parent" ref="201516900"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -459,6 +498,7 @@
 					<string>35.IBPluginDependency</string>
 					<string>39.IBPluginDependency</string>
 					<string>4.IBPluginDependency</string>
+					<string>41.IBPluginDependency</string>
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -467,6 +507,7 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>teleSuriPadTabMenu</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -489,7 +530,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">40</int>
+			<int key="maxID">43</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -615,6 +656,7 @@
 				<string>masicono.png</string>
 				<string>noticiasicono.png</string>
 				<string>programas.png</string>
+				<string>reload.png</string>
 				<string>reportajesicono.png</string>
 				<string>seleccion.png</string>
 			</object>
@@ -627,6 +669,7 @@
 				<string>{80, 69}</string>
 				<string>{69, 69}</string>
 				<string>{75, 60}</string>
+				<string>{128, 128}</string>
 				<string>{79, 69}</string>
 				<string>{48, 33}</string>
 			</object>

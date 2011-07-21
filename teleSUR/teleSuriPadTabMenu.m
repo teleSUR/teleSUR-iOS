@@ -125,6 +125,11 @@
     [delegado.tabBarController setSelectedIndex:self.indiceAnterior];
 }
 
+- (IBAction)recargar {
+    teleSURAppDelegate_iPad *delegado = (teleSURAppDelegate_iPad *)[[UIApplication sharedApplication] delegate];
+    [delegado.tabBarController.selectedViewController performSelector:@selector(recargar)];
+}
+
 
 -(IBAction) reproducirVideoEnTiempoReal
 {

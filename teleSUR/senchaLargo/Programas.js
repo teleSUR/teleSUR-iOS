@@ -33,7 +33,7 @@ var iniciar = function(tipo) {
     			    {name: 'fecha', type: 'string'},
 					{name: 'fecha_semana', type: 'string'},
 					{name: 'archivo_url', type: 'string'},
-					{name: 'duración', type: 'string'},
+					{name: 'duracion', type: 'string'},
 					{name: 'audio_url', type: 'string'},
 					{name: 'imagen_url', type: 'string'},
 					{name: 'duracion', type: 'string'},
@@ -43,7 +43,7 @@ var iniciar = function(tipo) {
 					{name: 'idioma_original', type: 'string'},
 					{name: 'programa__nombre', type: 'string'},
 					{name: 'programa__descripcion', type: 'string'},
-					{name: 'programa__imagen', type: 'string'},
+					{name: 'programa__imagen', type: 'string'}
 			    ]
 			});
 

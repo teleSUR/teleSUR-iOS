@@ -18,7 +18,7 @@
 #import "TSSeleccionIdioma.h"
 
 
-NSInteger const TSNumeroClipsPorPagina = 10;
+NSInteger const TSNumeroClipsPorPagina = 15;
 NSString* const TSEntidadClip = @"clip";
 
 

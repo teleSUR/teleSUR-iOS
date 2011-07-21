@@ -73,11 +73,14 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [self.menu colocarSelectorEnPosicionOriginal];
+    
 }
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
+    [self.vistaMapa setCenterCoordinate:CLLocationCoordinate2DMake(36.0, -30.0)];
+    
     self.listado = [[TSClipListadoViewController alloc] init];       
     self.listado.diccionarioConfiguracionFiltros = [NSDictionary dictionaryWithObjectsAndKeys:@"noticia", @"tipo", @"notnull", @"geotag", @"notnull", @"corresponsal", nil];
     
@@ -151,6 +154,12 @@
 }
 
 
+- (void)recargar
+{
+    [self recargarPines:nil];
+}
+
+
 
 -(void) mostrarTwitterDelUsuario: (NSString *) nombreUsuarioTwitter
 {
@@ -178,6 +187,7 @@
 - (IBAction)recargarPines:(id)sender
 {
     [self.vistaMapa removeAnnotations:self.vistaMapa.annotations];   
+    [self ocultarTwitter];
     
     switch (self.controlSegmentadoTitulo.selectedSegmentIndex)
     {
@@ -266,6 +276,7 @@
         if (![usuarioTwitter isKindOfClass:[NSNull class]] && ![usuarioTwitter isEqualToString:@""])
         {
             [self mostrarTwitterDelUsuario:usuarioTwitter];
+            NSLog(@"intento mostrar");
         }
         else
         {
@@ -359,6 +370,7 @@
     
     [self.vistaMapa selectAnnotation:[[self.vistaMapa annotations] lastObject] animated:NO];
 //    [self.vistaMapa setCenterCoordinate:anotacionFinal.coordinate animated:NO];
+     
     
 }
 
