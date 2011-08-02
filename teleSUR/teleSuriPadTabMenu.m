@@ -130,30 +130,6 @@
     [delegado.tabBarController.selectedViewController performSelector:@selector(recargar)];
 }
 
-
--(IBAction) reproducirVideoEnTiempoReal
-{
-    if (self.switchEnVivo.on) {
-        NSString *moviePath = [[[[NSBundle mainBundle] infoDictionary] valueForKey:@"Configuración"] valueForKey:(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? @"Streaming URL Alta" : @"Streaming URL Media"];
-        NSURL *movieURL = [NSURL URLWithString:moviePath];
-        
-        
-        self.vistaReproduccionVideoTiempoReal = [[MPMoviePlayerController alloc] initWithContentURL:movieURL];
-        self.vistaReproduccionVideoTiempoReal.view.frame = CGRectMake(0.0, self.frame.size.height, self.superview.frame.size.width, self.superview.superview.superview.frame.size.height);
-        [self.superview addSubview:self.vistaReproduccionVideoTiempoReal.view];
-        [self.vistaReproduccionVideoTiempoReal play];
-        [self.vistaReproduccionVideoTiempoReal.view setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
-        
-        
-    } else
-    {
-        [self.vistaReproduccionVideoTiempoReal stop];
-        [self.vistaReproduccionVideoTiempoReal.view removeFromSuperview];
-        [self.vistaReproduccionVideoTiempoReal release];
-    }
-
-}
-
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];

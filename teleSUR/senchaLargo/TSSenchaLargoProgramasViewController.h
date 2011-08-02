@@ -16,6 +16,8 @@
     IBOutlet UIWebView *webView;
 }
 
+- (void)videoTerminado;
+
 @property (nonatomic, retain) UIWebView *webView;
 
 @end

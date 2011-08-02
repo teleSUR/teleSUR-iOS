@@ -14,20 +14,20 @@
 
 @implementation TSClipPlayerViewController
 
-@synthesize clip;
+@synthesize clip, clipURL;
 
 - (id)initConClip:(NSDictionary *)diccionarioClip
 {
     teleSURAppDelegate *appDelegate = (teleSURAppDelegate *)[[UIApplication sharedApplication] delegate];
     
-    NSString *clipURL = [diccionarioClip valueForKey:@"archivo_url"];
+    NSString *url = [diccionarioClip valueForKey:@"archivo_url"];
     
     if (appDelegate.conexionLimitada && [diccionarioClip duracionEnSegundos] > 600)
     {
-        clipURL = [NSString stringWithFormat:@"%@?end=590", clipURL];
+        url = [NSString stringWithFormat:@"%@?end=590", url];
         
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Conexión limitada"
-                                                       message:@"Actualmente estás conectado a Internet a través de la red celular, para ver el video completo conéctate a una red Wi-Fi"
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Aviso"
+                                                       message:@"Actualmente estás utilizando la red de datos celular, para reproducir este video completo es necesario conectarse a una red Wi-Fi"
                                                        delegate:self
                                              cancelButtonTitle:@"Aceptar"
                                              otherButtonTitles:nil, nil];
@@ -35,17 +35,60 @@
                                             
     }
                          
-    self = [super initWithContentURL:[NSURL URLWithString:clipURL]];
+    self = [super initWithContentURL:[NSURL URLWithString:url]];
     if (self) {
-        self.clip = diccionarioClip;
+        self.clipURL = url;
+        self.clip = clip;
     }
     return self;
     
 }
 
+- (id)initConProgramaURL:(NSString *)progURL
+{
+    //NSDictionary *diccionarioClip = [NSDictionary dictionaryWithObjectsAndKeys:progURL,@"archivo_url",1800,@"duracion", nil];
+    NSDictionary* diccionarioClip = [NSDictionary dictionaryWithObjectsAndKeys:
+                                progURL, @"archivo_url",
+                                [NSNumber numberWithInt:1800], @"duracion",
+                                @"es", @"idioma_original",
+                                nil
+                                ];
+
+    
+    teleSURAppDelegate *appDelegate = (teleSURAppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSString *url = [diccionarioClip valueForKey:@"archivo_url"];
+    
+    if (appDelegate.conexionLimitada && [diccionarioClip duracionEnSegundos] > 600)
+    {
+        url = [NSString stringWithFormat:@"%@?end=590", url];
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Aviso"
+                                                        message:@"Actualmente estás utilizando la red de datos celular, para reproducir este video completo es necesario conectarse a una red Wi-Fi"
+                                                       delegate:self
+                                              cancelButtonTitle:@"Aceptar"
+                                              otherButtonTitles:nil, nil];
+        [alert show];
+        
+    }
+    
+    self = [super initWithContentURL:[NSURL URLWithString:url]];
+    if (self) {
+        self.clipURL = url;
+    }
+    return self;
+}
+
+
+
 - (void)viewDidLoad
 {
     [self.view setBackgroundColor: [UIColor blackColor]];
+}
+
+- (void)viewDidUnload
+{
+    self.clip = nil;
+    self.clipURL = nil;
 }
 
 
@@ -68,9 +111,18 @@
     if (registrar)
     {
         NSError *error;
-        if (![[GANTracker sharedTracker] trackEvent:@"iPhone"
+        if (![[GANTracker sharedTracker] setCustomVariableAtIndex:1
+                                                             name:@"Idioma"
+                                                            value:[self.clip valueForKey:@"idioma_original"]
+                                                        withError:&error])
+        {
+            // Error
+            NSLog(@"Error: %@", error);
+        }
+        
+        if (![[GANTracker sharedTracker] trackEvent:(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? @"iPad" : @"iPhone/iPod Touch"
                                              action:@"Video reproducido"
-                                              label:[self.clip valueForKey:@"archivo"]
+                                              label:self.clipURL
                                               value:-1
                                           withError:&error])
         {

@@ -80,7 +80,8 @@ var iniciar = function(tipo) {
 			});
 			
 			clips_store.on('load', function(store, records, success) {
-			    	video_detail.update(records[0].data);
+                    var list = Ext.getCmp('videos_list');
+                           list.select(0, false, false);
 			});
 
 		    var panel_programas = {
@@ -101,7 +102,7 @@ var iniciar = function(tipo) {
 														
 							var list = Ext.getCmp('videos_list');
 							list.itemTpl = '<div style="line-height:20px;font-size:13px;"><img style="float:left;display:block;vertical-align:middle;margin:0 5px;" height="30" width="52" src="{thumbnail_pequeno}" /><span style="display:block;float:left;width:100px;">{fecha_semana}</span></div>';
-							list.initComponent();
+							//list.initComponent();
 							
 							clips_store.proxy.url = 'http://multimedia.telesurtv.net/api/clip?tipo=programa&formato=json-gxt&programa='+btn.id;
 							clips_store.load();
@@ -110,7 +111,7 @@ var iniciar = function(tipo) {
 							
 						} else {
 							clips_store.proxy.url = 'http://multimedia.telesurtv.net/api/clip?formato=json-gxt&tipo='+btn.id;
-							clips_store.load();
+                            clips_store.load();
 						}
 					}
 				},
@@ -133,14 +134,29 @@ var iniciar = function(tipo) {
 				},
 				id: 'videodetail',
 				style: 'padding-left:30px;',
-				tpl: '<div>\
-					<h1 style="line-height:70px;font-size:20px;font-weight:bold;"><img style="vertical-align:middle;" src="'+imgsrc+'" width="120" /> '+titulo+'</h1>\
-						<h3>{fecha_semana} | {duracion}</h3>\
-						<div style="margin-top:1em;height:254px;width:452px;background:#333333;">\
-						    <video id="video" style="margin:0;padding:0;" height="254" width="452" src="{archivo_url}" poster="{thumbnail_mediano}" controls />\
-						</div>\
-						<p style="padding-top:1em;font-size:80%;width:400px;">'+desc+'</p>\
-					</div>'
+                                              
+                                              
+//				tpl: '<div>\
+//					<h1 style="line-height:70px;font-size:20px;font-weight:bold;"><img style="vertical-align:middle;" src="'+imgsrc+'" width="120" /> '+titulo+'</h1>\
+//						<h3>{fecha_semana} | {duracion}</h3>\
+//						<div style="margin-top:1em;height:254px;width:452px;background:#333333;">\
+//						    <video id="video" style="margin:0;padding:0;" height="254" width="452" src="{archivo_url}" poster="{thumbnail_mediano}" controls />\
+//						</div>\
+//						<p style="padding-top:1em;font-size:80%;width:400px;">'+desc+'</p>\
+//					</div>'
+              tpl: '<div>\
+              <h1 style="line-height:70px;font-size:20px;font-weight:bold;"><img style="vertical-align:middle;" src="'+imgsrc+'" width="120" /> '+titulo+'</h1>\
+              <h3>{fecha_semana} | {duracion}</h3>\
+              <div style="margin-top:1em;height:254px;width:452px;background:#333333;position:relative;">\
+                  <a href="{archivo_url}">\
+                       <img src="Play-icon2.png" width="80" style="display:block;position:absolute;top:85;left:190;" />\
+                      <img id="video" style="margin:0;padding:0;" height="254" width="452"  src="{thumbnail_mediano}" />\
+                  </a>\
+              </div>\
+              <p style="padding-top:1em;font-size:80%;width:400px;">'+desc+'</p>\
+              </div>'
+                                              
+                                              
 			});
 			
 			var listTpl = '';

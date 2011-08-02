@@ -9,6 +9,8 @@
 #import "UIViewController_Configuracion.h"
 #import <UIKit/UIkit.h>
 #import "TSClipPlayerViewController.h"
+#import "GANTracker.h"
+
 #define kLOADING_VIEW_TAG 100
 #define kLOADING_TRANSPARENCIA 0.70
 #define kLOADING_TIEMPO_ANIMACION 0.4
@@ -29,6 +31,15 @@
     [playerController playEnViewController:self
                       finalizarConSelector:nil
                          registrandoAccion:NO];
+    NSError *error;
+    if (![[GANTracker sharedTracker] trackEvent:(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? @"iPad" : @"iPhone/iPod Touch"
+                                         action:@"Señal en vivo iniciada"
+                                          label:moviePath
+                                          value:-1
+                                      withError:&error])
+    {
+        NSLog(@"Error");
+    }
 }
 
 -(void) agregarBotonEnVivo

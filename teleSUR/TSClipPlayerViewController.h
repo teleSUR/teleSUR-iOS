@@ -12,16 +12,20 @@
 @interface TSClipPlayerViewController : MPMoviePlayerViewController {
     
     NSDictionary *clip;
+    NSString *clipURL;
     
 }
 
 // Init
 - (id)initConClip:(NSDictionary *)diccionarioClip;
+- (id)initConProgramaURL:(NSString *)progURL;
 
 // Play
 - (void)playEnViewController:(UIViewController *)viewController finalizarConSelector:(SEL)selector registrandoAccion:(BOOL)registrar;
 
 
+
 @property (nonatomic, retain) NSDictionary *clip;
+@property (nonatomic, retain) NSString *clipURL;
 
 @end

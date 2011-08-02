@@ -36,16 +36,7 @@
                                                  delegate:nil];
     
     NSError *error;
-    if (![[GANTracker sharedTracker] setCustomVariableAtIndex:1
-                                                         name:@"iPhone"
-                                                        value:@"iv1"
-                                                    withError:&error])
-    {
-        // Error
-        NSLog(@"Error: %@", error);
-    }
-    
-    if (![[GANTracker sharedTracker] trackEvent:@"iPhone"
+    if (![[GANTracker sharedTracker] trackEvent:(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? @"iPad" : @"iPhone/iPod Touch"
                                          action:@"app iniciada"
                                           label:@"v1.0"
                                           value:-1

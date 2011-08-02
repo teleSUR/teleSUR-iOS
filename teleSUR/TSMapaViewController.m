@@ -24,6 +24,7 @@
 #import "DataDescargable.h"
 #import "XMLParser.h"
 #import "NSDate_Utilidad.h"
+#import "GANTracker.h"
 
 
 @implementation TSMapaViewController
@@ -106,7 +107,6 @@
 
 - (IBAction)mostrarVideoTiempoReal:(id)sender
 {
-    NSLog(@"Tiempo real");
     if (self.switchVideoEnVivo.on)
     {
         self.vistaCargandoEnVivo.alpha = 1.0;
@@ -120,6 +120,16 @@
         [self.view addSubview:self.vistaReproduccionVideoTiempoReal.view];
         [self.vistaReproduccionVideoTiempoReal.view setAutoresizingMask:UIViewAutoresizingFlexibleWidth];        
         [self.vistaReproduccionVideoTiempoReal play];
+        
+        NSError *error;
+        if (![[GANTracker sharedTracker] trackEvent:(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? @"iPad" : @"iPhone/iPod Touch"
+                                             action:@"Señal en vivo iniciada"
+                                              label:moviePath
+                                              value:-1
+                                          withError:&error])
+        {
+            NSLog(@"Error");
+        }
         
     }
     else

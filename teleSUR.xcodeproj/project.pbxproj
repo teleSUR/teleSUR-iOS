@@ -153,6 +153,7 @@
 		631E167E134141C0006067BC /* realidades.png in Resources */ = {isa = PBXBuildFile; fileRef = 631E167D134141C0006067BC /* realidades.png */; };
 		632FE555131F582B007B7167 /* IconoLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 632FE554131F582B007B7167 /* IconoLogo.png */; };
 		632FE558131F5E6D007B7167 /* SinImagen.png in Resources */ = {isa = PBXBuildFile; fileRef = 632FE557131F5E6D007B7167 /* SinImagen.png */; };
+		6334500313E75DAB0077B2B4 /* nuestra-america-deportiva.png in Resources */ = {isa = PBXBuildFile; fileRef = 6334500213E75DAB0077B2B4 /* nuestra-america-deportiva.png */; };
 		6341A7D5132056A2008FFD9D /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6341A7D4132056A2008FFD9D /* EGORefreshTableHeaderView.m */; };
 		6341A7D9132056FE008FFD9D /* PullToRefreshTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6341A7D8132056FD008FFD9D /* PullToRefreshTableViewController.m */; };
 		6341A7DC132057DF008FFD9D /* SoundEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = 6341A7DB132057DE008FFD9D /* SoundEffect.m */; };
@@ -195,6 +196,7 @@
 		63B776F713340ED90024D77E /* TSClipListadoMenuTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63B776F513340ED80024D77E /* TSClipListadoMenuTableViewController.m */; };
 		63C034B61328A510005D9F32 /* TSClipBusquedaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C034B41328A510005D9F32 /* TSClipBusquedaViewController.m */; };
 		63C7AEFA131DAF9000BD7F64 /* AsynchronousImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C7AEF9131DAF9000BD7F64 /* AsynchronousImageView.m */; };
+		63CD06C613E66A7900C675DB /* TSTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 63CD06C513E66A7900C675DB /* TSTabBar.m */; };
 		63D801CD136A161500FC065A /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 63D801CB136A161500FC065A /* Default@2x.png */; };
 		63D801CE136A161500FC065A /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 63D801CC136A161500FC065A /* Icon@2x.png */; };
 		63E01697131B883D001928E4 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 63E01696131B883D001928E4 /* Default.png */; };
@@ -888,6 +890,7 @@
 		631E167D134141C0006067BC /* realidades.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = realidades.png; sourceTree = "<group>"; };
 		632FE554131F582B007B7167 /* IconoLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IconoLogo.png; sourceTree = "<group>"; };
 		632FE557131F5E6D007B7167 /* SinImagen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SinImagen.png; sourceTree = "<group>"; };
+		6334500213E75DAB0077B2B4 /* nuestra-america-deportiva.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nuestra-america-deportiva.png"; sourceTree = "<group>"; };
 		6341A7D3132056A2008FFD9D /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
 		6341A7D4132056A2008FFD9D /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
 		6341A7D7132056FD008FFD9D /* PullToRefreshTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PullToRefreshTableViewController.h; sourceTree = "<group>"; };
@@ -942,6 +945,8 @@
 		63C034B41328A510005D9F32 /* TSClipBusquedaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSClipBusquedaViewController.m; sourceTree = "<group>"; };
 		63C7AEF8131DAF8F00BD7F64 /* AsynchronousImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsynchronousImageView.h; sourceTree = "<group>"; };
 		63C7AEF9131DAF9000BD7F64 /* AsynchronousImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsynchronousImageView.m; sourceTree = "<group>"; };
+		63CD06C413E66A7900C675DB /* TSTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSTabBar.h; sourceTree = "<group>"; };
+		63CD06C513E66A7900C675DB /* TSTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSTabBar.m; sourceTree = "<group>"; };
 		63D801CB136A161500FC065A /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		63D801CC136A161500FC065A /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		63E01696131B883D001928E4 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
@@ -2071,6 +2076,7 @@
 		631E166813413F31006067BC /* Iconos Programas */ = {
 			isa = PBXGroup;
 			children = (
+				6334500213E75DAB0077B2B4 /* nuestra-america-deportiva.png */,
 				631E167D134141C0006067BC /* realidades.png */,
 				631E167B1341403B006067BC /* documental.png */,
 				631E16691341401F006067BC /* agenda-abierta.png */,
@@ -2209,6 +2215,8 @@
 				C4311E2C1385CD9500A28DBA /* teleSuriPadTabMenu.h */,
 				C4311E2D1385CD9500A28DBA /* teleSuriPadTabMenu.m */,
 				C4311E301385CDB200A28DBA /* teleSuriPadTabMenuView.xib */,
+				63CD06C413E66A7900C675DB /* TSTabBar.h */,
+				63CD06C513E66A7900C675DB /* TSTabBar.m */,
 			);
 			name = "Menú";
 			sourceTree = "<group>";
@@ -3423,6 +3431,7 @@
 				63F6AC3813D4F79400068866 /* reportajesicono.png in Resources */,
 				6382D03013D7B644005204F7 /* reload.png in Resources */,
 				6382D03213D7CE39005204F7 /* DESTACADO_2.png in Resources */,
+				6334500313E75DAB0077B2B4 /* nuestra-america-deportiva.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3569,6 +3578,7 @@
 				C4E4D08913B1743700872CAC /* XMLParser.m in Sources */,
 				63FCB60913CB8554006CA291 /* TSSenchaLargoProgramasViewController.m in Sources */,
 				63835B2913D3F37200BF8301 /* TSIpadViewController.m in Sources */,
+				63CD06C613E66A7900C675DB /* TSTabBar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -14,6 +14,7 @@
 #import "TSMultimediaDataDelegate.h"
 #import "TSMultimediaData.h"
 #import "teleSURAppDelegate_iPad.h"
+#import "TSClipPlayerViewController.h"
 
 
 @implementation TSSenchaLargoProgramasViewController
@@ -23,17 +24,14 @@
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
-{
-    [webView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"Programas" ofType:@"html"] isDirectory:NO]]];
-    
+{   
     self.menu = [self cargarMenu];
     self.webView.delegate = self;
     
-    NSString *path = [[NSBundle mainBundle] bundlePath];
-    NSURL *baseURL = [NSURL fileURLWithPath:path];
+//    NSString *path = [[NSBundle mainBundle] bundlePath];
+//    NSURL *baseURL = [NSURL fileURLWithPath:path];
     
     [webView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"Programas" ofType:@"html"] isDirectory:NO]]];
-    
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
@@ -49,19 +47,24 @@
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
     NSRange range = [request.URL.absoluteString rangeOfString: @".mp4" options: NSCaseInsensitiveSearch];
-    
+       
     if ( range.location != NSNotFound ) //opening MP4 video file
-    {           
-        [self showFullscreenMediaWithURL: request.URL];
-        NSLog(@"detenido");
+    {        
+        TSClipPlayerViewController *player = [[TSClipPlayerViewController alloc] initConProgramaURL:[NSString stringWithFormat:@"%@", request.URL]];
+        [player playEnViewController:self finalizarConSelector:@selector(videoTerminado) registrandoAccion:YES];
+        [player release];
         
         return NO;
     }
     
-    NSLog(@"detenid: # %@ o", request.URL.absoluteString);
-    
     return YES;
 } 
+
+
+- (void)videoTerminado
+{
+    
+}
 
 - (void)recargar
 {
@@ -79,7 +82,7 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-        [self.webView stringByEvaluatingJavaScriptFromString:@"var myVideo=document.getElementById('video');myVideo.pause();myVideo.currentTime = -1;"];
+        //[self.webView stringByEvaluatingJavaScriptFromString:@"var myVideo=document.getElementById('video');myVideo.pause();myVideo.currentTime = -1;"];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -108,6 +111,7 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+    self.webView = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -120,9 +124,7 @@
 #pragma - TSMultimediaDataDelegate
 
 -(void)TSMultimediaData:(TSMultimediaData *)data entidadesRecibidas:(NSArray *)array paraEntidad:(NSString *)entidad
-{    
-    NSLog(@"Programas..%@.", entidad);
-    
+{   
     if (entidad != @"programa") return;
     
     
@@ -142,20 +144,13 @@
         tipo = @"reportajes";
     }
     
-    
-    
     [self.webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"iniciar('%@');", tipo]];
-    
-
-    
 }
 
 -(void)TSMultimediaData:(TSMultimediaData *)data entidadesRecibidasConError:(id)error
 {
     
 }
-
-
 
 @end
 

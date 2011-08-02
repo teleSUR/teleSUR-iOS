@@ -21,6 +21,7 @@
 #import "teleSuriPadTabMenu.h"
 #import "UIViewController_Configuracion.h"
 #import "NSDictionary_Datos.h"
+#import "GANTracker.h"
 
 @implementation TSClipListadoiPadViewController
 
@@ -201,6 +202,19 @@
         [self.view addSubview:self.vistaReproduccionVideoTiempoReal.view];
         [self.vistaReproduccionVideoTiempoReal.view setAutoresizingMask:UIViewAutoresizingFlexibleWidth];        
         [self.vistaReproduccionVideoTiempoReal play];
+        
+
+        NSError *error;
+        if (![[GANTracker sharedTracker] trackEvent:(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? @"iPad" : @"iPhone/iPod Touch"
+                                             action:@"Señal en vivo iniciada"
+                                              label:moviePath
+                                              value:-1
+                                          withError:&error])
+        {
+            NSLog(@"Error");
+        }
+        
+        
     }
     else
     {

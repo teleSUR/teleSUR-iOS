@@ -51,7 +51,6 @@
 
 -(void)TSMultimediaData:(TSMultimediaData *)data entidadesRecibidas:(NSArray *)array paraEntidad:(NSString *)entidad
 {
-    NSLog(@"recibbooo");
     int offsetX = 40 + kMargenPolaroidX;
     
     int anchoCelda;
