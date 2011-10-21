@@ -22,6 +22,7 @@
     
     NSString *url = [diccionarioClip valueForKey:@"archivo_url"];
     
+    /*
     if (appDelegate.conexionLimitada && [diccionarioClip duracionEnSegundos] > 600)
     {
         url = [NSString stringWithFormat:@"%@?end=590", url];
@@ -34,6 +35,11 @@
         [alert show];
                                             
     }
+    */
+    
+    url = [url stringByReplacingOccurrencesOfString:@"http://media.tlsur.net/clips/" withString:@"http://vod.tlsur.net:1935/vod/mp4:"];
+    url = [url stringByAppendingString:@"/playlist.m3u8"];
+    NSLog(@"video url: %@", url);
                          
     self = [super initWithContentURL:[NSURL URLWithString:url]];
     if (self) {

@@ -263,7 +263,9 @@ NSInteger const TSMargenMenu = 12;
 
 - (void)configurarDiccionarioConfiguracionFiltrosParaSlug:(NSString *)slug
 { 
-    [self.diccionarioConfiguracionFiltros setValue:([slug isEqualToString:@"todos"] ? nil : slug) forKey:self.entidadMenu];
+    [self.diccionarioConfiguracionFiltros setValue:(([slug isEqualToString:@"todos"] || [slug isEqualToString:@"populares"]) ? nil : slug) forKey:self.entidadMenu];
+    [self.diccionarioConfiguracionFiltros setValue:([slug isEqualToString:@"populares"] ? @"semana" : @"siempre") forKey:@"tiempo"];
+    [self.diccionarioConfiguracionFiltros setValue:([slug isEqualToString:@"populares"] ? @"popularidad" : @"fecha") forKey:@"orden"];
 }
 
 
@@ -285,9 +287,15 @@ NSInteger const TSMargenMenu = 12;
             [filtroTodos setValue:@"todos" forKey:@"slug"];
             [filtroTodos setValue:@"Mostrar todos" forKey:@"descripcion"];
             
+            NSMutableDictionary *filtroPopulares = [NSMutableDictionary dictionary];
+            [filtroPopulares setValue:@"Populares" forKey:@"nombre"];
+            [filtroPopulares setValue:@"populares" forKey:@"slug"];
+            [filtroPopulares setValue:@"Más populares" forKey:@"descripcion"];
+            
             // Insertar filtro como primer elemento del arreglo recibido
             NSMutableArray *arregloAumentado = [NSMutableArray arrayWithArray:array];
             [arregloAumentado insertObject:filtroTodos atIndex:0];
+            [arregloAumentado insertObject:filtroPopulares atIndex:1];
             
             // Actualizar arreglo interno
             self.filtros = arregloAumentado;

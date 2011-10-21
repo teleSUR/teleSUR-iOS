@@ -110,6 +110,8 @@
     if (self.switchVideoEnVivo.on)
     {
         self.vistaCargandoEnVivo.alpha = 1.0;
+        [self.vistaCargandoEnVivo.superview bringSubviewToFront:self.vistaCargandoEnVivo];
+        
         NSString *moviePath = [[[[NSBundle mainBundle] infoDictionary] valueForKey:@"Configuración"] valueForKey:(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? @"Streaming URL Alta" : @"Streaming URL Media"];
         NSURL *movieURL = [NSURL URLWithString:moviePath];
         
@@ -117,12 +119,15 @@
         [self.vistaReproduccionVideoTiempoReal.view setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight ];
         self.vistaReproduccionVideoTiempoReal.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y+44, self.view.frame.size.width, self.view.frame.size.height-44);
         
-        [self.view addSubview:self.vistaReproduccionVideoTiempoReal.view];
-        [self.vistaReproduccionVideoTiempoReal.view setAutoresizingMask:UIViewAutoresizingFlexibleWidth];        
+        
+        [self.vistaReproduccionVideoTiempoReal setBackgroundColor:[UIColor clearColor]];
+        
+        //[self.vistaReproduccionVideoTiempoReal.view setAutoresizingMask:UIViewAutoresizingFlexibleWidth];        
         [self.vistaReproduccionVideoTiempoReal play];
+        [self.view addSubview:self.vistaReproduccionVideoTiempoReal.view];
         
         NSError *error;
-        if (![[GANTracker sharedTracker] trackEvent:(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? @"iPad" : @"iPhone/iPod Touch"
+        if (![[GANTracker sharedTracker] trackEvent:(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? @"iPad" : @"iPhonejek"
                                              action:@"Señal en vivo iniciada"
                                               label:moviePath
                                               value:-1
