@@ -103,7 +103,10 @@
     
     // Poner etiqueta de la izquierda:
     
-    if ([array count] != 0) [(UILabel *)[vistaEtiquetaGigante viewWithTag:1] setText: [[[array lastObject] valueForKey:@"categoria"] valueForKey:@"nombre"] ];
+    if ([self.nombreCategoria isEqualToString:@"populares"])
+         [(UILabel *)[vistaEtiquetaGigante viewWithTag:1] setText:@"Populares"];
+    else
+        if ([array count] != 0) [(UILabel *)[vistaEtiquetaGigante viewWithTag:1] setText: [[[array lastObject] valueForKey:@"categoria"] valueForKey:@"nombre"] ];
     
     
 //    [(UILabel *)[vistaEtiquetaGigante viewWithTag:1] setText:self.nombreCategoria];

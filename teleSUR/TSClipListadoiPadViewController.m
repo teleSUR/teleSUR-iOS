@@ -84,7 +84,7 @@
 {
     self.strips = [[NSMutableArray alloc] init];
 
-    self.tipos = [NSMutableArray arrayWithObjects:@"politica", @"economia", @"deportes", @"cultura", @"ciencia", @"medio-ambiente", nil];
+    self.tipos = [NSMutableArray arrayWithObjects:@"politica", @"economia", @"deportes", @"cultura", @"ciencia", @"medio-ambiente", @"populares", nil];
     
     NSArray* nibViews =  [[NSBundle mainBundle] loadNibNamed:@"TSClipCellStripBigView" owner:self options:nil];
     [self.vistaUltimoClip addSubview:[nibViews lastObject]];
@@ -112,7 +112,10 @@
     {        
         TSClipStrip *stripClips1 = [[TSClipStrip alloc] init];
         stripClips1.nombreCategoria = [self.tipos objectAtIndex:i];
-        stripClips1.listado.diccionarioConfiguracionFiltros = [NSDictionary dictionaryWithObjectsAndKeys:[self.tipos objectAtIndex:i], @"categoria", @"noticia", @"tipo", nil];
+        if ([[self.tipos objectAtIndex:i] isEqualToString:@"populares"])
+            stripClips1.listado.diccionarioConfiguracionFiltros = [NSDictionary dictionaryWithObjectsAndKeys:@"popularidad", @"orden", @"semana", @"tiempo", @"noticia", @"tipo", nil];
+        else
+            stripClips1.listado.diccionarioConfiguracionFiltros = [NSDictionary dictionaryWithObjectsAndKeys:[self.tipos objectAtIndex:i], @"categoria", @"noticia", @"tipo", nil];
         stripClips1.posicion = i;
         [stripClips1 cargarClips];
         [stripClips1 setFrame:CGRectMake(0, kMargenStrips + (kMargenStrips+kAlturaStrip)*i, self.view.frame.size.width/*-(kMargenStrips*2)*/, kAlturaStrip)];
@@ -122,6 +125,8 @@
         [self.strips addObject:stripClips1];
         [stripClips1 release];
     }
+    
+    
 
     self.menu = [self cargarMenu];
     
