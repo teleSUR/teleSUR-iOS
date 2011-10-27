@@ -53,9 +53,7 @@
 #pragma mark View life cycle
 
 - (void)viewDidLoad
-{
-    
-    
+{   
     self.diccionarioConfiguracionFiltros = [NSMutableDictionary dictionaryWithObject:[self.clip objectForKey:@"slug"] forKey:@"relacionados"];
     self.rangoUltimo = NSMakeRange(1, 5);
     
@@ -432,7 +430,7 @@
 {
     // Crear item para compartir en redes sociales
     NSString *urlBase = [[[[NSBundle mainBundle] infoDictionary] objectForKey:@"Configuración"] objectForKey:@"API URL Base"];
-	NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", urlBase, [self.clip valueForKey:@"url"]]];
+	NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", urlBase, [self.clip valueForKey:@"navegador_url"]]];
 	SHKItem *item = [SHKItem URL:url title:[self.clip valueForKey:@"titulo"]];
     
 	// Crear Action Sheet

@@ -23,13 +23,12 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // COnexi—n
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkNetworkStatus:) name:kReachabilityChangedNotification object:nil];
+    // No necesario con Apple HLS
+    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkNetworkStatus:) name:kReachabilityChangedNotification object:nil];
     
     // Checar si hay ruta hacia el sitio
     hostReachable = [[Reachability reachabilityWithHostName: @"multimedia.telesurtv.net"] retain];
     [hostReachable startNotifier];
-    
-    
     
     [[GANTracker sharedTracker] startTrackerWithAccountID:@"UA-11834651-1"
                                            dispatchPeriod:60

@@ -22,10 +22,11 @@
 -(void) presentarVideoEnVivo
 {
     NSString *moviePath = [[[[NSBundle mainBundle] infoDictionary] valueForKey:@"Configuración"] valueForKey:(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? @"Streaming URL Alta" : @"Streaming URL Media"];
-    NSDictionary *elClip = [NSDictionary dictionaryWithObject:moviePath forKey:@"archivo_url"];
+    NSLog(@"%@", moviePath);
+    //NSDictionary *fakeClip = [NSDictionary dictionaryWithObject:moviePath forKey:@"archivo_url"];
     
     ;// Crear y configurar player
-    TSClipPlayerViewController *playerController = [[TSClipPlayerViewController alloc] initConClip:elClip];
+    TSClipPlayerViewController *playerController = [[TSClipPlayerViewController alloc] initConProgramaURL:moviePath];
     
     // Reproducir video
     [playerController playEnViewController:self

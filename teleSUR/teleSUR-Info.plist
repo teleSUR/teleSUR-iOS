@@ -38,7 +38,7 @@
 	<key>Configuración</key>
 	<dict>
 		<key>API URL Base</key>
-		<string>http://multimedia.telesurtv.net</string>
+		<string>http://multimedia.tlsur.net/api</string>
 		<key>Código de idioma</key>
 		<string>es</string>
 		<key>Filtros Extra Menú Programas</key>

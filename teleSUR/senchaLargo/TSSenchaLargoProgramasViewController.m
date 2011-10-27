@@ -71,7 +71,7 @@
     [webView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"Programas" ofType:@"html"] isDirectory:NO]]];
 }
 
-- (void) showFullscreenMediaWithURL: (NSURL *) mediaURL
+- (void)showFullscreenMediaWithURL:(NSURL *)mediaURL
 {
     MPMoviePlayerViewController *ctrl = [[MPMoviePlayerViewController alloc] initWithContentURL: mediaURL];
     

@@ -41,7 +41,9 @@
 	if ([entidad isEqualToString:@"clip"])
     {
         // Buscar nombres de parámetros reconocidos y agregarlos al arreglo de parámetros GET
-        NSArray *params = [NSArray arrayWithObjects:@"desde", @"hasta", @"tiempo", @"orden", @"detalle", @"categoria", @"programa", @"geotag", @"tipo", @"pais", @"tema", @"corresponsal", @"personaje", @"ubicacion", @"relacionados", @"texto", nil];
+        NSArray *params = [NSArray arrayWithObjects:@"desde", @"hasta", @"tiempo", @"orden", @"detalle", @"categoria", @"programa", @"geotag", @"tipo", @"pais", @"tema", @"corresponsal", @"personaje", @"ubicacion", @"relacionados", @"texto", @"detalle", nil];
+        
+        [parametrosGET addObject:[NSString stringWithFormat:@"detalle=completo"]];
         
         for (NSString *param in params)
             if ((currentFiltro = [filtros objectForKey:param]))
@@ -102,7 +104,8 @@
 	// construir quierystring, URL, consulta y conexión
 	NSString *queryString = [parametrosGETSeguros componentsJoinedByString:@"&"];
 	
-	NSURL *multimediaAPIRequestURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@api/%@?%@", urlBase, langCode, entidad, queryString]];
+	NSURL *multimediaAPIRequestURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@%@/?%@", urlBase, langCode, entidad, queryString]];
+    NSLog(@"%@", multimediaAPIRequestURL);
 	//NSLog(@"URL a consultar: %@", multimediaAPIRequestURL);
 	
 	NSURLRequest *apiRequest=[NSURLRequest requestWithURL:multimediaAPIRequestURL
