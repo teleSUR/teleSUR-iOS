@@ -209,7 +209,8 @@ var iniciar = function(tipo) {
 				},
 				fullscreen: true,
 				listeners: {
-					orientationchange: function() {/
+					orientationchange: function() {
+						
 					}
 				},
 				items: [video_detail],
