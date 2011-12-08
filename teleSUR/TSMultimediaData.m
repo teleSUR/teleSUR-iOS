@@ -105,7 +105,7 @@
 	NSString *queryString = [parametrosGETSeguros componentsJoinedByString:@"&"];
 	
 	NSURL *multimediaAPIRequestURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@%@/?%@", urlBase, langCode, entidad, queryString]];
-    NSLog(@"%@", multimediaAPIRequestURL);
+    //NSLog(@"%@", multimediaAPIRequestURL);
 	//NSLog(@"URL a consultar: %@", multimediaAPIRequestURL);
 	
 	NSURLRequest *apiRequest=[NSURLRequest requestWithURL:multimediaAPIRequestURL

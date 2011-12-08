@@ -18,7 +18,18 @@
 
 - (id)initConClip:(NSDictionary *)diccionarioClip
 {
-    NSString *url = [[diccionarioClip valueForKey:@"streaming"] valueForKey:@"apple_hls_url"];
+    NSString *url;
+    if ([[diccionarioClip valueForKey:@"metodo_preferido"] isEqualToString:@"streaming"])
+    {
+        url = [[diccionarioClip valueForKey:@"streaming"] valueForKey:@"apple_hls_url"];
+    }
+    else
+    {
+        url = [diccionarioClip valueForKey:@"archivo_url"];
+    }
+    
+    NSLog(@"%@", url);
+    
                          
     self = [super initWithContentURL:[NSURL URLWithString:url]];
     if (self) {

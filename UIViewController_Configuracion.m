@@ -22,7 +22,7 @@
 -(void) presentarVideoEnVivo
 {
     NSString *moviePath = [[[[NSBundle mainBundle] infoDictionary] valueForKey:@"Configuración"] valueForKey:(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? @"Streaming URL Alta" : @"Streaming URL Media"];
-    NSLog(@"%@", moviePath);
+    //NSLog(@"%@", moviePath);
     //NSDictionary *fakeClip = [NSDictionary dictionaryWithObject:moviePath forKey:@"archivo_url"];
     
     ;// Crear y configurar player
