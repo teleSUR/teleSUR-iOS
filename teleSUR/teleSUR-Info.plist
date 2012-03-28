@@ -28,13 +28,13 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.2</string>
+	<string>1.3</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleURLTypes</key>
 	<array/>
 	<key>CFBundleVersion</key>
-	<string>1.2</string>
+	<string>1.3</string>
 	<key>Configuración</key>
 	<dict>
 		<key>API URL Base</key>
@@ -144,9 +144,9 @@
 			</dict>
 		</array>
 		<key>Streaming URL Alta</key>
-		<string>http://streaming.tlsur.net:1935/live/alta.stream/playlist.m3u8</string>
+		<string>http://streaming.tlsur.net:1935/blive/ngrp:balta.stream_all/playlist.m3u8</string>
 		<key>Streaming URL Media</key>
-		<string>http://streaming.tlsur.net:1935/live/media.stream/playlist.m3u8</string>
+		<string>http://streaming.tlsur.net:1935/blive/ngrp:balta.stream_all/playlist.m3u8</string>
 		<key>Ubicaciones</key>
 		<array>
 			<dict>
@@ -199,10 +199,10 @@
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
-		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+		<string>UIInterfaceOrientationPortrait</string>
 	</array>
 	<key>UTExportedTypeDeclarations</key>
 	<array/>

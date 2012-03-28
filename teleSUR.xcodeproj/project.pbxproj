@@ -154,6 +154,8 @@
 		632FE555131F582B007B7167 /* IconoLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 632FE554131F582B007B7167 /* IconoLogo.png */; };
 		632FE558131F5E6D007B7167 /* SinImagen.png in Resources */ = {isa = PBXBuildFile; fileRef = 632FE557131F5E6D007B7167 /* SinImagen.png */; };
 		6334500313E75DAB0077B2B4 /* nuestra-america-deportiva.png in Resources */ = {isa = PBXBuildFile; fileRef = 6334500213E75DAB0077B2B4 /* nuestra-america-deportiva.png */; };
+		633746F7151F8FA0004E14DF /* TSMapaComponenteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 633746F5151F8FA0004E14DF /* TSMapaComponenteViewController.m */; };
+		633746FA1521492D004E14DF /* TSProgramacion.html in Resources */ = {isa = PBXBuildFile; fileRef = 633746F91521492D004E14DF /* TSProgramacion.html */; };
 		6341A7D5132056A2008FFD9D /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6341A7D4132056A2008FFD9D /* EGORefreshTableHeaderView.m */; };
 		6341A7D9132056FE008FFD9D /* PullToRefreshTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6341A7D8132056FD008FFD9D /* PullToRefreshTableViewController.m */; };
 		6341A7DC132057DF008FFD9D /* SoundEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = 6341A7DB132057DE008FFD9D /* SoundEffect.m */; };
@@ -197,6 +199,10 @@
 		63C034B61328A510005D9F32 /* TSClipBusquedaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C034B41328A510005D9F32 /* TSClipBusquedaViewController.m */; };
 		63C7AEFA131DAF9000BD7F64 /* AsynchronousImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C7AEF9131DAF9000BD7F64 /* AsynchronousImageView.m */; };
 		63CD06C613E66A7900C675DB /* TSTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 63CD06C513E66A7900C675DB /* TSTabBar.m */; };
+		63D6490C152259E1009BC369 /* TSMapaComponenteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63D6490B152259E0009BC369 /* TSMapaComponenteViewController.xib */; };
+		63D649101522700B009BC369 /* TSMapitaViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = 63D6490D1522700B009BC369 /* TSMapitaViewController.h */; };
+		63D649111522700B009BC369 /* TSMapitaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D6490E1522700B009BC369 /* TSMapitaViewController.m */; };
+		63D649121522700B009BC369 /* TSMapitaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63D6490F1522700B009BC369 /* TSMapitaViewController.xib */; };
 		63D801CD136A161500FC065A /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 63D801CB136A161500FC065A /* Default@2x.png */; };
 		63D801CE136A161500FC065A /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 63D801CC136A161500FC065A /* Icon@2x.png */; };
 		63E01697131B883D001928E4 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 63E01696131B883D001928E4 /* Default.png */; };
@@ -891,6 +897,9 @@
 		632FE554131F582B007B7167 /* IconoLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IconoLogo.png; sourceTree = "<group>"; };
 		632FE557131F5E6D007B7167 /* SinImagen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SinImagen.png; sourceTree = "<group>"; };
 		6334500213E75DAB0077B2B4 /* nuestra-america-deportiva.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nuestra-america-deportiva.png"; sourceTree = "<group>"; };
+		633746F4151F8FA0004E14DF /* TSMapaComponenteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSMapaComponenteViewController.h; sourceTree = "<group>"; };
+		633746F5151F8FA0004E14DF /* TSMapaComponenteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSMapaComponenteViewController.m; sourceTree = "<group>"; };
+		633746F91521492D004E14DF /* TSProgramacion.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = TSProgramacion.html; sourceTree = "<group>"; };
 		6341A7D3132056A2008FFD9D /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
 		6341A7D4132056A2008FFD9D /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
 		6341A7D7132056FD008FFD9D /* PullToRefreshTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PullToRefreshTableViewController.h; sourceTree = "<group>"; };
@@ -948,6 +957,10 @@
 		63C7AEF9131DAF9000BD7F64 /* AsynchronousImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsynchronousImageView.m; sourceTree = "<group>"; };
 		63CD06C413E66A7900C675DB /* TSTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSTabBar.h; sourceTree = "<group>"; };
 		63CD06C513E66A7900C675DB /* TSTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSTabBar.m; sourceTree = "<group>"; };
+		63D6490B152259E0009BC369 /* TSMapaComponenteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TSMapaComponenteViewController.xib; sourceTree = "<group>"; };
+		63D6490D1522700B009BC369 /* TSMapitaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; path = TSMapitaViewController.h; sourceTree = "<group>"; };
+		63D6490E1522700B009BC369 /* TSMapitaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSMapitaViewController.m; sourceTree = "<group>"; };
+		63D6490F1522700B009BC369 /* TSMapitaViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TSMapitaViewController.xib; sourceTree = "<group>"; };
 		63D801CB136A161500FC065A /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		63D801CC136A161500FC065A /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		63E01696131B883D001928E4 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
@@ -1462,8 +1475,9 @@
 				63B1CCFA1343F4D100EFDFB6 /* TSMasHTMLViewController.h */,
 				63B1CCFB1343F4D100EFDFB6 /* TSMasHTMLViewController.m */,
 				63B1CCFC1343F4D100EFDFB6 /* TSMasHTMLViewController.xib */,
-				63B1CD001343F4DA00EFDFB6 /* TSQuienesSomos.html */,
 				63B1CCF91343F4D100EFDFB6 /* TSContacto.html */,
+				63B1CD001343F4DA00EFDFB6 /* TSQuienesSomos.html */,
+				633746F91521492D004E14DF /* TSProgramacion.html */,
 			);
 			name = "Más";
 			sourceTree = "<group>";
@@ -2225,6 +2239,9 @@
 		63835B2413D3F1DA00BF8301 /* Mapa */ = {
 			isa = PBXGroup;
 			children = (
+				633746F4151F8FA0004E14DF /* TSMapaComponenteViewController.h */,
+				633746F5151F8FA0004E14DF /* TSMapaComponenteViewController.m */,
+				63D6490B152259E0009BC369 /* TSMapaComponenteViewController.xib */,
 				3A98B50C13663D8E0083373D /* TSMapaViewController.h */,
 				3A98B50D13663D8E0083373D /* TSMapaViewController.m */,
 				3A98B50913663C730083373D /* TSMapaViewController.xib */,
@@ -2267,6 +2284,9 @@
 		63E016A5131D840E001928E4 /* Vistas */ = {
 			isa = PBXGroup;
 			children = (
+				63D6490D1522700B009BC369 /* TSMapitaViewController.h */,
+				63D6490E1522700B009BC369 /* TSMapitaViewController.m */,
+				63D6490F1522700B009BC369 /* TSMapitaViewController.xib */,
 				63B776F01333D84B0024D77E /* TSClipPlayerViewController.h */,
 				63B776F11333D84B0024D77E /* TSClipPlayerViewController.m */,
 				3A1001F0131B354300717211 /* LoadingView.xib */,
@@ -3433,6 +3453,9 @@
 				6382D03013D7B644005204F7 /* reload.png in Resources */,
 				6382D03213D7CE39005204F7 /* DESTACADO_2.png in Resources */,
 				6334500313E75DAB0077B2B4 /* nuestra-america-deportiva.png in Resources */,
+				633746FA1521492D004E14DF /* TSProgramacion.html in Resources */,
+				63D6490C152259E1009BC369 /* TSMapaComponenteViewController.xib in Resources */,
+				63D649121522700B009BC369 /* TSMapitaViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3580,6 +3603,9 @@
 				63FCB60913CB8554006CA291 /* TSSenchaLargoProgramasViewController.m in Sources */,
 				63835B2913D3F37200BF8301 /* TSIpadViewController.m in Sources */,
 				63CD06C613E66A7900C675DB /* TSTabBar.m in Sources */,
+				633746F7151F8FA0004E14DF /* TSMapaComponenteViewController.m in Sources */,
+				63D649101522700B009BC369 /* TSMapitaViewController.h in Sources */,
+				63D649111522700B009BC369 /* TSMapitaViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3668,7 +3694,7 @@
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
@@ -3686,7 +3712,7 @@
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";

@@ -109,7 +109,7 @@
 
     switch (section) {
         case 0:
-            return 2;
+            return 3;
             break;
         case 1:
             return 3;
@@ -138,11 +138,18 @@
                     case 0:
                         cell.textLabel.text = @"¿Quiénes somos?";
                         cell.imageView.image = [UIImage imageNamed:@"IconoLogo.png"];                                                 
-
                         break;
+                        
                     case 1:
                         cell.textLabel.text = @"Contáctenos";
-                        cell.imageView.image = [UIImage imageNamed:@"mail.png"];                                                 
+                        cell.imageView.image = [UIImage imageNamed:@"mail.png"];   
+                        break;
+                    
+                    case 2:
+                        cell.textLabel.text = @"Programación";
+                        cell.imageView.image = [UIImage imageNamed:@"mail.png"];   
+                        break;
+                        
                     default:
                         break;
                 }
@@ -163,6 +170,7 @@
                     case 2:
                         cell.textLabel.text = @"YouTube";
                         cell.imageView.image = [UIImage imageNamed:@"youtube-logo.png"]; 
+                        break; 
                     default:
                         break;
                 }
@@ -243,6 +251,12 @@
                     
                     nombreHTML = @"TSContacto";
 
+                    break;
+                
+                case 2:
+                    
+                    nombreHTML = @"TSProgramacion";
+                    
                     break;
             }
             

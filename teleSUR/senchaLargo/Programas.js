@@ -55,11 +55,11 @@ var iniciar = function(tipo) {
 			
 			var clips_url = '';
 			if (tipo == 'programas') {
-				clips_url = 'http://multimedia.tlsur.net/api/clip?tipo=programa&formato=ext';
+				clips_url = 'http://multimedia.tlsur.net/api/clip/?tipo=programa&formato=ext';
 			} else if (tipo == 'documentales') {
-				clips_url = 'http://multimedia.tlsur.net/api/clip?tipo=documental&formato=ext';
+				clips_url = 'http://multimedia.tlsur.net/api/clip/?tipo=documental&formato=ext';
 			} else if (tipo == 'reportajes') {
-				clips_url = 'http://multimedia.tlsur.net/api/clip?tipo=reportaje&formato=ext'
+				clips_url = 'http://multimedia.tlsur.net/api/clip/?tipo=reportaje&formato=ext'
 			}
 			
 			clips_store = new Ext.data.Store({
@@ -104,13 +104,13 @@ var iniciar = function(tipo) {
 							list.itemTpl = '<div style="line-height:20px;font-size:13px;"><img style="float:left;display:block;vertical-align:middle;margin:0 5px;" height="30" width="52" src="{thumbnail_pequeno}" /><span style="display:block;float:left;width:100px;">{fecha_semana}</span></div>';
 							//list.initComponent();
 							
-							clips_store.proxy.url = 'http://multimedia.telesurtv.net/api/clip?tipo=programa&formato=ext&programa='+btn.id;
+							clips_store.proxy.url = 'http://multimedia.telesurtv.net/api/clip/?tipo=programa&formato=ext&programa='+btn.id;
 							clips_store.load();
 							
 							list.refresh();
 							
 						} else {
-							clips_store.proxy.url = 'http://multimedia.telesurtv.net/api/clip?formato=ext&tipo='+btn.id;
+							clips_store.proxy.url = 'http://multimedia.telesurtv.net/api/clip/?formato=ext&tipo='+btn.id;
                             clips_store.load();
 						}
 					}
@@ -119,7 +119,8 @@ var iniciar = function(tipo) {
 			};
 
 			for (var i in programas_data) {
-				var src = (browser) ? programas_data[i].imagen_url : programas_data[i].slug+".png"; // cache iOS
+				//var src = (browser) ? programas_data[i].imagen_url : programas_data[i].slug+".png"; // cache iOS
+                  var src = programas_data[i].imagen_url;
 				panel_programas.items[i] = {id: programas_data[i].slug, ui: 'round', html: "<img style='width:100%;height:100%;' src='"+src+"' />", style:""};
 			}
 			

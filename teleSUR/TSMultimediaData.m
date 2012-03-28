@@ -39,7 +39,7 @@
 	
     // Agregar posibles filtros para clips
 	if ([entidad isEqualToString:@"clip"])
-    {
+    {        
         // Buscar nombres de parámetros reconocidos y agregarlos al arreglo de parámetros GET
         NSArray *params = [NSArray arrayWithObjects:@"desde", @"hasta", @"tiempo", @"orden", @"detalle", @"categoria", @"programa", @"geotag", @"tipo", @"pais", @"tema", @"corresponsal", @"personaje", @"ubicacion", @"relacionados", @"texto", @"detalle", nil];
         
@@ -110,7 +110,7 @@
 	
 	NSURLRequest *apiRequest=[NSURLRequest requestWithURL:multimediaAPIRequestURL
 											  cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
-										  timeoutInterval:60.0];
+										  timeoutInterval:10.0];
 	
 	NSURLConnection *conexion = [[NSURLConnection alloc] initWithRequest:apiRequest delegate:self];
 	
